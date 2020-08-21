@@ -32,12 +32,12 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.prod.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
-    "webpack:dev": "webpack-dev-server --open"
+    "dev": "webpack-dev-server --open"
   },
   "eslintConfig": {
     "extends": "react-app"
