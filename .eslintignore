@@ -1,1 +1,4 @@
 webpack.config.js
+webpack.prod.js
+tsconfig.json
+tsconfig.base.json
