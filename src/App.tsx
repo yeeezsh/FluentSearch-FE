@@ -1,9 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Tests from 'Components/Tests';
 import Home from 'Pages/Home';
+import React from 'react';
+import './App.css';
+import logo from './logo.svg';
 
-function App() {
+function App(): React.ReactElement {
   return (
     <div className="App">
       <header className="App-header">
@@ -18,7 +19,8 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-          <Home/>
+          <Home />
+          <Tests />
         </a>
       </header>
     </div>
