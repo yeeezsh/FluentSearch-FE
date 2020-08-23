@@ -4,7 +4,7 @@ import AppRouter from 'Routers/App/AppRouter';
 import App from './App';
 
 describe('App', () => {
-  it('render', () => {
+  it('should have AppRouter in App', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find(AppRouter)).toHaveLength(1);
   });
