@@ -17,7 +17,7 @@ jobs:
         with:
           node_version: ${{ matrix.node_version }}
           always-auth: true
-          node-version: '12.x'
+          node-version: '14.x'
           registry-url: https://registry.npmjs.org
           scope: '@octocat'
       - name: run CI
