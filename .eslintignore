@@ -1,0 +1,10 @@
+webpack.config.js
+webpack.prod.js
+tsconfig.json
+tsconfig.base.json
+react-app-env.d.ts
+/src/serviceWorker.ts
+/src/setupTests.ts
+/config
+/script
+.gitkeep
