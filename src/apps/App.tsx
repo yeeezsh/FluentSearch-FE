@@ -1,5 +1,5 @@
 import React from 'react';
-import AppRouter from 'Routers/app/AppRouter';
+import AppRouter from 'Routers/App/AppRouter';
 
 function App(): React.ReactElement {
   return <AppRouter />;
