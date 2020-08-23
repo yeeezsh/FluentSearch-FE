@@ -1,7 +1,7 @@
 type Menu = {
   key: string;
   label: string;
-  link: string;
+  link: string[];
   icon?: string;
   style?: React.CSSProperties;
 };
