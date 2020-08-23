@@ -4,17 +4,17 @@ const menu: MenuType[] = [
   {
     key: '1',
     label: 'Login',
-    link: 'asdasd',
+    link: ['asdasd'],
   },
   {
     key: '2',
     label: 'Sign up',
-    link: 'asdasd',
+    link: ['asdasd'],
   },
   {
     key: '3',
     label: 'sdfsdf',
-    link: 'asdasd',
+    link: ['asdasd'],
   },
 ];
 export default menu;

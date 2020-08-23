@@ -10,7 +10,7 @@ const HomeNavbar: React.FC = () => {
         {menu.map(({ key, label, link }) => {
           return (
             <li key={key}>
-              <a href={pathJoin([link])}>{label}</a>
+              <a href={pathJoin(link)}>{label}</a>
             </li>
           );
         })}
