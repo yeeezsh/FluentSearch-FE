@@ -6,7 +6,7 @@ const HomeLayout: React.FC = (props) => {
   return (
     <div>
       <HomeNavbar />
-      {children}
+      <div>{children}</div>
     </div>
   );
 };
