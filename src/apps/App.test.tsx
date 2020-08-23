@@ -1,11 +1,11 @@
-import { render } from '@testing-library/react';
+import { shallow } from 'enzyme';
 import React from 'react';
+import AppRouter from 'Routers/App/AppRouter';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  const testElement = getByText(/Test/i);
-  expect(linkElement).toBeInTheDocument();
-  expect(testElement).toBeInTheDocument();
+describe('App', () => {
+  it('render', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(AppRouter)).toHaveLength(1);
+  });
 });
