@@ -1,8 +1,8 @@
 import Tests from 'Components/Tests';
 import Home from 'Pages/Home';
 import React from 'react';
+import logo from '../logo.svg';
 import './App.css';
-import logo from './logo.svg';
 
 function App(): React.ReactElement {
   return (
