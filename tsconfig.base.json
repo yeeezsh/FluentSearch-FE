@@ -1,19 +1,17 @@
 {
-    "compilerOptions": {
-      "baseUrl": "./src",
-      "paths": {
-        "Apps/*": ["apps/*"],
-        "Assets/*": ["assets/*"],
-        "Components/*": ["components/*"],
-        "Hooks/*": ["hooks/*"],
-        "Models/*": ["models/*"],
-        "Pages/*": ["pages/*"],
-        "Routers/*": ["routers/*"],
-        "Services/*": ["services/*"],
-        "Stores/*": ["stores/*"],
-        "Utils/*": ["utils/*"],
-      }
-    },
- 
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "Apps/*": ["apps/*"],
+      "Assets/*": ["assets/*"],
+      "Components/*": ["components/*"],
+      "Hooks/*": ["hooks/*"],
+      "Models/*": ["models/*"],
+      "Pages/*": ["pages/*"],
+      "Routers/*": ["routers/*"],
+      "Services/*": ["services/*"],
+      "Stores/*": ["stores/*"],
+      "Utils/*": ["utils/*"]
+    }
   }
-  
+}
