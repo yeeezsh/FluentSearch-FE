@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { initUserState } from './actions';
 import { UserState } from './types';
 
 const initState: UserState = {
@@ -8,6 +9,8 @@ const initState: UserState = {
   authenticated: false,
 };
 
-const userReducer = createReducer(initState, {});
+const userReducer = createReducer(initState, {
+  [initUserState.type]: () => initState,
+});
 
 export default userReducer;
