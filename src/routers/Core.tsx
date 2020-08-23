@@ -7,6 +7,7 @@ const Core: React.FC = () => {
   return (
     <BrowserRouter>
       <Router history={history}>
+        {/* App */}
         <Route path="/">
           <App />
         </Route>
