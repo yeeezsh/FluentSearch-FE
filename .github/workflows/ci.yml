@@ -6,23 +6,24 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        node_version: [14]
-
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node_version }}
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: yarn-
+      - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node_version: ${{ matrix.node_version }}
           always-auth: true
-          node-version: '14.x'
+          node-version: '14.3'
           registry-url: https://registry.npmjs.org
           scope: '@octocat'
       - name: run CI
         run: |
-          yarn install # or yarn install
-          yarn run lint # or yarn lint
-          yarn run test # or yarn test
-          yarn run build # or yarn build
+          yarn install
+          yarn run lint
+          yarn run test
+          yarn run build
