@@ -1,29 +1,21 @@
-name: CI
-
-on: [push]
-
+name: Build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
     steps:
-      - uses: actions/checkout@v1
-      - name: Cache node_modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: yarn-
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          always-auth: true
-          node-version: '14.3'
-          registry-url: https://registry.npmjs.org
-          scope: '@octocat'
-      - name: run CI
-        run: |
-          yarn install
-          yarn run lint
-          yarn run test
-          yarn run build
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn ci
+    - run: yarn run build
+    - run: yarn test
