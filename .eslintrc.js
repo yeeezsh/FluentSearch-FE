@@ -29,6 +29,7 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 'off',
+    'react/prop-types': 'off',
     'prettier/prettier': [
       'error',
       {
