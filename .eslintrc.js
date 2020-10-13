@@ -28,8 +28,10 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
-    'linebreak-style': 'off',
     'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/no-unescaped-entities': 'off',
+    'linebreak-style': 'off',
     'prettier/prettier': [
       'error',
       {
