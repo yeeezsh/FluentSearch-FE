@@ -29,6 +29,9 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'react/prop-types': 0,
+    'react/jsx-props-no-spreading': 0,
+    'react/no-unescaped-entities': 0,
     'linebreak-style': 'off',
     'prettier/prettier': [
       'error',
