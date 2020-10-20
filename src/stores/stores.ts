@@ -14,4 +14,4 @@ const store = configureStore({
   middleware,
 });
 
-export default store;
+export { store };
