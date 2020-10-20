@@ -1,3 +1,4 @@
+import 'antd/dist/antd.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -7,11 +8,9 @@ import * as serviceWorker from './serviceWorker';
 import { store } from './stores';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterCore />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <RouterCore />
+  </Provider>,
   document.getElementById('root'),
 );
 
