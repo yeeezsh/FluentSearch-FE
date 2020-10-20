@@ -1,12 +1,12 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
+import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
+import thunk, { ThunkMiddleware } from 'redux-thunk';
 import userReducer from './userRedcuer/userReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
 });
 
-const middleware = [thunk];
+const middleware: ThunkMiddleware[] | Middleware[] = [thunk];
 
 export type StoresState = ReturnType<typeof rootReducer>;
 const store = configureStore({
