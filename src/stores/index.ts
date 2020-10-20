@@ -6,7 +6,7 @@ const rootReducer = combineReducers({
   user: userReducer,
 });
 
-const middleware: ThunkMiddleware[] | Middleware[] = [thunk];
+export const middleware: ThunkMiddleware[] | Middleware[] = [thunk];
 
 export type StoresState = ReturnType<typeof rootReducer>;
 const store = configureStore({
@@ -14,4 +14,4 @@ const store = configureStore({
   middleware,
 });
 
-export { store };
+export { store, rootReducer };
