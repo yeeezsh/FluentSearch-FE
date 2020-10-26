@@ -1,28 +1,22 @@
-name: CI
-
-on: [push]
-
+name: Build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [14]
-
+        node-version: [14.x]
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node_version }}
-        uses: actions/setup-node@v1
-        with:
-          node_version: ${{ matrix.node_version }}
-          always-auth: true
-          node-version: '14.x'
-          registry-url: https://registry.npmjs.org
-          scope: '@octocat'
-      - name: run CI
-        run: |
-          yarn install # or yarn install
-          yarn run lint # or yarn lint
-          yarn run test # or yarn test
-          yarn run build # or yarn build
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install
+    - run: yarn run lint
+    - run: CI=true yarn run build
+    - run: yarn test

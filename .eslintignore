@@ -8,3 +8,4 @@ react-app-env.d.ts
 /config
 /script
 .gitkeep
+babel.config.js
