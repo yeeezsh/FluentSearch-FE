@@ -1,8 +1,8 @@
-type Menu = {
+type MenuType = {
   key: string;
   label: string;
   link: string[];
   icon?: string;
   style?: React.CSSProperties;
 };
-export default Menu;
+export default MenuType;

@@ -1,6 +1,6 @@
-import MenuType from './menu';
+import MenuType from './menu.type';
 
-const menu: MenuType[] = [
+const APP_NAVBAR_CONSTANT: MenuType[] = [
   {
     key: '1',
     label: 'Login',
@@ -17,4 +17,4 @@ const menu: MenuType[] = [
     link: ['asdasd'],
   },
 ];
-export default menu;
+export default APP_NAVBAR_CONSTANT;

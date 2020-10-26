@@ -1,6 +1,6 @@
-import MenuType from './menu';
+import MenuType from './menu.type';
 
-const menu: MenuType[] = [
+const APP_SIDEBAR_CONSTANT: MenuType[] = [
   {
     key: '1',
     label: 'Overview',
@@ -22,4 +22,4 @@ const menu: MenuType[] = [
     link: ['asdasd'],
   },
 ];
-export default menu;
+export default APP_SIDEBAR_CONSTANT;
