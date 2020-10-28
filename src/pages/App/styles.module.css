@@ -1,0 +1,24 @@
+body {
+  height: 100vh;
+}
+
+.bg {
+  /* Sizing */
+  width: 100vw;
+  height: 50vh;
+
+  /* Flexbox stuff */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Text styles */
+  text-align: center;
+
+  /* Background styles */
+  background-image: url(https://pbs.twimg.com/media/ElVxJ8OWMAAnew5.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
