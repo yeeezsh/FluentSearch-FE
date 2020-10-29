@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { MenuOutlined } from '@ant-design/icons';
 import { Button, Drawer, Menu } from 'antd';
 import APP_NAVBAR_CONSTANT from 'Models/menu/app.navbar.constant';
