@@ -2,8 +2,7 @@ body {
   height: 100vh;
 }
 
-.bg {
-  /* Sizing */
+.header {
   width: 100vw;
   height: 50vh;
 
@@ -12,7 +11,6 @@ body {
   justify-content: center;
   align-items: center;
 
-  /* Text styles */
   text-align: center;
 
   /* Background styles */
@@ -21,4 +19,12 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+
+.header h1{
+  font-size: 5em;
+
+  margin-top: 0;
+  margin-bottom: 0.5em;
 }
