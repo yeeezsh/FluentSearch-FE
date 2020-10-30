@@ -22,7 +22,8 @@
       "Pages/*": ["pages/*"],
       "Services/*": ["services/*"],
       "Stores/*": ["stores/*"],
-      "Utils/*": ["utils/*"]
+      "Utils/*": ["utils/*"],
+      "Styles/*": ["styles/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
