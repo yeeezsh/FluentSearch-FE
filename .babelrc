@@ -1,0 +1,21 @@
+{
+  "presets": ["next/babel"]
+  // "plugins": [
+  //   [
+  //     "module-resolver",
+  //     {
+  //       "root": ["./"],
+  //       "alias": {
+  //         "Assets/*": ["assets/*"],
+  //         "Components/*": ["components/*"],
+  //         "Hooks/*": ["hooks/*"],
+  //         "Models/*": ["models/*"],
+  //         "Pages/*": ["pages/*"],
+  //         "Services/*": ["services/*"],
+  //         "Stores/*": ["stores/*"],
+  //         "Utils/*": ["utils/*"]
+  //       }
+  //     }
+  //   ]
+  // ]
+}

@@ -1,21 +1,10 @@
 module.exports = {
-  presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react'],
   env: {
     test: {
-      plugins: ['@babel/plugin-transform-modules-commonjs'],
+      presets: ['@babel/preset-env', '@babel/react', 'next/babel'],
     },
-  },
-  plugins: [
-    '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-proposal-class-properties',
-    [
-      'import',
-      {
-        libraryName: 'antd',
-        libraryDirectory: 'es',
-        style: true,
-      },
-      'import-antd',
-    ],
-  ],
+    development: {
+      presets: ['next/babel'],
+    },
+  }
 };
