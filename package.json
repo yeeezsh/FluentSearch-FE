@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write ./**/*.ts{,x} --config ./.prettierrc.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
