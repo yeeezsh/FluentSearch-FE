@@ -31,8 +31,7 @@ const HomeNavbar: React.FC = () => {
         placement="left"
         closable={false}
         onClose={onClose}
-        visible={visible}
-      >
+        visible={visible}>
         {APP_NAVBAR_CONSTANT.map(({ key, label, link }) => {
           return (
             <li key={key}>
