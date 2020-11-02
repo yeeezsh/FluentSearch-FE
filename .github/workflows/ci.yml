@@ -4,7 +4,7 @@ on:
     branches:
       - master
 jobs:
-  install:
+  build:
     runs-on: self-hosted
     strategy:
       matrix:
@@ -16,22 +16,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
-  build:
-    runs-on: self-hosted
-    need: install
-    strategy:
-      matrix:
-        node-version: [14.x]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+      - run: yarn run lint
       - run: yarn run build
+      - run: yarn test
   test:
     runs-on: self-hosted
-    need: install
     strategy:
       matrix:
         node-version: [14.x]
@@ -41,10 +30,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: yarn install
       - run: yarn test
   lint:
     runs-on: self-hosted
-    need: install
     strategy:
       matrix:
         node-version: [14.x]
@@ -54,6 +43,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: yarn install
       - run: yarn run lint
   docker-build:
     runs-on: self-hosted
