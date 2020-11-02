@@ -5,6 +5,7 @@ RUN yarn install
 
 FROM base as dev
 ADD . .
+VOLUME . .
 CMD ["yarn", "start"]
 EXPOSE 5000
 
