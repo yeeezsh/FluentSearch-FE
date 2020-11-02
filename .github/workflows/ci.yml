@@ -33,3 +33,5 @@ jobs:
         run: echo ${{ steps.buildx.outputs.name }}
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag cars-kmutt-frontend:$(date +%s)
