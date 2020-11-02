@@ -12,7 +12,7 @@ COPY yarn.lock yarn.lock
 COPY package.json package.json
 RUN yarn install
 ADD . .
-CMD ["yarn", "build"]
+RUN yarn build
 
 
 FROM nginx:alpine AS nginx
