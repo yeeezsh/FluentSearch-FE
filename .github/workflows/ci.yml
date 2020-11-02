@@ -1,7 +1,5 @@
 name: Build
 on:
-  schedule:
-    - cron: '*/1 * * * *'
   pull_request:
     branches:
       - master
