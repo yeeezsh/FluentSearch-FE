@@ -5,6 +5,10 @@ module.exports = {
     '<rootDir>/node_modules/',
     '<rootDir>/out/',
     '<rootDir>/build/',
+    '<rootDir>/assets/',
+    '<rootDir>/server/',
+    '<rootDir>/public/',
+    '<rootDir>/styles/',
   ],
   setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
   transform: {
