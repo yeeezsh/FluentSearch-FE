@@ -6,4 +6,4 @@ babel.config.js
 .prettierrc.js
 jest.config.js
 next.config.js
-
+__mock__/
