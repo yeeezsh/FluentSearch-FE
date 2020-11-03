@@ -3,5 +3,6 @@
   "plugins": [
     ["styled-components", { "ssr": true }],
     ["import", { "libraryName": "antd", "libraryDirectory": "lib" }, "antd"]
-  ]
+  ],
+  "ignore": ["**/*.spec.ts", "**/*.spec.tsx", "**/__tests__"]
 }
