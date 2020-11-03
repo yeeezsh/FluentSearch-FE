@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import Home from 'Pages/index';
+import Home from '../index';
 
 describe('Home', () => {
   it('Should render correctly', () => {
