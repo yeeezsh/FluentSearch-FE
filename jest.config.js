@@ -1,4 +1,5 @@
 module.exports = {
+  moduleDirectories: ['node_modules', './'],
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
