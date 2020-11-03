@@ -6,5 +6,5 @@ module.exports = {
     development: {
       presets: ['next/babel'],
     },
-  }
+  },
 };
