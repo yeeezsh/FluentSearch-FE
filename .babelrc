@@ -1,5 +1,5 @@
 {
-  "presets": ["next/babel"],
+  "presets": ["@babel/preset-env", "@babel/react", "next/babel"],
   "plugins": [
     ["styled-components", { "ssr": true }],
     ["import", { "libraryName": "antd", "libraryDirectory": "lib" }, "antd"]
