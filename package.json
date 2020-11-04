@@ -7,6 +7,7 @@
     "build": "next build && next export",
     "start": "next start",
     "test": "jest",
+    "test:snapshots": "jest --updateSnapshot",
     "test:ci": "jest --all --ci --detectOpenHandles",
     "test:watch": "jest --watch",
     "lint": "eslint .",
