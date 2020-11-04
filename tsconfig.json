@@ -23,7 +23,8 @@
       "Services/*": ["services/*"],
       "Stores/*": ["stores/*"],
       "Utils/*": ["utils/*"],
-      "Styles/*": ["styles/*"]
+      "Styles/*": ["styles/*"],
+      "Tests/*": ["__test__/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
