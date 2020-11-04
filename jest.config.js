@@ -1,5 +1,6 @@
 module.exports = {
   roots: ['<rootDir>/'],
+  testEnvironment: 'node',
   moduleDirectories: ['./', 'node_modules'],
   modulePaths: ['<rootDir>'],
   moduleFileExtensions: ['ts', 'tsx', 'js'],
