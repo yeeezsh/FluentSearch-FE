@@ -4,6 +4,20 @@ import Home from 'Pages/index';
 import React from 'react';
 
 describe('Pages/Home test', () => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // Deprecated
+      removeListener: jest.fn(), // Deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
+
   it('Render correcly', () => {
     const wrap = <Home />;
     expect(wrap).toMatchSnapshot();
@@ -16,6 +30,6 @@ describe('Pages/Home test', () => {
 
   it('Should contain Home Layout', () => {
     const wrap = mount(<Home />);
-    expect(wrap.find(<HomeLayout />).exists()).toBe(true);
+    expect(wrap.exists(HomeLayout)).toBe(true);
   });
 });
