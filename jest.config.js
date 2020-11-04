@@ -1,6 +1,7 @@
-module.exports = {
-  // roots: ['<rootDir>/'],
-  // moduleDirectories: ['./', 'node_modules'],
+module.exports
+ = {
+  roots: ['<rootDir>/'],
+  moduleDirectories: ['./', 'node_modules'],
   modulePaths: ['<rootDir>'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
@@ -24,6 +25,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.jest.json',
+      importHelpers: true,
     },
   },
 };
