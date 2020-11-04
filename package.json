@@ -7,7 +7,7 @@
     "build": "next build && next export",
     "start": "next start",
     "test": "jest",
-    "test:ci": "jest --all --ci",
+    "test:ci": "jest --all --ci --detectOpenHandles",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write ./**/*.ts{,x} --config ./.prettierrc.js",
