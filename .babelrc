@@ -11,7 +11,8 @@
       "presets": ["next/babel"]
     },
     "test": {
-      "presets": ["@babel/env", "@babel/react"]
+      "presets": ["next/babel"]
+      // "presets": ["@babel/env", "@babel/react"]
     }
   }
 }
