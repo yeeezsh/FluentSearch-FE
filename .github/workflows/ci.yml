@@ -16,8 +16,8 @@ jobs:
           node-version: '14.x'
       - run: yarn
       - run: yarn lint
-      - run: yarn test:ci
       - run: yarn build
+      - run: yarn test:ci
   docker-build:
     runs-on: ubuntu-latest
     steps:
