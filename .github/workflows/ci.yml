@@ -1,8 +1,10 @@
 name: Automate Build and Testing
+
 on:
   pull_request:
     branches:
       - master
+
 jobs:
   build:
     runs-on: self-hosted
