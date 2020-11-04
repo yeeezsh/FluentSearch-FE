@@ -1,8 +1,8 @@
 module.exports = {
   // testEnvironment: 'node',
   // roots: ['<rootDir>/'],
-  preset: 'ts-jest',
-  moduleDirectories: ['./', 'node_modules'],
+  // preset: 'ts-jest',
+  // moduleDirectories: ['./', 'node_modules'],
   modulePaths: ['<rootDir>'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
