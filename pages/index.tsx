@@ -3,6 +3,7 @@ import Button from 'Components/Button/Button';
 import HomeLayout from 'Components/Layouts/Home/HomeLayout';
 import React from 'react';
 import style from 'Styles/Home.module.css';
+
 export default function Home(): JSX.Element {
   return (
     <HomeLayout>
