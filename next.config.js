@@ -1,4 +1,7 @@
-module.exports = {
-  distDir: 'build',
-  outDir: 'out',
-};
+// module.exports = {
+//   distDir: 'build',
+//   outDir: 'out',
+// };
+
+const withTypescript = require('@zeit/next-typescript')
+module.exports = withTypescript()

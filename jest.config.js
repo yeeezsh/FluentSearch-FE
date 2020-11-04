@@ -1,7 +1,7 @@
 module.exports = {
-  roots: ['<rootDir>/'],
-  preset: 'ts-jest',
   // testEnvironment: 'node',
+  // roots: ['<rootDir>/'],
+  preset: 'ts-jest',
   moduleDirectories: ['./', 'node_modules'],
   modulePaths: ['<rootDir>'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
@@ -10,8 +10,11 @@ module.exports = {
       '<rootDir>/__mocks__/fileMock.js',
     '\\.(css|less)$': 'identity-obj-proxy',
   },
+  // transform: {
+  //   '^.+\\.(ts|tsx)$': 'ts-jest',
+  // },
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.tsx?$': 'ts-jest',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testPathIgnorePatterns: [
@@ -28,7 +31,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.jest.json',
-      importHelpers: true,
+      babelConfig: true,
     },
   },
 };
