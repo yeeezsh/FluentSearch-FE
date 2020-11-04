@@ -1,6 +1,6 @@
 module.exports = {
   moduleDirectories: ['./', 'node_modules'],
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+  testPathIgnorePatterns: ['<rootDir>/.next/'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
