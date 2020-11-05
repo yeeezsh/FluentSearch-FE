@@ -1,25 +1,7 @@
 {
-  "presets": ["next/babel"],
   "plugins": [
     ["styled-components", { "ssr": true }],
     ["import", { "libraryName": "antd", "libraryDirectory": "lib" }, "antd"]
-  ]
-  // "plugins": [
-  //   [
-  //     "module-resolver",
-  //     {
-  //       "root": ["./"],
-  //       "alias": {
-  //         "Assets/*": ["assets/*"],
-  //         "Components/*": ["components/*"],
-  //         "Hooks/*": ["hooks/*"],
-  //         "Models/*": ["models/*"],
-  //         "Pages/*": ["pages/*"],
-  //         "Services/*": ["services/*"],
-  //         "Stores/*": ["stores/*"],
-  //         "Utils/*": ["utils/*"]
-  //       }
-  //     }
-  //   ]
-  // ]
+  ],
+  "presets": ["next/babel"]
 }
