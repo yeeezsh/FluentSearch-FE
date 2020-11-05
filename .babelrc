@@ -3,15 +3,5 @@
     ["styled-components", { "ssr": true }],
     ["import", { "libraryName": "antd", "libraryDirectory": "lib" }, "antd"]
   ],
-  "env": {
-    "development": {
-      "presets": ["next/babel"]
-    },
-    "production": {
-      "presets": ["next/babel"]
-    },
-    "test": {
-      "presets": ["next/babel"]
-    }
-  }
+  "presets": ["next/babel"]
 }
