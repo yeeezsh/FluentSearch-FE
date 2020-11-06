@@ -4,7 +4,7 @@ import HomeLayout from 'Components/Layouts/Home/HomeLayout';
 import React from 'react';
 import style from 'Styles/Home.module.css';
 
-const Home = (): JSX.Element => {
+const Home: React.FC = () => {
   return (
     <HomeLayout>
       <div className={style.header}>
@@ -39,4 +39,5 @@ const Home = (): JSX.Element => {
     </HomeLayout>
   );
 };
+
 export default Home;

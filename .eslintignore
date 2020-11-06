@@ -6,4 +6,10 @@ babel.config.js
 .prettierrc.js
 jest.config.js
 next.config.js
-
+__mock__/
+build/
+out/
+.next/
+node_modules/
+.vscode
+server/

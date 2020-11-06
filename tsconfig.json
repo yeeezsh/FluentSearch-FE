@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ES2015",
+    "lib": ["dom", "dom.iterable", "esnext", "ES2016", "ES2018", "ES2019"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -24,8 +24,9 @@
       "Stores/*": ["stores/*"],
       "Utils/*": ["utils/*"],
       "Styles/*": ["styles/*"],
+      "Tests/*": ["__test__/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/**.ts", "**/**.tsx"],
+  "exclude": ["node_modules", "public"]
 }
