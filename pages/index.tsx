@@ -1,4 +1,3 @@
-import { CarOutlined } from '@ant-design/icons';
 import { Card, Col, Row } from 'antd';
 import Button from 'Components/Button/Button';
 import HomeLayout from 'Components/Layouts/Home/HomeLayout';
@@ -6,6 +5,7 @@ import APP_FEATURE_CONSTANT from 'Models/featureCard/app.feature.constant';
 import React from 'react';
 import styled, { CSSProperties } from 'styled-components';
 import style from 'Styles/Home.module.css';
+import IconSelector from 'Utils/iconSelector';
 
 const Icon = styled.div`
   font-size: 40px;
@@ -14,6 +14,23 @@ const Icon = styled.div`
 const gridStyle: CSSProperties = {
   textAlign: 'center',
 };
+
+const featureCard = [
+  APP_FEATURE_CONSTANT.map(({ key, icon, label, description }) => {
+    return (
+      <Col md={5} lg={7} key={key}>
+        <Card style={gridStyle}>
+          <Icon>
+            <IconSelector type={icon} />
+          </Icon>
+          <br />
+          <h2>{label}</h2>
+          <p>{description}</p>
+        </Card>
+      </Col>
+    );
+  }),
+];
 
 const Home: React.FC = () => {
   return (
@@ -26,32 +43,10 @@ const Home: React.FC = () => {
         </div>
       </div>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
-        {APP_FEATURE_CONSTANT.map(({ key, icon, label, description }) => {
-          return (
-            <Col span={6} key={key}>
-              <Card style={gridStyle}>
-                <Icon>{icon}</Icon>
-                <br />
-                <h2>{label}</h2>
-                <p>{description}</p>
-              </Card>
-            </Col>
-          );
-        })}
-
-        <Col span={6}>
-          <Card style={gridStyle}>
-            <Icon>
-              <CarOutlined />
-            </Icon>
-            <br />
-            <h2>Feature 1</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus earum iusto
-              magni eius autem non rerum hic asperiores accusantium ab, doloribus laborum
-              voluptates.
-            </p>
-          </Card>
+        <Col span={20}>
+          <Row justify="center" gutter={[24, 24]}>
+            {featureCard}
+          </Row>
         </Col>
       </Row>
     </HomeLayout>
