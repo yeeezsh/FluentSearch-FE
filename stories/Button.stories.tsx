@@ -1,38 +1,41 @@
-import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/react/types-6-0';
-
-import { Button, ButtonProps } from './Button';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import React from 'react';
+import CustomButton, { ButtonComponentProps } from '../components/Button/CustomButton';
 
 export default {
-  title: 'Example/Button',
-  component: Button,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+  title: 'DeepFlow/Button',
+  component: CustomButton,
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: Story<ButtonComponentProps> = (args) => <CustomButton {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  primary: true,
-  label: 'Button',
+  typeButton: 'primary',
+  children: 'Button',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: 'Button',
+  typeButton: 'secondary',
+  children: 'Button',
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Button',
+export const Danger = Template.bind({});
+Danger.args = {
+  typeButton: 'danger',
+  children: 'Button',
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Button',
+export const Success = Template.bind({});
+Success.args = {
+  typeButton: 'success',
+  children: 'Button',
+};
+
+export const Disable = Template.bind({});
+Disable.args = {
+  typeButton: 'disable',
+  children: 'Button',
 };
