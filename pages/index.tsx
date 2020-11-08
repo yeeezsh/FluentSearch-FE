@@ -39,7 +39,7 @@ const Home: React.FC = () => {
         <div className={style.headerText}>
           <h1>Heading</h1>
           <p>Lorem ipsum..</p>
-          <CustomButton>Explore</CustomButton>
+          <CustomButton typeButton="primary">Explore</CustomButton>
         </div>
       </div>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
