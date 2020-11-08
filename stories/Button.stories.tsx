@@ -39,3 +39,24 @@ Disable.args = {
   typeButton: 'disable',
   children: 'Button',
 };
+
+export const Small = Template.bind({});
+Small.args = {
+  typeButton: 'primary',
+  size: 'small',
+  children: 'Button',
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  typeButton: 'primary',
+  size: 'medium',
+  children: 'Button',
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  typeButton: 'primary',
+  size: 'large',
+  children: 'Button',
+};

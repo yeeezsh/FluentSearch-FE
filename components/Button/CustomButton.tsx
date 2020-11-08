@@ -97,8 +97,6 @@ const Button = styled.button<ButtonComponentProps>`
   border: 0px;
   ${({ color }) => handleColorType(color)};
   ${({ size }) => handleSizeType(size)};
-  font-size: 14px;
-  padding: 11px 20px;
   cursor: pointer;
   font-weight: bold;
 `;
