@@ -5,11 +5,16 @@ interface Style {
   type?: 'primary' | 'secondary' | 'success' | 'danger' | 'disable';
 }
 
+interface Size {
+  type?: 'small' | 'medium' | 'large';
+}
+
 export type ButtonComponentProps = {
   children?: HTMLCollection | string;
   onClick?: (e?: React.MouseEvent) => void;
   typeButton?: Style['type'];
   style?: React.CSSProperties;
+  size?: Size['type'];
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const handleColorType = (color) => {
@@ -62,20 +67,47 @@ const handleColorType = (color) => {
   }
 };
 
+const handleSizeType = (size) => {
+  switch (size) {
+    case 'small':
+      return `
+      font-size: 12px;
+      padding: 10px 16px;
+      `;
+    case 'medium':
+      return `
+      font-size: 14px;
+      padding: 11px 20px;
+    `;
+    case 'large':
+      return `
+      font-size: 16px;
+      padding: 12px 24px;
+    `;
+    default:
+      return `
+      font-size: 14px;
+      padding: 11px 20px;
+    `;
+  }
+};
+
 const Button = styled.button<ButtonComponentProps>`
   border-radius: 100px;
   border: 0px;
   ${({ color }) => handleColorType(color)};
-  margin: 0 1em;
-  padding: 0.5em 4em;
+  ${({ size }) => handleSizeType(size)};
+  font-size: 14px;
+  padding: 11px 20px;
   cursor: pointer;
+  font-weight: bold;
 `;
 
 const CustomButton: React.FC<ButtonComponentProps> = (props) => {
-  const { children, style, typeButton } = props;
+  const { children, style, typeButton, size } = props;
 
   return (
-    <Button color={typeButton} style={style}>
+    <Button color={typeButton} size={size} style={style}>
       {children}
     </Button>
   );
