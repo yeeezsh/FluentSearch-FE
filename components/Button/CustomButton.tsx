@@ -24,7 +24,7 @@ const handleColorType = (color) => {
       `;
     case 'secondary':
       return `
-      background: ##fff; 
+      background: #fff; 
       color: #0BB5C2;
       border: 1px solid #0BB5C2;
       &:hover {
