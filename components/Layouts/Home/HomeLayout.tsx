@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
+import HomeNavbar from 'Components/Layouts/Home/HomeNavbar/HomeNavbar';
 import React from 'react';
-import HomeNavbar from './HomeNavbar';
 
 const HomeLayout: React.FC = (props) => {
   const { children } = props;
