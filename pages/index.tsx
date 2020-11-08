@@ -18,7 +18,7 @@ const gridStyle: CSSProperties = {
 const featureCard = [
   APP_FEATURE_CONSTANT.map(({ key, icon, label, description }) => {
     return (
-      <Col md={5} lg={7} key={key}>
+      <Col xs={20} md={5} lg={7} key={key}>
         <Card style={gridStyle}>
           <Icon>
             <IconSelector type={icon} />
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
-        <Col span={20}>
+        <Col span={21}>
           <Row justify="center" gutter={[24, 24]}>
             {featureCard}
           </Row>
