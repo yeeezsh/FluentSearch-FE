@@ -22,3 +22,22 @@ export const BtnSideMenu = styled.button`
     display: none;
   }
 `;
+
+export const Ul = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+
+  li {
+    padding: 18px 10px;
+  }
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+`;
+
+export const Li = styled.li`
+  list-style: none;
+  margin: 1em 1em 1em 1.4em;
+`;
