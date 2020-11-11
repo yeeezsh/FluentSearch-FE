@@ -6,5 +6,6 @@ type MenuType = {
   link: string[];
   icon?: string;
   style?: React.CSSProperties;
+  active: boolean;
 };
 export default MenuType;

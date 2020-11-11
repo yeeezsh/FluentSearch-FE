@@ -7,6 +7,7 @@ const APP_NAVBAR_CONSTANT: MenuType[] = [
     key: '1',
     label: 'Sign up',
     link: ['asdasd'],
+    active: true,
   },
   {
     key: '2',
@@ -16,6 +17,7 @@ const APP_NAVBAR_CONSTANT: MenuType[] = [
       </CustomButton>
     ),
     link: ['asdasd'],
+    active: false,
   },
 ];
 export default APP_NAVBAR_CONSTANT;
