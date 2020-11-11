@@ -1,3 +1,5 @@
+import CustomButton from 'Components/Button/CustomButton';
+import React from 'react';
 import MenuType from './menu.type';
 
 const APP_NAVBAR_CONSTANT: MenuType[] = [
@@ -8,7 +10,11 @@ const APP_NAVBAR_CONSTANT: MenuType[] = [
   },
   {
     key: '2',
-    label: 'Login',
+    label: (
+      <CustomButton typeButton="primary" size="small" style={{ marginTop: '-20%' }}>
+        Login
+      </CustomButton>
+    ),
     link: ['asdasd'],
   },
 ];
