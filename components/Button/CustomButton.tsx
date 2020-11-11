@@ -1,21 +1,6 @@
+import { ButtonComponentProps } from 'Models/button/button.type';
 import React from 'react';
 import styled from 'styled-components';
-
-interface Style {
-  type?: 'primary' | 'secondary' | 'success' | 'danger' | 'disable';
-}
-
-interface Size {
-  type?: 'small' | 'medium' | 'large';
-}
-
-export type ButtonComponentProps = {
-  children?: HTMLCollection | string;
-  onClick?: (e?: React.MouseEvent) => void;
-  typeButton?: Style['type'];
-  style?: React.CSSProperties;
-  size?: Size['type'];
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const handleColorType = (color) => {
   switch (color) {
