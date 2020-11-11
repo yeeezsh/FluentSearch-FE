@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { MenuOutlined } from '@ant-design/icons';
+import { BtnSideMenu, Nav } from 'Components/Layouts/Home/HomeNavbar/HomeNavbar.styled';
 import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNav';
 import SideMenu from 'Components/Layouts/Home/HomeNavbar/SideMenu';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import style from '../styles.module.css';
 
 const HomeNavbar: React.FC = () => {
@@ -16,29 +16,6 @@ const HomeNavbar: React.FC = () => {
   const onClose = () => {
     setVisible(false);
   };
-
-  const Nav = styled.nav`
-    width: 100%;
-    height: 55px;
-    border-bottom: 2px solid #f1f1f1;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-
-    .logo {
-      padding: 15px 0;
-    }
-  `;
-
-  const BtnSideMenu = styled.button`
-    background: none;
-    border: 0px;
-    cursor: pointer;
-
-    @media (min-width: 992px) {
-      display: none;
-    }
-  `;
 
   return (
     <div>
