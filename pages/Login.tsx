@@ -1,31 +1,26 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 import LoginLayout from 'Components/Layouts/Login/LoginLayout';
 import Link from 'next/link';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 24 },
 };
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
 
 const Login: React.FC = () => {
-  const email = useSelector((state) => state.email);
-  const password = useSelector((state) => state.password);
+  const [formValue, setFormValue] = useState({
+    email: '',
+    password: '',
+  });
 
-  const dispatch = useDispatch();
-
-  const handleEmailChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log(e.target.value);
-    console.log(email);
-    dispatch({
-      type: 'setEmail',
-      payload: e.target.value,
+  const handleOnChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setFormValue({
+      ...formValue,
+      [e.target.name]: e.target.value,
     });
+    console.log(formValue);
   };
 
   const onFinish = (values) => {
@@ -45,38 +40,33 @@ const Login: React.FC = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         layout="vertical">
-        <Form.Item
-          name="email"
-          rules={[{ required: true, message: 'Please input your Email' }]}>
+        <Form.Item rules={[{ required: true, message: 'Please input your Email' }]}>
           <Input
+            name="email"
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="email"
-            onChange={handleEmailChange}
-            value={email}
+            onChange={handleOnChange}
+            value={formValue.email}
           />
         </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: 'Please input your Password' }]}>
+        <Form.Item rules={[{ required: true, message: 'Please input your Password' }]}>
           <Input
+            name="password"
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
+            onChange={handleOnChange}
+            value={formValue.password}
           />
         </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <Link href="/">Forgot password</Link>
-        </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" block>
             Log in
           </Button>
-          Or <Link href="/">register now!</Link>
+        </Form.Item>
+        <Form.Item style={{ textAlign: 'center' }}>
+          <Link href="/">register now!</Link>
         </Form.Item>
       </Form>
     </LoginLayout>
