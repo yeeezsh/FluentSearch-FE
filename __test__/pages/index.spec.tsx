@@ -4,20 +4,6 @@ import Home from 'Pages/index';
 import React from 'react';
 
 describe('Pages/Home test', () => {
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    value: jest.fn().mockImplementation((query) => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: jest.fn(), // Deprecated
-      removeListener: jest.fn(), // Deprecated
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
-    })),
-  });
-
   it('Render correcly', () => {
     const wrap = <Home />;
     expect(wrap).toMatchSnapshot();
