@@ -32,15 +32,17 @@ describe('Pages/Login test', () => {
 
   it('Should call onError when fill only email', () => {
     const onError = jest.fn(() => expect(onError).toBeCalledTimes(1));
-    const wrap = mount(<Login onError={onError} />);
+    const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
+    const wrap = mount(<Login onSubmit={onSubmit} onError={onError} />);
 
     wrap.find('[type="submit"]').simulate('submit');
   });
 
   it('Should call onSubmit when fullfill', () => {
     const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(1));
+    const onError = jest.fn(() => expect(onError).toBeCalledTimes(0));
 
-    const wrap = mount(<Login onSubmit={onSubmit} />);
+    const wrap = mount(<Login onSubmit={onSubmit} onError={onError} />);
     const emailField = wrap.find('input[id="email"]');
     const passwordField = wrap.find('input[id="password"]');
 
