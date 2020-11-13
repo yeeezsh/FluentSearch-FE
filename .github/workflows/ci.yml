@@ -18,10 +18,13 @@ jobs:
       - run: yarn lint
       - run: yarn test:ci
       - run: yarn build
-  # docker-build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: Build the Docker image
-  #       run: docker build . --file Dockerfile --tag fluentsearch-fe:$(date +%s)
+  storybook:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 14-latest
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: yarn
+      - run: yarn storybook:build

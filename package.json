@@ -14,7 +14,7 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write ./**/*.ts{,x} --config ./.prettierrc.js",
     "storybook": "start-storybook -p 6006 --no-dll",
-    "build-storybook": "build-storybook --no-dll"
+    "storybook:build": "build-storybook --no-dll"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
