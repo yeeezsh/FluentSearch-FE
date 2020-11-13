@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import LoginLayout from 'Components/Layouts/Login/LoginLayout';
 import Link from 'next/link';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const layout = {
   labelCol: { span: 8 },
@@ -12,7 +13,21 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const Login = () => {
+const Login: React.FC = () => {
+  const email = useSelector((state) => state.email);
+  const password = useSelector((state) => state.password);
+
+  const dispatch = useDispatch();
+
+  const handleEmailChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    console.log(e.target.value);
+    console.log(email);
+    dispatch({
+      type: 'setEmail',
+      payload: e.target.value,
+    });
+  };
+
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -31,16 +46,18 @@ const Login = () => {
         onFinishFailed={onFinishFailed}
         layout="vertical">
         <Form.Item
-          name="username"
-          rules={[{ required: true, message: 'Please input your Username!' }]}>
+          name="email"
+          rules={[{ required: true, message: 'Please input your Email' }]}>
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
+            placeholder="email"
+            onChange={handleEmailChange}
+            value={email}
           />
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ required: true, message: 'Please input your Password!' }]}>
+          rules={[{ required: true, message: 'Please input your Password' }]}>
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
