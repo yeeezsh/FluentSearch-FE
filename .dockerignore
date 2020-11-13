@@ -13,3 +13,5 @@ npm-debug.log.*
 build/**
 out/**
 
+# storybook
+storybook-static
