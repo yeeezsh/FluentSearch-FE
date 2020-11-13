@@ -28,11 +28,3 @@ jobs:
           node-version: '14.x'
       - run: yarn
       - run: yarn build-storybook
-        
-  # docker-build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: Build the Docker image
-  #       run: docker build . --file Dockerfile --tag fluentsearch-fe:$(date +%s)
