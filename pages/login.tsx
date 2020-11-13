@@ -1,8 +1,9 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
+import { useForm } from 'antd/lib/form/Form';
 import LoginLayout from 'Components/Layouts/Login/LoginLayout';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 
 const layout = {
   labelCol: { span: 8 },
@@ -10,53 +11,37 @@ const layout = {
 };
 
 const Login: React.FC = () => {
-  const [formValue, setFormValue] = useState({
-    email: '',
-    password: '',
-  });
-
-  const handleOnChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setFormValue({
-      ...formValue,
-      [e.target.name]: e.target.value,
-    });
-    console.log(formValue);
-  };
+  const [form] = useForm();
 
   const onFinish = (values) => {
     console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
   };
 
   return (
     <LoginLayout>
       <Form
         {...layout}
-        name="basic"
-        initialValues={{ remember: true }}
+        form={form}
+        name="login"
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        // onFinishFailed={onFinishFailed}
         layout="vertical">
-        <Form.Item rules={[{ required: true, message: 'Please input your Email' }]}>
+        <Form.Item
+          name={'email'}
+          rules={[{ required: true, message: 'Please input your Email' }]}>
           <Input
-            name="email"
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="email"
-            onChange={handleOnChange}
-            value={formValue.email}
           />
         </Form.Item>
-        <Form.Item rules={[{ required: true, message: 'Please input your Password' }]}>
+
+        <Form.Item
+          name={'password'}
+          rules={[{ required: true, message: 'Please input your Password' }]}>
           <Input
-            name="password"
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
-            onChange={handleOnChange}
-            value={formValue.password}
           />
         </Form.Item>
 
@@ -65,6 +50,7 @@ const Login: React.FC = () => {
             Log in
           </Button>
         </Form.Item>
+
         <Form.Item style={{ textAlign: 'center' }}>
           <Link href="/">register now!</Link>
         </Form.Item>
