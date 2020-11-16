@@ -4,7 +4,6 @@ import HomeLayout from 'Components/Layouts/Home/HomeLayout';
 import APP_FEATURE_CONSTANT from 'Models/featureCard/app.feature.constant';
 import React from 'react';
 import styled, { CSSProperties } from 'styled-components';
-import style from 'Styles/Home.module.css';
 import IconSelector from 'Utils/iconSelector';
 
 const Icon = styled.div`
@@ -14,6 +13,34 @@ const Icon = styled.div`
 const gridStyle: CSSProperties = {
   textAlign: 'center',
 };
+
+const Header = styled.div`
+  width: 100vw;
+  height: 50vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background-image: url(https://pbs.twimg.com/media/ElVxJ8OWMAAnew5.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+`;
+
+const H1 = styled.div`
+  font-size: 5em;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 0em;
+`;
+
+const HeaderText = styled.div`
+  color: #ffffff;
+`;
 
 const featureCard = [
   APP_FEATURE_CONSTANT.map(({ key, icon, label, description }) => {
@@ -35,13 +62,13 @@ const featureCard = [
 const Home: React.FC = () => {
   return (
     <HomeLayout>
-      <div className={style.header}>
-        <div className={style.headerText}>
-          <h1>Heading</h1>
+      <Header>
+        <HeaderText>
+          <H1>Heading</H1>
           <p>Lorem ipsum..</p>
           <CustomButton typeButton="primary">Explore</CustomButton>
-        </div>
-      </div>
+        </HeaderText>
+      </Header>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
         <Col span={21}>
           <Row justify="center" gutter={[24, 24]}>

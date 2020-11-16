@@ -4,13 +4,16 @@ export const Nav = styled.nav`
   width: 100%;
   height: 55px;
   border-bottom: 2px solid #f1f1f1;
-  padding: 0 20px;
+  padding: 0 15px 20px 20px;
   display: flex;
   justify-content: space-between;
 
-  .logo {
-    padding: 15px 0;
-  }
+  background-color: white;
+`;
+
+export const Logo = styled.div`
+  padding-top: 15px;
+  font-weight: 2em;
 `;
 
 export const BtnSideMenu = styled.button`
@@ -29,7 +32,7 @@ export const Ul = styled.ul`
   flex-flow: row nowrap;
 
   li {
-    padding: 18px 10px;
+    padding: 15px 10px;
   }
 
   @media (max-width: 992px) {
