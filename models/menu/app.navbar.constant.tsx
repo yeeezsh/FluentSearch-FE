@@ -6,7 +6,7 @@ const APP_NAVBAR_CONSTANT: MenuType[] = [
   {
     key: '1',
     label: 'Sign up',
-    link: ['asdasd'],
+    link: ['register'],
     active: true,
   },
   {
