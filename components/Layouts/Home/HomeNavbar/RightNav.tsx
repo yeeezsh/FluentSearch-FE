@@ -13,7 +13,7 @@ const RightNav: React.FC = () => {
           <li key={key}>
             <a
               href={pathJoin(link)}
-              style={{ color: '/' + link === router.pathname ? 'red' : 'blue' }}>
+              style={{ color: '/' + link === router.pathname ? '#0BB5C2' : 'black' }}>
               {label}
             </a>
           </li>
