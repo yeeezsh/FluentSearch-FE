@@ -14,7 +14,7 @@ const gridStyle: CSSProperties = {
   textAlign: 'center',
 };
 
-const Header = styled.div`
+export const Header = styled.div`
   width: 100vw;
   height: 50vh;
 
@@ -38,7 +38,7 @@ const H1 = styled.div`
   margin-bottom: 0em;
 `;
 
-const HeaderText = styled.div`
+export const HeaderText = styled.div`
   color: #ffffff;
 `;
 
