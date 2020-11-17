@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { ButtonComponentProps } from 'Models/button/button.type';
+import { ButtonComponentProps } from 'Components/Button/button.type';
 import styled, { css } from 'styled-components';
 
 export const handleColorType = (color?: ButtonComponentProps['style']) => {

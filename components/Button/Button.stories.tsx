@@ -1,7 +1,7 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Meta, Story } from '@storybook/react/types-6-0';
 import CustomButton from 'Components/Button/CustomButton';
-import { ButtonComponentProps } from 'Models/button/button.type';
+import { ButtonComponentProps } from 'Components/Button/button.type';
 import React from 'react';
 
 export default {
