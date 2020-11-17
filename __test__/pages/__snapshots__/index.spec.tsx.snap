@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component/HomeLayout test Render correcly 1`] = `<HomeLayout />`;
+
 exports[`Pages/Home test Render correcly 1`] = `<Home />`;

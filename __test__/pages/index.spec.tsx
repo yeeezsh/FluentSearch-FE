@@ -1,4 +1,5 @@
 import HomeLayout from 'Components/Layouts/Home/HomeLayout';
+import { Header, HeaderText } from 'Pages/index';
 import { mount, shallow } from 'enzyme';
 import Home from 'Pages/index';
 import React from 'react';
@@ -17,5 +18,15 @@ describe('Pages/Home test', () => {
   it('Should contain Home Layout', () => {
     const wrap = mount(<Home />);
     expect(wrap.exists(HomeLayout)).toBe(true);
+  });
+
+  it('Should contain Header', () => {
+    const wrap = mount(<Home />);
+    expect(wrap.exists(Header)).toBe(true);
+  });
+
+  it('Should contain HeaderText', () => {
+    const wrap = mount(<Home />);
+    expect(wrap.exists(HeaderText)).toBe(true);
   });
 });
