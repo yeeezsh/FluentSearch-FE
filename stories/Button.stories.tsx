@@ -13,51 +13,51 @@ const Template: Story<ButtonComponentProps> = (args) => <CustomButton {...args} 
 
 export const Primary = Template.bind({});
 Primary.args = {
-  typeButton: 'primary',
+  style: 'primary',
   children: 'Button',
-};
+} as ButtonComponentProps;
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  typeButton: 'secondary',
+  style: 'secondary',
   children: 'Button',
-};
+} as ButtonComponentProps;
 
 export const Danger = Template.bind({});
 Danger.args = {
-  typeButton: 'danger',
+  style: 'danger',
   children: 'Button',
-};
+} as ButtonComponentProps;
 
 export const Success = Template.bind({});
 Success.args = {
-  typeButton: 'success',
+  style: 'success',
   children: 'Button',
-};
+} as ButtonComponentProps;
 
 export const Disable = Template.bind({});
 Disable.args = {
-  typeButton: 'disable',
+  style: 'disable',
   children: 'Button',
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  typeButton: 'primary',
+  style: 'primary',
   size: 'small',
   children: 'Button',
 };
 
 export const Medium = Template.bind({});
 Medium.args = {
-  typeButton: 'primary',
+  style: 'primary',
   size: 'medium',
   children: 'Button',
 };
 
 export const Large = Template.bind({});
 Large.args = {
-  typeButton: 'primary',
+  style: 'primary',
   size: 'large',
   children: 'Button',
 };
