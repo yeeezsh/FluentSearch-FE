@@ -10,6 +10,6 @@ export type ButtonComponentProps = {
   children?: HTMLCollection | string;
   onClick?: (e?: React.MouseEvent) => void;
   typeButton?: Style['type'];
-  style?: React.CSSProperties;
+  style?: Style;
   size?: Size['type'];
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;

@@ -1,75 +1,78 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { ButtonComponentProps } from 'Models/button/button.type';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const handleColorType = (color) => {
+export const handleColorType = (color?: ButtonComponentProps['style']) => {
   switch (color) {
     case 'primary':
-      return `
-        background: #0BB5C2; 
+      return css`
+        background: #0bb5c2;
         color: #fff;
         &:hover {
-          background: #48CDD8;
+          background: #48cdd8;
         }
-        `;
+      `;
     case 'secondary':
-      return `
-        background: #fff; 
-        color: #0BB5C2;
-        border: 1px solid #0BB5C2;
+      return css`
+        background: #fff;
+        color: #0bb5c2;
+        border: 1px solid #0bb5c2;
         &:hover {
-          color: #48CDD8;
-          border: 1px solid #48CDD8;
+          color: #48cdd8;
+          border: 1px solid #48cdd8;
         }
       `;
     case 'danger':
-      return `
-        background: #EB5757; 
+      return css`
+        background: #eb5757;
         color: #fff;
         &:hover {
-          background: #F07979;
+          background: #f07979;
         }
       `;
     case 'success':
-      return `
-        background: #27AE60; 
+      return css`
+        background: #27ae60;
         color: #fff;
         &:hover {
-          background: #6FCF97;
+          background: #6fcf97;
         }
       `;
     case 'disable':
-      return `
-        background: #F2F2F2; 
-        color: #BDBDBD;
-        border: 1px solid #BDBDBD;
+      return css`
+        background: #f2f2f2;
+        color: #bdbdbd;
+        border: 1px solid #bdbdbd;
         &:hover {
           cursor: not-allowed;
         }
       `;
     default:
-      return '#fff';
+      return css`
+        color: white;
+      `;
   }
 };
 
-export const handleSizeType = (size) => {
+export const handleSizeType = (size?: ButtonComponentProps['size']) => {
   switch (size) {
     case 'small':
-      return `
+      return css`
         font-size: 12px;
         padding: 10px 16px;
-        `;
+      `;
     case 'medium':
-      return `
+      return css`
         font-size: 14px;
         padding: 11px 20px;
       `;
     case 'large':
-      return `
+      return css`
         font-size: 16px;
         padding: 12px 24px;
       `;
     default:
-      return `
+      return css`
         font-size: 14px;
         padding: 11px 20px;
       `;
@@ -79,7 +82,7 @@ export const handleSizeType = (size) => {
 export const Button = styled.button<ButtonComponentProps>`
   border-radius: 100px;
   border: 0px;
-  ${({ color }) => handleColorType(color)};
+  ${({ style }) => handleColorType(style)};
   ${({ size }) => handleSizeType(size)};
   cursor: pointer;
   font-weight: bold;
