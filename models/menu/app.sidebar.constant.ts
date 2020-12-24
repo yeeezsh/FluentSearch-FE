@@ -4,13 +4,13 @@ const APP_SIDEBAR_CONSTANT: MenuType[] = [
   {
     key: '1',
     label: 'Sign up',
-    link: ['asdasd'],
+    link: ['register'],
     active: false,
   },
   {
     key: '2',
     label: 'Login',
-    link: ['asdasd'],
+    link: ['login'],
     active: false,
   },
 ];
