@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 
 const { Content, Footer } = Layout;
 
-describe('Component/HomeLayout test', () => {
+describe('Components/HomeLayout test', () => {
   it('Render correcly', () => {
     const wrap = <HomeLayout />;
     expect(wrap).toMatchSnapshot();
