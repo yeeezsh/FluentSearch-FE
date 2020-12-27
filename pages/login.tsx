@@ -36,6 +36,7 @@ const Login: React.FC<Props> = (props) => {
     <LoginLayout>
       <Row justify="center">
         <Col span={16} xl={14}>
+          logo
           <Form
             {...layout}
             id="loginForm"
@@ -47,7 +48,9 @@ const Login: React.FC<Props> = (props) => {
             layout="vertical">
             <Form.Item
               name={'email'}
-              rules={[{ required: true, message: 'Please input your Email' }]}>
+              rules={[
+                { type: 'email', required: true, message: 'Please input your Email' },
+              ]}>
               <Input
                 id="email"
                 prefix={<UserOutlined className="site-form-item-icon" />}
