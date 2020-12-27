@@ -1,29 +1,25 @@
 import styled from 'styled-components';
 
-export const ContainerLeft = styled.div`
-  left: 0;
-  background: #4425a7;
+export const Container = styled.div`
+  overflow: hidden;
   height: 100vh;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-
+  background: white;
   img {
-    height: 100%;
-    position: relative;
+    width: 100%;
+    height: 100vh;
   }
 `;
 
-export const ContainerRight = styled.div`
-  right: 0;
-  background: #fff;
-  height: 100vh;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 21%;
+export const FormContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 767px) {
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, 50%);
+  }
 `;

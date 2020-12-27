@@ -1,23 +1,21 @@
 import { Col, Row } from 'antd';
+import { Container, FormContainer } from 'Components/Layouts/Login/LoginLayout.styled';
+import Image from 'next/image';
 import React from 'react';
-import { ContainerLeft, ContainerRight } from './LoginLayout.styled';
 
 const LoginLayout: React.FC = (props) => {
   const { children } = props;
   return (
-    <div>
-      <ContainerLeft>
-        <img
-          src="https://blog.bannersnack.com/wp-content/uploads/2019/02/nuria.png"
-          alt="work from home"
-        />
-      </ContainerLeft>
-      <ContainerRight>
-        <Row justify="center">
-          <Col span={14}>{children}</Col>
-        </Row>
-      </ContainerRight>
-    </div>
+    <Container>
+      <Row justify="center">
+        <Col xs={0} sm={0} md={12}>
+          <Image src={'/login.jpg'} unsized />
+        </Col>
+        <Col xs={20} sm={20} md={12} xl={12}>
+          <FormContainer>{children}</FormContainer>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
