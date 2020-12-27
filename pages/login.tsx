@@ -1,9 +1,10 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import LoginLayout from 'Components/Layouts/Login/LoginLayout';
 import Link from 'next/link';
 import React from 'react';
+import { HR } from 'Styles/Global.styled';
 
 const layout = {
   labelCol: { span: 8 },
@@ -33,45 +34,48 @@ const Login: React.FC<Props> = (props) => {
 
   return (
     <LoginLayout>
-      <Form
-        {...layout}
-        id="loginForm"
-        form={form}
-        name="login"
-        onFinish={onFinish}
-        onFinishFailed={onError}
-        layout="vertical">
-        <Form.Item
-          name={'email'}
-          rules={[{ required: true, message: 'Please input your Email' }]}>
-          <Input
-            id="email"
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="email"
-          />
-        </Form.Item>
-
-        <Form.Item
-          name={'password'}
-          rules={[{ required: true, message: 'Please input your Password' }]}>
-          <Input
-            id="password"
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Item>
-
-        <Form.Item>
-          <Button id="loginBtn" type="primary" htmlType="submit" block>
-            Log in
-          </Button>
-        </Form.Item>
-
-        <Form.Item style={{ textAlign: 'center' }}>
-          <Link href="/">register now!</Link>
-        </Form.Item>
-      </Form>
+      <Row justify="center">
+        <Col span={16} xl={14}>
+          <Form
+            {...layout}
+            id="loginForm"
+            form={form}
+            name="login"
+            onFinish={onFinish}
+            onFinishFailed={onError}
+            size="large"
+            layout="vertical">
+            <Form.Item
+              name={'email'}
+              rules={[{ required: true, message: 'Please input your Email' }]}>
+              <Input
+                id="email"
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="email"
+              />
+            </Form.Item>
+            <Form.Item
+              name={'password'}
+              rules={[{ required: true, message: 'Please input your Password' }]}>
+              <Input
+                id="password"
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button id="loginBtn" type="primary" htmlType="submit" block>
+                Log in
+              </Button>
+            </Form.Item>
+            <HR /> or <HR />
+            <Form.Item style={{ textAlign: 'center' }}>
+              <Link href="/">register now!</Link>
+            </Form.Item>
+          </Form>
+        </Col>
+      </Row>
     </LoginLayout>
   );
 };
