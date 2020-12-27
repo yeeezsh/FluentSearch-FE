@@ -4,7 +4,7 @@ import { useForm } from 'antd/lib/form/Form';
 import LoginLayout from 'Components/Layouts/Login/LoginLayout';
 import Link from 'next/link';
 import React from 'react';
-import { HR } from 'Styles/Global.styled';
+import { HR, P } from 'Styles/Global.styled';
 
 const layout = {
   labelCol: { span: 8 },
@@ -69,9 +69,25 @@ const Login: React.FC<Props> = (props) => {
                 Log in
               </Button>
             </Form.Item>
-            <HR /> or <HR />
-            <Form.Item style={{ textAlign: 'center' }}>
-              <Link href="/">register now!</Link>
+            <Row justify="center">
+              <Col span={10}>
+                <HR />
+              </Col>
+              <Col span={4}>
+                <P>or</P>
+              </Col>
+              <Col span={10}>
+                <HR />
+              </Col>
+            </Row>
+
+            <Form.Item>
+              <P>
+                Haven&apos;t an account?
+                <Link href="/">
+                  <a> Register</a>
+                </Link>
+              </P>
             </Form.Item>
           </Form>
         </Col>
