@@ -2,6 +2,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import LoginLayout from 'Components/Layouts/Login/LoginLayout';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { HR, P } from 'Styles/Global.styled';
@@ -35,8 +36,12 @@ const Login: React.FC<Props> = (props) => {
   return (
     <LoginLayout>
       <Row justify="center">
+        <Col span={8}>
+          <Image src={'/03-logo.svg'} width={200} height={120} />
+        </Col>
+      </Row>
+      <Row justify="center">
         <Col span={16} xl={14}>
-          logo
           <Form
             {...layout}
             id="loginForm"
