@@ -8,10 +8,10 @@ const LoginLayout: React.FC = (props) => {
   return (
     <Container>
       <Row justify="center">
-        <Col xs={0} sm={0} md={12}>
-          <Image src={'/login.jpg'} unsized />
+        <Col xs={0} sm={0} md={0} lg={12}>
+          <Image src={'/login-1.png'} layout="responsive" width={900} height={1500} />
         </Col>
-        <Col xs={20} sm={20} md={12} xl={12}>
+        <Col xs={20} sm={20} md={20} lg={12}>
           <FormContainer>{children}</FormContainer>
         </Col>
       </Row>
