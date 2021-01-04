@@ -2,19 +2,19 @@
 import { ButtonComponentProps } from 'Components/Button/button.type';
 import styled, { css } from 'styled-components';
 
-export const handleColorType = (color?: ButtonComponentProps['style']) => {
+export const handleColorType = (color?: ButtonComponentProps['color']) => {
   switch (color) {
     case 'primary':
       return css`
-        background: #0bb5c2;
+        background-color: #0bb5c2;
         color: #fff;
         &:hover {
-          background: #48cdd8;
+          background-color: #48cdd8;
         }
       `;
     case 'secondary':
       return css`
-        background: #fff;
+        background-color: #fff;
         color: #0bb5c2;
         border: 1px solid #0bb5c2;
         &:hover {
@@ -24,23 +24,23 @@ export const handleColorType = (color?: ButtonComponentProps['style']) => {
       `;
     case 'danger':
       return css`
-        background: #eb5757;
+        background-color: #eb5757;
         color: #fff;
         &:hover {
-          background: #f07979;
+          background-color: #f07979;
         }
       `;
     case 'success':
       return css`
-        background: #27ae60;
+        background-color: #27ae60;
         color: #fff;
         &:hover {
-          background: #6fcf97;
+          background-color: #6fcf97;
         }
       `;
     case 'disable':
       return css`
-        background: #f2f2f2;
+        background-color: #f2f2f2;
         color: #bdbdbd;
         border: 1px solid #bdbdbd;
         &:hover {
@@ -49,7 +49,11 @@ export const handleColorType = (color?: ButtonComponentProps['style']) => {
       `;
     default:
       return css`
-        color: white;
+        background-color: #0bb5c2;
+        color: #fff;
+        &:hover {
+          background-color: #48cdd8;
+        }
       `;
   }
 };
@@ -82,7 +86,7 @@ export const handleSizeType = (size?: ButtonComponentProps['size']) => {
 export const Button = styled.button<ButtonComponentProps>`
   border-radius: 100px;
   border: 0px;
-  ${({ style }) => handleColorType(style)};
+  ${({ color }) => handleColorType(color)};
   ${({ size }) => handleSizeType(size)};
   cursor: pointer;
   font-weight: bold;

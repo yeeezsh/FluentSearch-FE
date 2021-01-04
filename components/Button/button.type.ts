@@ -9,7 +9,7 @@ interface Size {
 export type ButtonComponentProps = {
   children?: HTMLCollection | string;
   onClick?: (e?: React.MouseEvent) => void;
-  typeButton?: Style['type'];
+  color?: Style['type'];
   style?: Style;
   size?: Size['type'];
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;

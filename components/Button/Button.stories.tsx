@@ -9,55 +9,59 @@ export default {
   component: CustomButton,
 } as Meta;
 
-const Template: Story<ButtonComponentProps> = (args) => <CustomButton {...args} />;
+const ButtonStory: Story<ButtonComponentProps> = (args) => <CustomButton {...args} />;
 
-export const Primary = Template.bind({});
+// Color
+
+export const Primary = ButtonStory.bind({});
 Primary.args = {
-  style: 'primary',
-  children: 'Button',
-} as ButtonComponentProps;
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  style: 'secondary',
-  children: 'Button',
-} as ButtonComponentProps;
-
-export const Danger = Template.bind({});
-Danger.args = {
-  style: 'danger',
-  children: 'Button',
-} as ButtonComponentProps;
-
-export const Success = Template.bind({});
-Success.args = {
-  style: 'success',
-  children: 'Button',
-} as ButtonComponentProps;
-
-export const Disable = Template.bind({});
-Disable.args = {
-  style: 'disable',
+  color: 'primary',
   children: 'Button',
 };
 
-export const Small = Template.bind({});
+export const Secondary = ButtonStory.bind({});
+Secondary.args = {
+  color: 'secondary',
+  children: 'Button',
+};
+
+export const Danger = ButtonStory.bind({});
+Danger.args = {
+  color: 'danger',
+  children: 'Button',
+};
+
+export const Success = ButtonStory.bind({});
+Success.args = {
+  color: 'success',
+  children: 'Button',
+};
+
+export const Disable = ButtonStory.bind({});
+Disable.args = {
+  color: 'disable',
+  children: 'Button',
+};
+
+// Size
+
+export const Small = ButtonStory.bind({});
 Small.args = {
-  style: 'primary',
+  color: 'primary',
   size: 'small',
   children: 'Button',
 };
 
-export const Medium = Template.bind({});
+export const Medium = ButtonStory.bind({});
 Medium.args = {
-  style: 'primary',
+  color: 'primary',
   size: 'medium',
   children: 'Button',
 };
 
-export const Large = Template.bind({});
+export const Large = ButtonStory.bind({});
 Large.args = {
-  style: 'primary',
+  color: 'primary',
   size: 'large',
   children: 'Button',
 };
