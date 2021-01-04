@@ -9,4 +9,4 @@ export default {
   component: Home,
 } as Meta;
 
-export const HomePage = () => <Home />;
+export const HomePage = (): JSX.Element => <Home />;
