@@ -6,24 +6,14 @@ const aliasModule = Object.keys(tsconfig.compilerOptions.paths)
     return {
       // alias
       ['^' + alias.replace('*', '(.*)')]:
-      // absolute path
+        // absolute path
         '<rootDir>/' + String(value).replace('*', '') + '$1',
     };
   })
   .reduce((acc, cur) => {
     return { ...acc, ...cur };
   }, {});
-  
-process.env = {
-    ...process.env,
-    __NEXT_IMAGE_OPTS: {
-        deviceSizes: [320, 420, 768, 1024, 1200],
-        imageSizes: [],
-        domains: ["static.ghost.org"],
-        path: "/_next/image",
-        loader: "default",
-    },
-};
+
 module.exports = {
   moduleDirectories: ['./', 'node_modules'],
   testPathIgnorePatterns: ['<rootDir>/.next/'],
