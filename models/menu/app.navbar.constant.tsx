@@ -16,7 +16,7 @@ const APP_NAVBAR_CONSTANT: MenuType[] = [
         Login
       </CustomButton>
     ),
-    link: ['asdasd'],
+    link: ['login'],
     active: false,
   },
 ];
