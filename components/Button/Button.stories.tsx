@@ -5,7 +5,7 @@ import { ButtonComponentProps } from 'Components/Button/button.type';
 import React from 'react';
 
 export default {
-  title: 'DeepFlow/Button',
+  title: 'FluentSearch/Button',
   component: CustomButton,
 } as Meta;
 

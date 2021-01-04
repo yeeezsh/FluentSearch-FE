@@ -23,7 +23,7 @@ const HomeNavbar: React.FC = () => {
   return (
     <div>
       <Nav>
-        <Logo>Deepflow</Logo>
+        <Logo>FluentSearch</Logo>
         <RightNav />
 
         <BtnSideMenu onClick={showDrawer}>
