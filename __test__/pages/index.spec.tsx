@@ -4,9 +4,7 @@ import Home from 'Pages/index';
 import React from 'react';
 
 describe('Pages/Home test', () => {
-  const wrap = shallow(<Home />);
-  console.log(wrap.debug());
-  it('Render correctly', () => {
+  it('Render correcly', () => {
     const wrap = <Home />;
     expect(wrap).toMatchSnapshot();
   });
