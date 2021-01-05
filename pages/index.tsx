@@ -66,7 +66,7 @@ const Home: React.FC = () => {
         <HeaderText>
           <H1>Heading</H1>
           <p>Lorem ipsum..</p>
-          <CustomButton typeButton="primary">Explore</CustomButton>
+          <CustomButton color="primary">Explore</CustomButton>
         </HeaderText>
       </Header>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
