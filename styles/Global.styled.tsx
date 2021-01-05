@@ -7,12 +7,14 @@ export const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
-`;
 
-export const HR = styled.hr`
-  border: none;
+  hr{
+    border: none;
   background-color: lightgray;
   height: 1px;
+  }
+
+  
 `;
 
 interface Align {

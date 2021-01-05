@@ -5,7 +5,7 @@ import LoginLayout from 'Components/Layouts/Login/LoginLayout';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { HR, P } from 'Styles/Global.styled';
+import { P } from 'Styles/Global.styled';
 
 const layout = {
   labelCol: { span: 8 },
@@ -79,13 +79,13 @@ const Login: React.FC<Props> = (props) => {
             </Form.Item>
             <Row justify="center">
               <Col span={10}>
-                <HR />
+                <hr />
               </Col>
               <Col span={4}>
                 <P>or</P>
               </Col>
               <Col span={10}>
-                <HR />
+                <hr />
               </Col>
             </Row>
 
