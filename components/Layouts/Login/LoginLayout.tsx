@@ -9,12 +9,12 @@ const LoginLayout: React.FC = (props) => {
     <Container>
       <Row justify="center">
         <Col>
-          <Image src={'03-logo.svg'} layout="responsive" width={300} height={200} />
+          <Image src={'/03-logo.svg'} layout="responsive" width={300} height={200} />
         </Col>
       </Row>
       <Row justify="center">
         <Col xs={0} sm={0} md={0} lg={12}>
-          <Image src={'login-1.png'} layout="responsive" width={900} height={1500} />
+          <Image src={'/login-1.png'} layout="responsive" width={900} height={1500} />
         </Col>
         <Col xs={20} sm={20} md={20} lg={12}>
           <FormContainer>{children}</FormContainer>

@@ -13,8 +13,6 @@ export const GlobalStyle = createGlobalStyle`
   background-color: lightgray;
   height: 1px;
   }
-
-  
 `;
 
 interface Align {
