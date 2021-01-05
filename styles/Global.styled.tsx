@@ -10,8 +10,8 @@ export const GlobalStyle = createGlobalStyle`
 
   hr{
     border: none;
-  background-color: lightgray;
-  height: 1px;
+    background-color: lightgray;
+    height: 1px;
   }
 `;
 
@@ -26,7 +26,7 @@ export type PComponentProps = {
   HTMLParagraphElement
 >;
 
-export const handleAlignType = (align?: PComponentProps['align']) => {
+const handleAlignType = (align?: PComponentProps['align']) => {
   switch (align) {
     case 'center':
       return css`
