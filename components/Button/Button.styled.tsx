@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { ButtonComponentProps } from 'Components/Button/button.type';
 import styled, { css } from 'styled-components';
 
-export const handleColorType = (color?: ButtonComponentProps['color']) => {
+const handleColorType = (color?: ButtonComponentProps['color']) => {
   switch (color) {
     case 'primary':
       return css`
@@ -58,7 +57,7 @@ export const handleColorType = (color?: ButtonComponentProps['color']) => {
   }
 };
 
-export const handleSizeType = (size?: ButtonComponentProps['size']) => {
+const handleSizeType = (size?: ButtonComponentProps['size']) => {
   switch (size) {
     case 'small':
       return css`
