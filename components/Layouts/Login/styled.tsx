@@ -12,13 +12,11 @@ export const Container = styled.div`
 export const FormContainer = styled.div`
   position: absolute;
   width: 100%;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 25%;
+  transform: translateY(50%);
 
   @media (max-width: 991px) {
     top: 50%;
-    left: 0%;
     transform: translate(0%, 50%);
   }
 `;
