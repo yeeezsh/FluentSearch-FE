@@ -12,7 +12,7 @@ const APP_NAVBAR_CONSTANT: MenuType[] = [
   {
     key: '2',
     label: (
-      <Button color="primary" size="small" style={{ marginTop: '-20%' }}>
+      <Button size="small" style={{ marginTop: '-20%' }}>
         Login
       </Button>
     ),

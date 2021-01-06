@@ -13,9 +13,8 @@ const ButtonStory: Story<ButtonComponentProps> = (args) => <Button {...args} />;
 
 // Color
 
-export const Primary = ButtonStory.bind({});
-Primary.args = {
-  color: 'primary',
+export const Default = ButtonStory.bind({});
+Default.args = {
   children: 'Button',
 };
 
@@ -49,13 +48,6 @@ export const Small = ButtonStory.bind({});
 Small.args = {
   color: 'primary',
   size: 'small',
-  children: 'Button',
-};
-
-export const Medium = ButtonStory.bind({});
-Medium.args = {
-  color: 'primary',
-  size: 'medium',
   children: 'Button',
 };
 
