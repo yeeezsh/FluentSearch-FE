@@ -3,14 +3,6 @@ import styled, { css } from 'styled-components';
 
 const handleColorType = (color?: ButtonComponentProps['color']) => {
   switch (color) {
-    case 'primary':
-      return css`
-        background-color: #0bb5c2;
-        color: #fff;
-        &:hover {
-          background-color: #48cdd8;
-        }
-      `;
     case 'secondary':
       return css`
         background-color: #fff;
@@ -46,6 +38,7 @@ const handleColorType = (color?: ButtonComponentProps['color']) => {
           cursor: not-allowed;
         }
       `;
+    // default -> primary
     default:
       return css`
         background-color: #0bb5c2;
@@ -64,16 +57,12 @@ const handleSizeType = (size?: ButtonComponentProps['size']) => {
         font-size: 12px;
         padding: 10px 16px;
       `;
-    case 'medium':
-      return css`
-        font-size: 14px;
-        padding: 11px 20px;
-      `;
     case 'large':
       return css`
         font-size: 16px;
         padding: 12px 24px;
       `;
+    // default -> medium
     default:
       return css`
         font-size: 14px;

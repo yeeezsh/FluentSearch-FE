@@ -1,9 +1,9 @@
 interface Style {
-  type?: 'primary' | 'secondary' | 'success' | 'danger' | 'disable';
+  type?: 'secondary' | 'success' | 'danger' | 'disable';
 }
 
 interface Size {
-  type?: 'small' | 'medium' | 'large';
+  type?: 'small' | 'large';
 }
 
 export type ButtonComponentProps = {
