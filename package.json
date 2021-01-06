@@ -27,13 +27,14 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "storybook-addon-next-router": "^2.0.3",
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@storybook/addon-actions": "^6.0.28",
     "@storybook/addon-essentials": "^6.0.28",
     "@storybook/addon-links": "^6.0.28",
-    "@storybook/react": "^6.0.28",
+    "@storybook/react": "^6.1.11",
     "@testing-library/dom": "^7.26.3",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
