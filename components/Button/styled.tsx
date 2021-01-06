@@ -71,7 +71,7 @@ const handleSizeType = (size?: ButtonComponentProps['size']) => {
   }
 };
 
-export const CustomButton = styled.button<ButtonComponentProps>`
+export const ButtonStyle = styled.button<ButtonComponentProps>`
   border-radius: 100px;
   border: 0px;
   ${({ color }) => handleColorType(color)};
