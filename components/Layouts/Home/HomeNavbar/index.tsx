@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { MenuOutlined } from '@ant-design/icons';
 import {
   BtnSideMenu,
