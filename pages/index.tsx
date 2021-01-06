@@ -1,5 +1,5 @@
 import { Card, Col, Row } from 'antd';
-import Button from 'Components/Button/Button';
+import Button from 'Components/Button';
 import HomeLayout from 'Components/Layouts/Home';
 import APP_FEATURE_CONSTANT from 'Models/featureCard/app.feature.constant';
 import React from 'react';

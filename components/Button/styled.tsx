@@ -1,4 +1,4 @@
-import { ButtonComponentProps } from 'Components/Button/button.type';
+import { ButtonComponentProps } from 'Components/Button/type';
 import styled, { css } from 'styled-components';
 
 const handleColorType = (color?: ButtonComponentProps['color']) => {

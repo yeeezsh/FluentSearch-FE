@@ -1,5 +1,5 @@
-import { CustomButton } from 'Components/Button/Button.styled';
-import { ButtonComponentProps } from 'Components/Button/button.type';
+import { CustomButton } from 'Components/Button/styled';
+import { ButtonComponentProps } from 'Components/Button/type';
 import React from 'react';
 
 const Button: React.FC<ButtonComponentProps> = (props) => {
