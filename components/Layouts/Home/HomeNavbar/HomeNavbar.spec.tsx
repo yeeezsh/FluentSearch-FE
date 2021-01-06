@@ -1,9 +1,7 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import HomeNavbar from 'Components/Layouts/Home/HomeNavbar';
 import React from 'react';
-import { BtnSideMenu, Logo, Nav } from 'Components/Layouts/Home/HomeNavbar/styled';
-import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNavbar';
-import SideMenu from 'Components/Layouts/Home/HomeNavbar/SideMenu';
+import { Logo } from 'Components/Layouts/Home/HomeNavbar/styled';
 
 describe('Components/Navbar test', () => {
   it('Render correctly', () => {
@@ -14,6 +12,16 @@ describe('Components/Navbar test', () => {
   it('Navbar should be exisiting', () => {
     const wrap = shallow(<HomeNavbar />);
     expect(wrap.exists()).toBe(true);
+  });
+
+  it('SideMenu should be exisiting', () => {
+    const wrap = shallow(<HomeNavbar />);
+    expect(wrap.exists('SideMenu')).toBe(true);
+  });
+
+  it('RightNav should be exisiting', () => {
+    const wrap = shallow(<HomeNavbar />);
+    expect(wrap.exists('RightNav')).toBe(true);
   });
 
   it('Should contain Logo', () => {
