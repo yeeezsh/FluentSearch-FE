@@ -1,7 +1,7 @@
 import { ButtonComponentProps } from 'Components/Button/type';
 import styled, { css } from 'styled-components';
 
-const handleColorType = (color?: ButtonComponentProps['color']) => {
+const colorMapping = (color?: ButtonComponentProps['color']) => {
   switch (color) {
     case 'secondary':
       return css`
@@ -50,7 +50,7 @@ const handleColorType = (color?: ButtonComponentProps['color']) => {
   }
 };
 
-const handleSizeType = (size?: ButtonComponentProps['size']) => {
+const sizeMapping = (size?: ButtonComponentProps['size']) => {
   switch (size) {
     case 'small':
       return css`
@@ -74,8 +74,8 @@ const handleSizeType = (size?: ButtonComponentProps['size']) => {
 export const ButtonStyle = styled.button<ButtonComponentProps>`
   border-radius: 100px;
   border: 0px;
-  ${({ color }) => handleColorType(color)};
-  ${({ size }) => handleSizeType(size)};
+  ${({ color }) => colorMapping(color)};
+  ${({ size }) => sizeMapping(size)};
   cursor: pointer;
   font-weight: bold;
   &:focus {
