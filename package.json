@@ -10,6 +10,7 @@
     "test:snapshots": "jest --updateSnapshot",
     "test:ci": "jest --all --ci --detectOpenHandles",
     "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write ./**/*.ts{,x} --config ./.prettierrc.js",
