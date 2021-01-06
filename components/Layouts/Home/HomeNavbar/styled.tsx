@@ -11,6 +11,11 @@ export const Nav = styled.nav`
   background-color: white;
 `;
 
+export const MenuDiv = styled.div`
+  margin-top: 80%;
+  font-size: 16px;
+`;
+
 export const Logo = styled.div`
   padding-top: 15px;
   font-weight: 2em;
