@@ -27,11 +27,21 @@ module.exports = {
     '\\.(css|less)$': 'identity-obj-proxy',
     ...aliasModule,
   },
-
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.jest.json',
       babelConfig: true,
     },
   },
+  coverageDirectory: '.coverage',
+  coveragePathIgnorePatterns: [
+    'node_modules',
+    'test-config',
+    'interfaces',
+    'jestGlobalMocks.ts',
+    '.module.ts',
+    '<rootDir>/src/app/main.ts',
+    '.mock.ts',
+    'styled.ts',
+  ],
 };
