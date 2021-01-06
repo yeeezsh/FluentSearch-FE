@@ -6,10 +6,12 @@ import { GlobalStyle } from 'Styles/Global.styled';
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <Provider store={store}>
+    <>
       <GlobalStyle />
-      <Component {...pageProps} />
-    </Provider>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </>
   );
 }
 
