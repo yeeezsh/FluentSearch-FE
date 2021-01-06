@@ -15,6 +15,33 @@ const layout = {
 export type FormLogin = { email: string; password: string };
 export type FormLoginError = { values: FormLogin; errorFields: [] };
 
+const HeaderLogo: React.FC = () => (
+  <Row justify="center" align="middle">
+    <Col span={8}>
+      <Image src={'/03-logo.svg'} width={200} height={120} />
+    </Col>
+  </Row>
+);
+
+const LoginButton: React.FC = () => (
+  <Form.Item>
+    <Button id="loginBtn" type="primary" htmlType="submit" block>
+      Log in
+    </Button>
+  </Form.Item>
+);
+
+const LoginWithFacebookButton: React.FC = () => (
+  <Form.Item>
+    <Button
+      id="fbBtn"
+      style={{ backgroundColor: '#3b5998', color: '#ffffff' }}
+      htmlType="submit"
+      block>
+      Login with Facebook
+    </Button>
+  </Form.Item>
+);
 interface Props {
   onSubmit?: (form: FormLogin) => void;
   onError?: (form: FormLoginError) => void;
@@ -35,11 +62,7 @@ const Login: React.FC<Props> = (props) => {
 
   return (
     <LoginLayout>
-      <Row justify="center">
-        <Col span={8}>
-          <Image src={'/03-logo.svg'} width={200} height={120} />
-        </Col>
-      </Row>
+      <HeaderLogo />
       <Row justify="center">
         <Col span={16} xl={14}>
           <Form
@@ -72,11 +95,7 @@ const Login: React.FC<Props> = (props) => {
                 placeholder="Password"
               />
             </Form.Item>
-            <Form.Item>
-              <Button id="loginBtn" type="primary" htmlType="submit" block>
-                Log in
-              </Button>
-            </Form.Item>
+            <LoginButton />
             <Row justify="center">
               <Col span={10}>
                 <hr />
@@ -88,15 +107,7 @@ const Login: React.FC<Props> = (props) => {
                 <hr />
               </Col>
             </Row>
-            <Form.Item>
-              <Button
-                id="fbBtn"
-                style={{ backgroundColor: '#3b5998', color: '#ffffff' }}
-                htmlType="submit"
-                block>
-                Login with Facebook
-              </Button>
-            </Form.Item>
+            <LoginWithFacebookButton />
             <Form.Item>
               <P>
                 Haven&apos;t an account?
