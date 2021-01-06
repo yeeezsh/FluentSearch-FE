@@ -15,7 +15,7 @@ describe('Pages/Login test', () => {
   });
 
   it('Should contain Login Layout', () => {
-    const wrap = mount(<Login />);
+    const wrap = shallow(<Login />);
     expect(wrap.exists(LoginLayout)).toBe(true);
   });
 
@@ -53,12 +53,8 @@ describe('Pages/Login test', () => {
   });
 
   it('Should call onSubmitOAuth and send OAuthEnum.Facebook via callback', () => {
-    const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
-    const onError = jest.fn(() => expect(onError).toBeCalledTimes(0));
     const onSumitOAuth = jest.fn(() => expect(onSumitOAuth).toBeCalledTimes(1));
-    const wrap = mount(
-      <Login onSubmit={onSubmit} onError={onError} onSubmitOAuth={onSumitOAuth} />,
-    );
+    const wrap = mount(<Login onSubmitOAuth={onSumitOAuth} />);
 
     wrap.find('#fbBtn').at(0).simulate('click');
   });
