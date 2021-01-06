@@ -1,4 +1,4 @@
-import { Ul } from 'Components/Layouts/Home/HomeNavbar/styled';
+import { UlStyle } from 'Components/Layouts/Home/HomeNavbar/styled';
 import { APP_NAVBAR_CONSTANT } from 'Models/menu/constant';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,7 +8,7 @@ import pathJoin from 'Utils/path-join';
 const RightNav: React.FC = () => {
   const router = useRouter();
   return (
-    <Ul>
+    <UlStyle>
       {APP_NAVBAR_CONSTANT.map(({ key, label, link }) => {
         return (
           <li key={key}>
@@ -20,7 +20,7 @@ const RightNav: React.FC = () => {
           </li>
         );
       })}
-    </Ul>
+    </UlStyle>
   );
 };
 

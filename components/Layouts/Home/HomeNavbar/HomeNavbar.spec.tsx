@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import HomeNavbar from 'Components/Layouts/Home/HomeNavbar';
 import React from 'react';
-import { Logo } from 'Components/Layouts/Home/HomeNavbar/styled';
+import { LogoStyle } from 'Components/Layouts/Home/HomeNavbar/styled';
 
 describe('Components/Navbar test', () => {
   it('Render correctly', () => {
@@ -26,6 +26,6 @@ describe('Components/Navbar test', () => {
 
   it('Should contain Logo', () => {
     const wrap = shallow(<HomeNavbar />);
-    expect(wrap.exists(Logo)).toBe(true);
+    expect(wrap.exists(LogoStyle)).toBe(true);
   });
 });

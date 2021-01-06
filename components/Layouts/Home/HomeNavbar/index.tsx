@@ -1,9 +1,9 @@
 import { MenuOutlined } from '@ant-design/icons';
 import {
-  BtnSideMenu,
-  Logo,
-  MenuDiv,
-  Nav,
+  ButtonSideMenuStyle,
+  LogoStyle,
+  MenuDivStyle,
+  NavStyle,
 } from 'Components/Layouts/Home/HomeNavbar/styled';
 import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNavbar';
 import SideMenu from 'Components/Layouts/Home/HomeNavbar/SideMenu';
@@ -26,16 +26,16 @@ const HomeNavbar: React.FC<HomeNavbarProps> = (props) => {
 
   return (
     <div>
-      <Nav>
-        <Logo>FluentSearch</Logo>
+      <NavStyle>
+        <LogoStyle>FluentSearch</LogoStyle>
         <RightNav />
 
-        <BtnSideMenu onClick={showDrawer}>
-          <MenuDiv>
+        <ButtonSideMenuStyle onClick={showDrawer}>
+          <MenuDivStyle>
             <MenuOutlined />
-          </MenuDiv>
-        </BtnSideMenu>
-      </Nav>
+          </MenuDivStyle>
+        </ButtonSideMenuStyle>
+      </NavStyle>
       <SideMenu onClose={onClose} visible={visible} />
     </div>
   );

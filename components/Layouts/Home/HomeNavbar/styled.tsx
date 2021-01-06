@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Nav = styled.nav`
+export const NavStyle = styled.nav`
   width: 100%;
   height: 55px;
   border-bottom: 2px solid #f1f1f1;
@@ -11,17 +11,17 @@ export const Nav = styled.nav`
   background-color: white;
 `;
 
-export const MenuDiv = styled.div`
+export const MenuDivStyle = styled.div`
   margin-top: 80%;
   font-size: 16px;
 `;
 
-export const Logo = styled.div`
+export const LogoStyle = styled.div`
   padding-top: 15px;
   font-weight: 2em;
 `;
 
-export const BtnSideMenu = styled.button`
+export const ButtonSideMenuStyle = styled.button`
   background: none;
   border: 0px;
   cursor: pointer;
@@ -31,7 +31,7 @@ export const BtnSideMenu = styled.button`
   }
 `;
 
-export const Ul = styled.ul`
+export const UlStyle = styled.ul`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
@@ -45,7 +45,7 @@ export const Ul = styled.ul`
   }
 `;
 
-export const Li = styled.li`
+export const LiStyle = styled.li`
   list-style: none;
   margin: 1em 1em 1em 1.4em;
 `;
