@@ -11,9 +11,7 @@ export default {
 
 const SideMenuStory: Story<SideMenuProps> = (args): JSX.Element => <SideMenu {...args} />;
 
-// LoggedIn && LoggedOut
-
-export const LoggedOut = SideMenuStory.bind({});
-LoggedOut.args = {
+export const Default = SideMenuStory.bind({});
+Default.args = {
   visible: true,
 };

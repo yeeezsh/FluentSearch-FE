@@ -11,6 +11,4 @@ export default {
 
 const NavbarStory: Story = (args): JSX.Element => <HomeNavbar {...args} />;
 
-// LoggedIn && LoggedOut
-
-export const LoggedOut = NavbarStory.bind({});
+export const Default = NavbarStory.bind({});

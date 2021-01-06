@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Meta } from '@storybook/react/types-6-0';
 import Home from 'Pages/index';
 import React from 'react';
 import 'antd/dist/antd.css';
 
 export default {
-  title: 'FluentSearch/HomePage',
+  title: 'FluentSearch/Pages/Home',
   component: Home,
 } as Meta;
 
-export const HomePage = (): JSX.Element => <Home />;
+export const Default = (): JSX.Element => <Home />;
