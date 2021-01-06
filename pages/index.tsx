@@ -4,7 +4,7 @@ import HomeLayout from 'Components/Layouts/Home';
 import APP_FEATURE_CONSTANT from 'Models/featureCard/app.feature.constant';
 import React from 'react';
 import styled, { CSSProperties } from 'styled-components';
-import IconSelector from 'Utils/iconSelector';
+import IconSelector from 'Tests/pages/utils/icon-selector';
 
 const Icon = styled.div`
   font-size: 40px;
