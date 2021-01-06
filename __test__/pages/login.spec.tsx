@@ -1,5 +1,6 @@
 import LoginLayout from 'Components/Layouts/Login';
 import { mount, shallow } from 'enzyme';
+import { OAuthEnum } from 'Models/oauth/oauth.enum';
 import Login from 'Pages/login';
 import React from 'react';
 
@@ -53,7 +54,10 @@ describe('Pages/Login test', () => {
   });
 
   it('Should call onSubmitOAuth and send OAuthEnum.Facebook via callback', () => {
-    const onSumitOAuth = jest.fn(() => expect(onSumitOAuth).toBeCalledTimes(1));
+    const onSumitOAuth = jest.fn((OAuth) => {
+      expect(onSumitOAuth).toBeCalledTimes(1);
+      expect(OAuth).toEqual(OAuthEnum.Facebook);
+    });
     const wrap = mount(<Login onSubmitOAuth={onSumitOAuth} />);
 
     wrap.find('#fbBtn').at(0).simulate('click');

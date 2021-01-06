@@ -60,9 +60,9 @@ const Login: React.FC<Props> = (props) => {
     console.log('Success:', values);
   };
 
-  const onError = (form) => {
-    console.log('Error: ', form);
-    props.onError && props.onError(form);
+  const onError = (formValue) => {
+    console.log('Error: ', formValue);
+    props.onError && props.onError(formValue);
   };
 
   return (
