@@ -10,10 +10,11 @@
     "test:snapshots": "jest --updateSnapshot",
     "test:ci": "jest --all --ci --detectOpenHandles",
     "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write ./**/*.ts{,x} --config ./.prettierrc.js",
-    "storybook": "start-storybook -p 6006 --no-dll",
+    "storybook": "start-storybook -p 6006 --no-dll -s ./public",
     "storybook:build": "build-storybook --no-dll"
   },
   "dependencies": {

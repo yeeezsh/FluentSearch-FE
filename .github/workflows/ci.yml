@@ -15,9 +15,19 @@ jobs:
         with:
           node-version: '14.x'
       - run: yarn
+      - run: yarn build
+  test:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 14-latest
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: yarn
       - run: yarn lint
       - run: yarn test:ci
-      - run: yarn build
+      - run: yarn test:cov
   storybook:
     runs-on: self-hosted
     steps:
