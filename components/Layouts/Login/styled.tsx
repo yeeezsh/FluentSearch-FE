@@ -16,6 +16,6 @@ export const FormContainer = styled.div`
 
   @media (max-width: 991px) {
     top: 50%;
-    transform: translateY(30%);
+    transform: translateY(25%);
   }
 `;
