@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
-  hr{
+  hr {
     border: none;
     background-color: lightgray;
     height: 1px;
