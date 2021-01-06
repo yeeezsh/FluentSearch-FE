@@ -1,16 +1,18 @@
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import RightNavbar from 'Components/Layouts/Home/HomeNavbar/RightNavbar';
 import React from 'react';
-import { Logo } from 'Components/Layouts/Home/HomeNavbar/styled';
 
 describe('Components/Navbar test', () => {
-  it('Render correctly', () => {
-    const wrap = <RightNavbar />;
-    expect(wrap).toMatchSnapshot();
+  it('RightNavbar should be exisiting', () => {
+    const wrap = shallow(<RightNavbar />);
+    expect(wrap.exists()).toBe(true);
   });
 
-  it('RightNavbar should be exisiting', () => {
+  it('RightNavbar have proper links', () => {
     const wrap = mount(<RightNavbar />);
-    console.log(wrap.debug());
+    expect(wrap.find('[href="register/"]')).toHaveLength(1);
+    expect(wrap.find('[href="login/"]')).toHaveLength(1);
+    expect(wrap.find('p').at(0).text()).toEqual('Sign up');
+    expect(wrap.find('button').text()).toEqual('Login');
   });
 });
