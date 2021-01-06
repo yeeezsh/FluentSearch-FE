@@ -1,4 +1,4 @@
-import LoginLayout from 'Components/Layouts/Login/LoginLayout';
+import LoginLayout from 'Components/Layouts/Login';
 import { mount, shallow } from 'enzyme';
 import Login from 'Pages/login';
 import React from 'react';

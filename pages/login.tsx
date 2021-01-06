@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
-import LoginLayout from 'Components/Layouts/Login/LoginLayout';
+import LoginLayout from 'Components/Layouts/Login';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';

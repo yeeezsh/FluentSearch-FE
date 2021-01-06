@@ -28,10 +28,6 @@ export type PComponentProps = {
 
 const handleAlignType = (align?: PComponentProps['align']) => {
   switch (align) {
-    case 'center':
-      return css`
-        text-align: center;
-      `;
     case 'right':
       return css`
         text-align: right;
@@ -41,6 +37,7 @@ const handleAlignType = (align?: PComponentProps['align']) => {
         text-align: left;
       `;
     default:
+      // 'center
       return css`
         text-align: center;
       `;
