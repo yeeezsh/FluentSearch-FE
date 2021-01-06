@@ -49,6 +49,6 @@ describe('Pages/Login test', () => {
     emailField.simulate('change', { target: { value: 'Hello' } });
     passwordField.simulate('change', { target: { value: '1234' } });
 
-    wrap.find('[type="submit"]').simulate('submit');
+    wrap.find('#loginBtn').simulate('submit');
   });
 });
