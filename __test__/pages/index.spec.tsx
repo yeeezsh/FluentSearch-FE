@@ -1,6 +1,6 @@
 import HomeLayout from 'Components/Layouts/Home';
 import { Header, HeaderText } from 'Pages/index';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Home from 'Pages/index';
 import React from 'react';
 import { Card } from 'antd';
@@ -33,7 +33,7 @@ describe('Pages/Home test', () => {
   });
 
   it('Should contain 6 cards 6 icons and 6 headers for card', () => {
-    const wrap = shallow(<Home />);
+    const wrap = mount(<Home />);
     expect(wrap.find(Card)).toHaveLength(6);
     expect(wrap.find(IconSelector)).toHaveLength(6);
     expect(wrap.find('h2')).toHaveLength(6);
