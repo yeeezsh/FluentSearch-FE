@@ -1,4 +1,4 @@
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Divider, Row } from 'antd';
 import Button from 'Components/Button';
 import HomeLayout from 'Components/Layouts/Home';
 import { APP_FEATURE_CONSTANT } from 'Models/featureCard/constant';
@@ -42,22 +42,24 @@ export const HeaderText = styled.div`
   color: #ffffff;
 `;
 
-const featureCard = [
-  APP_FEATURE_CONSTANT.map(({ key, icon, label, description }) => {
-    return (
-      <Col xs={20} md={5} lg={7} key={key}>
-        <Card style={gridStyle}>
-          <Icon>
-            <IconSelector type={icon} />
-          </Icon>
-          <br />
-          <h2>{label}</h2>
-          <p>{description}</p>
-        </Card>
-      </Col>
-    );
-  }),
-];
+const FeatureCard: React.FC = () => {
+  return (
+    <>
+      {APP_FEATURE_CONSTANT.map(({ key, icon, label, description }) => (
+        <Col xs={20} md={5} lg={7} key={key}>
+          <Card style={gridStyle}>
+            <Icon>
+              <IconSelector type={icon} />
+            </Icon>
+            <br />
+            <h2>{label}</h2>
+            <p>{description}</p>
+          </Card>
+        </Col>
+      ))}
+    </>
+  );
+};
 
 const Home: React.FC = () => {
   return (
@@ -72,7 +74,7 @@ const Home: React.FC = () => {
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
         <Col span={21}>
           <Row justify="center" gutter={[24, 24]}>
-            {featureCard}
+            <FeatureCard />
           </Row>
         </Col>
       </Row>
