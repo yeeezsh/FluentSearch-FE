@@ -1,6 +1,6 @@
 import { ButtonComponentProps } from 'Components/Button/type';
 
-type MenuType = {
+export type MenuType = {
   key: string;
   label: string | ButtonComponentProps;
   link: string[];
@@ -8,4 +8,3 @@ type MenuType = {
   style?: React.CSSProperties;
   active: boolean;
 };
-export default MenuType;

@@ -1,5 +1,5 @@
 import { Ul } from 'Components/Layouts/Home/HomeNavbar/styled';
-import APP_NAVBAR_CONSTANT from 'Models/menu/app.navbar.constant';
+import { APP_NAVBAR_CONSTANT } from 'Models/menu/constant';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
