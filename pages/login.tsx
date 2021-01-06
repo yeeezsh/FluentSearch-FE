@@ -33,11 +33,7 @@ const LoginButton: React.FC = () => (
 
 const LoginWithFacebookButton: React.FC = () => (
   <Form.Item>
-    <Button
-      id="fbBtn"
-      style={{ backgroundColor: '#3b5998', color: '#ffffff' }}
-      htmlType="submit"
-      block>
+    <Button id="fbBtn" style={{ backgroundColor: '#3b5998', color: '#ffffff' }} block>
       Login with Facebook
     </Button>
   </Form.Item>

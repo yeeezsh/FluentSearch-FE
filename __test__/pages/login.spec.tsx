@@ -20,7 +20,7 @@ describe('Pages/Login test', () => {
   });
 
   it('Should have email & password field / submit btn', () => {
-    const wrap = shallow(<Login />);
+    const wrap = mount(<Login />);
     const emailField = wrap.find('#email');
     const passwordField = wrap.find('#password');
     const submitButton = wrap.find('#loginBtn');
@@ -35,7 +35,7 @@ describe('Pages/Login test', () => {
     const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
     const wrap = mount(<Login onSubmit={onSubmit} onError={onError} />);
 
-    wrap.find('[type="submit"]').simulate('submit');
+    wrap.find('#loginBtn').at(0).simulate('submit');
   });
 
   it('Should call onSubmit when fullfill', () => {
@@ -49,6 +49,6 @@ describe('Pages/Login test', () => {
     emailField.simulate('change', { target: { value: 'Hello' } });
     passwordField.simulate('change', { target: { value: '1234' } });
 
-    wrap.find('#loginBtn').simulate('submit');
+    wrap.find('#loginBtn').at(0).simulate('submit');
   });
 });
