@@ -1,6 +1,6 @@
 import LoginLayout from 'Components/Layouts/Login';
 import { mount, shallow } from 'enzyme';
-import { OAuthEnum } from 'Models/oauth/oauth.enum';
+import { OAuthEnum } from 'Models/oauth/enum';
 import Login from 'Pages/login';
 import React from 'react';
 

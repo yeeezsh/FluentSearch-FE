@@ -1,3 +1,3 @@
-import { OAuthEnum } from './oauth.enum';
+import { OAuthEnum } from './enum';
 
 export type OAuthType = OAuthEnum.Facebook;
