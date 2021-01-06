@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Home from 'Pages/index';
 import React from 'react';
 import { Card } from 'antd';
-import IconSelector from 'Tests/pages/utils/icon-selector';
+import IconSelector from 'Utils/icon-selector';
 
 describe('Pages/Home test', () => {
   it('Render correcly', () => {

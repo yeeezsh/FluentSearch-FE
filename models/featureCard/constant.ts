@@ -1,5 +1,6 @@
-import FeatureType from './feature.type';
-const APP_FEATURE_CONSTANT: FeatureType[] = [
+import { FeatureType } from './feature.type';
+
+export const APP_FEATURE_CONSTANT: FeatureType[] = [
   {
     key: '1',
     icon: 'CarOutlined',
@@ -43,4 +44,3 @@ const APP_FEATURE_CONSTANT: FeatureType[] = [
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus earum iusto',
   },
 ];
-export default APP_FEATURE_CONSTANT;
