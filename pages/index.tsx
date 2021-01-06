@@ -24,7 +24,7 @@ export const Header = styled.div`
 
   text-align: center;
 
-  background-image: url(https://pbs.twimg.com/media/ElVxJ8OWMAAnew5.jpg);
+  background-image: url('https://pbs.twimg.com/media/ElVxJ8OWMAAnew5.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
