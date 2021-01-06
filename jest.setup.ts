@@ -1,6 +1,5 @@
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Router, { useRouter } from 'next/router';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -18,5 +17,9 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-jest.mock('next/router', () => ({ push: jest.fn(), pathname: '' }));
-jest.mock((useRouter as unknown) as string, () => ({ push: jest.fn(), pathname: '' }));
+jest.mock('next/router', () => ({
+  push: jest.fn(),
+  useRouter: () => ({
+    pathname: '',
+  }),
+}));
