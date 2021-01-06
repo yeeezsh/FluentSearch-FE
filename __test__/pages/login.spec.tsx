@@ -51,4 +51,15 @@ describe('Pages/Login test', () => {
 
     wrap.find('#loginBtn').at(0).simulate('submit');
   });
+
+  it('Should call onSubmitOAuth and send OAuthEnum.Facebook via callback', () => {
+    const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
+    const onError = jest.fn(() => expect(onError).toBeCalledTimes(0));
+    const onSumitOAuth = jest.fn(() => expect(onSumitOAuth).toBeCalledTimes(1));
+    const wrap = mount(
+      <Login onSubmit={onSubmit} onError={onError} onSubmitOAuth={onSumitOAuth} />,
+    );
+
+    wrap.find('#fbBtn').at(0).simulate('click');
+  });
 });
