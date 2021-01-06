@@ -1,4 +1,4 @@
-import HomeLayout from 'Components/Layouts/Home/HomeLayout';
+import HomeLayout from 'Components/Layouts/Home';
 import { Header, HeaderText } from 'Pages/index';
 import { mount, shallow } from 'enzyme';
 import Home from 'Pages/index';
