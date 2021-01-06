@@ -1,5 +1,5 @@
 import { Drawer } from 'antd';
-import { Li } from 'Components/Layouts/Home/HomeNavbar/HomeNavbar.styled';
+import { Li } from 'Components/Layouts/Home/HomeNavbar/styled';
 import APP_NAVBAR_CONSTANT from 'Models/menu/app.navbar.constant';
 import React from 'react';
 import pathJoin from 'Utils/path-join';

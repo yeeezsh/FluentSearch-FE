@@ -1,12 +1,8 @@
 import { mount, shallow } from 'enzyme';
-import HomeNavbar from 'Components/Layouts/Home/HomeNavbar/HomeNavbar';
+import HomeNavbar from 'Components/Layouts/Home/HomeNavbar';
 import React from 'react';
-import {
-  BtnSideMenu,
-  Logo,
-  Nav,
-} from 'Components/Layouts/Home/HomeNavbar/HomeNavbar.styled';
-import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNav';
+import { BtnSideMenu, Logo, Nav } from 'Components/Layouts/Home/HomeNavbar/styled';
+import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNavbar';
 import SideMenu from 'Components/Layouts/Home/HomeNavbar/SideMenu';
 
 describe('Components/Navbar test', () => {

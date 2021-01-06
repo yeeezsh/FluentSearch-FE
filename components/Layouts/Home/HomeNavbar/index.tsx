@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { MenuOutlined } from '@ant-design/icons';
-import {
-  BtnSideMenu,
-  Logo,
-  Nav,
-} from 'Components/Layouts/Home/HomeNavbar/HomeNavbar.styled';
-import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNav';
+import { BtnSideMenu, Logo, Nav } from 'Components/Layouts/Home/HomeNavbar/styled';
+import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNavbar';
 import SideMenu from 'Components/Layouts/Home/HomeNavbar/SideMenu';
 import React, { useState } from 'react';
 

@@ -1,6 +1,6 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Meta, Story } from '@storybook/react/types-6-0';
-import HomeNavbar from 'Components/Layouts/Home/HomeNavbar/HomeNavbar';
+import HomeNavbar from 'Components/Layouts/Home/HomeNavbar';
 import React from 'react';
 import 'antd/dist/antd.css';
 
