@@ -9,8 +9,12 @@ import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNav';
 import SideMenu from 'Components/Layouts/Home/HomeNavbar/SideMenu';
 import React, { useState } from 'react';
 
-const HomeNavbar: React.FC = () => {
-  const [visible, setVisible] = useState(false);
+interface HomeNavbarProps {
+  visible?: boolean;
+}
+
+const HomeNavbar: React.FC<HomeNavbarProps> = (props) => {
+  const [visible, setVisible] = useState(props.visible || false);
 
   const showDrawer = () => {
     setVisible(true);
