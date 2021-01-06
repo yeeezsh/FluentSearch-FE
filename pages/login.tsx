@@ -2,6 +2,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import LoginLayout from 'Components/Layouts/Login/LoginLayout';
+import useLogin from 'Hooks/useLogin';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -15,23 +16,24 @@ const layout = {
 export type FormLogin = { email: string; password: string };
 export type FormLoginError = { values: FormLogin; errorFields: [] };
 
-interface Props {
-  onSubmit?: (form: FormLogin) => void;
-  onError?: (form: FormLoginError) => void;
-}
+// interface Props {
+//   onSubmit?: (form: FormLogin) => void;
+//   onError?: (form: FormLoginError) => void;
+// }
 
-const Login: React.FC<Props> = (props) => {
+const Login: React.FC = () => {
   const [form] = useForm<FormLogin>();
+  const [onFinish, onError] = useLogin();
 
-  const onFinish = (values) => {
-    props.onSubmit && props.onSubmit(values);
-    console.log('Success:', values);
-  };
+  // const onFinish = (values) => {
+  //   props.onSubmit && props.onSubmit(values);
+  //   console.log('Success:', values);
+  // };
 
-  const onError = (form) => {
-    console.log('Error: ', form);
-    props.onError && props.onError(form);
-  };
+  // const onError = (form) => {
+  //   console.log('Error: ', form);
+  //   props.onError && props.onError(form);
+  // };
 
   return (
     <LoginLayout>
