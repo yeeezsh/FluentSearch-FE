@@ -3,6 +3,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+// windows mock implemetation
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({
@@ -17,6 +18,7 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
+// next/router mock implementation
 jest.mock('next/router', () => ({
   push: jest.fn(),
   useRouter: () => ({
