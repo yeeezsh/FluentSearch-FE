@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components/Navbar test Render correctly 1`] = `<HomeNavbar />`;
