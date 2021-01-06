@@ -20,7 +20,7 @@ export type FormLoginError = { values: FormLogin; errorFields: [] };
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
     <Col span={8}>
-      <Image src={'/03-logo.svg'} width={200} height={120} />
+      <Image src={'assets/images/03-logo.svg'} width={200} height={120} />
     </Col>
   </Row>
 );
