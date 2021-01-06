@@ -3,10 +3,11 @@ import { Li } from 'Components/Layouts/Home/HomeNavbar/styled';
 import APP_NAVBAR_CONSTANT from 'Models/menu/app.navbar.constant';
 import React from 'react';
 import pathJoin from 'Utils/path-join';
+import Link from 'next/link';
 
 export type SideMenuProps = {
-  onClose: () => void;
-  visible: boolean;
+  onClose?: () => void;
+  visible?: boolean;
 };
 
 const SideMenu: React.FC<SideMenuProps> = (props) => {
@@ -17,7 +18,7 @@ const SideMenu: React.FC<SideMenuProps> = (props) => {
         {APP_NAVBAR_CONSTANT.map(({ key, label, link }) => {
           return (
             <Li key={key}>
-              <a href={pathJoin(link)}>{label}</a>
+              <Link href={pathJoin(link)}>{label}</Link>
             </Li>
           );
         })}
