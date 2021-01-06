@@ -1,15 +1,15 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Meta, Story } from '@storybook/react/types-6-0';
-import CustomButton from 'Components/Button/CustomButton';
+import Button from 'Components/Button/Button';
 import { ButtonComponentProps } from 'Components/Button/button.type';
 import React from 'react';
 
 export default {
   title: 'FluentSearch/Button',
-  component: CustomButton,
+  component: Button,
 } as Meta;
 
-const ButtonStory: Story<ButtonComponentProps> = (args) => <CustomButton {...args} />;
+const ButtonStory: Story<ButtonComponentProps> = (args) => <Button {...args} />;
 
 // Color
 

@@ -1,5 +1,5 @@
 import { Card, Col, Row } from 'antd';
-import CustomButton from 'Components/Button/CustomButton';
+import Button from 'Components/Button/Button';
 import HomeLayout from 'Components/Layouts/Home/HomeLayout';
 import APP_FEATURE_CONSTANT from 'Models/featureCard/app.feature.constant';
 import React from 'react';
@@ -66,7 +66,7 @@ const Home: React.FC = () => {
         <HeaderText>
           <H1>Heading</H1>
           <p>Lorem ipsum..</p>
-          <CustomButton color="primary">Explore</CustomButton>
+          <Button color="primary">Explore</Button>
         </HeaderText>
       </Header>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>

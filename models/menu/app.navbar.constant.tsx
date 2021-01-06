@@ -1,4 +1,4 @@
-import CustomButton from 'Components/Button/CustomButton';
+import Button from 'Components/Button/Button';
 import React from 'react';
 import MenuType from './menu.type';
 
@@ -12,9 +12,9 @@ const APP_NAVBAR_CONSTANT: MenuType[] = [
   {
     key: '2',
     label: (
-      <CustomButton color="primary" size="small" style={{ marginTop: '-20%' }}>
+      <Button color="primary" size="small" style={{ marginTop: '-20%' }}>
         Login
-      </CustomButton>
+      </Button>
     ),
     link: ['login'],
     active: false,
