@@ -88,7 +88,15 @@ const Login: React.FC<Props> = (props) => {
                 <hr />
               </Col>
             </Row>
-
+            <Form.Item>
+              <Button
+                id="fbBtn"
+                style={{ backgroundColor: '#3b5998', color: '#ffffff' }}
+                htmlType="submit"
+                block>
+                Login with Facebook
+              </Button>
+            </Form.Item>
             <Form.Item>
               <P>
                 Haven&apos;t an account?
