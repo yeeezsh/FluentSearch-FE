@@ -2,6 +2,8 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import LoginLayout from 'Components/Layouts/Login';
+import { OAuthType } from 'Models/oauth/index.type';
+import { OAuthEnum } from 'Models/oauth/oauth.enum';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -31,9 +33,15 @@ const LoginButton: React.FC = () => (
   </Form.Item>
 );
 
-const LoginWithFacebookButton: React.FC = () => (
+const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = (
+  props,
+) => (
   <Form.Item>
-    <Button id="fbBtn" style={{ backgroundColor: '#3b5998', color: '#ffffff' }} block>
+    <Button
+      onClick={() => props.onSubmit && props.onSubmit(OAuthEnum.Facebook)}
+      id="fbBtn"
+      style={{ backgroundColor: '#3b5998', color: '#ffffff' }}
+      block>
       Login with Facebook
     </Button>
   </Form.Item>
@@ -41,6 +49,7 @@ const LoginWithFacebookButton: React.FC = () => (
 interface Props {
   onSubmit?: (form: FormLogin) => void;
   onError?: (form: FormLoginError) => void;
+  onSubmitOAuth?: (type: OAuthType) => void;
 }
 
 const Login: React.FC<Props> = (props) => {
@@ -103,7 +112,7 @@ const Login: React.FC<Props> = (props) => {
                 <hr />
               </Col>
             </Row>
-            <LoginWithFacebookButton />
+            <LoginWithFacebookButton onSubmit={props.onSubmitOAuth} />
             <Form.Item>
               <P>
                 Haven&apos;t an account?
