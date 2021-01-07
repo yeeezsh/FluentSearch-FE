@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
-import LoginLayout from 'Components/Layouts/Login';
+import FormCenterLayout from 'Components/Layouts/FormCenter';
 import { OAuthType } from 'Models/oauth/type';
 import { OAuthEnum } from 'Models/oauth/enum';
 import Image from 'next/image';
@@ -66,7 +66,7 @@ const Login: React.FC<Props> = (props) => {
   };
 
   return (
-    <LoginLayout>
+    <FormCenterLayout>
       <HeaderLogo />
       <Row justify="center">
         <Col span={16} xl={14}>
@@ -124,7 +124,7 @@ const Login: React.FC<Props> = (props) => {
           </Form>
         </Col>
       </Row>
-    </LoginLayout>
+    </FormCenterLayout>
   );
 };
 
