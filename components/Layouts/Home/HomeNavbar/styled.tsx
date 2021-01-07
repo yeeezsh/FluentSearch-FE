@@ -31,7 +31,7 @@ export const ButtonSideMenuStyle = styled.button`
   }
 `;
 
-export const UlStyle = styled.ul`
+export const NavbarContainerRow = styled.ul`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
@@ -45,7 +45,16 @@ export const UlStyle = styled.ul`
   }
 `;
 
-export const LiStyle = styled.li`
+export const NavbarContainerItem = styled.li`
   list-style: none;
   margin: 1em 1em 1em 1.4em;
+  cursor: pointer;
+`;
+
+export const MenuItemStyled = styled.p<{ isSelecting: boolean }>`
+  color: ${(props) => (props.isSelecting ? '#0BB5C2' : 'black')};
+  cursor: pointer;
+  &:hover {
+    color: #0bb5c2;
+  }
 `;
