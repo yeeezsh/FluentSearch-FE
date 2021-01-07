@@ -5,7 +5,7 @@ import {
   MenuDivStyle,
   NavStyle,
 } from 'Components/Layouts/Home/HomeNavbar/styled';
-import RightNav from 'Components/Layouts/Home/HomeNavbar/RightNavbar';
+import Menu from 'Components/Layouts/Home/HomeNavbar/Menu';
 import SideMenu from 'Components/Layouts/Home/HomeNavbar/SideMenu';
 import React, { useState } from 'react';
 
@@ -28,7 +28,7 @@ const HomeNavbar: React.FC<HomeNavbarProps> = (props) => {
     <div>
       <NavStyle>
         <LogoStyle>FluentSearch</LogoStyle>
-        <RightNav />
+        <Menu />
 
         <ButtonSideMenuStyle onClick={showDrawer}>
           <MenuDivStyle>
