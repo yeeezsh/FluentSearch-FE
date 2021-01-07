@@ -14,7 +14,7 @@ const gridStyle: CSSProperties = {
   textAlign: 'center',
 };
 
-export const Header = styled.div`
+export const HeaderWrapper = styled.div`
   width: 100vw;
   height: 50vh;
 
@@ -36,10 +36,6 @@ const Heading = styled.div`
   color: #ffffff;
   margin-top: 0;
   margin-bottom: 0em;
-`;
-
-export const HeaderWrapper = styled.div`
-  color: #ffffff;
 `;
 
 const FeatureCard: React.FC = () => {
@@ -64,13 +60,11 @@ const FeatureCard: React.FC = () => {
 const Home: React.FC = () => {
   return (
     <HomeLayout>
-      <Header>
-        <HeaderWrapper>
-          <Heading>Heading</Heading>
-          <p>Lorem ipsum..</p>
-          <Button>Explore</Button>
-        </HeaderWrapper>
-      </Header>
+      <HeaderWrapper>
+        <Heading>Heading</Heading>
+        <p>Lorem ipsum..</p>
+        <Button>Explore</Button>
+      </HeaderWrapper>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
         <Col span={21}>
           <Row justify="center" gutter={[24, 24]}>

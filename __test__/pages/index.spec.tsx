@@ -1,5 +1,5 @@
 import { mount, shallow } from 'enzyme';
-import { Header, HeaderWrapper } from 'Pages/index';
+import { HeaderWrapper } from 'Pages/index';
 import Home from 'Pages/index';
 import React from 'react';
 import { Card } from 'antd';
@@ -24,7 +24,7 @@ describe('Pages/Home test', () => {
 
   it('Should contain Header', () => {
     const wrap = shallow(<Home />);
-    expect(wrap.exists(Header)).toBe(true);
+    expect(wrap.exists(HeaderWrapper)).toBe(true);
   });
 
   it('Should contain HeaderText', () => {
