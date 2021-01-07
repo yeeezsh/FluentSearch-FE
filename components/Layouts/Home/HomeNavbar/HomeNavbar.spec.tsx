@@ -2,6 +2,8 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { LogoStyle } from 'Components/Layouts/Home/HomeNavbar/styled';
 import HomeNavbar from '.';
+import Menu from './Menu';
+import SideMenu from './SideMenu';
 
 describe('Components/Navbar test', () => {
   it('Render correctly', () => {
@@ -16,12 +18,12 @@ describe('Components/Navbar test', () => {
 
   it('SideMenu should be exisiting', () => {
     const wrap = shallow(<HomeNavbar />);
-    expect(wrap.exists('SideMenu')).toBe(true);
+    expect(wrap.exists(SideMenu)).toBe(true);
   });
 
-  it('RightNav should be exisiting', () => {
+  it('Menu should be exisiting', () => {
     const wrap = shallow(<HomeNavbar />);
-    expect(wrap.exists('RightNav')).toBe(true);
+    expect(wrap.exists(Menu)).toBe(true);
   });
 
   it('Should contain Logo', () => {
