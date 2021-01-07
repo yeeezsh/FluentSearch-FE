@@ -5,7 +5,12 @@ import React from 'react';
 
 const LoginCanvas: React.FC = () => (
   <Col xs={0} sm={0} md={0} lg={12}>
-    <Image src={'/login-1.png'} layout="responsive" width={900} height={1500} />
+    <Image
+      src={'assets/images/login-1.png'}
+      layout="responsive"
+      width={900}
+      height={1500}
+    />
   </Col>
 );
 
