@@ -48,4 +48,5 @@ export const UlStyle = styled.ul`
 export const LiStyle = styled.li`
   list-style: none;
   margin: 1em 1em 1em 1.4em;
+  cursor: pointer;
 `;
