@@ -3,7 +3,7 @@ import Login from 'Pages/login';
 import React from 'react';
 
 export default {
-  title: 'FluentSearch/LoginPage',
+  title: 'FluentSearch/Pages/LoginPage',
   component: Login,
 } as Meta;
 
