@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import { Container, FormContainer } from 'Components/Layouts/Login/styled';
+import { Container, FormContainer } from 'Components/Layouts/FormCenter/styled';
 import Image from 'next/image';
 import React from 'react';
 
