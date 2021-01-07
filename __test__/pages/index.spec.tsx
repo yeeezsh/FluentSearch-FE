@@ -36,6 +36,5 @@ describe('Pages/Home test', () => {
     const wrap = mount(<Home />);
     expect(wrap.find(Card)).toHaveLength(6);
     expect(wrap.find(IconSelector)).toHaveLength(6);
-    expect(wrap.find('h2')).toHaveLength(6);
   });
 });
