@@ -1,4 +1,4 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import FormCenterLayout from 'Components/Layouts/FormCenter';
@@ -86,7 +86,7 @@ const Login: React.FC<Props> = (props) => {
               ]}>
               <Input
                 id="email"
-                prefix={<UserOutlined className="site-form-item-icon" />}
+                prefix={<MailOutlined className="site-form-item-icon" />}
                 placeholder="email"
               />
             </Form.Item>
