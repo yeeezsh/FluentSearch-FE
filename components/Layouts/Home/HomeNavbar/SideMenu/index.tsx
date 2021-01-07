@@ -1,5 +1,8 @@
 import { Drawer } from 'antd';
-import { LiStyle } from 'Components/Layouts/Home/HomeNavbar/styled';
+import {
+  MenuItemStyled,
+  NavbarContainerItem,
+} from 'Components/Layouts/Home/HomeNavbar/styled';
 import React from 'react';
 import pathJoin from 'Utils/path-join';
 import Link from 'next/link';
@@ -18,15 +21,13 @@ const SideMenu: React.FC<SideMenuProps> = (props) => {
     <div>
       <Drawer placement="right" closable={false} onClose={onClose} visible={visible}>
         {APP_NAVBAR_CONSTANT.map(({ key, label, link }) => {
+          const isSelecting = '/' + link === router.pathname;
           return (
-            <LiStyle key={key}>
+            <NavbarContainerItem key={key}>
               <Link href={pathJoin(link)}>
-                <p
-                  style={{ color: '/' + link === router.pathname ? '#0BB5C2' : 'black' }}>
-                  {label}
-                </p>
+                <MenuItemStyled isSelecting={isSelecting}>{label}</MenuItemStyled>
               </Link>
-            </LiStyle>
+            </NavbarContainerItem>
           );
         })}
       </Drawer>
