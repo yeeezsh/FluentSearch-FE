@@ -31,14 +31,14 @@ export const Header = styled.div`
   background-attachment: fixed;
 `;
 
-const H1 = styled.div`
+const Heading = styled.div`
   font-size: 5em;
   color: #ffffff;
   margin-top: 0;
   margin-bottom: 0em;
 `;
 
-export const HeaderText = styled.div`
+export const HeaderWrapper = styled.div`
   color: #ffffff;
 `;
 
@@ -65,11 +65,11 @@ const Home: React.FC = () => {
   return (
     <HomeLayout>
       <Header>
-        <HeaderText>
-          <H1>Heading</H1>
+        <HeaderWrapper>
+          <Heading>Heading</Heading>
           <p>Lorem ipsum..</p>
           <Button>Explore</Button>
-        </HeaderText>
+        </HeaderWrapper>
       </Header>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
         <Col span={21}>
