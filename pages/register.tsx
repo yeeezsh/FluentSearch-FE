@@ -1,9 +1,7 @@
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import FormCenterLayout from 'Components/Layouts/FormCenter';
-import { OAuthType } from 'Models/oauth/type';
-import { OAuthEnum } from 'Models/oauth/enum';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -14,8 +12,8 @@ const layout = {
   wrapperCol: { span: 24 },
 };
 
-export type FormLogin = { email: string; password: string };
-export type FormLoginError = { values: FormLogin; errorFields: [] };
+export type FormRegister = { name: string; email: string; password: string };
+export type FormRegisterError = { values: FormRegister; errorFields: [] };
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -27,33 +25,19 @@ const HeaderLogo: React.FC = () => (
 
 const LoginButton: React.FC = () => (
   <Form.Item>
-    <Button id="loginBtn" type="primary" htmlType="submit" block>
-      Log in
+    <Button id="registerBtn" type="primary" htmlType="submit" block>
+      Register
     </Button>
   </Form.Item>
 );
 
-const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = (
-  props,
-) => (
-  <Form.Item>
-    <Button
-      onClick={() => props.onSubmit && props.onSubmit(OAuthEnum.Facebook)}
-      id="fbBtn"
-      style={{ backgroundColor: '#3b5998', color: '#ffffff' }}
-      block>
-      Login with Facebook
-    </Button>
-  </Form.Item>
-);
 interface Props {
-  onSubmit?: (form: FormLogin) => void;
-  onError?: (form: FormLoginError) => void;
-  onSubmitOAuth?: (type: OAuthType) => void;
+  onSubmit?: (form: FormRegister) => void;
+  onError?: (form: FormRegisterError) => void;
 }
 
 const Login: React.FC<Props> = (props) => {
-  const [form] = useForm<FormLogin>();
+  const [form] = useForm<FormRegister>();
 
   const onFinish = (values) => {
     props.onSubmit && props.onSubmit(values);
@@ -72,13 +56,22 @@ const Login: React.FC<Props> = (props) => {
         <Col span={16} xl={14}>
           <Form
             {...layout}
-            id="loginForm"
+            id="registerForm"
             form={form}
             name="login"
             onFinish={onFinish}
             onFinishFailed={onError}
             size="large"
             layout="vertical">
+            <Form.Item
+              name={'name'}
+              rules={[{ required: true, message: 'Please input your Name' }]}>
+              <Input
+                id="name"
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="name"
+              />
+            </Form.Item>
             <Form.Item
               name={'email'}
               rules={[
@@ -112,12 +105,11 @@ const Login: React.FC<Props> = (props) => {
                 <hr />
               </Col>
             </Row>
-            <LoginWithFacebookButton onSubmit={props.onSubmitOAuth} />
             <Form.Item>
               <P>
-                Haven&apos;t an account?
-                <Link href="/register">
-                  <a> Register</a>
+                Already have an account?
+                <Link href="/login">
+                  <a> Log in</a>
                 </Link>
               </P>
             </Form.Item>
