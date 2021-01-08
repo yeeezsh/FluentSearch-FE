@@ -1,16 +1,15 @@
-FROM node:14-slim AS dev
+FROM node:14-slim AS base
 COPY yarn.lock yarn.lock
 COPY package.json package.json
 RUN yarn install
+
+FROM base as dev
 ADD . .
 VOLUME . .
 CMD ["yarn", "start"]
 EXPOSE 5000
 
-FROM node:14-slim AS build
-COPY yarn.lock yarn.lock
-COPY package.json package.json
-RUN yarn install
+FROM base AS build
 ADD . .
 RUN yarn test
 RUN yarn build
