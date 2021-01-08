@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import SideMenu from 'src/modules/home/components/HomeNavbar/SideMenu/index';
+import SideMenu from 'Modules/home/components/Navbar/SideMenu/index';
 import React from 'react';
 
 describe('Components/SideMenu test', () => {

@@ -1,7 +1,7 @@
 import {
   MenuItemStyled,
   NavbarContainerRow,
-} from 'src/modules/home/components/HomeNavbar/styled';
+} from 'Modules/home/components/Navbar/styled';
 import { APP_NAVBAR_CONSTANT } from 'Models/menu/constant';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

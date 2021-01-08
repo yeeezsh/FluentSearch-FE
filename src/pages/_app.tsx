@@ -1,4 +1,4 @@
-import HomeNavbar from 'Modules/home/components/HomeNavbar';
+import HomeNavbar from 'Modules/home/components/Navbar';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { useRouter } from 'next/router';
 import React from 'react';

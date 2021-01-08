@@ -4,9 +4,9 @@ import {
   LogoStyle,
   MenuDivStyle,
   NavStyle,
-} from 'src/modules/home/components/HomeNavbar/styled';
-import Menu from 'src/modules/home/components/HomeNavbar/Menu';
-import SideMenu from 'src/modules/home/components/HomeNavbar/SideMenu';
+} from 'Modules/home/components/Navbar/styled';
+import Menu from 'Modules/home/components/Navbar/Menu';
+import SideMenu from 'Modules/home/components/Navbar/SideMenu';
 import React, { useState } from 'react';
 
 interface HomeNavbarProps {

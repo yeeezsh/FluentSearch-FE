@@ -1,5 +1,5 @@
 import { mount, shallow } from 'enzyme';
-import Menu from 'src/modules/home/components/HomeNavbar/Menu';
+import Menu from 'Modules/home/components/Navbar/Menu';
 import React from 'react';
 
 describe('Components/Navbar test', () => {
