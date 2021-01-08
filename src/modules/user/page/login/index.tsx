@@ -1,21 +1,19 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
-import LoginLayout from 'Modules/user/components/Layouts/Login';
-import { OAuthType } from 'Models/oauth/type';
 import { OAuthEnum } from 'Models/oauth/enum';
+import LoginLayout from 'Modules/user/components/Layouts/Login';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { P } from 'Styles/global';
+import { Props } from './interfaces';
+import { FormLogin } from './types';
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 24 },
 };
-
-export type FormLogin = { email: string; password: string };
-export type FormLoginError = { values: FormLogin; errorFields: [] };
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -46,11 +44,6 @@ const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = 
     </Button>
   </Form.Item>
 );
-interface Props {
-  onSubmit?: (form: FormLogin) => void;
-  onError?: (form: FormLoginError) => void;
-  onSubmitOAuth?: (type: OAuthType) => void;
-}
 
 const LoginPage: React.FC<Props> = (props) => {
   const [form] = useForm<FormLogin>();
