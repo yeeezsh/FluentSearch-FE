@@ -1,4 +1,4 @@
-import HomeLayout from 'src/modules/home/components/Layout';
+import HomeLayout from 'Modules/home/components/Layouts';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { Layout } from 'antd';

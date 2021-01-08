@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import HomePage from 'src/modules/home/pages/index';
 import React from 'react';
 import { Card } from 'antd';
-import HomeLayout from 'src/modules/home/components/Layout';
+import HomeLayout from 'Modules/home/components/Layouts';
 import IconSelector from 'Utils/icon-selector';
 import { HeaderWrapper } from 'src/modules/home/pages/styled';
 
