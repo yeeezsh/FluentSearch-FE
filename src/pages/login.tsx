@@ -1,4 +1,4 @@
-import LoginPage from 'Modules/user/page/login';
+import LoginPage from 'Modules/user/pages/login';
 import React from 'react';
 
 const Login: React.FC = () => {

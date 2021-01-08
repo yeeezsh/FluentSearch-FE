@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import LoginPage from 'Modules/user/page/login';
+import LoginPage from 'Modules/user/pages/login';
 
 export default {
   title: 'FluentSearch/LoginPage',

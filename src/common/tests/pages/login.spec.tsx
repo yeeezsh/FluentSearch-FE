@@ -2,7 +2,7 @@ import LoginLayout from 'Modules/user/components/Layouts/Login';
 import { mount, shallow } from 'enzyme';
 import { OAuthEnum } from 'Models/oauth/enum';
 import React from 'react';
-import LoginPage from 'Modules/user/page/login';
+import LoginPage from 'Modules/user/pages/login';
 
 describe('Pages/Login test', () => {
   it('Render correcly', () => {
