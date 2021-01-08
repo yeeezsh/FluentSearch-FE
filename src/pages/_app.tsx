@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'Stores/index';
-import { GlobalStyle } from 'Styles/globalja';
+import { GlobalStyle } from 'Styles/global';
 
 const EXCLUDE_NAVBAR: string[] = ['/login'];
 
