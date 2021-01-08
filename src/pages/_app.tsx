@@ -3,7 +3,7 @@ import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from 'Stores/stores';
+import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/Global.styled';
 
 const EXCLUDE_NAVBAR: string[] = ['/login'];
