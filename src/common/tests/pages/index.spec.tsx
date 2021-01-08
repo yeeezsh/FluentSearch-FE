@@ -3,7 +3,7 @@ import { HeaderWrapper } from 'Pages/index';
 import Home from 'Pages/index';
 import React from 'react';
 import { Card } from 'antd';
-import IconSelector from 'Utils/icon-selector';
+import IconSelector from 'src/common/utils/icon-selector';
 import HomeLayout from 'Components/Layouts/Home';
 
 describe('Pages/Home test', () => {

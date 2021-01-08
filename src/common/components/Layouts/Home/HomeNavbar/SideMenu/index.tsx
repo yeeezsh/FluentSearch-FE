@@ -4,7 +4,7 @@ import {
   NavbarContainerItem,
 } from 'Components/Layouts/Home/HomeNavbar/styled';
 import React from 'react';
-import pathJoin from 'Utils/path-join';
+import pathJoin from 'src/common/utils/path-join';
 import Link from 'next/link';
 import { APP_NAVBAR_CONSTANT } from 'Models/menu/constant';
 import { useRouter } from 'next/router';

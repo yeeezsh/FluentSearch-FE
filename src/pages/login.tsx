@@ -7,7 +7,7 @@ import { OAuthEnum } from 'Models/oauth/enum';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { P } from 'Styles/Global.styled';
+import { P } from 'src/common/styles/Global.styled';
 
 const layout = {
   labelCol: { span: 8 },

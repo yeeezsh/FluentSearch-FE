@@ -1,4 +1,4 @@
-import { ButtonComponentProps } from 'Components/Button/type';
+import { ButtonComponentProps } from 'src/common/components/Button/type';
 
 export type MenuType = {
   key: string;
