@@ -1,4 +1,3 @@
-import { Form } from 'antd';
 import { FormProps } from 'antd/lib/form';
 
 export const layout: FormProps = {
