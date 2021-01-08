@@ -26,7 +26,7 @@ jobs:
           node-version: '14.x'
       - run: yarn
       - run: yarn lint
-      - run: yarn test:cov
+      - run: yarn test:ci
   storybook:
     runs-on: self-hosted
     steps:

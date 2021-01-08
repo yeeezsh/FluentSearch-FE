@@ -8,7 +8,7 @@
     "start": "next start",
     "test": "jest",
     "test:snapshots": "jest --updateSnapshot",
-    "test:ci": "jest --all --ci --detectOpenHandles",
+    "test:ci": "jest --all --coverage --ci --detectOpenHandles --silent",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "lint": "eslint .",
