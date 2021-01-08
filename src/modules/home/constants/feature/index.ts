@@ -1,4 +1,4 @@
-import { FeatureType } from './feature.type';
+import { FeatureType } from './types';
 
 export const APP_FEATURE_CONSTANT: FeatureType[] = [
   {

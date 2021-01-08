@@ -1,7 +1,7 @@
 import { Card, Col, Row } from 'antd';
 import Button from 'Components/Button';
 import HomeLayout from 'Modules/home/components/Layouts';
-import { APP_FEATURE_CONSTANT } from 'Models/featureCard/constant';
+import { APP_FEATURE_CONSTANT } from 'Modules/home/constants/feature';
 import React from 'react';
 import IconSelector from 'Utils/icon-selector';
 import { gridStyle, HeaderWrapper, Heading, Icon } from './styled';
