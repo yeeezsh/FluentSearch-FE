@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
-import LoginLayout from 'Components/Layouts/Login';
+import LoginLayout from 'Modules/user/components/Layouts/Login';
 import { OAuthType } from 'Models/oauth/type';
 import { OAuthEnum } from 'Models/oauth/enum';
 import Image from 'next/image';

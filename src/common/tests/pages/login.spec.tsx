@@ -1,4 +1,4 @@
-import LoginLayout from 'Components/Layouts/Login';
+import LoginLayout from 'Modules/user/components/Layouts/Login';
 import { mount, shallow } from 'enzyme';
 import { OAuthEnum } from 'Models/oauth/enum';
 import Login from 'Pages/login';
