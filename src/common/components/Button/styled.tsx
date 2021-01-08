@@ -1,4 +1,4 @@
-import { ButtonComponentProps } from 'Components/Button/type';
+import { ButtonComponentProps } from 'Components/Button/types';
 import styled, { css } from 'styled-components';
 
 const colorMapping = (color?: ButtonComponentProps['color']) => {
