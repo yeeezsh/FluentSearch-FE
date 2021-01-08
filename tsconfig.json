@@ -25,7 +25,8 @@
       "Stores/*": ["src/common/stores/*"],
       "Utils/*": ["src/common/utils/*"],
       "Styles/*": ["src/common/styles/*"],
-      "Tests/*": ["src/common/tests/*"]
+      "Tests/*": ["src/common/tests/*"],
+      "Modules/*": ["src/modules/*"]
     }
   },
   "include": ["next-env.d.ts", "**/**.ts", "**/**.tsx"],
