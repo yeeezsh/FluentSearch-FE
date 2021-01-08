@@ -16,16 +16,16 @@
     "baseUrl": ".",
     "strictNullChecks": true,
     "paths": {
-      "Assets/*": ["assets/*"],
-      "Components/*": ["components/*"],
-      "Hooks/*": ["hooks/*"],
-      "Models/*": ["models/*"],
-      "Pages/*": ["pages/*"],
-      "Services/*": ["services/*"],
-      "Stores/*": ["stores/*"],
-      "Utils/*": ["utils/*"],
-      "Styles/*": ["styles/*"],
-      "Tests/*": ["__test__/*"]
+      "Assets/*": ["src/assets/*"],
+      "Components/*": ["src/components/*"],
+      "Hooks/*": ["src/hooks/*"],
+      "Models/*": ["src/models/*"],
+      "Pages/*": ["src/pages/*"],
+      "Services/*": ["src/services/*"],
+      "Stores/*": ["src/stores/*"],
+      "Utils/*": ["src/utils/*"],
+      "Styles/*": ["src/styles/*"],
+      "Tests/*": ["src/tests/*"]
     }
   },
   "include": ["next-env.d.ts", "**/**.ts", "**/**.tsx"],
