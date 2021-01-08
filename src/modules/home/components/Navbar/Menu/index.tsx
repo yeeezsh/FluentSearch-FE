@@ -2,7 +2,7 @@ import {
   MenuItemStyled,
   NavbarContainerRow,
 } from 'Modules/home/components/Navbar/styled';
-import { APP_NAVBAR_CONSTANT } from 'Models/menu/constant';
+import { APP_NAVBAR_CONSTANT } from 'Modules/home/constants/menu';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
