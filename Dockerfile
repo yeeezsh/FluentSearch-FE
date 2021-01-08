@@ -1,6 +1,9 @@
 FROM node:14-slim AS base
 COPY yarn.lock yarn.lock
 COPY package.json package.json
+# args
+ARG APP_GRAPHQL_ENDPOINT
+ENV APP_GRAPHQL_ENDPOINT=${APP_GRAPHQL_ENDPOINT}
 RUN yarn install
 
 FROM base as dev
