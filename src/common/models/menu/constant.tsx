@@ -1,4 +1,4 @@
-import Button from 'src/common/components/Button';
+import Button from 'Components/Button';
 import React from 'react';
 import { MenuType } from './type';
 
