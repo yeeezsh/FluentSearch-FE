@@ -9,7 +9,7 @@ import React from 'react';
 import { P } from 'Styles/global';
 import { layout } from './constants';
 import { Props } from './interfaces';
-import { FormLogin } from './types';
+import { FormErrorValue, FormFinishValue, FormLogin } from './types';
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -44,14 +44,18 @@ const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = 
 const LoginPage: React.FC<Props> = (props) => {
   const [form] = useForm<FormLogin>();
 
-  const onFinish = (values) => {
+  const onFinish: FormFinishValue = (values) => {
     props.onSubmit && props.onSubmit(values);
     console.log('Success:', values);
   };
 
-  const onError = (formValue) => {
+  const onError: FormErrorValue = (formValue) => {
     console.log('Error: ', formValue);
-    props.onError && props.onError(formValue);
+    props.onError &&
+      props.onError({
+        errorFields: formValue.errorFields,
+        values: (formValue as unknown) as FormLogin,
+      });
   };
 
   return (
