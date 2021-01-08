@@ -1,2 +1,8 @@
+import LoginPage from 'Modules/user/page/login';
 import React from 'react';
-import LoginPage from '../modules/user/page/login';
+
+const Login: React.FC = () => {
+  return <LoginPage />;
+};
+
+export default Login;
