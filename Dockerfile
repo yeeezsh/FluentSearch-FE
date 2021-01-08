@@ -10,7 +10,7 @@ FROM base as dev
 ADD . .
 VOLUME . .
 CMD ["yarn", "start"]
-EXPOSE 5000
+EXPOSE 3000
 
 FROM base AS build
 ADD . .
