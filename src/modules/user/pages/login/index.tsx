@@ -7,13 +7,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { P } from 'Styles/global';
+import { layout } from './constants';
 import { Props } from './interfaces';
 import { FormLogin } from './types';
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 24 },
-};
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
