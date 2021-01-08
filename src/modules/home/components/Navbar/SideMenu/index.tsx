@@ -4,10 +4,10 @@ import {
   NavbarContainerItem,
 } from 'Modules/home/components/Navbar/styled';
 import React from 'react';
-import pathJoin from 'src/common/utils/path-join';
 import Link from 'next/link';
 import { APP_NAVBAR_CONSTANT } from 'Modules/home/constants/menu';
 import { useRouter } from 'next/router';
+import pathJoin from 'Utils/path-join';
 
 export type SideMenuProps = {
   onClose?: () => void;
