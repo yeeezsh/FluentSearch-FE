@@ -1,8 +1,9 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Meta, Story } from '@storybook/react/types-6-0';
-import SideMenu, { SideMenuProps } from 'Components/Layouts/Home/HomeNavbar/SideMenu';
+
 import React from 'react';
 import 'antd/dist/antd.css';
+import SideMenu, { SideMenuProps } from '.';
 
 export default {
   title: 'FluentSearch/SideMenu',

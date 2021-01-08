@@ -2,7 +2,7 @@ import { Drawer } from 'antd';
 import {
   MenuItemStyled,
   NavbarContainerItem,
-} from 'Components/Layouts/Home/HomeNavbar/styled';
+} from 'src/modules/home/components/HomeNavbar/styled';
 import React from 'react';
 import pathJoin from 'src/common/utils/path-join';
 import Link from 'next/link';

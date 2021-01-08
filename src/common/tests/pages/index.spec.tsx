@@ -1,10 +1,10 @@
 import { mount, shallow } from 'enzyme';
-import { HeaderWrapper } from 'Pages/index';
-import Home from 'Pages/index';
+import Home from 'src/modules/home/pages/index';
 import React from 'react';
 import { Card } from 'antd';
-import HomeLayout from 'Components/Layouts/Home';
+import HomeLayout from 'src/modules/home/components/Layout';
 import IconSelector from 'Utils/icon-selector';
+import { HeaderWrapper } from 'src/modules/home/pages/styled';
 
 describe('Pages/Home test', () => {
   it('Render correcly', () => {

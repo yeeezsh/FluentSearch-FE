@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { LogoStyle } from 'Components/Layouts/Home/HomeNavbar/styled';
+import { LogoStyle } from 'src/modules/home/components/HomeNavbar/styled';
 import HomeNavbar from '.';
 import Menu from './Menu';
 import SideMenu from './SideMenu';

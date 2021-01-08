@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react/types-6-0';
-import Home from 'Pages/index';
+import Home from 'src/modules/home/pages/index';
 import React from 'react';
-import 'antd/dist/antd.css';
+import 'src/modules/home/components/HomeNavbar/node_modules/antd/dist/antd.css';
 
 export default {
   title: 'FluentSearch/Pages/Home',
