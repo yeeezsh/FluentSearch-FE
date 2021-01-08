@@ -1,12 +1,9 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
-import Login from 'Pages/login';
-import React from 'react';
+import { Meta } from '@storybook/react/types-6-0';
+import LoginPage from 'Modules/user/pages/login';
 
 export default {
-  title: 'FluentSearch/LoginPage',
-  component: Login,
+  title: 'FluentSearch/Pages/LoginPage',
+  component: LoginPage,
 } as Meta;
 
-const Template: Story = (args) => <Login {...args} />;
-
-export const LoginPage = Template.bind({});
+export const LoginStories = (): JSX.Element => <LoginPage />;
