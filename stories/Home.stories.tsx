@@ -1,11 +1,10 @@
 import { Meta } from '@storybook/react/types-6-0';
-import Home from 'src/modules/home/pages/index';
+import HomePage from 'Modules/home/pages';
 import React from 'react';
-import 'src/modules/home/components/HomeNavbar/node_modules/antd/dist/antd.css';
 
 export default {
   title: 'FluentSearch/Pages/Home',
-  component: Home,
+  component: HomePage,
 } as Meta;
 
-export const Default = (): JSX.Element => <Home />;
+export const Default = (): JSX.Element => <HomePage />;
