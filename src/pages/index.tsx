@@ -1,10 +1,9 @@
-import { Card, Col, Row } from 'antd';
-import Button from 'Components/Button';
-import HomeLayout from 'src/common/tests/pages/node_modules/Components/Layouts/Home';
-import { APP_FEATURE_CONSTANT } from 'Models/featureCard/constant';
+import { Button, Card, Col, Row } from 'antd';
 import React from 'react';
 import styled, { CSSProperties } from 'styled-components';
 import IconSelector from 'src/common/utils/icon-selector';
+import HomeLayout from 'src/common/components/Layouts/Home';
+import { APP_FEATURE_CONSTANT } from 'src/common/models/featureCard/constant';
 
 const Icon = styled.div`
   font-size: 40px;
