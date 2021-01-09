@@ -42,6 +42,7 @@ const HomePage: React.FC = () => {
           <Button>Explore</Button>
         </HeaderWrapper>
       </CanvasWrapper>
+
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
         <Col span={21}>
           <Row justify="center" gutter={[24, 24]}>
