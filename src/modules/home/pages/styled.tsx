@@ -8,15 +8,15 @@ export const gridStyle: CSSProperties = {
   textAlign: 'center',
 };
 
-export const HeaderWrapper = styled.div`
+export const CanvasWrapper = styled.div`
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+
   width: 100vw;
   height: 50vh;
-
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
 
   background-image: url('https://pbs.twimg.com/media/ElVxJ8OWMAAnew5.jpg');
   background-size: cover;
