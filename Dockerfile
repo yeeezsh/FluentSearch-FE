@@ -1,15 +1,15 @@
-FROM node:14-slim AS base
+FROM node:14-alpine3.12 as base
 COPY yarn.lock yarn.lock
 COPY package.json package.json
+RUN yarn install
 # args
 ARG APP_GRAPHQL_ENDPOINT
 ENV APP_GRAPHQL_ENDPOINT=${APP_GRAPHQL_ENDPOINT}
-RUN yarn install
 
 FROM base as dev
 ADD . .
-VOLUME . .
-CMD ["yarn", "start"]
+VOLUME [ "/src" ]
+CMD ["yarn", "dev"]
 EXPOSE 3000
 
 FROM base AS build
