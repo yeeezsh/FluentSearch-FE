@@ -4,7 +4,14 @@ import HomeLayout from 'Modules/home/components/Layouts';
 import { APP_FEATURE_CONSTANT } from 'Modules/home/constants/feature';
 import React from 'react';
 import IconSelector from 'Utils/icon-selector';
-import { gridStyle, HeaderWrapper, Heading, Icon } from './styled';
+import {
+  CanvasWrapper,
+  gridStyle,
+  HeaderWrapper,
+  Heading,
+  Icon,
+  SubHeading,
+} from './styled';
 
 const FeatureCard: React.FC = () => {
   return (
@@ -28,11 +35,15 @@ const FeatureCard: React.FC = () => {
 const HomePage: React.FC = () => {
   return (
     <HomeLayout>
-      <HeaderWrapper>
-        <Heading>Heading</Heading>
-        <p>Lorem ipsum..</p>
-        <Button>Explore</Button>
-      </HeaderWrapper>
+      <CanvasWrapper>
+        <HeaderWrapper>
+          <Heading>Heading</Heading>
+          <SubHeading>Lorem ipsum..</SubHeading>
+          <div style={{ marginTop: '14px' }}>
+            <Button>Explore</Button>
+          </div>
+        </HeaderWrapper>
+      </CanvasWrapper>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>
         <Col span={21}>
           <Row justify="center" gutter={[24, 24]}>
