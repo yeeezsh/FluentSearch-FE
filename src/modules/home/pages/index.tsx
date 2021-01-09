@@ -39,9 +39,7 @@ const HomePage: React.FC = () => {
         <HeaderWrapper>
           <Heading>Heading</Heading>
           <SubHeading>Lorem ipsum..</SubHeading>
-          <div style={{ marginTop: '14px' }}>
-            <Button>Explore</Button>
-          </div>
+          <Button>Explore</Button>
         </HeaderWrapper>
       </CanvasWrapper>
       <Row gutter={[0, 24]} justify="space-around" style={{ marginTop: '20px' }}>

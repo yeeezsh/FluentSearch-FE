@@ -40,4 +40,5 @@ export const SubHeading = styled.div`
   flex-basis: 100%;
   font-size: 2em;
   color: #ffffff;
+  margin-bottom: 28px;
 `;
