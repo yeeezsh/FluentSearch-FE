@@ -25,6 +25,11 @@ export const HeaderWrapper = styled.div`
   background-attachment: fixed;
 `;
 
+export const HeaderWrapper = styled.div`
+  width: 100vw;
+  height: 28vh;
+`;
+
 export const Heading = styled.div`
   font-size: 5em;
   color: #ffffff;
