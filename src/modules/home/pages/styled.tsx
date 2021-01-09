@@ -31,8 +31,13 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const Heading = styled.div`
+  flex-basis: 100%;
   font-size: 5em;
   color: #ffffff;
-  margin-top: 0;
-  margin-bottom: 0em;
+`;
+
+export const SubHeading = styled.div`
+  flex-basis: 100%;
+  font-size: 2em;
+  color: #ffffff;
 `;
