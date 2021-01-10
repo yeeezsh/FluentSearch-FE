@@ -2,7 +2,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import { OAuthEnum } from 'Models/oauth/enum';
-import LoginLayout from 'Modules/user/components/Layouts/Login';
+import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -59,7 +59,7 @@ const LoginPage: React.FC<Props> = (props) => {
   };
 
   return (
-    <LoginLayout>
+    <FormCenterLayout>
       <HeaderLogo />
       <Row justify="center">
         <Col span={16} xl={14}>
@@ -117,7 +117,7 @@ const LoginPage: React.FC<Props> = (props) => {
           </Form>
         </Col>
       </Row>
-    </LoginLayout>
+    </FormCenterLayout>
   );
 };
 
