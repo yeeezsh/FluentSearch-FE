@@ -20,7 +20,7 @@ const HeaderLogo: React.FC = () => (
 
 const RegisterButton: React.FC = () => (
   <Form.Item>
-    <Button id="loginBtn" type="primary" htmlType="submit" block>
+    <Button id="registerBtn" type="primary" htmlType="submit" block>
       Register
     </Button>
   </Form.Item>
