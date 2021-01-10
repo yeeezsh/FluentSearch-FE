@@ -102,8 +102,8 @@ const RegisterPage: React.FC<Props> = (props) => {
             <Form.Item>
               <P>
                 Already have an account?
-                <Link href="/">
-                  <a> Register</a>
+                <Link href="/login">
+                  <a> Log in</a>
                 </Link>
               </P>
             </Form.Item>
