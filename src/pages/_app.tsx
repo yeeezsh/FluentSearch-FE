@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 
-const EXCLUDE_NAVBAR: string[] = ['/login'];
+const EXCLUDE_NAVBAR: string[] = ['/login', 'register'];
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const pathname = useRouter().pathname;
