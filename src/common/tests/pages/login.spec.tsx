@@ -1,4 +1,4 @@
-import LoginLayout from 'Modules/user/components/Layouts/Login';
+import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import { mount, shallow } from 'enzyme';
 import { OAuthEnum } from 'Models/oauth/enum';
 import React from 'react';
@@ -10,14 +10,14 @@ describe('Pages/Login test', () => {
     expect(wrap).toMatchSnapshot();
   });
 
-  it('Home should be exisiting', () => {
+  it('LoginPage should be exisiting', () => {
     const wrap = shallow(<LoginPage />);
     expect(wrap.exists()).toBe(true);
   });
 
-  it('Should contain Login Layout', () => {
+  it('Should contain FormCenter Layout', () => {
     const wrap = shallow(<LoginPage />);
-    expect(wrap.exists(LoginLayout)).toBe(true);
+    expect(wrap.exists(FormCenterLayout)).toBe(true);
   });
 
   it('Should have email & password field / submit btn', () => {
@@ -34,7 +34,21 @@ describe('Pages/Login test', () => {
   it('Should call onError when fill only email', () => {
     const onError = jest.fn(() => expect(onError).toBeCalledTimes(1));
     const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
+
     const wrap = mount(<LoginPage onSubmit={onSubmit} onError={onError} />);
+    const emailField = wrap.find('input[id="email"]');
+    emailField.simulate('change', { target: { value: 'Hello@email.com' } });
+
+    wrap.find('#loginBtn').at(0).simulate('submit');
+  });
+
+  it('Should call onError when not a email', () => {
+    const onError = jest.fn(() => expect(onError).toBeCalledTimes(1));
+    const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
+
+    const wrap = mount(<LoginPage onSubmit={onSubmit} onError={onError} />);
+    const emailField = wrap.find('input[id="email"]');
+    emailField.simulate('change', { target: { value: 'Hello' } });
 
     wrap.find('#loginBtn').at(0).simulate('submit');
   });
