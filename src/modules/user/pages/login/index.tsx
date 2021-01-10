@@ -1,4 +1,4 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import { OAuthEnum } from 'Models/oauth/enum';
@@ -79,7 +79,7 @@ const LoginPage: React.FC<Props> = (props) => {
               ]}>
               <Input
                 id="email"
-                prefix={<UserOutlined className="site-form-item-icon" />}
+                prefix={<MailOutlined className="site-form-item-icon" />}
                 placeholder="email"
               />
             </Form.Item>
@@ -109,7 +109,7 @@ const LoginPage: React.FC<Props> = (props) => {
             <Form.Item>
               <P>
                 Haven&apos;t an account?
-                <Link href="/">
+                <Link href="/register">
                   <a> Register</a>
                 </Link>
               </P>
