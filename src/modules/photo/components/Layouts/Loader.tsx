@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Loading = styled.div`
@@ -61,7 +60,7 @@ const Loading = styled.div`
   }
 `;
 
-export const Loader = () => {
+export const Loader = (): JSX.Element => {
   return (
     <Loading>
       <div className="lds-ellipsis">
