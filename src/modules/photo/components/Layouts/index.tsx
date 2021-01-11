@@ -12,6 +12,7 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 import axios from 'axios';
+import { LoadedImage } from './LoadedImage';
 
 const { Header, Content } = Layout;
 
@@ -83,6 +84,11 @@ const AllPhotosLayout: React.FC = (props) => {
             <h1>Photos</h1>
             <hr />
             {props.children}
+            <WrapperImage>
+              {images.map((image) => (
+                <LoadedImage url={image.urls.thumb} key={image.id} />
+              ))}
+            </WrapperImage>
           </div>
         </Content>
       </Layout>
