@@ -1,4 +1,4 @@
-import AllPhotosPage from 'Modules/allphotos/pages';
+import AllPhotosPage from 'Modules/photo/pages';
 import React from 'react';
 
 const AllPhotos: React.FC = () => {
