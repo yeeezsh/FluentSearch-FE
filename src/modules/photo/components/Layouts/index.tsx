@@ -5,7 +5,7 @@ import {
   SiderWrapper,
   MenuWrapper,
   Menu,
-} from 'Modules/allphotos/components/Layouts/styled';
+} from 'Modules/photo/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Link from 'next/link';

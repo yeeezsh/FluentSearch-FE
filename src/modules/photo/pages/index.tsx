@@ -1,5 +1,5 @@
 import React from 'react';
-import AllPhotosLayout from 'Modules/allphotos/components/Layouts';
+import AllPhotosLayout from 'Modules/photo/components/Layouts';
 
 const AllPhotosPages: React.FC = () => {
   return <AllPhotosLayout>here</AllPhotosLayout>;
