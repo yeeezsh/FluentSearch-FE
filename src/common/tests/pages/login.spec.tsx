@@ -6,7 +6,7 @@ import LoginPage from 'Modules/user/pages/login';
 
 describe('Pages/Login test', () => {
   it('Render correcly', () => {
-    const wrap = <LoginPage />;
+    const wrap = shallow(<LoginPage />);
     expect(wrap).toMatchSnapshot();
   });
 
