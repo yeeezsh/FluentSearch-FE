@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Input, Row, Col, Avatar } from 'antd';
 import {
   CanvasWrapper,
@@ -10,9 +10,36 @@ import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import styled from 'styled-components';
+import axios from 'axios';
+
 const { Header, Content } = Layout;
 
+const WrapperImage = styled.section`
+  max-width: 70rem;
+  margin: 4rem auto;
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 300px;
+`;
+
 const AllPhotosLayout: React.FC = (props) => {
+  const [images, setImages] = useState<any>([]);
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const fetchImages = () => {
+    const apiRoot = 'https://api.unsplash.com';
+    const accessKey = process.env.REACT_APP_ACCESSKEY;
+
+    axios
+      .get(`${apiRoot}/photos/random?client_id=${accessKey}&count=5`)
+      .then((res) => setImages([...images, ...res.data]));
+  };
+
   return (
     <CanvasWrapper>
       <Layout>

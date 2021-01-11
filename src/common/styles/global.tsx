@@ -14,6 +14,12 @@ export const GlobalStyle = createGlobalStyle`
     background-color: lightgray;
     height: 1px;
   }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 `;
 
 interface Align {
