@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, SetStateAction } from 'react';
 import { Layout, Input, Row, Col, Avatar } from 'antd';
 import {
   CanvasWrapper,
@@ -34,11 +34,10 @@ const AllPhotosLayout: React.FC = (props) => {
     fetchImages();
   }, []);
 
-  const fetchImages = () => {
+  const fetchImages = async (): Promise<void> => {
     const apiRoot = 'https://api.unsplash.com';
-    const accessKey = process.env.REACT_APP_ACCESSKEY;
-
-    axios
+    const accessKey = 'YOUR_ACCESS_KEY_HERE';
+    await axios
       .get(`${apiRoot}/photos/random?client_id=${accessKey}&count=5`)
       .then((res) => setImages([...images, ...res.data]));
   };
