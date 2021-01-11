@@ -5,7 +5,7 @@ import RegisterPage from 'Modules/user/pages/register';
 
 describe('Pages/Register test', () => {
   it('Render correctly', () => {
-    const wrap = <RegisterPage />;
+    const wrap = shallow(<RegisterPage />);
     expect(wrap).toMatchSnapshot();
   });
 
