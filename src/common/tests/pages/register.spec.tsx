@@ -43,6 +43,20 @@ describe('Pages/Register test', () => {
     wrap.find('#registerBtn').at(0).simulate('submit');
   });
 
+  it('Should call onError when not fulfill', () => {
+    const onError = jest.fn(() => expect(onError).toBeCalledTimes(1));
+    const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
+
+    const wrap = mount(<RegisterPage onSubmit={onSubmit} onError={onError} />);
+    const nameField = wrap.find('input[id="name"]');
+    const emailField = wrap.find('input[id="email"]');
+
+    nameField.simulate('change', { target: { value: 'John Doe' } });
+    emailField.simulate('change', { target: { value: 'Hello@email.com' } });
+
+    wrap.find('#registerBtn').at(0).simulate('submit');
+  });
+
   it('Should call onError when not a email', () => {
     const onError = jest.fn(() => expect(onError).toBeCalledTimes(1));
     const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
