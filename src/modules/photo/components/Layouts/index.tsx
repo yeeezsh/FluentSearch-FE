@@ -13,6 +13,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import axios from 'axios';
 import { LoadedImage } from './LoadedImage';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Loader } from './Loader';
 
 const { Header, Content } = Layout;
 
@@ -84,11 +86,17 @@ const AllPhotosLayout: React.FC = (props) => {
             <h1>Photos</h1>
             <hr />
             {props.children}
-            <WrapperImage>
-              {images.map((image) => (
-                <LoadedImage url={image.urls.thumb} key={image.id} />
-              ))}
-            </WrapperImage>
+            <InfiniteScroll
+              dataLength={images.length}
+              next={fetchImages}
+              hasMore={true}
+              loader={<Loader />}>
+              <WrapperImage>
+                {images.map((image) => (
+                  <LoadedImage url={image.urls.thumb} key={image.id} />
+                ))}
+              </WrapperImage>
+            </InfiniteScroll>
           </div>
         </Content>
       </Layout>
