@@ -49,26 +49,19 @@ const Sider: React.FC = () => (
   </SiderWrapper>
 );
 
-const dropdownMenu = (
+const DropdownMenu = (
   <Menu>
-    <Menu.Item>
-      <p>
-        <b>John Doe</b>
-      </p>
-    </Menu.Item>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-        logout
-      </a>
-    </Menu.Item>
+    <Menu.Item>My Profile</Menu.Item>
+    <Menu.Item>Reset Password</Menu.Item>
+    <Menu.Item>logout</Menu.Item>
   </Menu>
 );
 
 const UserContainer: React.FC = () => {
   return (
     <UserWrapper>
-      <Dropdown overlay={dropdownMenu} placement="bottomRight" trigger={['click']}>
-        <Avatar>U</Avatar>
+      <Dropdown overlay={DropdownMenu} placement="bottomRight" trigger={['click']}>
+        <Avatar>J</Avatar>
       </Dropdown>
     </UserWrapper>
   );
