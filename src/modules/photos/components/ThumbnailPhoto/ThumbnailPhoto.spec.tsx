@@ -15,4 +15,15 @@ describe('ThumbnailPhoto', () => {
     const wrap = shallow(<ThumbnailPhoto {...mockPhotoData} />);
     expect(wrap.find(SelectBadgeIcon).exists()).toBe(true);
   });
+
+  it('Should call onSelect props when clicking badge', () => {
+    const onSelect = (s: boolean) => {
+      expect(s).toBe(true);
+    };
+    const wrap = mount(
+      <ThumbnailPhoto {...mockPhotoData} selected={false} onSelect={onSelect} />,
+    );
+    const target = wrap.find(SelectBadgeIcon);
+    target.simulate('click');
+  });
 });
