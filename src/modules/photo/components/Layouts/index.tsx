@@ -5,27 +5,18 @@ import {
   SiderWrapper,
   MenuWrapper,
   Menu,
+  WrapperImage,
 } from 'Modules/photo/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import styled from 'styled-components';
 import axios from 'axios';
 import { LoadedImage } from 'Modules/photo/components/Layouts/LoadedImage';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from 'Components/Loader/index';
 
 const { Header, Content } = Layout;
-
-const WrapperImage = styled.section`
-  max-width: 70rem;
-  margin: 4rem auto;
-  display: grid;
-  grid-gap: 1em;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-rows: 300px;
-`;
 
 const AllPhotosLayout: React.FC = (props) => {
   const [images, setImages] = useState<any>([]);
