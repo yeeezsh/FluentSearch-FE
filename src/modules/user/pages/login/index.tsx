@@ -77,18 +77,14 @@ const LoginPage: React.FC<Props> = (props) => {
               rules={[
                 { type: 'email', required: true, message: 'Please input your Email' },
               ]}>
-              <Input
-                id="email"
-                prefix={<MailOutlined className="site-form-item-icon" />}
-                placeholder="email"
-              />
+              <Input id="email" prefix={<MailOutlined />} placeholder="email" />
             </Form.Item>
             <Form.Item
               name={'password'}
               rules={[{ required: true, message: 'Please input your Password' }]}>
               <Input
                 id="password"
-                prefix={<LockOutlined className="site-form-item-icon" />}
+                prefix={<LockOutlined />}
                 type="password"
                 placeholder="Password"
               />
