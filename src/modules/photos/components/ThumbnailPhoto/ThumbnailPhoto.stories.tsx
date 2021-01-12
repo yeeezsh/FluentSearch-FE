@@ -12,7 +12,11 @@ const baseArgs = {
   src: 'https://cdn.pixabay.com/photo/2015/07/31/14/59/beach-869195_1280.jpg',
 } as Partial<Props>;
 
-const ThumbnailStory: Story<Props> = (args) => <ThumbnailPhoto {...args} />;
+const ThumbnailStory: Story<Props> = (args) => (
+  <div style={{ width: 200 }}>
+    <ThumbnailPhoto {...args} />
+  </div>
+);
 export const Default = ThumbnailStory.bind({});
 Default.args = {
   selected: false,
