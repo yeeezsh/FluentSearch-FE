@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
-import SelectIcon, { HoverIcon, InnerHoverIcon, SelectedIcon } from './index';
 import React from 'react';
+import SelectIcon, { HoverIcon, InnerHoverIcon, SelectedIcon } from './index';
 
 describe('SelectIcon spec', () => {
   const onSelect = (s: boolean) => {
