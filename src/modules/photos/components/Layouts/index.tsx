@@ -6,6 +6,7 @@ import {
   MenuWrapper,
   MenuItem,
   ContentWrapper,
+  UserWrapper,
 } from 'Modules/photos/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
@@ -51,30 +52,25 @@ const Sider: React.FC = () => (
 const dropdownMenu = (
   <Menu>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-        1st menu item
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-        2nd menu item
-      </a>
+      <p>
+        <b>John Doe</b>
+      </p>
     </Menu.Item>
     <Menu.Item>
       <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-        3rd menu item
+        logout
       </a>
     </Menu.Item>
   </Menu>
 );
 
-const UserWrapper: React.FC = () => {
+const UserContainer: React.FC = () => {
   return (
-    <Dropdown overlay={dropdownMenu} placement="bottomCenter">
-      <div>
-        <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-      </div>
-    </Dropdown>
+    <UserWrapper>
+      <Dropdown overlay={dropdownMenu} placement="bottomRight" trigger={['click']}>
+        <Avatar>U</Avatar>
+      </Dropdown>
+    </UserWrapper>
   );
 };
 
@@ -86,7 +82,7 @@ const HeaderWrapper: React.FC = () => {
           <Input placeholder="Search" prefix={<SearchOutlined />} />
         </Col>
         <Col xl={4} push={4}>
-          <UserWrapper />
+          <UserContainer />
         </Col>
       </Row>
     </Header>
