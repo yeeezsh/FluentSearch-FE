@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { P } from 'Styles/global';
-import { layout } from './constants';
+import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
 import { FormErrorValue, FormFinishValue, FormRegister } from './types';
 
