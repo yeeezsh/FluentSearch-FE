@@ -21,20 +21,18 @@ const AllPhotosPages: React.FC = () => {
       .then((res) => setImages([...images, ...res.data]));
   };
   return (
-    <AllPhotosLayout>
-      <div style={{ overflow: 'scroll' }}>
-        <InfiniteScroll
-          dataLength={images.length}
-          next={fetchImages}
-          hasMore={true}
-          loader={<Loader />}>
-          <WrapperImage>
-            {images.map((image) => (
-              <LoadedImage url={image.urls.thumb} key={image.id} />
-            ))}
-          </WrapperImage>
-        </InfiniteScroll>
-      </div>
+    <AllPhotosLayout title="Photos">
+      <InfiniteScroll
+        dataLength={images.length}
+        next={fetchImages}
+        hasMore={true}
+        loader={<Loader />}>
+        <WrapperImage>
+          {images.map((image: { urls: { thumb: string }; id: string }) => (
+            <LoadedImage url={image.urls.thumb} key={image.id} />
+          ))}
+        </WrapperImage>
+      </InfiniteScroll>
     </AllPhotosLayout>
   );
 };
