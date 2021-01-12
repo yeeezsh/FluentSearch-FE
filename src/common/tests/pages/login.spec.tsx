@@ -24,7 +24,7 @@ describe('Pages/Login test', () => {
     const wrap = mount(<LoginPage />);
     const emailField = wrap.find('#email');
     const passwordField = wrap.find('#password');
-    const submitButton = wrap.find('#loginBtn');
+    const submitButton = wrap.find('#login-btn');
 
     expect(emailField.exists()).toBe(true);
     expect(passwordField.exists()).toBe(true);
@@ -39,7 +39,7 @@ describe('Pages/Login test', () => {
     const emailField = wrap.find('input[id="email"]');
     emailField.simulate('change', { target: { value: 'Hello@email.com' } });
 
-    wrap.find('#loginBtn').at(0).simulate('submit');
+    wrap.find('#login-btn').at(0).simulate('submit');
   });
 
   it('Should call onError when not a email', () => {
@@ -50,7 +50,7 @@ describe('Pages/Login test', () => {
     const emailField = wrap.find('input[id="email"]');
     emailField.simulate('change', { target: { value: 'Hello' } });
 
-    wrap.find('#loginBtn').at(0).simulate('submit');
+    wrap.find('#login-btn').at(0).simulate('submit');
   });
 
   it('Should call onSubmit when fullfill', () => {
@@ -64,7 +64,7 @@ describe('Pages/Login test', () => {
     emailField.simulate('change', { target: { value: 'Hello' } });
     passwordField.simulate('change', { target: { value: '1234' } });
 
-    wrap.find('#loginBtn').at(0).simulate('submit');
+    wrap.find('#login-btn').at(0).simulate('submit');
   });
 
   it('Should call onSubmitOAuth and send OAuthEnum.Facebook via callback', () => {
@@ -74,6 +74,6 @@ describe('Pages/Login test', () => {
     });
     const wrap = mount(<LoginPage onSubmitOAuth={onSumitOAuth} />);
 
-    wrap.find('#fbBtn').at(0).simulate('click');
+    wrap.find('#fb-btn').at(0).simulate('click');
   });
 });

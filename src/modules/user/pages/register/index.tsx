@@ -21,7 +21,7 @@ const HeaderLogo: React.FC = () => (
 
 const RegisterButton: React.FC = () => (
   <Form.Item>
-    <Button id="registerBtn" type="primary" htmlType="submit" block>
+    <Button id="register-btn" type="primary" htmlType="submit" block>
       Register
     </Button>
   </Form.Item>
@@ -51,7 +51,7 @@ const RegisterPage: React.FC<Props> = (props) => {
         <Col span={16} xl={14}>
           <Form
             {...layout}
-            id="loginForm"
+            id="register-form"
             form={form}
             name="register"
             onFinish={onFinish}

@@ -24,7 +24,7 @@ describe('Pages/Register test', () => {
     const nameField = wrap.find('#name');
     const emailField = wrap.find('#email');
     const passwordField = wrap.find('#password');
-    const registerButton = wrap.find('#registerBtn');
+    const registerButton = wrap.find('#register-btn');
 
     expect(nameField.exists()).toBe(true);
     expect(emailField.exists()).toBe(true);
@@ -40,7 +40,7 @@ describe('Pages/Register test', () => {
     const emailField = wrap.find('input[id="email"]');
     emailField.simulate('change', { target: { value: 'Hello@email.com' } });
 
-    wrap.find('#registerBtn').at(0).simulate('submit');
+    wrap.find('#register-btn').at(0).simulate('submit');
   });
 
   it('Should call onError when not fulfill', () => {
@@ -54,7 +54,7 @@ describe('Pages/Register test', () => {
     nameField.simulate('change', { target: { value: 'John Doe' } });
     emailField.simulate('change', { target: { value: 'Hello@email.com' } });
 
-    wrap.find('#registerBtn').at(0).simulate('submit');
+    wrap.find('#register-btn').at(0).simulate('submit');
   });
 
   it('Should call onError when not a email', () => {
@@ -65,7 +65,7 @@ describe('Pages/Register test', () => {
     const emailField = wrap.find('input[id="email"]');
     emailField.simulate('change', { target: { value: 'Hello' } });
 
-    wrap.find('#registerBtn').at(0).simulate('submit');
+    wrap.find('#register-btn').at(0).simulate('submit');
   });
 
   it('Should call onSubmit when fullfill', () => {
@@ -81,6 +81,6 @@ describe('Pages/Register test', () => {
     passwordField.simulate('change', { target: { value: '1234' } });
     nameField.simulate('change', { target: { value: 'John Doe' } });
 
-    wrap.find('#registerBtn').at(0).simulate('submit');
+    wrap.find('#register-btn').at(0).simulate('submit');
   });
 });

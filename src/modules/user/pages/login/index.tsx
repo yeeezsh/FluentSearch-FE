@@ -22,7 +22,7 @@ const HeaderLogo: React.FC = () => (
 
 const LoginButton: React.FC = () => (
   <Form.Item>
-    <Button id="loginBtn" type="primary" htmlType="submit" block>
+    <Button id="login-btn" type="primary" htmlType="submit" block>
       Log in
     </Button>
   </Form.Item>
@@ -34,7 +34,7 @@ const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = 
   <Form.Item>
     <Button
       onClick={() => props.onSubmit && props.onSubmit(OAuthEnum.Facebook)}
-      id="fbBtn"
+      id="fb-btn"
       style={{ backgroundColor: '#3b5998', color: '#ffffff' }}
       block>
       Login with Facebook
@@ -66,7 +66,7 @@ const LoginPage: React.FC<Props> = (props) => {
         <Col span={16} xl={14}>
           <Form
             {...layout}
-            id="loginForm"
+            id="login-form"
             form={form}
             name="login"
             onFinish={onFinish}
