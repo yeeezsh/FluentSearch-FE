@@ -1,6 +1,5 @@
 import React from 'react';
 import ThumbnailPhoto from '../ThumbnailPhoto';
-import { mock } from './constants';
 import Header from './Header';
 import { GroupThumbnailPhotosWrapper, PhotoThumbnailStyled } from './styled';
 import { Props } from './types';
@@ -16,7 +15,7 @@ const GroupThumbnailPhotos: React.FC<Props> = (props) => {
     <>
       <Header date={startDate} onSelect={onSelect} selected={props.selected} />
       <GroupThumbnailPhotosWrapper>
-        {mock.photos.map((el, i) => (
+        {props.photos.map((el, i) => (
           <PhotoThumbnailStyled key={i}>
             <ThumbnailPhoto {...el} />
           </PhotoThumbnailStyled>
