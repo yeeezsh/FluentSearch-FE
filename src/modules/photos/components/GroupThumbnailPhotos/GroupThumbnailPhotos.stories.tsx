@@ -11,7 +11,7 @@ export default {
 } as Meta;
 
 const GroupThumbnailPhotoStory: Story<Props> = (args) => (
-  <GroupThumbnailPhoto {...args} {...mock} />
+  <GroupThumbnailPhoto {...mock} {...args} />
 );
 
 export const Default = GroupThumbnailPhotoStory.bind({});
