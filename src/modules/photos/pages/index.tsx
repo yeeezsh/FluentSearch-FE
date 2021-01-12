@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import AllPhotosLayout from 'Modules/photos/components/Layouts';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { LoadedImage } from '../components/LoadedImage/index';
-import { WrapperImage } from '../components/Layouts/styled';
-import { Loader } from 'Components/Loader';
 import axios from 'axios';
+import { Loader } from 'Components/Loader';
+import AllPhotosLayout from 'Modules/photos/components/Layouts';
+import React, { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { WrapperImage } from '../components/Layouts/styled';
+import ThumbnailPhoto from '../components/ThumbnailPhoto';
 
 const AllPhotosPages: React.FC = () => {
   const [images, setImages] = useState<any>([]);
@@ -20,6 +20,7 @@ const AllPhotosPages: React.FC = () => {
       .get(`${apiRoot}/photos/random?client_id=${accessKey}&count=5`)
       .then((res) => setImages([...images, ...res.data]));
   };
+
   return (
     <AllPhotosLayout title="Photos">
       <InfiniteScroll
@@ -29,7 +30,12 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}>
         <WrapperImage>
           {images.map((image: { urls: { thumb: string }; id: string }) => (
-            <LoadedImage url={image.urls.thumb} key={image.id} />
+            <ThumbnailPhoto
+              src={image.urls.thumb}
+              key={image.id}
+              createAt={new Date()}
+              selected={false}
+            />
           ))}
         </WrapperImage>
       </InfiniteScroll>
