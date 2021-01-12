@@ -19,7 +19,7 @@ const AllPhotosLayout: React.FC = (props) => {
         <SiderWrapper>
           <Row justify="center">
             <Col style={{ marginTop: '2%' }}>
-              <Image src={'assets/images/03-logo.svg'} width={150} height={60} />
+              <Image src={'assets/images/logo-white.svg'} width={150} height={60} />
             </Col>
           </Row>
           <hr />
