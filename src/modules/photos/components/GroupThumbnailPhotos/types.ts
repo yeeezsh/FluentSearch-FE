@@ -1,3 +1,6 @@
 import { GroupThumbnailPhotos } from 'Modules/photos/models/thumbnail';
 
-export type Props = GroupThumbnailPhotos;
+export interface Props extends GroupThumbnailPhotos {
+  selected: boolean;
+  onSelect?: (s: boolean) => void;
+}

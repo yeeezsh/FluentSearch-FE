@@ -10,7 +10,7 @@ const Header: React.FC<Props> = (props) => {
   const isToday = day.valueOf() === today.valueOf();
 
   const onSelect = (s: boolean) => {
-    return;
+    props.onSelect(s);
   };
 
   const [hover, setHover] = useState<boolean>(false);
@@ -23,7 +23,7 @@ const Header: React.FC<Props> = (props) => {
     <HeaderWrapperStyled
       onMouseLeave={() => onHover(false)}
       onMouseOver={() => onHover(true)}>
-      <SelectBadgeIcon onSelect={onSelect} hover={hover} selected={false} />
+      <SelectBadgeIcon onSelect={onSelect} hover={hover} selected={props.selected} />
       <DateHeaderStyled>{isToday ? 'Today' : day.format(DATE_FORMAT)}</DateHeaderStyled>
     </HeaderWrapperStyled>
   );
