@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AllPhotosLayout from 'Modules/photos/components/Layouts';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { LoadedImage } from '../components/LoadedImage';
+import { LoadedImage } from '../components/LoadedImage/index';
 import { WrapperImage } from '../components/Layouts/styled';
 import { Loader } from 'Components/Loader';
 import axios from 'axios';
