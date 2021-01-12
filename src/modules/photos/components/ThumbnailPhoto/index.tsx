@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SelectIcon from './SelectIcon';
+import SelectBadgeIcon from '../SelectBadgeIcon';
 import {
   ThumbnailPhotoDisplayStyled,
   ThumbnailPhotoWrapperStyled,
@@ -24,7 +24,7 @@ const ThumbnailPhoto: React.FC<Props> = (props) => {
       onMouseOver={() => onHover(true)}
       onMouseLeave={() => onHover(false)}>
       <ThumbnailSelectIconWrapperLayoutStyled>
-        <SelectIcon hover={hover} selected={selected} onSelect={onSelect} />
+        <SelectBadgeIcon hover={hover} selected={selected} onSelect={onSelect} />
       </ThumbnailSelectIconWrapperLayoutStyled>
       <ThumbnailPhotoDisplayStyled src={src} />
     </ThumbnailPhotoWrapperStyled>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Props } from './types';
 import dayjs from 'dayjs';
-import SelectIcon from '../../ThumbnailPhoto/SelectIcon';
+import SelectBadgeIcon from '../../SelectBadgeIcon';
 import { DateHeaderStyled, HeaderWrapperStyled } from './styled';
 const DATE_FORMAT = 'ddd, MMM YYYY';
 const Header: React.FC<Props> = (props) => {
@@ -23,7 +23,7 @@ const Header: React.FC<Props> = (props) => {
     <HeaderWrapperStyled
       onMouseLeave={() => onHover(false)}
       onMouseOver={() => onHover(true)}>
-      <SelectIcon onSelect={onSelect} hover={hover} selected={false} />
+      <SelectBadgeIcon onSelect={onSelect} hover={hover} selected={false} />
       <DateHeaderStyled>{isToday ? 'Today' : day.format(DATE_FORMAT)}</DateHeaderStyled>
     </HeaderWrapperStyled>
   );

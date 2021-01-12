@@ -1,6 +1,6 @@
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import React, { CSSProperties, useState } from 'react';
-import { SelectIconWrapperStyled } from './styled';
+import { SelectBadgeIconWrapperStyled } from './styled';
 import { Props } from './types';
 
 const iconStyle: CSSProperties = { fontSize: 24 };
@@ -11,7 +11,7 @@ export const SelectedIcon: React.FC = () => (
 export const InnerHoverIcon: React.FC = () => <CheckCircleFilled style={iconStyle} />;
 export const HoverIcon: React.FC = () => <CheckCircleOutlined style={iconStyle} />;
 
-const SelectIcon: React.FC<Props> = (props) => {
+const SelectBadgeIcon: React.FC<Props> = (props) => {
   const { hover, selected } = props;
   const [innerHover, setInnerHover] = useState<boolean>(false);
   const onInnerHover = (isHover: boolean) => {
@@ -22,15 +22,15 @@ const SelectIcon: React.FC<Props> = (props) => {
     props.onSelect(!selected);
   };
   return (
-    <SelectIconWrapperStyled
+    <SelectBadgeIconWrapperStyled
       onMouseOver={() => onInnerHover(true)}
       onMouseLeave={() => onInnerHover(false)}
       onClick={onClick}>
       {hover && !selected && !innerHover && <HoverIcon />}
       {innerHover && !selected && <InnerHoverIcon />}
       {selected && <SelectedIcon />}
-    </SelectIconWrapperStyled>
+    </SelectBadgeIconWrapperStyled>
   );
 };
 
-export default SelectIcon;
+export default SelectBadgeIcon;
