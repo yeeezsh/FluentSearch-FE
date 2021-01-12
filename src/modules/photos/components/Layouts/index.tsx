@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Input, Row, Col, Avatar } from 'antd';
+import { Layout, Input, Row, Col, Avatar, Popover } from 'antd';
 import {
   CanvasWrapper,
   SiderWrapper,
@@ -11,32 +11,52 @@ import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AllPhotoLayoutProps } from './types';
+import pathJoin from 'Utils/path-join';
+import { useRouter } from 'next/router';
+import { PHOTOS_SIDEBAR_CONSTANT } from 'Modules/photos/constant/menu/index';
 
 const { Header, Content } = Layout;
+
+const MenuContainer: React.FC = () => {
+  const router = useRouter();
+  return (
+    <div>
+      {PHOTOS_SIDEBAR_CONSTANT.map(({ key, label, link }) => {
+        const isSelecting = '/' + link === router.pathname;
+        return (
+          <Link href={pathJoin(link)} key={key}>
+            <Menu isSelecting={isSelecting}>
+              <p>{label}</p>
+            </Menu>
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
 
 const Sider: React.FC = () => (
   <SiderWrapper>
     <Row justify="center">
-      <Col style={{ marginTop: '5%' }}>
+      <Col>
         <Image src={'assets/images/logo-with-bg.svg'} width={180} height={80} />
       </Col>
     </Row>
     <MenuWrapper>
-      <Menu>
-        <Link href="/">Photos</Link>
-      </Menu>
-      <Menu>
-        <Link href="/">Albums</Link>
-      </Menu>
-      <Menu>
-        <Link href="/">Trash</Link>
-      </Menu>
-      <Menu>
-        <Link href="/">Logout</Link>
-      </Menu>
+      <MenuContainer />
     </MenuWrapper>
   </SiderWrapper>
 );
+
+const UserWrapper: React.FC = () => {
+  return (
+    <Popover placement="bottom" title={'text'} content={'content'} trigger="click">
+      <div>
+        <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+      </div>
+    </Popover>
+  );
+};
 
 const HeaderWrapper: React.FC = () => {
   return (
@@ -46,7 +66,7 @@ const HeaderWrapper: React.FC = () => {
           <Input placeholder="Search" prefix={<SearchOutlined />} />
         </Col>
         <Col xl={4} push={4}>
-          <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+          <UserWrapper />
         </Col>
       </Row>
     </Header>
