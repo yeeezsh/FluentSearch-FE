@@ -2,22 +2,22 @@ import styled from 'styled-components';
 import { Layout } from 'antd';
 const { Sider } = Layout;
 
-export const HeaderWrapper = styled.div`
+export const ContentWrapper = styled.div`
+  margin: 7% 5% 5% 5%;
+`;
+
+export const CanvasWrapper = styled.div`
   .ant-layout-header {
     background-color: white;
     position: fixed;
     width: 100%;
-    z-index: 1000;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 
-  border-bottom: 1px solid black;
-`;
-
-export const CanvasWrapper = styled.div`
   .ant-layout-content {
     height: 100vh;
     background-color: white;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 `;
 
@@ -26,6 +26,7 @@ export const SiderWrapper = styled(Sider)`
   width: 294px;
   padding: 2%;
   overflow: hidden;
+  z-index: 1000;
 `;
 
 export const MenuWrapper = styled.div`

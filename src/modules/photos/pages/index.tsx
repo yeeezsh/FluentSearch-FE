@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AllPhotosLayout from 'Modules/photos/components/Layouts';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { LoadedImage } from '../components/Layouts/LoadedImage';
+import { LoadedImage } from '../components/LoadedImage/index';
 import { WrapperImage } from '../components/Layouts/styled';
 import { Loader } from 'Components/Loader';
 import axios from 'axios';
@@ -21,20 +21,18 @@ const AllPhotosPages: React.FC = () => {
       .then((res) => setImages([...images, ...res.data]));
   };
   return (
-    <AllPhotosLayout>
-      <div style={{ overflow: 'scroll' }}>
-        <InfiniteScroll
-          dataLength={images.length}
-          next={fetchImages}
-          hasMore={true}
-          loader={<Loader />}>
-          <WrapperImage>
-            {images.map((image) => (
-              <LoadedImage url={image.urls.thumb} key={image.id} />
-            ))}
-          </WrapperImage>
-        </InfiniteScroll>
-      </div>
+    <AllPhotosLayout title="Photos">
+      <InfiniteScroll
+        dataLength={images.length}
+        next={fetchImages}
+        hasMore={true}
+        loader={<Loader />}>
+        <WrapperImage>
+          {images.map((image: { urls: { thumb: string }; id: string }) => (
+            <LoadedImage url={image.urls.thumb} key={image.id} />
+          ))}
+        </WrapperImage>
+      </InfiniteScroll>
     </AllPhotosLayout>
   );
 };

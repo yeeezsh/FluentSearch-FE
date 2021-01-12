@@ -5,60 +5,67 @@ import {
   SiderWrapper,
   MenuWrapper,
   Menu,
-  HeaderWrapper,
+  ContentWrapper,
 } from 'Modules/photos/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AllPhotoLayoutProps } from './types';
 
 const { Header, Content } = Layout;
 
-const AllPhotosLayout: React.FC = (props) => {
+const Sider: React.FC = () => (
+  <SiderWrapper>
+    <Row justify="center">
+      <Col style={{ marginTop: '5%' }}>
+        <Image src={'assets/images/logo-with-bg.svg'} width={180} height={80} />
+      </Col>
+    </Row>
+    <MenuWrapper>
+      <Menu>
+        <Link href="/">Photos</Link>
+      </Menu>
+      <Menu>
+        <Link href="/">Albums</Link>
+      </Menu>
+      <Menu>
+        <Link href="/">Trash</Link>
+      </Menu>
+      <Menu>
+        <Link href="/">Logout</Link>
+      </Menu>
+    </MenuWrapper>
+  </SiderWrapper>
+);
+
+const HeaderWrapper: React.FC = () => {
+  return (
+    <Header>
+      <Row justify="center">
+        <Col xl={10}>
+          <Input placeholder="Search" prefix={<SearchOutlined />} />
+        </Col>
+        <Col xl={4} push={4}>
+          <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+        </Col>
+      </Row>
+    </Header>
+  );
+};
+
+const AllPhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
+  const { title, children } = props;
   return (
     <CanvasWrapper>
       <Layout>
-        <SiderWrapper>
-          <Row justify="center">
-            <Col style={{ marginTop: '5%' }}>
-              <Image src={'assets/images/logo-with-bg.svg'} width={180} height={80} />
-            </Col>
-          </Row>
-          <MenuWrapper>
-            <Menu>
-              <Link href="/">Photos</Link>
-            </Menu>
-            <Menu>
-              <Link href="/">Albums</Link>
-            </Menu>
-            <Menu>
-              <Link href="/">Trash</Link>
-            </Menu>
-            <Menu>
-              <Link href="/">Logout</Link>
-            </Menu>
-          </MenuWrapper>
-        </SiderWrapper>
+        <Sider />
         <Content>
-          <HeaderWrapper>
-            <Header style={{ borderBottom: '1px red' }}>
-              <Row justify="center">
-                <Col xl={10}>
-                  <Input placeholder="Search" prefix={<SearchOutlined />} />
-                </Col>
-                <Col xl={4} push={4}>
-                  <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
-                    U
-                  </Avatar>
-                </Col>
-              </Row>
-            </Header>
-          </HeaderWrapper>
-          <hr />
-          <div style={{ margin: '3%' }}>
-            <h1>Photos</h1>
+          <HeaderWrapper />
+          <ContentWrapper>
+            <h1>{title}</h1>
             <hr />
-            {props.children}
-          </div>
+            {children}
+          </ContentWrapper>
         </Content>
       </Layout>
     </CanvasWrapper>
