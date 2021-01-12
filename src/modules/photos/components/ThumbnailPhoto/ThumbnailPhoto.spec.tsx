@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { ThumbnailPhoto as ThumbnailPhotoType } from 'Modules/photos/models/thumbnail';
 import React from 'react';
 import ThumbnailPhoto from '.';
