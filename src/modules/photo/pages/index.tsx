@@ -22,17 +22,19 @@ const AllPhotosPages: React.FC = () => {
   };
   return (
     <AllPhotosLayout>
-      <InfiniteScroll
-        dataLength={images.length}
-        next={fetchImages}
-        hasMore={true}
-        loader={<Loader />}>
-        <WrapperImage>
-          {images.map((image) => (
-            <LoadedImage url={image.urls.thumb} key={image.id} />
-          ))}
-        </WrapperImage>
-      </InfiniteScroll>
+      <div style={{ overflow: 'scroll' }}>
+        <InfiniteScroll
+          dataLength={images.length}
+          next={fetchImages}
+          hasMore={true}
+          loader={<Loader />}>
+          <WrapperImage>
+            {images.map((image) => (
+              <LoadedImage url={image.urls.thumb} key={image.id} />
+            ))}
+          </WrapperImage>
+        </InfiniteScroll>
+      </div>
     </AllPhotosLayout>
   );
 };

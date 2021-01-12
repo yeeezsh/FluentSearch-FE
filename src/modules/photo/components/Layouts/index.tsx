@@ -5,6 +5,7 @@ import {
   SiderWrapper,
   MenuWrapper,
   Menu,
+  HeaderWrapper,
 } from 'Modules/photo/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
@@ -39,18 +40,20 @@ const AllPhotosLayout: React.FC = (props) => {
           </MenuWrapper>
         </SiderWrapper>
         <Content>
-          <Header style={{ borderBottom: '1px red' }}>
-            <Row justify="center">
-              <Col xl={10}>
-                <Input placeholder="Search" prefix={<SearchOutlined />} />
-              </Col>
-              <Col xl={4} push={6}>
-                <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
-                  U
-                </Avatar>
-              </Col>
-            </Row>
-          </Header>
+          <HeaderWrapper>
+            <Header style={{ borderBottom: '1px red' }}>
+              <Row justify="center">
+                <Col xl={10}>
+                  <Input placeholder="Search" prefix={<SearchOutlined />} />
+                </Col>
+                <Col xl={4} push={4}>
+                  <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
+                    U
+                  </Avatar>
+                </Col>
+              </Row>
+            </Header>
+          </HeaderWrapper>
           <hr />
           <div style={{ margin: '3%' }}>
             <h1>Photos</h1>
