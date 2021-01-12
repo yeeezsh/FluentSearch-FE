@@ -14,14 +14,17 @@ import Link from 'next/link';
 import { AllPhotoLayoutProps } from './types';
 import pathJoin from 'Utils/path-join';
 import { useRouter } from 'next/router';
-import { PHOTOS_SIDEBAR_CONSTANT } from 'Modules/photos/constant/menu/index';
+import {
+  DROPDOWN_SIDEBAR_CONSTANT,
+  PHOTOS_SIDEBAR_CONSTANT,
+} from 'Modules/photos/constant/menu/index';
 
 const { Header, Content } = Layout;
 
 const MenuContainer: React.FC = () => {
   const router = useRouter();
   return (
-    <div>
+    <>
       {PHOTOS_SIDEBAR_CONSTANT.map(({ key, label, link }) => {
         const isSelecting = '/' + link === router.pathname;
         return (
@@ -32,7 +35,7 @@ const MenuContainer: React.FC = () => {
           </Link>
         );
       })}
-    </div>
+    </>
   );
 };
 
@@ -51,9 +54,13 @@ const Sider: React.FC = () => (
 
 const DropdownMenu = (
   <Menu>
-    <Menu.Item>My Profile</Menu.Item>
-    <Menu.Item>Reset Password</Menu.Item>
-    <Menu.Item>logout</Menu.Item>
+    {DROPDOWN_SIDEBAR_CONSTANT.map(({ key, label, link }) => {
+      return (
+        <Menu.Item key={key}>
+          <Link href={pathJoin(link)}>{label}</Link>
+        </Menu.Item>
+      );
+    })}
   </Menu>
 );
 

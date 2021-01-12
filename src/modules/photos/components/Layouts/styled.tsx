@@ -57,13 +57,15 @@ export const MenuItem = styled.div<{ isSelecting: boolean }>`
       p {
         padding: 1em 1em 1em 1em;
         border-radius: 0.5em;
-        background-color: #48cdd8;
+        background-color: white;
+        color: #4425a7;
+        font-weight: 600;
       }
 
       p:hover {
         padding: 1em 1em 1em 1em;
         border-radius: 0.5em;
-        background-color: red;
+        background-color: #9271fc;
       }
     `}
 `;
