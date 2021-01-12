@@ -5,9 +5,6 @@ import React from 'react';
 export default {
   title: 'FluentSearch/BreakLineWithCaption',
   component: BreakLineWithCaption,
-  argTypes: {
-    child: { Text },
-  },
 } as Meta;
 
 type PropType = {
