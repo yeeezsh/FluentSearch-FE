@@ -10,3 +10,11 @@ export default {
 
 const PhotoStory: Story<Props> = (args) => <Photo {...args} />;
 export const Default = PhotoStory.bind({});
+Default.args = {
+  selected: false,
+} as Props;
+
+export const Selected = PhotoStory.bind({});
+Selected.args = {
+  selected: true,
+} as Props;
