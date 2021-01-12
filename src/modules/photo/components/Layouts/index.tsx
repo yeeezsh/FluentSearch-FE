@@ -12,9 +12,9 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 import axios from 'axios';
-import { LoadedImage } from './LoadedImage';
+import { LoadedImage } from 'Modules/photo/components/Layouts/LoadedImage';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Loader } from './Loader';
+import { Loader } from 'Components/Loader/index';
 
 const { Header, Content } = Layout;
 
@@ -36,7 +36,7 @@ const AllPhotosLayout: React.FC = (props) => {
 
   const fetchImages = async (): Promise<void> => {
     const apiRoot = 'https://api.unsplash.com';
-    const accessKey = 'YOUR_ACCESS_KEY_HERE';
+    const accessKey = 'fLLHNmXzlY1Mkc9woN0pQFNNc53hoBfGAgmQTF2OH4w';
     await axios
       .get(`${apiRoot}/photos/random?client_id=${accessKey}&count=5`)
       .then((res) => setImages([...images, ...res.data]));
