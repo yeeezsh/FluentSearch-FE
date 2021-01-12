@@ -1,5 +1,5 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
-import { CheckCircleOutlined, CheckCircleFilled } from '@ant-design/icons';
+import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
+import React, { CSSProperties, useState } from 'react';
 import { SelectIconWrapperStyled } from './styled';
 import { Props } from './types';
 
@@ -15,10 +15,15 @@ const SelectIcon: React.FC<Props> = (props) => {
   const onInnerHover = (isHover: boolean) => {
     setInnerHover(isHover);
   };
+
+  const onClick = () => {
+    props.onSelect(!selected);
+  };
   return (
     <SelectIconWrapperStyled
       onMouseOver={() => onInnerHover(true)}
-      onMouseLeave={() => onInnerHover(false)}>
+      onMouseLeave={() => onInnerHover(false)}
+      onClick={onClick}>
       {hover && !selected && !innerHover && <CheckCircleOutlined style={iconStyle} />}
       {innerHover && !selected && <CheckCircleFilled style={iconStyle} />}
       {selected && <SelectedIcon />}
