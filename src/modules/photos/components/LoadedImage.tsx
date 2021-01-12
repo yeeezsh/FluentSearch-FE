@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ImageProps } from './types';
+import { ImageProps } from './Layouts/types';
 
 const Img = styled.img`
   width: 100%;
