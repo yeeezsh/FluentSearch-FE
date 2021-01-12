@@ -8,10 +8,11 @@ export const ThumbnailPhotoDisplayStyled = styled.img`
 
 export const ThumbnailPhotoWrapperStyled = styled.div`
   cursor: pointer;
+  position: relative;
 `;
 
 export const ThumbnailSelectIconWrapperLayoutStyled = styled.div`
   position: absolute;
-  top: 36px;
-  left: 36px;
+  top: 18px;
+  left: 18px;
 `;

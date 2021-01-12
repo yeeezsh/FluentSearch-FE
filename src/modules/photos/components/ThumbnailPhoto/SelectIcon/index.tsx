@@ -3,7 +3,7 @@ import React, { CSSProperties, useState } from 'react';
 import { SelectIconWrapperStyled } from './styled';
 import { Props } from './types';
 
-const iconStyle: CSSProperties = { fontSize: 36 };
+const iconStyle: CSSProperties = { fontSize: 24 };
 
 export const SelectedIcon: React.FC = () => (
   <CheckCircleFilled style={{ ...iconStyle, color: '#0BB5C2' }} />
