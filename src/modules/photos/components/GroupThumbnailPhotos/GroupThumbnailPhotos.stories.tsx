@@ -16,3 +16,10 @@ const GroupThumbnailPhotoStory: Story<Props> = (args) => (
 
 export const Default = GroupThumbnailPhotoStory.bind({});
 Default.args = {};
+
+export const OtherDate = GroupThumbnailPhotoStory.bind({});
+const today = new Date();
+const nextDay = new Date(today.setDate(today.getDate() + 1));
+OtherDate.args = {
+  dateRange: [nextDay, nextDay],
+} as Props;
