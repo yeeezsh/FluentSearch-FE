@@ -1,4 +1,4 @@
-import React, { useState, useEffect, SetStateAction } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Input, Row, Col, Avatar } from 'antd';
 import {
   CanvasWrapper,
