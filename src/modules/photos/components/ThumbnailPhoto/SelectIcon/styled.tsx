@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SelectIconStyled = styled.div`
+export const SelectIconWrapperStyled = styled.div`
   position: absolute;
   top: 32;
   left: 32;
