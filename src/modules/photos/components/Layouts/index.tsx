@@ -1,10 +1,10 @@
 import React from 'react';
-import { Layout, Input, Row, Col, Avatar, Popover } from 'antd';
+import { Menu, Layout, Input, Row, Col, Avatar, Dropdown } from 'antd';
 import {
   CanvasWrapper,
   SiderWrapper,
   MenuWrapper,
-  Menu,
+  MenuItem,
   ContentWrapper,
 } from 'Modules/photos/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
@@ -25,9 +25,9 @@ const MenuContainer: React.FC = () => {
         const isSelecting = '/' + link === router.pathname;
         return (
           <Link href={pathJoin(link)} key={key}>
-            <Menu isSelecting={isSelecting}>
+            <MenuItem isSelecting={isSelecting}>
               <p>{label}</p>
-            </Menu>
+            </MenuItem>
           </Link>
         );
       })}
@@ -48,13 +48,33 @@ const Sider: React.FC = () => (
   </SiderWrapper>
 );
 
+const dropdownMenu = (
+  <Menu>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+        1st menu item
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+        2nd menu item
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+        3rd menu item
+      </a>
+    </Menu.Item>
+  </Menu>
+);
+
 const UserWrapper: React.FC = () => {
   return (
-    <Popover placement="bottom" title={'text'} content={'content'} trigger="click">
+    <Dropdown overlay={dropdownMenu} placement="bottomCenter">
       <div>
         <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
       </div>
-    </Popover>
+    </Dropdown>
   );
 };
 

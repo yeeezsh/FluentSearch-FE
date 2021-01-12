@@ -34,7 +34,7 @@ export const MenuWrapper = styled.div`
   width: 100%;
 `;
 
-export const Menu = styled.div<{ isSelecting: boolean }>`
+export const MenuItem = styled.div<{ isSelecting: boolean }>`
   width: 100%;
   cursor: pointer;
   color: white;
