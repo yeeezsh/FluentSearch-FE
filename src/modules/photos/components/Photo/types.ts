@@ -1,3 +1,5 @@
 import { Photo } from 'Modules/photos/models/photo';
 
-export type Props = Photo;
+export interface Props extends Photo {
+  onSelect?: (s: boolean) => void;
+}

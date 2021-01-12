@@ -14,12 +14,17 @@ const Photo: React.FC<Props> = (props) => {
   const onHover = (isHover: boolean) => {
     setHover(isHover);
   };
+
+  const onSelect = (s) => {
+    props.onSelect && props.onSelect(s);
+  };
+
   return (
     <PhotoWrapperStyled
       onMouseOver={() => onHover(true)}
       onMouseLeave={() => onHover(false)}>
       <SelectIconWrapperLayoutStyled>
-        <SelectIcon hover={hover} selected={selected} />
+        <SelectIcon hover={hover} selected={selected} onSelect={onSelect} />
       </SelectIconWrapperLayoutStyled>
       <PhotoDisplayStyled src="https://cdn.pixabay.com/photo/2015/07/31/14/59/beach-869195_1280.jpg" />
     </PhotoWrapperStyled>
