@@ -3,7 +3,7 @@ import { Props } from './types';
 import dayjs from 'dayjs';
 import SelectIcon from '../../ThumbnailPhoto/SelectIcon';
 import { DateHeaderStyled, HeaderWrapperStyled } from './styled';
-
+const DATE_FORMAT = 'ddd, MMM YYYY';
 const Header: React.FC<Props> = (props) => {
   const day = dayjs(props.date).startOf('day');
   const today = dayjs().startOf('day');
@@ -24,9 +24,7 @@ const Header: React.FC<Props> = (props) => {
       onMouseLeave={() => onHover(false)}
       onMouseOver={() => onHover(true)}>
       <SelectIcon onSelect={onSelect} hover={hover} selected={false} />
-      <DateHeaderStyled>
-        {isToday ? 'Today' : day.format('ddd, MMM YYYY')}
-      </DateHeaderStyled>
+      <DateHeaderStyled>{isToday ? 'Today' : day.format(DATE_FORMAT)}</DateHeaderStyled>
     </HeaderWrapperStyled>
   );
 };
