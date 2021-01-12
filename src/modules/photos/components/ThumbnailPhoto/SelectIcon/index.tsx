@@ -8,6 +8,8 @@ const iconStyle: CSSProperties = { fontSize: 36 };
 export const SelectedIcon: React.FC = () => (
   <CheckCircleFilled style={{ ...iconStyle, color: '#0BB5C2' }} />
 );
+export const InnerHoverIcon: React.FC = () => <CheckCircleFilled style={iconStyle} />;
+export const HoverIcon: React.FC = () => <CheckCircleOutlined style={iconStyle} />;
 
 const SelectIcon: React.FC<Props> = (props) => {
   const { hover, selected } = props;
@@ -24,8 +26,8 @@ const SelectIcon: React.FC<Props> = (props) => {
       onMouseOver={() => onInnerHover(true)}
       onMouseLeave={() => onInnerHover(false)}
       onClick={onClick}>
-      {hover && !selected && !innerHover && <CheckCircleOutlined style={iconStyle} />}
-      {innerHover && !selected && <CheckCircleFilled style={iconStyle} />}
+      {hover && !selected && !innerHover && <HoverIcon />}
+      {innerHover && !selected && <InnerHoverIcon />}
       {selected && <SelectedIcon />}
     </SelectIconWrapperStyled>
   );
