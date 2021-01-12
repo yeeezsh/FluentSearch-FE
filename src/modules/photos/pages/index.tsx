@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AllPhotosLayout from 'Modules/photo/components/Layouts';
+import AllPhotosLayout from 'Modules/photos/components/Layouts';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { LoadedImage } from '../components/Layouts/LoadedImage';
 import { WrapperImage } from '../components/Layouts/styled';

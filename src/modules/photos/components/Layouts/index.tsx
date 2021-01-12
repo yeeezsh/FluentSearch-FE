@@ -6,7 +6,7 @@ import {
   MenuWrapper,
   Menu,
   HeaderWrapper,
-} from 'Modules/photo/components/Layouts/styled';
+} from 'Modules/photos/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Link from 'next/link';
