@@ -19,11 +19,10 @@ const AllPhotosLayout: React.FC = (props) => {
       <Layout>
         <SiderWrapper>
           <Row justify="center">
-            <Col style={{ marginTop: '2%' }}>
-              <Image src={'assets/images/logo-white.svg'} width={150} height={60} />
+            <Col style={{ marginTop: '5%' }}>
+              <Image src={'assets/images/logo-with-bg.svg'} width={180} height={80} />
             </Col>
           </Row>
-          <hr />
           <MenuWrapper>
             <Menu>
               <Link href="/">Photos</Link>
