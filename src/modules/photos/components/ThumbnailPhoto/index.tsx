@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import SelectIcon from './SelectIcon';
 import {
-  PhotoDisplayStyled,
-  PhotoWrapperStyled,
-  SelectIconWrapperLayoutStyled,
+  ThumbnailPhotoDisplayStyled,
+  ThumbnailPhotoWrapperStyled,
+  ThumbnailSelectIconWrapperLayoutStyled,
 } from './styled';
 import { Props } from './types';
 
-const Photo: React.FC<Props> = (props) => {
+const ThumbnailPhoto: React.FC<Props> = (props) => {
   const { selected } = props;
   const [hover, setHover] = useState<boolean>(selected);
 
@@ -20,15 +20,15 @@ const Photo: React.FC<Props> = (props) => {
   };
 
   return (
-    <PhotoWrapperStyled
+    <ThumbnailPhotoWrapperStyled
       onMouseOver={() => onHover(true)}
       onMouseLeave={() => onHover(false)}>
-      <SelectIconWrapperLayoutStyled>
+      <ThumbnailSelectIconWrapperLayoutStyled>
         <SelectIcon hover={hover} selected={selected} onSelect={onSelect} />
-      </SelectIconWrapperLayoutStyled>
-      <PhotoDisplayStyled src="https://cdn.pixabay.com/photo/2015/07/31/14/59/beach-869195_1280.jpg" />
-    </PhotoWrapperStyled>
+      </ThumbnailSelectIconWrapperLayoutStyled>
+      <ThumbnailPhotoDisplayStyled src="https://cdn.pixabay.com/photo/2015/07/31/14/59/beach-869195_1280.jpg" />
+    </ThumbnailPhotoWrapperStyled>
   );
 };
 
-export default Photo;
+export default ThumbnailPhoto;

@@ -5,7 +5,7 @@ import { Props } from './types';
 
 const iconStyle: CSSProperties = { fontSize: 36 };
 
-const SelectedIcon: React.FC = () => (
+export const SelectedIcon: React.FC = () => (
   <CheckCircleFilled style={{ ...iconStyle, color: '#0BB5C2' }} />
 );
 
