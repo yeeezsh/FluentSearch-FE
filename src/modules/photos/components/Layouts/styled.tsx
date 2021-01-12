@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Layout } from 'antd';
 const { Sider } = Layout;
 
 export const ContentWrapper = styled.div`
-  margin: 7% 5% 5% 5%;
+  margin: 10% 5% 5% 5%;
 `;
 
 export const CanvasWrapper = styled.div`
@@ -30,27 +30,42 @@ export const SiderWrapper = styled(Sider)`
 `;
 
 export const MenuWrapper = styled.div`
-  margin-top: 20%;
+  margin-top: 30%;
   width: 100%;
 `;
 
-export const Menu = styled.div`
-  margin-top: 20%;
-  a:hover {
-    padding: 10%;
-    border-radius: 2em;
-    background-color: #48cdd8;
-  }
-  a:active {
-    padding: 10%;
-    border-radius: 2em;
-    background-color: #48cdd8;
-    position: inherit;
-  }
-  a {
-    color: white;
-  }
+export const Menu = styled.div<{ isSelecting: boolean }>`
   width: 100%;
+  cursor: pointer;
+  color: white;
+
+  p:hover {
+    padding: 1em 1em 1em 1em;
+    border-radius: 0.5em;
+    background-color: #48cdd8;
+  }
+
+  p {
+    padding: 1em 1em 1em 1em;
+    border-radius: 0.5em;
+    background-color: transparent;
+  }
+
+  ${(props) =>
+    props.isSelecting &&
+    css`
+      p {
+        padding: 1em 1em 1em 1em;
+        border-radius: 0.5em;
+        background-color: #48cdd8;
+      }
+
+      p:hover {
+        padding: 1em 1em 1em 1em;
+        border-radius: 0.5em;
+        background-color: red;
+      }
+    `}
 `;
 
 export const WrapperImage = styled.section`
