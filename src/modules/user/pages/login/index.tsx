@@ -7,7 +7,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { P } from 'Styles/global';
-import { layout } from './constants';
+import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
+import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
 import { FormErrorValue, FormFinishValue, FormLogin } from './types';
 
@@ -90,17 +91,7 @@ const LoginPage: React.FC<Props> = (props) => {
               />
             </Form.Item>
             <LoginButton />
-            <Row justify="center">
-              <Col span={10}>
-                <hr />
-              </Col>
-              <Col span={4}>
-                <P>or</P>
-              </Col>
-              <Col span={10}>
-                <hr />
-              </Col>
-            </Row>
+            <BreakLineWithCaption>or</BreakLineWithCaption>
             <LoginWithFacebookButton onSubmit={props.onSubmitOAuth} />
             <Form.Item>
               <P>

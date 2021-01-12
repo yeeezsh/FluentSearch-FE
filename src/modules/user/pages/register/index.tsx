@@ -5,6 +5,7 @@ import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
 import { P } from 'Styles/global';
 import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
@@ -80,17 +81,7 @@ const RegisterPage: React.FC<Props> = (props) => {
               />
             </Form.Item>
             <RegisterButton />
-            <Row justify="center">
-              <Col span={10}>
-                <hr />
-              </Col>
-              <Col span={4}>
-                <P>or</P>
-              </Col>
-              <Col span={10}>
-                <hr />
-              </Col>
-            </Row>
+            <BreakLineWithCaption>or</BreakLineWithCaption>
             <Form.Item>
               <P>
                 Already have an account?
