@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import { CheckCircleOutlined, CheckCircleFilled } from '@ant-design/icons';
-import { SelectIconStyled } from './styled';
+import { SelectIconWrapperStyled } from './styled';
+import { Props } from './types';
 
-const SelectIcon: React.FC = () => {
+const iconStyle: CSSProperties = { fontSize: 36 };
+
+const SelectedIcon: React.FC = () => (
+  <CheckCircleFilled style={{ ...iconStyle, color: 'blue' }} />
+);
+
+const SelectIcon: React.FC<Props> = (props) => {
+  const { hover, selected } = props;
+  const [innerHover, setInnerHover] = useState<boolean>(false);
+  const onInnerHover = (isHover: boolean) => {
+    setInnerHover(isHover);
+  };
   return (
-    <SelectIconStyled>
-      <CheckCircleOutlined style={{ fontSize: 36 }} />
-    </SelectIconStyled>
+    <SelectIconWrapperStyled
+      onMouseOver={() => onInnerHover(true)}
+      onMouseLeave={() => onInnerHover(false)}>
+      {hover && !selected && !innerHover && <CheckCircleOutlined style={iconStyle} />}
+      {innerHover && !selected && <CheckCircleFilled style={iconStyle} />}
+      {selected && <SelectedIcon />}
+    </SelectIconWrapperStyled>
   );
 };
 
