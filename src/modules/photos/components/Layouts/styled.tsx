@@ -34,7 +34,7 @@ export const MenuWrapper = styled.div`
   width: 100%;
 `;
 
-export const Menu = styled.div<{ isSelecting: boolean }>`
+export const MenuItem = styled.div<{ isSelecting: boolean }>`
   width: 100%;
   cursor: pointer;
   color: white;
@@ -75,4 +75,17 @@ export const WrapperImage = styled.section`
   grid-gap: 1em;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-auto-rows: 300px;
+`;
+
+export const UserWrapper = styled.div`
+  cursor: default;
+
+  .ant-avatar-circle {
+    color: #fde3cf;
+    background-color: #f56a00;
+  }
+  .ant-avatar-circle :hover {
+    color: #f56a00;
+    background-color: #fde3cf;
+  }
 `;

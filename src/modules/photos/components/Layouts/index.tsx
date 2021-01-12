@@ -1,11 +1,12 @@
 import React from 'react';
-import { Layout, Input, Row, Col, Avatar, Popover } from 'antd';
+import { Menu, Layout, Input, Row, Col, Avatar, Dropdown } from 'antd';
 import {
   CanvasWrapper,
   SiderWrapper,
   MenuWrapper,
-  Menu,
+  MenuItem,
   ContentWrapper,
+  UserWrapper,
 } from 'Modules/photos/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
@@ -25,9 +26,9 @@ const MenuContainer: React.FC = () => {
         const isSelecting = '/' + link === router.pathname;
         return (
           <Link href={pathJoin(link)} key={key}>
-            <Menu isSelecting={isSelecting}>
+            <MenuItem isSelecting={isSelecting}>
               <p>{label}</p>
-            </Menu>
+            </MenuItem>
           </Link>
         );
       })}
@@ -48,13 +49,21 @@ const Sider: React.FC = () => (
   </SiderWrapper>
 );
 
-const UserWrapper: React.FC = () => {
+const DropdownMenu = (
+  <Menu>
+    <Menu.Item>My Profile</Menu.Item>
+    <Menu.Item>Reset Password</Menu.Item>
+    <Menu.Item>logout</Menu.Item>
+  </Menu>
+);
+
+const UserContainer: React.FC = () => {
   return (
-    <Popover placement="bottom" title={'text'} content={'content'} trigger="click">
-      <div>
-        <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-      </div>
-    </Popover>
+    <UserWrapper>
+      <Dropdown overlay={DropdownMenu} placement="bottomRight" trigger={['click']}>
+        <Avatar>J</Avatar>
+      </Dropdown>
+    </UserWrapper>
   );
 };
 
@@ -66,7 +75,7 @@ const HeaderWrapper: React.FC = () => {
           <Input placeholder="Search" prefix={<SearchOutlined />} />
         </Col>
         <Col xl={4} push={4}>
-          <UserWrapper />
+          <UserContainer />
         </Col>
       </Row>
     </Header>
