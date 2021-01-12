@@ -1,4 +1,3 @@
-import { Row } from 'antd';
 import React from 'react';
 import ThumbnailPhoto from '../ThumbnailPhoto';
 import { mock } from './constants';
