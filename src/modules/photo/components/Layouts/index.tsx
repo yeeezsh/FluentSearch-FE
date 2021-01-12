@@ -1,38 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Layout, Input, Row, Col, Avatar } from 'antd';
 import {
   CanvasWrapper,
   SiderWrapper,
   MenuWrapper,
   Menu,
-  WrapperImage,
 } from 'Modules/photo/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import axios from 'axios';
-import { LoadedImage } from 'Modules/photo/components/Layouts/LoadedImage';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { Loader } from 'Components/Loader/index';
-
 const { Header, Content } = Layout;
 
 const AllPhotosLayout: React.FC = (props) => {
-  const [images, setImages] = useState<any>([]);
-
-  useEffect(() => {
-    fetchImages();
-  }, []);
-
-  const fetchImages = async (): Promise<void> => {
-    const apiRoot = 'https://api.unsplash.com';
-    const accessKey = 'fLLHNmXzlY1Mkc9woN0pQFNNc53hoBfGAgmQTF2OH4w';
-    await axios
-      .get(`${apiRoot}/photos/random?client_id=${accessKey}&count=5`)
-      .then((res) => setImages([...images, ...res.data]));
-  };
-
   return (
     <CanvasWrapper>
       <Layout>
@@ -76,17 +56,6 @@ const AllPhotosLayout: React.FC = (props) => {
             <h1>Photos</h1>
             <hr />
             {props.children}
-            <InfiniteScroll
-              dataLength={images.length}
-              next={fetchImages}
-              hasMore={true}
-              loader={<Loader />}>
-              <WrapperImage>
-                {images.map((image) => (
-                  <LoadedImage url={image.urls.thumb} key={image.id} />
-                ))}
-              </WrapperImage>
-            </InfiniteScroll>
           </div>
         </Content>
       </Layout>
