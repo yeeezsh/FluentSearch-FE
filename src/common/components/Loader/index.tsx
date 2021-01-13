@@ -1,15 +1,14 @@
 import React from 'react';
 import { Loading } from './styled';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export const Loader = (): JSX.Element => {
+  const antIcon = <LoadingOutlined spin />;
+
   return (
     <Loading>
-      <div className="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <Spin indicator={antIcon} />
     </Loading>
   );
 };
