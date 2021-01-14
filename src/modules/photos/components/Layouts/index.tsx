@@ -78,10 +78,10 @@ const HeaderWrapper: React.FC = () => {
   return (
     <Header>
       <Row justify="center">
-        <Col xl={10}>
+        <Col xl={8}>
           <Input placeholder="Search" prefix={<SearchOutlined />} />
         </Col>
-        <Col xl={4} push={4}>
+        <Col xl={4} push={3}>
           <UserContainer />
         </Col>
       </Row>
@@ -95,13 +95,12 @@ const AllPhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
     <CanvasWrapper>
       <Layout>
         <Sider />
+
+        <HeaderWrapper />
         <Content>
-          <HeaderWrapper />
-          <ContentWrapper>
-            <h1>{title}</h1>
-            <hr />
-            {children}
-          </ContentWrapper>
+          <h1>{title}</h1>
+          <hr />
+          {children}
         </Content>
       </Layout>
     </CanvasWrapper>
