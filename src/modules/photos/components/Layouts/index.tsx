@@ -43,7 +43,12 @@ const Sider: React.FC = () => (
   <SiderWrapper>
     <Row justify="center">
       <Col>
-        <Image src={'assets/images/logo-with-bg.svg'} width={180} height={80} />
+        <Image
+          src={'assets/images/logo-with-bg.svg'}
+          layout="fixed"
+          width={130}
+          height={80}
+        />
       </Col>
     </Row>
     <MenuWrapper>
