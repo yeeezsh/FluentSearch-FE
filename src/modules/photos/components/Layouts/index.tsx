@@ -5,8 +5,8 @@ import {
   SiderWrapper,
   MenuWrapper,
   MenuItem,
-  ContentWrapper,
   UserWrapper,
+  ContentWrapper,
 } from 'Modules/photos/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
@@ -95,13 +95,14 @@ const AllPhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
     <CanvasWrapper>
       <Layout>
         <Sider />
-
-        <HeaderWrapper />
-        <Content>
-          <h1>{title}</h1>
-          <hr />
-          {children}
-        </Content>
+        <ContentWrapper>
+          <HeaderWrapper />
+          <Content style={{ overflow: 'initial' }}>
+            <h1>{title}</h1>
+            <hr />
+            {children}
+          </Content>
+        </ContentWrapper>
       </Layout>
     </CanvasWrapper>
   );

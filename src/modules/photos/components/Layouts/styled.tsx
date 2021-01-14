@@ -11,26 +11,49 @@ export const CanvasWrapper = styled.div`
     width: 100%;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     z-index: 999;
-    margin-left: 10%;
+    /* margin-left: 10%; */
   }
 
   .ant-layout-content {
     background-color: white;
     overflow-y: scroll;
     width: 100%;
-    padding: 10% 5% 5% 15%;
+
+    @media (min-width: 1600px) {
+      padding: 10% 5% 5% 5%;
+    }
+    @media (min-width: 1200px) and (max-width: 1599px) {
+      padding: 10% 5% 5% 10%;
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+      padding: 10% 5% 5% 15%;
+    }
+    @media (max-width: 991px) {
+      padding: 10% 10% 5% 10%;
+    }
+  }
+`;
+
+export const ContentWrapper = styled(Layout)`
+  margin-left: 10%;
+
+  @media (max-width: 992px) {
+    margin-left: 0%;
   }
 `;
 
 export const SiderWrapper = styled(Sider)`
   background-color: #4425a7;
-  width: 294px;
   padding: 2%;
   overflow: auto;
   z-index: 1000;
   left: 0;
   position: fixed;
   height: 100vh;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const MenuWrapper = styled.div`
