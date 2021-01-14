@@ -5,9 +5,10 @@ import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { WrapperImage } from '../components/Layouts/styled';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
+import { Photos } from '../constants/photo/interface';
 
 const AllPhotosPages: React.FC = () => {
-  const [images, setImages] = useState<any>([]);
+  const [images = [], setImages] = useState<Photos[]>();
 
   useEffect(() => {
     fetchImages();
@@ -18,7 +19,10 @@ const AllPhotosPages: React.FC = () => {
     const accessKey = 'fLLHNmXzlY1Mkc9woN0pQFNNc53hoBfGAgmQTF2OH4w';
     await axios
       .get(`${apiRoot}/photos/random?client_id=${accessKey}&count=5`)
-      .then((res) => setImages([...images, ...res.data]));
+      .then((res) => {
+        console.log(res.data, typeof res.data);
+        setImages([...images, ...res.data]);
+      });
   };
 
   return (
