@@ -33,7 +33,7 @@ const AllPhotosPages: React.FC = () => {
         hasMore={true}
         loader={<Loader />}>
         <WrapperImage>
-          {images.map((image: { urls: { thumb: string }; id: string }) => (
+          {images.map((image: Photos) => (
             <ThumbnailPhoto
               src={image.urls.thumb}
               key={image.id}
