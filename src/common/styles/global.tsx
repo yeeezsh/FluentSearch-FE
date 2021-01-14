@@ -2,6 +2,10 @@ import 'antd/dist/antd.css';
 import styled, { createGlobalStyle, css } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 100%;
+  }
+
   body {
     padding: 0;
     margin: 0;
@@ -19,6 +23,31 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 3.052em;
+  }
+
+  h2 {
+    font-size: 2.441em;
+  }
+
+  h3 {
+    font-size: 1.953em;
+  }
+
+  h4 {
+    font-size: 1.563em;
+  }
+
+  h5 {
+    font-size: 1.25em;
+  }
+
+  body,span,p {
+    // 16px
+    font-size: 1em;
   }
 `;
 
