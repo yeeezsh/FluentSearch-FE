@@ -5,6 +5,13 @@ const { Sider } = Layout;
 export const CanvasWrapper = styled.div`
   overflow: hidden;
 
+  aside {
+    width: 300px !important;
+    max-width: 300px !important;
+    min-width: 300px !important;
+    flex: 0 0 300px !important;
+  }
+
   .ant-layout-header {
     background-color: white;
     position: fixed;
@@ -44,7 +51,7 @@ export const ContentWrapper = styled(Layout)`
 
 export const SiderWrapper = styled(Sider)`
   background-color: #4425a7;
-  padding: 2%;
+  padding: 5% 2% 2% 2%;
   overflow: auto;
   z-index: 1000;
   left: 0;
@@ -59,6 +66,10 @@ export const SiderWrapper = styled(Sider)`
 export const MenuWrapper = styled.div`
   margin-top: 30%;
   width: 100%;
+`;
+
+export const IconWrapper = styled.span`
+  margin-right: 10%;
 `;
 
 export const MenuItem = styled.div<{ isSelecting: boolean }>`

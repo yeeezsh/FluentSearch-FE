@@ -7,6 +7,7 @@ import {
   MenuItem,
   UserWrapper,
   ContentWrapper,
+  IconWrapper,
 } from 'Modules/photos/components/Layouts/styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
@@ -32,7 +33,10 @@ const MenuContainer: React.FC = () => {
           <Link href={pathJoin(link)} key={key}>
             <MenuItem isSelecting={isSelecting}>
               <p>
-                <IconSelector type={icon as string} /> {label}
+                <IconWrapper>
+                  <IconSelector type={icon as string} />
+                </IconWrapper>
+                {label}
               </p>
             </MenuItem>
           </Link>
@@ -49,7 +53,7 @@ const Sider: React.FC = () => (
         <Image
           src={'assets/images/logo-with-bg.svg'}
           layout="fixed"
-          width={130}
+          width={230}
           height={80}
         />
       </Col>
