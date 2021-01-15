@@ -4,4 +4,5 @@ export type MenuType = {
   link: string[];
   style?: React.CSSProperties;
   active: boolean;
+  icon?: string;
 };

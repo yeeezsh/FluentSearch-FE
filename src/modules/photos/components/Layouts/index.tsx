@@ -17,7 +17,8 @@ import { useRouter } from 'next/router';
 import {
   DROPDOWN_SIDEBAR_CONSTANT,
   PHOTOS_SIDEBAR_CONSTANT,
-} from 'Modules/photos/constant/menu/index';
+} from 'Modules/photos/constants/menu/index';
+import IconSelector from 'Utils/icon-selector';
 
 const { Header, Content } = Layout;
 
@@ -25,12 +26,14 @@ const MenuContainer: React.FC = () => {
   const router = useRouter();
   return (
     <>
-      {PHOTOS_SIDEBAR_CONSTANT.map(({ key, label, link }) => {
+      {PHOTOS_SIDEBAR_CONSTANT.map(({ key, label, link, icon }) => {
         const isSelecting = '/' + link === router.pathname;
         return (
           <Link href={pathJoin(link)} key={key}>
             <MenuItem isSelecting={isSelecting}>
-              <p>{label}</p>
+              <p>
+                <IconSelector type={icon as string} /> {label}
+              </p>
             </MenuItem>
           </Link>
         );
