@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 
-export const DashboardPage: React.FC = () => {
+const DashboardPage: React.FC = () => {
   return (
     <div>
       <h3>Dashboard</h3>
@@ -21,3 +21,5 @@ export const DashboardPage: React.FC = () => {
     </div>
   );
 };
+
+export default DashboardPage;
