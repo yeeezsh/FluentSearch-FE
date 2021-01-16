@@ -10,7 +10,6 @@ export default {
 export const RegisterStories = (): JSX.Element => (
   <>
     <GlobalStyle />
-
     <RegisterPage />
   </>
 );
