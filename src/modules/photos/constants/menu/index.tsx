@@ -1,4 +1,4 @@
-import { MenuType } from './types';
+import { MenuType } from 'src/common/constants/menu/types';
 
 export const PHOTOS_SIDEBAR_CONSTANT: MenuType[] = [
   {
