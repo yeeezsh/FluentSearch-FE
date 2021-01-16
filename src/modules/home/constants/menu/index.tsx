@@ -1,6 +1,6 @@
 import Button from 'Components/Button';
 import React from 'react';
-import { MenuType } from './types';
+import { MenuType } from 'src/common/constants/menu/types';
 
 export const APP_NAVBAR_CONSTANT: MenuType[] = [
   {
