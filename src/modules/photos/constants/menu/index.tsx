@@ -4,7 +4,7 @@ export const PHOTOS_SIDEBAR_CONSTANT: MenuType[] = [
   {
     key: '1',
     label: 'Dashboard',
-    link: ['aashboard'],
+    link: ['dashboard'],
     active: false,
     icon: 'HomeOutlined',
   },
