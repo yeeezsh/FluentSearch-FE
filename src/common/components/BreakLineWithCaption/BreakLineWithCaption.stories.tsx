@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { BreakLineWithCaption } from 'Components/BreakLineWithCaption';
 import React from 'react';
+import { GlobalStyle } from 'Styles/global';
 
 export default {
   title: 'FluentSearch/BreakLineWithCaption',
@@ -12,7 +13,9 @@ type PropType = {
 };
 
 const BreakLineWithCaptionStory: Story<PropType> = (args) => (
-  <BreakLineWithCaption {...args} />
+  <div style={{ marginTop: '55px' }}>
+    <GlobalStyle /> <BreakLineWithCaption {...args} />
+  </div>
 );
 
 export const Default = BreakLineWithCaptionStory.bind({});
