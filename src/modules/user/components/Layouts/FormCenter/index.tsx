@@ -1,5 +1,8 @@
 import { Col, Row } from 'antd';
-import { Container, FormContainer } from 'Modules/user/components/Layouts/Login/styled';
+import {
+  Container,
+  FormContainer,
+} from 'Modules/user/components/Layouts/FormCenter/styled';
 import Image from 'next/image';
 import React from 'react';
 
@@ -14,7 +17,7 @@ const LoginCanvas: React.FC = () => (
   </Col>
 );
 
-const LoginLayout: React.FC = (props) => {
+const FormCenterLayout: React.FC = (props) => {
   const { children } = props;
   return (
     <Container>
@@ -28,4 +31,4 @@ const LoginLayout: React.FC = (props) => {
   );
 };
 
-export default LoginLayout;
+export default FormCenterLayout;

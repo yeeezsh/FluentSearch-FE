@@ -1,16 +1,15 @@
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
-import { OAuthEnum } from 'Models/oauth/enum';
 import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { P } from 'Styles/global';
 import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
+import { P } from 'Styles/global';
 import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
-import { FormErrorValue, FormFinishValue, FormLogin } from './types';
+import { FormErrorValue, FormFinishValue, FormRegister } from './types';
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -20,30 +19,16 @@ const HeaderLogo: React.FC = () => (
   </Row>
 );
 
-const LoginButton: React.FC = () => (
+const RegisterButton: React.FC = () => (
   <Form.Item>
-    <Button id="login-btn" type="primary" htmlType="submit" block>
-      Log in
+    <Button id="register-btn" type="primary" htmlType="submit" block>
+      Register
     </Button>
   </Form.Item>
 );
 
-const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = (
-  props,
-) => (
-  <Form.Item>
-    <Button
-      onClick={() => props.onSubmit && props.onSubmit(OAuthEnum.Facebook)}
-      id="fb-btn"
-      style={{ backgroundColor: '#3b5998', color: '#ffffff' }}
-      block>
-      Login with Facebook
-    </Button>
-  </Form.Item>
-);
-
-const LoginPage: React.FC<Props> = (props) => {
-  const [form] = useForm<FormLogin>();
+const RegisterPage: React.FC<Props> = (props) => {
+  const [form] = useForm<FormRegister>();
 
   const onFinish: FormFinishValue = (values) => {
     props.onSubmit && props.onSubmit(values);
@@ -55,7 +40,7 @@ const LoginPage: React.FC<Props> = (props) => {
     props.onError &&
       props.onError({
         errorFields: formValue.errorFields,
-        values: (formValue as unknown) as FormLogin,
+        values: (formValue as unknown) as FormRegister,
       });
   };
 
@@ -66,13 +51,18 @@ const LoginPage: React.FC<Props> = (props) => {
         <Col span={16} xl={14}>
           <Form
             {...layout}
-            id="login-form"
+            id="register-form"
             form={form}
-            name="login"
+            name="register"
             onFinish={onFinish}
             onFinishFailed={onError}
             size="large"
             layout="vertical">
+            <Form.Item
+              name={'name'}
+              rules={[{ required: true, message: 'Please input your name' }]}>
+              <Input id="name" prefix={<UserOutlined />} placeholder="name" />
+            </Form.Item>
             <Form.Item
               name={'email'}
               rules={[
@@ -90,14 +80,13 @@ const LoginPage: React.FC<Props> = (props) => {
                 placeholder="Password"
               />
             </Form.Item>
-            <LoginButton />
+            <RegisterButton />
             <BreakLineWithCaption>or</BreakLineWithCaption>
-            <LoginWithFacebookButton onSubmit={props.onSubmitOAuth} />
             <Form.Item>
               <P>
-                Haven&apos;t an account?
-                <Link href="/register">
-                  <a> Register</a>
+                Already have an account?
+                <Link href="/login">
+                  <a> Log in</a>
                 </Link>
               </P>
             </Form.Item>
@@ -108,4 +97,4 @@ const LoginPage: React.FC<Props> = (props) => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
