@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Progress } from 'antd';
-import { DashboardWrapper, ContentWrapper, DashboardCard } from './styled';
+import { DashboardWrapper, ContentWrapper, DashboardCard, SmallBodyText } from './styled';
 import { Label } from 'Styles/global';
 
 const DashboardPage: React.FC = () => {
@@ -14,8 +14,8 @@ const DashboardPage: React.FC = () => {
               <h5>Photos</h5>
               <br />
               <h3>123.k</h3>
-              <p>today upload</p>
-              <p>+123.k</p>
+              <SmallBodyText>today upload</SmallBodyText>
+              <p style={{ fontWeight: 'bold', color: '#5A36CC' }}>+123.k</p>
             </DashboardCard>
           </Col>
           <Col md={4}>
@@ -23,24 +23,32 @@ const DashboardPage: React.FC = () => {
               <h5>Videos</h5>
               <br />
               <h3>123.k</h3>
-              <p>today upload</p>
-              <p>+123.k</p>
+              <SmallBodyText>today upload</SmallBodyText>
+              <p style={{ fontWeight: 'bold', color: '#5A36CC' }}>+123.k</p>
             </DashboardCard>
           </Col>
           <Col md={4}>
             <DashboardCard>
               <h5>Task</h5>
-              <br />
-              <Progress type="dashboard" percent={75} gapDegree={30} />
-              <p>100 of 1000 photos</p>
+              <div style={{ textAlign: 'center' }}>
+                <Progress
+                  type="circle"
+                  percent={75}
+                  strokeWidth={8}
+                  strokeColor={{ '0%': '#5a36cc', '100%': '#5a36cc' }}
+                />
+                <SmallBodyText>100 of 1000 photos</SmallBodyText>
+              </div>
             </DashboardCard>
           </Col>
           <Col md={4}>
             <DashboardCard>
               <h5>Model</h5>
               <br />
-              <Label color="purple">ResNet</Label>
-              <h3>800</h3>
+              <Label color="purple" style={{ marginTop: '10%' }}>
+                ResNet
+              </Label>
+              <h3 style={{ marginTop: '0%', marginBottom: '-3%' }}>800</h3>
               <p>photos</p>
             </DashboardCard>
           </Col>
