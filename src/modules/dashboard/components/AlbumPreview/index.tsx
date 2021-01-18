@@ -23,10 +23,12 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = (props) => {
     <AlbumWrapper>
       <Container onClick={() => router.push(link)}>
         <Image src={src} width={300} height={300} />
-        <Text id="text">Hello World</Text>
+        <Text id="text">View Album</Text>
       </Container>
 
-      <span>{albumName}</span>
+      <span>
+        <b>{albumName}</b>
+      </span>
       <br />
       <span>{albumLength} items</span>
       <br />
