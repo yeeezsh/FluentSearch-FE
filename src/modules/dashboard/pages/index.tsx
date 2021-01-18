@@ -71,7 +71,6 @@ const DashboardPage: React.FC = () => {
           <h3>Overview Album</h3>
           <Row justify="space-around" align="middle">
             <Col md={5}>
-              {' '}
               <AlbumPreview
                 src="assets/images/test.jpg"
                 albumName="album name"
@@ -88,7 +87,6 @@ const DashboardPage: React.FC = () => {
               />
             </Col>
             <Col md={5}>
-              {' '}
               <AlbumPreview
                 src="assets/images/test.jpg"
                 albumName="album name"
@@ -97,7 +95,6 @@ const DashboardPage: React.FC = () => {
               />
             </Col>
             <Col md={5}>
-              {' '}
               <AlbumPreview
                 src="assets/images/test.jpg"
                 albumName="album name"
