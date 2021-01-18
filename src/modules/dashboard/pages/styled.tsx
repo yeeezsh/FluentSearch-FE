@@ -31,7 +31,8 @@ export const DashboardWrapper = styled.div`
   }
 
   body,
-  p {
+  p,
+  span {
     font-size: 1rem;
     margin: 0;
   }
