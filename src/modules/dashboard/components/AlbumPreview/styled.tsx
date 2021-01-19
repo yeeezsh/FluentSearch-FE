@@ -15,8 +15,7 @@ export const AlbumWrapper = styled.div`
 
 export const Label = styled(Tag)`
   border-radius: 100px;
-  font-size: 14px;
-  margin: 3px;
+  font-size: 0.8rem !important;
 `;
 
 export const Container = styled.div`

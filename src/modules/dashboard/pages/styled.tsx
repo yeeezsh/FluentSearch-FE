@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card, Tag } from 'antd';
+import { Tag } from 'antd';
 
 export const DashboardWrapper = styled.div`
   margin-bottom: 50%;
@@ -38,13 +38,6 @@ export const DashboardWrapper = styled.div`
   }
 `;
 
-export const SmallBodyText = styled.p`
-  font-size: 0.8rem;
-  margin-bottom: 2px;
-  margin-top: 10px;
-  color: #88888d;
-`;
-
 export const CaptionText = styled.p`
   font-size: 0.64rem;
 `;
@@ -59,19 +52,6 @@ export const ContentWrapper = styled.div`
   padding: 8% 10% 10% 10%;
 `;
 
-export const DashboardCard = styled(Card)`
-  border-radius: 8px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  height: auto;
-  min-height: 250px;
-  width: auto;
-  min-width: 230px;
-`;
-
 export const CardWrapper = styled.div`
   margin: 0% 3% 0% 0%;
-`;
-
-export const Label = styled(Tag)`
-  border-radius: 100px;
 `;

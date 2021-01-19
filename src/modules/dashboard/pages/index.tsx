@@ -1,14 +1,10 @@
 import React from 'react';
 import { Row, Col, Progress } from 'antd';
-import {
-  DashboardWrapper,
-  ContentWrapper,
-  DashboardCard,
-  SmallBodyText,
-  CardWrapper,
-  Label,
-} from './styled';
+import { DashboardWrapper, ContentWrapper, CardWrapper, Label } from './styled';
 import AlbumPreview from 'Modules/dashboard/components/AlbumPreview/index';
+import NumberCard from '../components/Card/numberCard';
+import ProgressCard from '../components/Card/progressCard';
+import ModelCard from '../components/Card/modelCard';
 
 const DashboardPage: React.FC = () => {
   const LabelList: Array<string> = ['label1', 'label2', 'label3'];
@@ -20,49 +16,21 @@ const DashboardPage: React.FC = () => {
         <CardWrapper>
           <Row justify="space-around" align="middle">
             <Col md={4}>
-              <DashboardCard>
-                <h5>Photos</h5>
-                <br />
-                <h3>123.k</h3>
-                <SmallBodyText>today upload</SmallBodyText>
-                <p style={{ fontWeight: 'bold', color: '#5A36CC' }}>+123.k</p>
-              </DashboardCard>
+              <NumberCard cardName={'Photos'} largeNumber={123000} todayNumber={123000} />
             </Col>
             <Col md={4}>
-              <DashboardCard>
-                <h5>Videos</h5>
-                <br />
-                <h3>123.k</h3>
-                <SmallBodyText>today upload</SmallBodyText>
-                <p style={{ fontWeight: 'bold', color: '#5A36CC' }}>+123.k</p>
-              </DashboardCard>
+              <NumberCard cardName={'Videos'} largeNumber={123000} todayNumber={123000} />
             </Col>
             <Col md={4}>
-              <DashboardCard>
-                <h5>Task</h5>
-                <div style={{ textAlign: 'center' }}>
-                  <Progress
-                    type="circle"
-                    percent={75}
-                    strokeWidth={8}
-                    strokeColor={{ '0%': '#5a36cc', '100%': '#5a36cc' }}
-                  />
-                  <SmallBodyText style={{ marginTop: '10%' }}>
-                    100 of 1000 photos
-                  </SmallBodyText>
-                </div>
-              </DashboardCard>
+              <ProgressCard
+                cardName={'Task'}
+                progress={75}
+                doneNumber={100}
+                totalNumber={1000}
+              />
             </Col>
             <Col md={4}>
-              <DashboardCard>
-                <h5>Model</h5>
-                <br />
-                <Label color="purple" style={{ marginTop: '10%' }}>
-                  ResNet
-                </Label>
-                <h3 style={{ marginTop: '0%', marginBottom: '-3%' }}>800</h3>
-                <p>photos</p>
-              </DashboardCard>
+              <ModelCard cardName={'Model'} model={'resNet'} largeNumber={800} />
             </Col>
           </Row>
         </CardWrapper>
