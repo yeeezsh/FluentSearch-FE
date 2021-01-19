@@ -8,7 +8,7 @@ export default {
   component: DashboardPage,
 } as Meta;
 
-export const DashboardStories = (): JSX.Element => (
+export const Default = (): JSX.Element => (
   <>
     <GlobalStyle />
     <DashboardPage />
