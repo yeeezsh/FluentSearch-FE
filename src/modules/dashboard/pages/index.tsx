@@ -1,6 +1,6 @@
 import React from 'react';
-import { Row, Col, Progress } from 'antd';
-import { DashboardWrapper, ContentWrapper, CardWrapper, Label } from './styled';
+import { Row, Col } from 'antd';
+import { DashboardWrapper, ContentWrapper, CardWrapper } from './styled';
 import AlbumPreview from 'Modules/dashboard/components/AlbumPreview/index';
 import NumberCard from '../components/Card/numberCard';
 import ProgressCard from '../components/Card/progressCard';

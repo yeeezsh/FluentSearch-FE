@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Tag } from 'antd';
 
 export const DashboardWrapper = styled.div`
   margin-bottom: 50%;
