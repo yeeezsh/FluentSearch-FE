@@ -27,6 +27,7 @@ export const Container = styled.div`
   }
 
   &:hover #text {
+    cursor: pointer;
     opacity: 1;
   }
 `;
