@@ -44,3 +44,10 @@ export const Text = styled.div`
   text-align: center;
   opacity: 0;
 `;
+
+export const AlbumDetailsWrapper = styled.div`
+  margin-top: 20px;
+`;
+export const LabelWrapper = styled.div`
+  margin-top: 15px;
+`;

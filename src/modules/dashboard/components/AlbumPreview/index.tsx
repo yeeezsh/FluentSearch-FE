@@ -1,6 +1,13 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { AlbumWrapper, Label, Container, Text } from './styled';
+import {
+  AlbumWrapper,
+  Label,
+  Container,
+  Text,
+  AlbumDetailsWrapper,
+  LabelWrapper,
+} from './styled';
 import { AlbumPreviewProps } from './types';
 
 const AlbumPreview: React.FC<AlbumPreviewProps> = (props) => {
@@ -16,21 +23,21 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = (props) => {
         <Text id="text">View Photo</Text>
       </Container>
 
-      <div style={{ marginTop: '20px' }}>
+      <AlbumDetailsWrapper>
         <span>
           <b>{albumName}</b>
         </span>
         <br />
         <span>{albumLength} items</span>
         <br />
-      </div>
-      <div style={{ marginTop: '15px' }}>
+      </AlbumDetailsWrapper>
+      <LabelWrapper>
         {label.map((e, i) => (
           <Label color="purple" key={i}>
             {e}
           </Label>
         ))}
-      </div>
+      </LabelWrapper>
     </AlbumWrapper>
   );
 };
