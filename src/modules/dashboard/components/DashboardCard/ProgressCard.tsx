@@ -1,14 +1,15 @@
 import { Progress } from 'antd';
 import React from 'react';
-import { DashboardCard, SmallBodyText } from './styled';
+import { DashboardCard, SmallBodyText, ProgressCardWrapper } from './styled';
 import { ProgressCardProps } from './types';
+import kFormatter from 'Utils/kFormatter';
 
 const ProgressCard: React.FC<ProgressCardProps> = (props) => {
   const { cardName, progress, doneNumber, totalNumber } = props;
   return (
     <DashboardCard>
       <h5>{cardName}</h5>
-      <div style={{ textAlign: 'center' }}>
+      <ProgressCardWrapper>
         <Progress
           type="circle"
           percent={progress}
@@ -16,9 +17,9 @@ const ProgressCard: React.FC<ProgressCardProps> = (props) => {
           strokeColor={{ '0%': '#5a36cc', '100%': '#5a36cc' }}
         />
         <SmallBodyText style={{ marginTop: '10%' }}>
-          {doneNumber} of {totalNumber} photos
+          {kFormatter(doneNumber)} of {kFormatter(totalNumber)} photos
         </SmallBodyText>
-      </div>
+      </ProgressCardWrapper>
     </DashboardCard>
   );
 };
