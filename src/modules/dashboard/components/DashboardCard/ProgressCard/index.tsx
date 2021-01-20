@@ -1,6 +1,10 @@
 import { Progress } from 'antd';
 import React from 'react';
-import { DashboardCard, SmallBodyText, ProgressCardWrapper } from '../styled';
+import {
+  DashboardCard,
+  SmallBodyText,
+  ProgressCardWrapper,
+} from 'Modules/dashboard/components/DashboardCard/styled';
 import { ProgressCardProps } from './types';
 import kFormatter from 'Utils/kFormatter';
 

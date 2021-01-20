@@ -1,6 +1,10 @@
 import React from 'react';
 import kFormatter from 'Utils/kFormatter';
-import { DashboardCard, SmallBodyText, TodayNumberText } from '../styled';
+import {
+  DashboardCard,
+  SmallBodyText,
+  TodayNumberText,
+} from 'Modules/dashboard/components/DashboardCard/styled';
 import { NumberCardProps } from './types';
 
 const NumberCard: React.FC<NumberCardProps> = (props) => {
