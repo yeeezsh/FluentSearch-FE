@@ -45,7 +45,7 @@ const OverviewAlbum: React.FC = () => {
     <Row justify="space-around" align="middle">
       <Col md={5}>
         <AlbumPreview
-          src="assets/images/test.jpg"
+          src="https://i.pinimg.com/564x/86/1c/a6/861ca60c3a2813c8e3250b9af138ada0.jpg"
           albumName="album name"
           albumLength={1}
           label={LabelList}
@@ -53,7 +53,7 @@ const OverviewAlbum: React.FC = () => {
       </Col>
       <Col md={5}>
         <AlbumPreview
-          src="assets/images/test.jpg"
+          src="https://i.pinimg.com/564x/86/1c/a6/861ca60c3a2813c8e3250b9af138ada0.jpg"
           albumName="album name"
           albumLength={1}
           label={LabelList}
@@ -61,7 +61,7 @@ const OverviewAlbum: React.FC = () => {
       </Col>
       <Col md={5}>
         <AlbumPreview
-          src="assets/images/test.jpg"
+          src="https://i.pinimg.com/564x/86/1c/a6/861ca60c3a2813c8e3250b9af138ada0.jpg"
           albumName="album name"
           albumLength={1}
           label={LabelList}
@@ -69,7 +69,7 @@ const OverviewAlbum: React.FC = () => {
       </Col>
       <Col md={5}>
         <AlbumPreview
-          src="assets/images/test.jpg"
+          src="https://i.pinimg.com/564x/86/1c/a6/861ca60c3a2813c8e3250b9af138ada0.jpg"
           albumName="album name"
           albumLength={1}
           label={LabelList}
