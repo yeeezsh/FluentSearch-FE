@@ -22,10 +22,10 @@ export const Label = styled(Tag)`
 `;
 
 export const TodayNumberText = styled.p`
-  font-weight: 'bold';
-  color: '#5A36CC';
+  font-weight: bold;
+  color: #5a36cc;
 `;
 
 export const ProgressCardWrapper = styled.div`
-  text-align: 'center';
+  text-align: center;
 `;
