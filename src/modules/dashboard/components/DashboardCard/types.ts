@@ -1,16 +1,16 @@
-export type _modelCardProps = {
+export type ModelCardProps = {
   cardName: string;
   model: string;
   largeNumber: number;
 };
 
-export type _numberCardProps = {
+export type NumberCardProps = {
   cardName: string;
   largeNumber: number;
   todayNumber: number;
 };
 
-export type _progressCardProps = {
+export type ProgressCardProps = {
   cardName: string;
   progress: number;
   doneNumber: number;

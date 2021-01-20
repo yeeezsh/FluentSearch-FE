@@ -1,9 +1,9 @@
 import React from 'react';
 import kFormatter from 'Utils/kFormatter';
 import { DashboardCard, SmallBodyText } from './styled';
-import { _numberCardProps } from './types';
+import { NumberCardProps } from './types';
 
-const NumberCard: React.FC<_numberCardProps> = (props) => {
+const NumberCard: React.FC<NumberCardProps> = (props) => {
   const { cardName, largeNumber, todayNumber } = props;
   return (
     <DashboardCard>

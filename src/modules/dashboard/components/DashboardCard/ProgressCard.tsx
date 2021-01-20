@@ -1,9 +1,9 @@
 import { Progress } from 'antd';
 import React from 'react';
 import { DashboardCard, SmallBodyText } from './styled';
-import { _progressCardProps } from './types';
+import { ProgressCardProps } from './types';
 
-const ProgressCard: React.FC<_progressCardProps> = (props) => {
+const ProgressCard: React.FC<ProgressCardProps> = (props) => {
   const { cardName, progress, doneNumber, totalNumber } = props;
   return (
     <DashboardCard>
