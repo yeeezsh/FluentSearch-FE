@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const DashboardWrapper = styled.div`
-  margin-bottom: 50%;
   height: 100vh;
 
   h1 {
@@ -76,7 +75,8 @@ export const CardWrapper = styled.div`
 `;
 
 export const AlbumWrapper = styled.div`
-  margin-top: 3%;
+  margin-top: 5%;
+  padding-bottom: 10%;
 `;
 
 export const DashboardHeader = styled.h3`
