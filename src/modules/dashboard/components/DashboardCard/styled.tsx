@@ -20,3 +20,12 @@ export const SmallBodyText = styled.p`
 export const Label = styled(Tag)`
   border-radius: 100px;
 `;
+
+export const TodayNumberText = styled.p`
+  font-weight: 'bold';
+  color: '#5A36CC';
+`;
+
+export const ProgressCardWrapper = styled.div`
+  text-align: 'center';
+`;
