@@ -8,7 +8,7 @@ import ModelCard from 'Modules/dashboard/components/DashboardCard/ModelCard/inde
 
 describe('Pages/Dashboard test', () => {
   it('Render correctly', () => {
-    const wrap = mount(<DashboardPage />);
+    const wrap = shallow(<DashboardPage />);
     expect(wrap.html()).toMatchSnapshot();
   });
 
