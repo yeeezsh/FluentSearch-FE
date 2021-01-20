@@ -7,9 +7,9 @@ import { HeaderWrapper } from 'Modules/home/pages/styled';
 import HomePage from 'Modules/home/pages';
 
 describe('Pages/Home test', () => {
-  it('Render correcly', () => {
-    const wrap = <HomePage />;
-    expect(wrap).toMatchSnapshot();
+  it('Render correctly', () => {
+    const wrap = shallow(<HomePage />);
+    expect(wrap.html()).toMatchSnapshot();
   });
 
   it('Home should be exisiting', () => {
