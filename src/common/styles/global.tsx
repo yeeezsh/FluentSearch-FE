@@ -38,6 +38,14 @@ export const GlobalStyle = createGlobalStyle`
     --box-shadow-base: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     --border-radius-base: 8px;
     --border-radius-round: 100px;
+
+    // LAYOUT BREAKPOINT 
+    --xs: 480px;
+    --sm: 576px;
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;
+    --xxl: 1600px;
   }
 
 
