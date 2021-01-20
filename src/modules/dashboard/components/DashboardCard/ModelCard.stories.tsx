@@ -3,6 +3,12 @@ import ModelCard from 'Modules/dashboard/components/DashboardCard/ModelCard';
 import { ModelCardProps } from './types';
 import React from 'react';
 import { GlobalStyle } from 'Styles/global';
+import {
+  CardWrapper,
+  ContentWrapper,
+  DashboardWrapper,
+} from 'Modules/dashboard/pages/styled';
+import { Col, Row } from 'antd';
 
 export default {
   title: 'FluentSearch/DashboardCard/ModelCard',
@@ -12,7 +18,15 @@ export default {
 const ModelCardStory: Story<ModelCardProps> = (args) => (
   <>
     <GlobalStyle />
-    <ModelCard {...args} />
+    <DashboardWrapper>
+      <CardWrapper>
+        <Row justify="start">
+          <Col md={4}>
+            <ModelCard {...args} />
+          </Col>
+        </Row>
+      </CardWrapper>
+    </DashboardWrapper>
   </>
 );
 

@@ -3,6 +3,8 @@ import ProgressCard from 'Modules/dashboard/components/DashboardCard/ProgressCar
 import { ProgressCardProps } from './types';
 import React from 'react';
 import { GlobalStyle } from 'Styles/global';
+import { Row, Col } from 'antd';
+import { DashboardWrapper, CardWrapper } from 'Modules/dashboard/pages/styled';
 
 export default {
   title: 'FluentSearch/DashboardCard/ProgressCard',
@@ -12,7 +14,15 @@ export default {
 const ProgressCardStory: Story<ProgressCardProps> = (args) => (
   <>
     <GlobalStyle />
-    <ProgressCard {...args} />
+    <DashboardWrapper>
+      <CardWrapper>
+        <Row justify="start">
+          <Col md={4}>
+            <ProgressCard {...args} />
+          </Col>
+        </Row>
+      </CardWrapper>
+    </DashboardWrapper>
   </>
 );
 
