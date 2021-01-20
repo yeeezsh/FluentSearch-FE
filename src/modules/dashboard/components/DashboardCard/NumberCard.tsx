@@ -1,6 +1,6 @@
 import React from 'react';
 import kFormatter from 'Utils/kFormatter';
-import { DashboardCard, SmallBodyText } from './styled';
+import { DashboardCard, SmallBodyText, TodayNumberText } from './styled';
 import { NumberCardProps } from './types';
 
 const NumberCard: React.FC<NumberCardProps> = (props) => {
@@ -11,7 +11,7 @@ const NumberCard: React.FC<NumberCardProps> = (props) => {
       <br />
       <h3>{kFormatter(largeNumber)}</h3>
       <SmallBodyText>today upload</SmallBodyText>
-      <p style={{ fontWeight: 'bold', color: '#5A36CC' }}>+{kFormatter(todayNumber)}</p>
+      <TodayNumberText>+{kFormatter(todayNumber)}</TodayNumberText>
     </DashboardCard>
   );
 };
