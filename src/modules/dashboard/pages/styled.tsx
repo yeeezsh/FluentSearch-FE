@@ -54,3 +54,11 @@ export const ContentWrapper = styled.div`
 export const CardWrapper = styled.div`
   margin: 0% 3% 0% 0%;
 `;
+
+export const AlbumWrapper = styled.div`
+  margin-top: 3%;
+`;
+
+export const DashboardHeader = styled.h3`
+  color: white;
+`;
