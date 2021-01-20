@@ -1,9 +1,9 @@
 import React from 'react';
 import { DashboardCard, Label } from './styled';
-import { modelCardProps } from './types';
+import { _modelCardProps } from './types';
 import kFormatter from 'Utils/kFormatter';
 
-const ModelCard: React.FC<modelCardProps> = (props) => {
+const ModelCard: React.FC<_modelCardProps> = (props) => {
   const { cardName, model, largeNumber } = props;
   return (
     <DashboardCard>
