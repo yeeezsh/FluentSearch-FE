@@ -33,11 +33,13 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = (props) => {
       <br />
       <span>{albumLength} items</span>
       <br />
-      {label.map((e, i) => (
-        <Label color="purple" key={i}>
-          {e}
-        </Label>
-      ))}
+      <div style={{ marginTop: '10px' }}>
+        {label.map((e, i) => (
+          <Label color="purple" key={i}>
+            {e}
+          </Label>
+        ))}
+      </div>
     </AlbumWrapper>
   );
 };
