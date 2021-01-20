@@ -76,7 +76,7 @@ export const CardWrapper = styled.div`
 
 export const AlbumWrapper = styled.div`
   margin-top: 5%;
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 `;
 
 export const DashboardHeader = styled.h3`
