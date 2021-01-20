@@ -17,7 +17,7 @@ const ProgressCardStory: Story<ProgressCardProps> = (args) => (
     <DashboardWrapper>
       <CardWrapper>
         <Row justify="start">
-          <Col md={4}>
+          <Col md={5}>
             <ProgressCard {...args} />
           </Col>
         </Row>

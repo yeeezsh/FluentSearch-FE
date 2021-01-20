@@ -17,7 +17,7 @@ const ModelCardStory: Story<ModelCardProps> = (args) => (
     <DashboardWrapper>
       <CardWrapper>
         <Row justify="start">
-          <Col md={4}>
+          <Col md={5}>
             <ModelCard {...args} />
           </Col>
         </Row>
