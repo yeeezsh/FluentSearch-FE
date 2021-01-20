@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardCard, Label } from './styled';
+import { DashboardCard, Label } from '../styled';
 import { ModelCardProps } from './types';
 import kFormatter from 'Utils/kFormatter';
 
