@@ -5,7 +5,7 @@ import React from 'react';
 import { GlobalStyle } from 'Styles/global';
 
 export default {
-  title: 'FluentSearch/ModelCard',
+  title: 'FluentSearch/DashboardCard/NumberCard',
   component: NumberCard,
 } as Meta;
 
