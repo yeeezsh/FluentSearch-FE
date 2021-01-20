@@ -1,18 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-
 import { AlbumWrapper, Label, Container, Text } from './styled';
-
-type AlbumPreviewProps = {
-  src: string;
-  children?: React.ReactNode;
-  albumName: string;
-  albumLength: number;
-  label: Array<string>;
-  // TODO - required link when have a real props link
-  link?: string;
-};
+import { AlbumPreviewProps } from './types';
 
 const AlbumPreview: React.FC<AlbumPreviewProps> = (props) => {
   // TODO - destructing link from props when have a real props link
