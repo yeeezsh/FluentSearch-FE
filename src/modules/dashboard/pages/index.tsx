@@ -87,7 +87,8 @@ const DashboardPage: React.FC = () => {
         <DashboardCard />
 
         <AlbumWrapper>
-          <h3>Overview Album</h3>
+          {/*TODO - Lastest Album*/}
+          <h3>Lastest Photo</h3>
           <OverviewAlbum />
         </AlbumWrapper>
       </ContentWrapper>

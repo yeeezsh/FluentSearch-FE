@@ -23,7 +23,8 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = (props) => {
     <AlbumWrapper>
       <Container onClick={() => router.push(link)}>
         <Image src={src} width={300} height={300} />
-        <Text id="text">View Album</Text>
+        {/* TODO - change to 'view album' when have an album*/}
+        <Text id="text">View Photo</Text>
       </Container>
 
       <span>
