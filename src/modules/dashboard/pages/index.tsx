@@ -18,13 +18,13 @@ const DashboardCard: React.FC = () => {
   return (
     <CardWrapper>
       <Row justify="space-around" align="middle">
-        <Col md={4}>
+        <Col md={5}>
           <NumberCard cardName={'Photos'} largeNumber={123000} todayNumber={123000} />
         </Col>
-        <Col md={4}>
+        <Col md={5}>
           <NumberCard cardName={'Videos'} largeNumber={123000} todayNumber={123000} />
         </Col>
-        <Col md={4}>
+        <Col md={5}>
           <ProgressCard
             cardName={'Task'}
             progress={75}
@@ -32,7 +32,7 @@ const DashboardCard: React.FC = () => {
             totalNumber={1000}
           />
         </Col>
-        <Col md={4}>
+        <Col md={5}>
           <ModelCard cardName={'Model'} model={'resNet'} largeNumber={800} />
         </Col>
       </Row>
