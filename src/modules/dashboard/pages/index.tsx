@@ -8,9 +8,9 @@ import {
   DashboardHeader,
 } from './styled';
 import AlbumPreview from 'Modules/dashboard/components/AlbumPreview/index';
-import NumberCard from '../components/DashboardCard/numberCard';
-import ProgressCard from '../components/DashboardCard/progressCard';
-import ModelCard from '../components/DashboardCard/modelCard';
+import NumberCard from 'Modules/dashboard/components/DashboardCard/NumberCard';
+import ProgressCard from 'Modules/dashboard/components/DashboardCard/ProgressCard';
+import ModelCard from 'Modules/dashboard/components/DashboardCard/ModelCard';
 
 const LabelList: Array<string> = ['label1', 'label2', 'label3'];
 
