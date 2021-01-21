@@ -8,4 +8,7 @@ module.exports = {
     path: '/',
     loader: 'imgix',
   },
+  env: {
+    APP_GRAPHQL_ENDPOINT: process.env.APP_GRAPHQL_ENDPOINT,
+  },
 };
