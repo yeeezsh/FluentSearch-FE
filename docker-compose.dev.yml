@@ -18,3 +18,4 @@ services:
     logging:
       options:
         max-size: 50m
+        
