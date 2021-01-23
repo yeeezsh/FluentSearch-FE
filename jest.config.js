@@ -15,7 +15,7 @@ const aliasModule = Object.keys(tsconfig.compilerOptions.paths)
   }, {});
 
 module.exports = {
-  moduleDirectories: ['./', 'node_modules'],
+  moduleDirectories: ['src', 'node_modules'],
   testPathIgnorePatterns: ['<rootDir>/.next/'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
