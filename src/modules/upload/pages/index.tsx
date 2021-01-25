@@ -1,40 +1,53 @@
-import React from 'react';
+import React, { InputHTMLAttributes, useState } from 'react';
 import { Col, Input, Layout, Row } from 'antd';
 import Button from 'Components/Button';
-import { UploadWrapper } from './styled';
+import { BottomBar, UploadWrapper } from './styled';
 
 const UploadPage: React.FC = () => {
   const { Content, Footer } = Layout;
+  const [albumName, setAlbumName] = useState<string>('');
+
+  const onChange = (e: any) => {
+    console.log(e.target.value);
+    setAlbumName(e.target.value);
+  };
+
   return (
     <Layout>
       <UploadWrapper>
         <Content>
-          <Row justify="space-between">
+          <Row justify="space-between" style={{ marginBottom: '1.5rem' }}>
             <Col md={8}>
               <Input
                 size="large"
                 placeholder="Album name"
                 bordered={false}
-                style={{ borderBottom: '1px solid grey' }}
+                style={{ borderBottom: '1px solid lightgrey' }}
+                onChange={onChange}
+                value={albumName}
               />
             </Col>
-            <Col md={8}>sort</Col>
+            <Col md={4}>sort</Col>
           </Row>
 
           <hr />
-          <p>upload photo</p>
+          <Row justify="center" align="middle">
+            <Col style={{ marginTop: '20%' }}>
+              <div>
+                <input
+                  type="file"
+                  onClick={() => {
+                    console.log('click');
+                  }}
+                />
+              </div>
+            </Col>
+          </Row>
         </Content>
       </UploadWrapper>
-      <Footer
-        style={{
-          backgroundColor: 'red',
-          boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px;',
-          position: 'fixed',
-          bottom: '0',
-          width: '100%',
-        }}>
+      <BottomBar>
         <Button>Next &gt;</Button>
-      </Footer>
+      </BottomBar>
     </Layout>
   );
 };
