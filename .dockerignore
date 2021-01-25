@@ -9,9 +9,10 @@ node_modules
 npm-debug.log
 npm-debug.log.*
 
-.next/**
-build/**
-out/**
+# dists
+.next
+build
+out
 
 # storybook
 storybook-static
