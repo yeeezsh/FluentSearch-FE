@@ -3,49 +3,33 @@ import { Col, Input, Layout, Row } from 'antd';
 import Button from 'Components/Button';
 import { BottomBar, UploadWrapper } from './styled';
 import { InputLine } from 'Styles/global';
+import UploadButton from '../components/UploadButton';
 
 const UploadPage: React.FC = () => {
   const { Content } = Layout;
   const [albumName, setAlbumName] = useState<string>('');
 
-  const onChange = (e: any) => {
-    console.log(e.target.value);
-    setAlbumName(e.target.value);
-  };
-
   return (
     <Layout>
       <UploadWrapper>
         <Content>
-          <Row justify="space-between" style={{ marginBottom: '1.5rem' }}>
-            <Col md={8}>
-              <InputLine
-                size="large"
-                placeholder="Album name"
-                onChange={onChange}
-                value={albumName}
-              />
+          <Row justify="end" style={{ marginBottom: '1.5rem' }}>
+            <Col flex={4}>Sort</Col>
+            <Col flex={4}>
+              <button>+ Photos</button>
             </Col>
-            <Col md={4}>sort</Col>
           </Row>
 
           <hr />
           <Row justify="center" align="middle">
             <Col style={{ marginTop: '20%' }}>
-              <div>
-                <input
-                  type="file"
-                  onClick={() => {
-                    console.log('click');
-                  }}
-                />
-              </div>
+              <UploadButton />
             </Col>
           </Row>
         </Content>
       </UploadWrapper>
       <BottomBar>
-        <Button>Next &gt;</Button>
+        <Button style={{ backgroundColor: '#5A36CC' }}>Upload Photo </Button>
       </BottomBar>
     </Layout>
   );
