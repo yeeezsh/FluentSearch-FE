@@ -1,10 +1,11 @@
-import React, { InputHTMLAttributes, useState } from 'react';
+import React, { useState } from 'react';
 import { Col, Input, Layout, Row } from 'antd';
 import Button from 'Components/Button';
 import { BottomBar, UploadWrapper } from './styled';
+import { InputLine } from 'Styles/global';
 
 const UploadPage: React.FC = () => {
-  const { Content, Footer } = Layout;
+  const { Content } = Layout;
   const [albumName, setAlbumName] = useState<string>('');
 
   const onChange = (e: any) => {
@@ -18,11 +19,9 @@ const UploadPage: React.FC = () => {
         <Content>
           <Row justify="space-between" style={{ marginBottom: '1.5rem' }}>
             <Col md={8}>
-              <Input
+              <InputLine
                 size="large"
                 placeholder="Album name"
-                bordered={false}
-                style={{ borderBottom: '1px solid lightgrey' }}
                 onChange={onChange}
                 value={albumName}
               />

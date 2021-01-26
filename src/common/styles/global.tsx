@@ -1,5 +1,6 @@
 import 'antd/dist/antd.css';
 import styled, { createGlobalStyle, css } from 'styled-components';
+import { Input } from 'antd';
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -48,4 +49,9 @@ const handleAlignType = (align?: PComponentProps['align']) => {
 export const P = styled.p<PComponentProps>`
   ${({ align }) => handleAlignType(align)};
   color: darkgray;
+`;
+
+export const InputLine = styled(Input)`
+  border: 0px;
+  border-bottom: 1px solid lightgrey;
 `;
