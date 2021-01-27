@@ -31,7 +31,6 @@ export const photosSlice = createSlice({
       state.data.ready = true;
       state.error = undefined;
       state.data.photos = action.payload.data;
-      console.log(action.payload.data);
     });
   },
 });

@@ -20,7 +20,6 @@ const AllPhotosPages: React.FC = () => {
     await axios
       .get(`${apiRoot}/photos/random?client_id=${accessKey}&count=5`)
       .then((res) => {
-        console.log(res.data, typeof res.data);
         setImages([...images, ...res.data]);
       });
   };
