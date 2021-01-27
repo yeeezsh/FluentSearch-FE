@@ -1,3 +1,4 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { Photos } from 'Modules/photos/constants/photo/interface';
 import { Album } from 'Modules/photos/models/album';
 import { Photo } from 'Modules/photos/models/photo';
@@ -22,3 +23,8 @@ export type PhotoState = {
   };
   error?: ErrorState;
 };
+
+export type SelectedPhotoPayload = PayloadAction<{
+  photoId: Photo['_id'];
+  albumId: Album['_id'];
+}>;

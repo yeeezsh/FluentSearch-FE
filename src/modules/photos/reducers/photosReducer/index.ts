@@ -1,10 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Album } from 'Modules/photos/models/album';
-import { Photo } from 'Modules/photos/models/photo';
+import { createSlice } from '@reduxjs/toolkit';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchPhotosData } from './actions';
 import { initPhotosState } from './init';
-import { PHOTOS } from './types';
+import { PHOTOS, SelectedPhotoPayload } from './types';
 
 export const photosSlice = createSlice({
   name: PHOTOS,
@@ -13,10 +11,7 @@ export const photosSlice = createSlice({
     init(state) {
       return { ...state, ...initPhotosState };
     },
-    selectPhotos(
-      state,
-      action: PayloadAction<{ photoId: Photo['_id']; albumId: Album['_id'] }>,
-    ) {
+    selectPhotos(state, action: SelectedPhotoPayload) {
       const { photoId, albumId } = action.payload;
       const photo = state.data.photos.find((f) => f._id === photoId);
       state.presentation.views = {
