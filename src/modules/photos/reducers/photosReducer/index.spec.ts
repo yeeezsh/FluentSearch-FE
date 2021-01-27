@@ -23,10 +23,16 @@ describe('photoReducer test', () => {
   });
 
   it('should have pending/fulfill fetchPhotosData', async () => {
-    const fetchImagesMock = jest.fn(fetchImages).mockResolvedValue(mockdata);
+    const fetchImagesMock = jest.fn(fetchImages).mockResolvedValue(mockdata as any);
     const data = await fetchImagesMock();
     store.dispatch({ type: fetchPhotosData.fulfilled.type, payload: { data } });
     expect(store.getState().photos.data.ready).toBe(true);
+  });
+
+  it('Should able to select photo from data', () => {
+    const expectedId = 'gd0US-3s-KM';
+    store.dispatch(photosActions.selectPhotos({ photoId: expectedId, albumId: '' }));
+    expect(store.getState().photos.presentation.views?.photo?._id).toBe(expectedId);
   });
 });
 
@@ -392,4 +398,4 @@ const mockdata = [
     views: 205791,
     downloads: 805,
   },
-];
+].map((el) => ({ ...el, _id: el.id }));
