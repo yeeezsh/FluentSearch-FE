@@ -3,6 +3,8 @@ import { Photo } from 'Modules/photos/models/photo';
 import { GroupThumbnailPhotos, ThumbnailPhoto } from 'Modules/photos/models/thumbnail';
 import { ErrorState } from 'Stores/common/types/error';
 
+export const PHOTOS = 'PHOTOS';
+
 export type PhotoState = {
   data: {
     photos: Photo[];

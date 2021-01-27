@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initPhotosState } from './init';
+import { PHOTOS } from './types';
 
 export const photosSlice = createSlice({
-  name: 'PHOTOS',
+  name: PHOTOS,
   initialState: initPhotosState,
   reducers: {},
 });
