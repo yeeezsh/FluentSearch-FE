@@ -10,6 +10,10 @@ export type Photo = {
   updateAt: Date;
   meta: MetaPhoto;
   description?: string;
+  src: {
+    original: string;
+    thumbnail: string;
+  };
 };
 
 export type MetaPhoto = {
