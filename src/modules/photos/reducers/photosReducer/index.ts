@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initPhotosState } from './init';
 
-const photosSlice = createSlice({
+export const photosSlice = createSlice({
   name: 'PHOTOS',
   initialState: initPhotosState,
   reducers: {},
