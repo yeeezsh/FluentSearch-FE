@@ -1,9 +1,11 @@
 import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
+import photosReducer from 'Modules/photos/reducers/photosReducer';
 import userReducer from 'Modules/user/reducers/userReducer';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 
 const rootReducer = combineReducers({
   user: userReducer,
+  photos: photosReducer,
 });
 
 export const middleware: ThunkMiddleware[] | Middleware[] = [thunk];
