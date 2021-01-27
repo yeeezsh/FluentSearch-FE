@@ -5,7 +5,11 @@ import { PHOTOS } from './types';
 export const photosSlice = createSlice({
   name: PHOTOS,
   initialState: initPhotosState,
-  reducers: {},
+  reducers: {
+    init(state) {
+      return { ...state, ...initPhotosState };
+    },
+  },
 });
 
 export default photosSlice.reducer;
