@@ -1,3 +1,4 @@
+import { Photos } from 'Modules/photos/constants/photo/interface';
 import { Album } from 'Modules/photos/models/album';
 import { Photo } from 'Modules/photos/models/photo';
 import { GroupThumbnailPhotos, ThumbnailPhoto } from 'Modules/photos/models/thumbnail';
@@ -7,7 +8,7 @@ export const PHOTOS = 'PHOTOS';
 
 export type PhotoState = {
   data: {
-    photos: Photo[];
+    photos: Array<Photos & { _id: string }>;
     albums: Album[];
     ready: boolean;
   };
@@ -15,8 +16,8 @@ export type PhotoState = {
     thumbnail?: ThumbnailPhoto[];
     thumbnailGroup?: GroupThumbnailPhotos[];
     views?: {
-      photo: Photo;
-      album: Album;
+      photo?: Photo;
+      album?: Album;
     };
   };
   error?: ErrorState;
