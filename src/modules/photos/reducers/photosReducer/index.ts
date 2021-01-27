@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Album } from 'Modules/photos/models/album';
 import { Photo } from 'Modules/photos/models/photo';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
-import withPayload from 'Stores/common/withPayload';
 import { fetchPhotosData } from './actions';
 import { initPhotosState } from './init';
 import { PHOTOS } from './types';
