@@ -1,17 +1,32 @@
 export const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'TaskID',
+    dataIndex: 'taskID',
+    key: 'taskID',
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Task Name',
+    dataIndex: 'taskName',
+    key: 'taskName',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'Model',
+    dataIndex: 'model',
+    key: 'model',
+  },
+  {
+    title: 'Start Time',
+    dataIndex: 'startTime',
+    key: 'startTime',
+  },
+  {
+    title: 'Finish Time',
+    dataIndex: 'finishTime',
+    key: 'finishTime',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
   },
 ];
