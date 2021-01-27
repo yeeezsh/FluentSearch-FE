@@ -3,4 +3,5 @@ export type Album = {
   label: string;
   createAt: Date;
   updateAt: Date;
+  n: number;
 };
