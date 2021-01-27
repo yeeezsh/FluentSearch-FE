@@ -6,7 +6,14 @@ import { PageWrapper } from './styled';
 const HistoryPages: React.FC = () => {
   return (
     <PageWrapper>
-      <Table dataSource={DataSource} columns={columns} />
+      <h3>History</h3>
+      <hr />
+      <Table
+        dataSource={DataSource}
+        columns={columns}
+        style={{ marginTop: '30px' }}
+        pagination={{ position: ['bottomCenter'] }}
+      />
     </PageWrapper>
   );
 };
