@@ -136,13 +136,17 @@ export const P = styled.p<PComponentProps>`
 export const PurpleTable = styled(Table)`
   .ant-table-thead > tr > th {
     background: #e1d8ff;
-    color: #5a36cc;
+    color: var(--secondary-color);
   }
   .ant-pagination-item-active {
-    border: 1px solid #5a36cc;
+    border: 1px solid var(--secondary-color);
   }
   .ant-pagination-item-active a {
-    color: #5a36cc;
+    color: var(--secondary-color);
+  }
+
+  .ant-table-cell {
+    text-align: center;
   }
 `;
 
