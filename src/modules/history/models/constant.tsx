@@ -1,6 +1,7 @@
 import { Tag } from 'antd';
+import moment from 'moment';
+
 import { stringCutter } from '../util/stringCutter';
-import { StatusEnum } from './status.enum';
 
 export const columns = [
   {
@@ -25,19 +26,45 @@ export const columns = [
     title: 'Start Time',
     dataIndex: 'startTime',
     key: 'startTime',
+    render: function showFinishTime(finishTime: Date): JSX.Element {
+      return (
+        <div>
+          {moment(finishTime).format('YYYY-MM-DD')}
+          <br />
+          {moment(finishTime).format('HH:mm:ss')}
+        </div>
+      );
+    },
   },
   {
     title: 'Finish Time',
     dataIndex: 'finishTime',
     key: 'finishTime',
+    render: function showFinishTime(finishTime: Date): JSX.Element {
+      return (
+        <div>
+          {moment(finishTime).format('YYYY-MM-DD')}
+          <br />
+          {moment(finishTime).format('HH:mm:ss')}
+        </div>
+      );
+    },
   },
   {
     title: 'Status',
     dataIndex: 'status',
     key: 'status',
     render: function showStatus(status: string): JSX.Element {
+      const color =
+        status == 'error'
+          ? 'red'
+          : status == 'finish'
+          ? 'green'
+          : status == 'resume'
+          ? 'orange'
+          : 'purple';
       return (
-        <Tag color={'geekblue'} key={status}>
+        <Tag color={color} key={status}>
           {status.toUpperCase()}
         </Tag>
       );
