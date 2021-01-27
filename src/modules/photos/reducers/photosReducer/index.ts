@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchPhotosData } from './actions';
 import { initPhotosState } from './init';
 import { PHOTOS } from './types';
@@ -12,6 +13,16 @@ export const photosSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchPhotosData.rejected, (state) => {
+      state.data.ready = false;
+      state = {
+        ...state,
+        error: {
+          code: ErrorStateCodeEnum.ServerInternalError,
+          msg: 'api error',
+        },
+      };
+    });
     builder.addCase(fetchPhotosData.pending, (state) => {
       state.data.ready = false;
       state.error = undefined;
