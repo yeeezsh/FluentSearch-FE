@@ -37,3 +37,6 @@ export const photosSlice = createSlice({
 });
 
 export default photosSlice.reducer;
+
+// workaround bad photosActions export
+export const photosActions = photosSlice.actions;
