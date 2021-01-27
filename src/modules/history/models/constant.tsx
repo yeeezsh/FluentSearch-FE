@@ -1,7 +1,8 @@
 import { Tag } from 'antd';
 import moment from 'moment';
+import React from 'react';
 
-import { stringCutter } from '../util/stringCutter';
+import { stringCutter } from 'Modules/history/utils/stringCutter';
 
 export const columns = [
   {
