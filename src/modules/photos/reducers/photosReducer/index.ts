@@ -14,10 +14,15 @@ export const photosSlice = createSlice({
     init(state) {
       return { ...state, ...initPhotosState };
     },
-    selectPhotos(state, action: PayloadAction<{ photo: Photo; album: Album }>) {
+    selectPhotos(
+      state,
+      action: PayloadAction<{ photoId: Photo['_id']; albumId: Album['_id'] }>,
+    ) {
+      const { photoId, albumId } = action.payload;
+      const photo = state.data.photos.find((f) => f._id === photoId);
       state.presentation.views = {
-        photo: action.payload.photo,
-        album: action.payload.album,
+        photo: { _id: photo?._id || '' } as any,
+        album: state.data.albums.find((f) => f._id === albumId),
       };
     },
   },
