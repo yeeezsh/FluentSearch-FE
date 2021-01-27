@@ -1,18 +1,15 @@
-import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
-import photosReducer, { photosActions } from './index';
-import thunk, { ThunkMiddleware } from 'redux-thunk';
-import { initPhotosState } from './init';
-import { fetchPhotosData } from './actions';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { fetchImages } from 'Modules/photos/services/fetch.images';
+import { fetchPhotosData } from './actions';
+import photosReducer, { photosActions } from './index';
+import { initPhotosState } from './init';
 
 const rootReducer = combineReducers({
   photos: photosReducer,
 });
-const middleware: ThunkMiddleware[] | Middleware[] = [thunk];
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware,
 });
 
 describe('photoReducer test', () => {
