@@ -4,12 +4,12 @@ import { Tag } from '../tags';
 export type Photo = {
   _id: string;
   label: string;
-  tags: Tag[];
+  tags?: Tag[];
   albumId?: Album['_id'];
   createAt: Date;
   updateAt: Date;
   meta: MetaPhoto;
-  description: string;
+  description?: string;
 };
 
 export type MetaPhoto = {
@@ -18,5 +18,6 @@ export type MetaPhoto = {
   width: number;
   height: number;
   filesize: number; // bytes
-  placeString: string;
+  dpi: number | 72; // deph per inchs
+  placeString?: string;
 };
