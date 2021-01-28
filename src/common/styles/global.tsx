@@ -145,6 +145,9 @@ export const PurpleTable = styled(Table)`
   .ant-pagination-item-active a {
     color: #5a36cc;
   }
+  .ant-table-cell {
+    text-align: center;
+  }
 `;
 
 export const PageWrapper = styled.div`
