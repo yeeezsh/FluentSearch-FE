@@ -52,9 +52,9 @@ export const NavbarContainerItem = styled.li`
 `;
 
 export const MenuItemStyled = styled.p<{ isSelecting: boolean }>`
-  color: ${(props) => (props.isSelecting ? '#0BB5C2' : 'black')};
+  color: ${(props) => (props.isSelecting ? '#5A36CC' : 'black')};
   cursor: pointer;
   &:hover {
-    color: #0bb5c2;
+    color: #5a36cc;
   }
 `;
