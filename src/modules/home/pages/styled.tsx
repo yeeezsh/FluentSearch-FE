@@ -44,3 +44,16 @@ export const HomeTempWrapper = styled.div`
   background-size: cover;
   height: 100vh;
 `;
+
+export const ContentTempWrapper = styled.div`
+  text-align: center;
+  padding-top: 10%;
+
+  @media (min-width: 500px) {
+    padding-top: 50%;
+  }
+
+  @media (max-height: 500px) {
+    padding-top: 15%;
+  }
+`;
