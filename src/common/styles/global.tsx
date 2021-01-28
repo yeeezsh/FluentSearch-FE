@@ -6,6 +6,53 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 100%;
   }
 
+  :root {
+      //COLORS
+    --primary-color: #4425A7;
+    --secondary-color: #5A36CC;
+    --link-color: #4425A7;
+    --success-color: #27AE60;
+    --light-success-color: #6fcf97;
+    --warning-color: #FF8863;
+    --error-color: #EB5757;
+    --light-error-color: #f07979;
+    --tertiary-color: #E1D8FF;
+    --green-color: #0BB5C2;
+    --light-green-color: #48cdd8;
+    --red-color: #EB5757;
+    --light-gray-color: lightgray;
+    --gray-color: #F2F2F2;
+    --dark-gray-color: #BDBDBD;
+
+    //FONTS
+    --font-size-base: 16px;
+    --font-size-sm: 14px
+    --font-size-lg: 18px
+    --text-color: #4F4F4F;
+    --text-color-secondary: #88888D;
+    --h1: 3.052rem;
+    --h2:2.441rem;
+    --h3:1.953rem;
+    --h4:1.563rem;
+    --h5: 1.25rem;
+    --body: 16px; 
+    --small-body: 0.8rem;
+    --caption: 0.64rem;
+    
+    --box-shadow-base: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --border-radius-base: 8px;
+    --border-radius-round: 100px;
+
+    // LAYOUT BREAKPOINT 
+    --xs: 480px;
+    --sm: 576px;
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;
+    --xxl: 1600px;
+  }
+
+
   body {
     padding: 0 !important;
     margin: 0 !important;
@@ -15,39 +62,43 @@ export const GlobalStyle = createGlobalStyle`
 
   hr {
     border: none;
-    background-color: lightgray;
+    background-color: var(--light-gray-color);
     height: 1px;
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
   h1 {
-    font-size: 3.052em;
+    font-size: var(--h1);
+    font-weight: bold;
+    color: var(--text-color);
   }
 
   h2 {
-    font-size: 2.441em;
+    font-size: var(--h2);
+    font-weight: bold;
+    color: var(--text-color);
   }
 
   h3 {
-    font-size: 1.953em;
+    font-size: var(--h3);
+    font-weight: bold;
+    color: var(--text-color);
   }
 
   h4 {
-    font-size: 1.563em;
+    font-size: var(--h4);
+    font-weight: bold;
+    color: var(--text-color);
   }
 
   h5 {
-    font-size: 1.25em;
+    font-size: var(--h5);
+    font-weight: bold;
+    color: var(--text-color);
   }
 
-  body,span,p {
-    // 16px
-    font-size: 1em;
+  span,p, body {
+    font-size: var(--body);
+    color: var(--text-color);
   }
 `;
 

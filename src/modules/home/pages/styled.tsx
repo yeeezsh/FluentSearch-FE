@@ -1,7 +1,10 @@
 import styled, { CSSProperties } from 'styled-components';
 
 export const Icon = styled.div`
-  font-size: 40px;
+  .anticon {
+    padding-top: 1rem;
+    font-size: 3rem;
+  }
 `;
 
 export const gridStyle: CSSProperties = {
@@ -9,36 +12,29 @@ export const gridStyle: CSSProperties = {
 };
 
 export const CanvasWrapper = styled.div`
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
-
-  width: 100vw;
-  height: 50vh;
-  display: flex;
-
   background-image: url('https://pbs.twimg.com/media/ElVxJ8OWMAAnew5.jpg');
+  height: 50%;
+  background-position: center;
   background-size: cover;
-  background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  position: relative;
 `;
 
 export const HeaderWrapper = styled.div`
-  width: 100vw;
-  height: 28vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+  color: white;
 `;
 
 export const Heading = styled.div`
-  flex-basis: 100%;
-  font-size: 5em;
-  color: #ffffff;
+  font-size: 5rem;
+  font-weight: bold;
 `;
 
 export const SubHeading = styled.div`
-  flex-basis: 100%;
-  font-size: 2em;
-  color: #ffffff;
-  margin-bottom: 28px;
+  font-size: 2rem;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
 `;

@@ -6,34 +6,34 @@ const colorMapping = (color?: ButtonComponentProps['color']) => {
     case 'secondary':
       return css`
         background-color: #fff;
-        color: #0bb5c2;
-        border: 1px solid #0bb5c2;
+        color: var(--green-color);
+        border: 1px solid var(--green-color);
         &:hover {
-          color: #48cdd8;
-          border: 1px solid #48cdd8;
+          color: var(--light-green-color);
+          border: 1px solid var(--light-green-color);
         }
       `;
     case 'danger':
       return css`
-        background-color: #eb5757;
+        background-color: var(--error-color);
         color: #fff;
         &:hover {
-          background-color: #f07979;
+          background-color: var(--light-error-color);
         }
       `;
     case 'success':
       return css`
-        background-color: #27ae60;
+        background-color: var(--success-color);
         color: #fff;
         &:hover {
-          background-color: #6fcf97;
+          background-color: var(--light-success-color);
         }
       `;
     case 'disable':
       return css`
-        background-color: #f2f2f2;
-        color: #bdbdbd;
-        border: 1px solid #bdbdbd;
+        background-color: var(--gray-color);
+        color: var(--dark-gray-color);
+        border: 1px solid var(--dark-gray-color);
         &:hover {
           cursor: not-allowed;
         }
@@ -41,10 +41,10 @@ const colorMapping = (color?: ButtonComponentProps['color']) => {
     // default -> primary
     default:
       return css`
-        background-color: #0bb5c2;
+        background-color: var(--green-color);
         color: #fff;
         &:hover {
-          background-color: #48cdd8;
+          background-color: var(--light-green-color);
         }
       `;
   }
@@ -54,18 +54,18 @@ const sizeMapping = (size?: ButtonComponentProps['size']) => {
   switch (size) {
     case 'small':
       return css`
-        font-size: 12px;
+        font-size: var(--small-body);
         padding: 10px 16px;
       `;
     case 'large':
       return css`
-        font-size: 16px;
+        font-size: var(--h5);
         padding: 12px 24px;
       `;
     // default -> medium
     default:
       return css`
-        font-size: 14px;
+        font-size: var(--body);
         padding: 11px 20px;
       `;
   }

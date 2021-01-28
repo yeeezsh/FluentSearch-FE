@@ -2,13 +2,19 @@ import { Meta, Story } from '@storybook/react';
 import Button from 'Components/Button';
 import { ButtonComponentProps } from 'Components/Button/types';
 import React from 'react';
+import { GlobalStyle } from 'Styles/global';
 
 export default {
   title: 'FluentSearch/Button',
   component: Button,
 } as Meta;
 
-const ButtonStory: Story<ButtonComponentProps> = (args) => <Button {...args} />;
+const ButtonStory: Story<ButtonComponentProps> = (args) => (
+  <>
+    <GlobalStyle />
+    <Button {...args} />
+  </>
+);
 
 // Color
 
