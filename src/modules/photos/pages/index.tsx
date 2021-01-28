@@ -30,7 +30,8 @@ const AllPhotosPages: React.FC = () => {
         dataLength={images.length}
         next={fetchImages}
         hasMore={true}
-        loader={<Loader />}>
+        loader={<Loader />}
+        style={{ overflow: 'hidden' }}>
         <WrapperImage>
           {images.map((image: Photos) => (
             <ThumbnailPhoto
