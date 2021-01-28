@@ -8,6 +8,7 @@ import {
 import Menu from 'Modules/home/components/Navbar/Menu';
 import SideMenu from 'Modules/home/components/Navbar/SideMenu';
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 interface HomeNavbarProps {
   visible?: boolean;
@@ -27,7 +28,9 @@ const HomeNavbar: React.FC<HomeNavbarProps> = (props) => {
   return (
     <div>
       <NavStyle>
-        <LogoStyle>FluentSearch</LogoStyle>
+        <LogoStyle>
+          <Image src={'/assets/images/03-logo.svg'} width={100} height={50} />
+        </LogoStyle>
         <Menu />
 
         <ButtonSideMenuStyle onClick={showDrawer}>

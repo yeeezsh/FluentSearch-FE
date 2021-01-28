@@ -17,8 +17,8 @@ export const MenuDivStyle = styled.div`
 `;
 
 export const LogoStyle = styled.div`
-  padding-top: 15px;
   font-weight: 2em;
+  display: inline-block;
 `;
 
 export const ButtonSideMenuStyle = styled.button`
