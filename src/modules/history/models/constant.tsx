@@ -1,5 +1,5 @@
 import { Tag } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import React from 'react';
 
 import { stringCutter } from 'Modules/history/utils/stringCutter';
@@ -30,9 +30,9 @@ export const columns = [
     render: function showFinishTime(finishTime: Date): JSX.Element {
       return (
         <div>
-          {moment(finishTime).format('YYYY-MM-DD')}
+          {dayjs(finishTime).format('YYYY-MM-DD')}
           <br />
-          {moment(finishTime).format('HH:mm:ss')}
+          {dayjs(finishTime).format('HH:mm:ss')}
         </div>
       );
     },
@@ -44,9 +44,9 @@ export const columns = [
     render: function showFinishTime(finishTime: Date): JSX.Element {
       return (
         <div>
-          {moment(finishTime).format('YYYY-MM-DD')}
+          {dayjs(finishTime).format('YYYY-MM-DD')}
           <br />
-          {moment(finishTime).format('HH:mm:ss')}
+          {dayjs(finishTime).format('HH:mm:ss')}
         </div>
       );
     },
