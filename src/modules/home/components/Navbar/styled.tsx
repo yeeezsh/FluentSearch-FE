@@ -7,7 +7,6 @@ export const NavStyle = styled.nav`
   padding: 0 15px 20px 20px;
   display: flex;
   justify-content: space-between;
-
   background-color: white;
 `;
 
