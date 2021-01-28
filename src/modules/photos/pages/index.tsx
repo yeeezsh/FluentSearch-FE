@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Button from 'Components/Button';
 import { Loader } from 'Components/Loader';
 import AllPhotosLayout from 'Modules/photos/components/Layouts';
 import React, { useEffect, useState } from 'react';
@@ -6,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { WrapperImage } from '../components/Layouts/styled';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
 import { Photos } from '../constants/photo/interface';
+import Link from 'next/link';
 
 const AllPhotosPages: React.FC = () => {
   const [images = [], setImages] = useState<Photos[]>();
@@ -26,6 +28,12 @@ const AllPhotosPages: React.FC = () => {
 
   return (
     <AllPhotosLayout title="Photos">
+      <Link href="/upload">
+        <a>
+          <Button style={{ marginTop: '3%', marginBottom: '-3%' }}>+ Photo</Button>
+        </a>
+      </Link>
+
       <InfiniteScroll
         dataLength={images.length}
         next={fetchImages}
