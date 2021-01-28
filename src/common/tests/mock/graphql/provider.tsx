@@ -1,11 +1,23 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
 import { usersQueryMock } from './mocks';
+import { client } from 'Services/client';
+import { ApolloProvider } from '@apollo/client';
 
-export const MockProvider: React.FC = ({ children }) => {
+interface ProviderProps {
+  useMocks?: boolean;
+}
+
+export const CustomApolloProvider: React.FC<ProviderProps> = ({ useMocks, children }) => {
+  if (useMocks)
+    return (
+      <MockedProvider mocks={[usersQueryMock]}>
+        <>{children}</>
+      </MockedProvider>
+    );
   return (
-    <MockedProvider mocks={[usersQueryMock]}>
+    <ApolloProvider client={client}>
       <>{children}</>
-    </MockedProvider>
+    </ApolloProvider>
   );
 };
