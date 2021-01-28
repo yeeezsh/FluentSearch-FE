@@ -42,14 +42,15 @@ export const SubHeading = styled.div`
 export const HomeTempWrapper = styled.div`
   background-image: url('/assets/images/bg-login-only.png');
   background-size: cover;
+  background-repeat: no-repeat;
   height: 100vh;
 `;
 
 export const ContentTempWrapper = styled.div`
   text-align: center;
-  padding-top: 10%;
+  padding-top: 15%;
 
-  @media (min-width: 500px) {
+  @media (max-width: 500px) {
     padding-top: 50%;
   }
 
