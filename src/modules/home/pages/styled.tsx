@@ -38,3 +38,9 @@ export const SubHeading = styled.div`
   margin-top: -1rem;
   margin-bottom: 1.5rem;
 `;
+
+export const HomeTempWrapper = styled.div`
+  background-image: url('/assets/images/bg-login-only.png');
+  background-size: cover;
+  height: 100vh;
+`;

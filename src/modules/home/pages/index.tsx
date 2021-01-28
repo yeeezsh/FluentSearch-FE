@@ -1,7 +1,12 @@
 import React from 'react';
+import { HomeTempWrapper } from './styled';
 
 const HomePage: React.FC = () => {
-  return <></>;
+  return (
+    <>
+      <HomeTempWrapper></HomeTempWrapper>
+    </>
+  );
 };
 
 export default HomePage;
