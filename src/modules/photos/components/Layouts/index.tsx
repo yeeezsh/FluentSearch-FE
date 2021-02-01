@@ -53,7 +53,7 @@ const Sider: React.FC = () => (
         <Image
           src={'assets/images/logo-with-bg.svg'}
           layout="fixed"
-          width={230}
+          width={180}
           height={80}
         />
       </Col>

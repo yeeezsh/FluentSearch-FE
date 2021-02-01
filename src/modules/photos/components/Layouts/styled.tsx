@@ -6,10 +6,10 @@ export const CanvasWrapper = styled.div`
   overflow: hidden;
 
   aside {
-    width: 300px !important;
-    max-width: 300px !important;
-    min-width: 300px !important;
-    flex: 0 0 300px !important;
+    width: 250px !important;
+    max-width: 250px !important;
+    min-width: 250px !important;
+    flex: 0 0 250px !important;
   }
 
   .ant-layout-header {
@@ -51,8 +51,8 @@ export const ContentWrapper = styled(Layout)`
 
 export const SiderWrapper = styled(Sider)`
   background-color: #4425a7;
-  padding: 5% 2% 2% 2%;
-  overflow: auto;
+  padding: 5% 2% 0% 2%;
+  overflow: hidden;
   z-index: 1000;
   left: 0;
   position: fixed;
