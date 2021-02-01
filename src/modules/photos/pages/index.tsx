@@ -121,18 +121,26 @@ const AllPhotosPages: React.FC = () => {
             </NextButton>
           </ImageLightbox>
           <ContentLightbox>
-            Info
+            <b> Info</b>
+            <hr />
             <br />
-            Tag
+            <b> Tag</b>
             <br />
-            Details
+            TagRendered
+            <br />
+            <br />
+            <b> Details</b>
             <br />
             <Row>
-              <Col md={8}>Date</Col>
+              <Col md={8}>
+                <b> Date</b>
+              </Col>
               <Col>{dayjs(currentImage.created_at).format('DDMMYY')}</Col>
             </Row>
             <Row>
-              <Col md={8}>Photo</Col>
+              <Col md={8}>
+                <b> Photo</b>
+              </Col>
               <Col>
                 {currentImage.id} .jpg
                 <br />
@@ -140,8 +148,10 @@ const AllPhotosPages: React.FC = () => {
               </Col>
             </Row>
             <Row>
-              <Col md={8}>Place</Col>
-              <Col>Place</Col>
+              <Col md={8}>
+                <b> Place</b>
+              </Col>
+              <Col>{currentImage.location.city ? 'place' : '-'}</Col>
             </Row>
           </ContentLightbox>
         </Wrapper>
