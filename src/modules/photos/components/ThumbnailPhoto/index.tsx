@@ -8,7 +8,7 @@ import {
 import { Props } from './types';
 
 const ThumbnailPhoto: React.FC<Props> = (props) => {
-  const { selected, src } = props;
+  const { selected, src, onClick } = props;
   const [hover, setHover] = useState<boolean>(selected);
 
   const onHover = (isHover: boolean) => {
@@ -21,6 +21,7 @@ const ThumbnailPhoto: React.FC<Props> = (props) => {
 
   return (
     <ThumbnailPhotoWrapperStyled
+      onClick={() => onClick()}
       onMouseOver={() => onHover(true)}
       onMouseLeave={() => onHover(false)}>
       <ThumbnailSelectIconWrapperLayoutStyled>

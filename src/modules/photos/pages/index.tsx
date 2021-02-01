@@ -8,9 +8,56 @@ import { WrapperImage } from '../components/Layouts/styled';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
 import { Photos } from '../constants/photo/interface';
 import Link from 'next/link';
+import {
+  LightboxWrapper,
+  PrevButton,
+  NextButton,
+  ContentLightbox,
+  ImageLightbox,
+  Wrapper,
+} from './styled';
+import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 
 const AllPhotosPages: React.FC = () => {
+  const initialState = {
+    id: '',
+    created_at: '',
+    updated_at: '',
+    width: 0,
+    height: 0,
+    color: '',
+    blur_hash: '',
+    downloads: 0,
+    likes: 0,
+    liked_by_user: false,
+    description: '',
+    location: {
+      name: '',
+      city: '',
+      country: '',
+    },
+    urls: {
+      raw: '',
+      full: '',
+      regular: '',
+      small: '',
+      thumb: '',
+    },
+    links: {
+      self: '',
+      html: '',
+      download: '',
+      download_location: '',
+    },
+    user: {
+      name: '',
+      total_likes: 0,
+    },
+  };
+
   const [images = [], setImages] = useState<Photos[]>();
+  const [currentImage, setCurrentImages] = useState<Photos>(initialState);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     fetchImages();
@@ -26,8 +73,59 @@ const AllPhotosPages: React.FC = () => {
       });
   };
 
+  const openLightBox = (image: Photos) => {
+    setCurrentImages(image);
+    setLightboxOpen(true);
+  };
+
+  const closeLightBox = () => {
+    setCurrentImages(initialState);
+    setLightboxOpen(false);
+  };
+
+  const showNext = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    const currentIndex = images.indexOf(currentImage);
+    if (currentIndex >= images.length - 1) {
+      setLightboxOpen(false);
+    } else {
+      const nextImage = images[currentIndex + 1];
+      setCurrentImages(nextImage);
+    }
+  };
+
+  const showPrev = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    const currentIndex = images.indexOf(currentImage);
+    if (currentIndex <= 0) setLightboxOpen(false);
+    else {
+      const nextImage = images[currentIndex - 1];
+      setCurrentImages(nextImage);
+    }
+  };
+
+  const LightBox: React.FC = () => {
+    return (
+      <LightboxWrapper onClick={closeLightBox}>
+        <Wrapper>
+          <ImageLightbox>
+            <PrevButton onClick={showPrev}>
+              <CaretLeftOutlined />
+            </PrevButton>
+            <img id="lightbox-img" src={currentImage.urls.thumb} />
+            <NextButton onClick={showNext}>
+              <CaretRightOutlined />
+            </NextButton>
+          </ImageLightbox>
+          <ContentLightbox>test</ContentLightbox>
+        </Wrapper>
+      </LightboxWrapper>
+    );
+  };
+
   return (
     <AllPhotosLayout title="Photos">
+      {lightboxOpen ? <LightBox /> : null}
       <Link href="/upload">
         <a>
           <Button style={{ marginTop: '3%', marginBottom: '-3%' }}>+ Photo</Button>
@@ -41,12 +139,13 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {images.map((image: Photos) => (
+          {images.map((image: Photos, index: number) => (
             <ThumbnailPhoto
               src={image.urls.thumb}
-              key={image.id}
+              key={index}
               createAt={new Date()}
               selected={false}
+              onClick={() => openLightBox(image)}
             />
           ))}
         </WrapperImage>
