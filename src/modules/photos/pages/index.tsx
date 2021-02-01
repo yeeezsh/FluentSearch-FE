@@ -17,6 +17,8 @@ import {
   Wrapper,
 } from './styled';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { Row, Col } from 'antd';
+import dayjs from 'dayjs';
 
 const AllPhotosPages: React.FC = () => {
   const initialState = {
@@ -61,6 +63,7 @@ const AllPhotosPages: React.FC = () => {
 
   useEffect(() => {
     fetchImages();
+    console.log(images[0]);
   }, []);
 
   const fetchImages = async (): Promise<void> => {
@@ -117,7 +120,30 @@ const AllPhotosPages: React.FC = () => {
               <CaretRightOutlined />
             </NextButton>
           </ImageLightbox>
-          <ContentLightbox>test</ContentLightbox>
+          <ContentLightbox>
+            Info
+            <br />
+            Tag
+            <br />
+            Details
+            <br />
+            <Row>
+              <Col md={8}>Date</Col>
+              <Col>{dayjs(currentImage.created_at).format('DDMMYY')}</Col>
+            </Row>
+            <Row>
+              <Col md={8}>Photo</Col>
+              <Col>
+                {currentImage.id} .jpg
+                <br />
+                size
+              </Col>
+            </Row>
+            <Row>
+              <Col md={8}>Place</Col>
+              <Col>Place</Col>
+            </Row>
+          </ContentLightbox>
         </Wrapper>
       </LightboxWrapper>
     );
