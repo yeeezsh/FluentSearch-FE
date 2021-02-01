@@ -15,13 +15,13 @@ export const PHOTOS_SIDEBAR_CONSTANT: MenuType[] = [
     active: false,
     icon: 'PictureOutlined',
   },
-  {
-    key: '3',
-    label: 'Albums',
-    link: ['albums'],
-    active: false,
-    icon: 'BookOutlined',
-  },
+  // {
+  //   key: '3',
+  //   label: 'Albums',
+  //   link: ['albums'],
+  //   active: false,
+  //   icon: 'BookOutlined',
+  // },
   {
     key: '4',
     label: 'Tasks',
@@ -36,13 +36,13 @@ export const PHOTOS_SIDEBAR_CONSTANT: MenuType[] = [
     active: false,
     icon: 'HistoryOutlined',
   },
-  {
-    key: '6',
-    label: 'Trash',
-    link: ['trash'],
-    active: false,
-    icon: 'DeleteOutlined',
-  },
+  // {
+  //   key: '6',
+  //   label: 'Trash',
+  //   link: ['trash'],
+  //   active: false,
+  //   icon: 'DeleteOutlined',
+  // },
 ];
 
 export const DROPDOWN_SIDEBAR_CONSTANT: MenuType[] = [
