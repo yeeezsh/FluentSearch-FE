@@ -27,13 +27,13 @@ export const CanvasWrapper = styled.div`
     width: 100%;
 
     @media (min-width: 1600px) {
-      padding: 10% 5% 5% 15%;
+      padding: 10% 5% 5% 10%;
     }
     @media (min-width: 1200px) and (max-width: 1599px) {
-      padding: 10% 5% 5% 20%;
+      padding: 10% 5% 5% 15%;
     }
     @media (min-width: 992px) and (max-width: 1199px) {
-      padding: 10% 5% 5% 30%;
+      padding: 10% 5% 5% 20%;
     }
     @media (max-width: 991px) {
       padding: 20% 10% 5% 10%;
