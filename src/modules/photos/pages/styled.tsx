@@ -10,15 +10,19 @@ export const PrevButton = styled.button`
   padding: 0.5rem 1rem 0.5rem 1rem;
   top: 50%;
   left: 5%;
-  border: 0px;
   background: rgba(129, 129, 129, 0.5);
   color: white;
+  text-decoration: none;
+  border: 0px;
 `;
 export const NextButton = styled.button`
   display: block;
   height: 50px;
   width: 50px;
   position: absolute;
+  border-color: transparent;
+  text-decoration: none;
+  box-shadow: none;
   top: 50%;
   right: 35%;
   border-radius: 100%;
@@ -39,6 +43,15 @@ export const LightboxWrapper = styled.div`
   background-color: rgba(31, 28, 28, 0.5);
   display: flex;
   align-items: center;
+  button:hover {
+    cursor: pointer;
+    background: rgba(172, 170, 170, 0.5);
+  }
+  button:focus {
+    box-shadow: none;
+    border-color: transparent;
+    outline: 0;
+  }
 `;
 
 export const ImageLightbox = styled.div`
