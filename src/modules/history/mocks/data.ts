@@ -3,7 +3,7 @@ import faker from 'faker';
 import { StatusEnum } from 'Modules/history/models/status.enum';
 import { ModelEnum } from '../models/model.enum';
 
-interface IDataSource {
+export interface IDataSource {
   key: string;
   taskID: string;
   taskName: string;
