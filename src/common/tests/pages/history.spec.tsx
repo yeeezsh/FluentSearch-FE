@@ -1,21 +1,37 @@
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 import HistoryPage from 'Modules/history/pages';
 import { PurpleTable } from 'Styles/global';
+import { Provider } from 'react-redux';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import historyReducer from 'Modules/history/reducer/historyReducer';
+
+const rootReducer = combineReducers({
+  history: historyReducer,
+});
+
+const store = configureStore({
+  reducer: rootReducer,
+});
 
 describe('Pages/History test', () => {
+  let wrap;
+  beforeEach(() => {
+    wrap = mount(
+      <Provider store={store}>
+        <HistoryPage />
+      </Provider>,
+    );
+  });
   it('HistoryPage should be exisiting', () => {
-    const wrap = shallow(<HistoryPage />);
-    expect(wrap.exists()).toBe(true);
+    expect(wrap.exists(HistoryPage)).toBe(true);
   });
 
   it('Should contain PurpleTable', () => {
-    const wrap = shallow(<HistoryPage />);
     expect(wrap.exists(PurpleTable)).toBe(true);
   });
 
   it('Should contain Timestamp, TaskID, TaskName, Model, Start Time, Finish Time and Status Columns', () => {
-    const wrap = mount(<HistoryPage />);
     expect(wrap.find('th').at(0).text()).toEqual('TaskID');
     expect(wrap.find('th').at(1).text()).toEqual('Task Name');
     expect(wrap.find('th').at(2).text()).toEqual('Model');
