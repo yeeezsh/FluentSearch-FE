@@ -1,4 +1,4 @@
-import * as Factory from 'factory.ts';
+import { Sync, each } from 'factory.ts';
 import faker from 'faker';
 import { StatusEnum } from 'Modules/history/models/status.enum';
 import { ModelEnum } from '../models/model.enum';
@@ -13,14 +13,14 @@ export interface IDataSource {
   status: StatusEnum;
 }
 
-const DataSourceMock = Factory.Sync.makeFactory<IDataSource>({
-  key: Factory.each(() => faker.random.uuid()),
-  taskID: Factory.each(() => faker.random.uuid()),
-  taskName: Factory.each(() => faker.lorem.word()),
-  model: Factory.each(() => faker.random.arrayElement(Object.values(ModelEnum))),
-  startTime: Factory.each(() => faker.date.past().toString()),
-  finishTime: Factory.each(() => faker.date.past().toString()),
-  status: Factory.each(() => faker.random.arrayElement(Object.values(StatusEnum))),
+const DataSourceMock = Sync.makeFactory<IDataSource>({
+  key: each(() => faker.random.uuid()),
+  taskID: each(() => faker.random.uuid()),
+  taskName: each(() => faker.lorem.word()),
+  model: each(() => faker.random.arrayElement(Object.values(ModelEnum))),
+  startTime: each(() => faker.date.past().toString()),
+  finishTime: each(() => faker.date.past().toString()),
+  status: each(() => faker.random.arrayElement(Object.values(StatusEnum))),
 });
 
 export const DataSource: IDataSource[] = DataSourceMock.buildList(10);
