@@ -35,6 +35,7 @@ const AllPhotosPages: React.FC = () => {
     description: '',
     location: {
       name: '',
+      titile: '',
       city: '',
       country: '',
     },
@@ -135,7 +136,11 @@ const AllPhotosPages: React.FC = () => {
               <Col md={8}>
                 <b> Date</b>
               </Col>
-              <Col>{dayjs(currentImage.created_at).format('DDMMYY')}</Col>
+              <Col>
+                {dayjs(currentImage.created_at).format('MMM DD, YYYY')}
+                <br />
+                {dayjs(currentImage.created_at).format('ddd,hh:mmA Z')}
+              </Col>
             </Row>
             <Row>
               <Col md={8}>
@@ -144,14 +149,14 @@ const AllPhotosPages: React.FC = () => {
               <Col>
                 {currentImage.id} .jpg
                 <br />
-                size
+                Width {currentImage.width}px
               </Col>
             </Row>
             <Row>
               <Col md={8}>
                 <b> Place</b>
               </Col>
-              <Col>{currentImage.location.city ? 'place' : '-'}</Col>
+              <Col>{currentImage.location.title ? currentImage.location.title : '-'}</Col>
             </Row>
           </ContentLightbox>
         </Wrapper>
