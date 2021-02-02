@@ -1,3 +1,4 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { ModelEnum } from 'Modules/dashboard/constants/model.enum';
 import { ErrorState } from 'Stores/common/error';
 
@@ -21,3 +22,16 @@ export type DashboardState = {
   ready: boolean;
   error?: ErrorState;
 };
+
+export type DashboardValuePayload = PayloadAction<{
+  totalPhotos: number;
+  totalVideos: number;
+  todayPhotos: number;
+  todayVideos: number;
+  upcomingModel: string;
+  model: ModelEnum;
+  processWithModelPhoto: number;
+  finishRunningPhotos: number;
+  totalRunningPhotos: number;
+  progressPhoto: number;
+}>;
