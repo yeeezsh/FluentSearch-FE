@@ -10,9 +10,6 @@ export const historySlice = createSlice({
     init(state) {
       return { ...state, ...initHistoryState };
     },
-    setData: (state, { payload }) => {
-      state.data = payload;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchHistoryData.rejected, (state) => {
@@ -33,7 +30,6 @@ export const historySlice = createSlice({
       state.ready = true;
       state.error = undefined;
       state.data = action.payload.data;
-      historySlice.caseReducers.setData(state, action);
     });
   },
 });

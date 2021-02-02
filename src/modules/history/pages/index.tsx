@@ -16,7 +16,7 @@ const HistoryPages: React.FC = () => {
       <h3>History</h3>
       <hr />
       <PurpleTable
-        dataSource={historyData.data.data}
+        dataSource={historyData.data}
         columns={columns}
         style={{ marginTop: '30px' }}
         pagination={{ position: ['bottomCenter'] }}
