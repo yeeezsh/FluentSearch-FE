@@ -19,6 +19,7 @@ export interface Location {
   name: string;
   city: string;
   country: string;
+  title?: string;
 }
 export interface URL {
   raw: string;
