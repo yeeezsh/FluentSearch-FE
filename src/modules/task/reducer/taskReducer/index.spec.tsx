@@ -13,14 +13,14 @@ const store = configureStore({
   reducer: rootReducer,
 });
 
-describe('historyReducer test', () => {
+describe('taskReducer test', () => {
   it('it should correctly define initial state', () => {
     store.dispatch(taskActions.init());
     const result = store.getState().task;
     expect(result).toEqual(initTaskState);
   });
 
-  it('should have pending/fulfill fetchPhotosData', async () => {
+  it('should have pending/fulfill fetchtTaskData', async () => {
     const fetchTaskMock = jest.fn(fetchTask).mockResolvedValue(DataSource as never);
     const data = await fetchTaskMock();
     store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data } });
