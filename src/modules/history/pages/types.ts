@@ -1,7 +1,7 @@
 import { ModelEnum } from '../models/model.enum';
 import { StatusEnum } from '../models/status.enum';
 
-export type History = {
+export type HistoryData = {
   key: string;
   taskID: string;
   taskName: string;
