@@ -38,3 +38,23 @@ export const SubHeading = styled.div`
   margin-top: -1rem;
   margin-bottom: 1.5rem;
 `;
+
+export const HomeTempWrapper = styled.div`
+  background-image: url('/assets/images/bg-login-only.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+`;
+
+export const ContentTempWrapper = styled.div`
+  text-align: center;
+  padding-top: 15%;
+
+  @media (max-width: 500px) {
+    padding-top: 50%;
+  }
+
+  @media (max-height: 500px) {
+    padding-top: 15%;
+  }
+`;
