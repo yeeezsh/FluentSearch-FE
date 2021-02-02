@@ -17,8 +17,24 @@ import {
   Wrapper,
 } from './styled';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
-import { Row, Col } from 'antd';
+import { Row, Col, Tag } from 'antd';
 import dayjs from 'dayjs';
+
+const tag = ['animal', 'tree', 'people'];
+const boundingBox = [
+  [12, 24, 54, 54],
+  [23, 434, 455, 456],
+];
+
+const TagRender: React.FC = () => {
+  return (
+    <>
+      {tag.map((e, index) => (
+        <Tag key={index}>{e}</Tag>
+      ))}
+    </>
+  );
+};
 
 const AllPhotosPages: React.FC = () => {
   const initialState = {
@@ -64,7 +80,6 @@ const AllPhotosPages: React.FC = () => {
 
   useEffect(() => {
     fetchImages();
-    console.log(images[0]);
   }, []);
 
   const fetchImages = async (): Promise<void> => {
@@ -127,7 +142,7 @@ const AllPhotosPages: React.FC = () => {
             <br />
             <b> Tag</b>
             <br />
-            TagRendered
+            <TagRender />
             <br />
             <br />
             <b> Details</b>
