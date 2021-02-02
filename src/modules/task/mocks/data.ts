@@ -1,12 +1,8 @@
-import * as Factory from 'factory.ts';
+import { Sync, each } from 'factory.ts';
 import faker from 'faker';
+import { ModelEnum } from '../models/model.enum';
 
-enum ModelEnum {
-  RESNET = 'ResNet',
-  VGG = 'VGG16',
-}
-
-interface IDataSource {
+export interface IDataSource {
   key: string;
   timestamp: Date;
   taskID: string;
@@ -18,26 +14,26 @@ interface IDataSource {
   totalPhoto: number;
 }
 
-const DataSourceMock = Factory.Sync.makeFactory<IDataSource>({
-  key: Factory.each(() => faker.random.uuid()),
-  timestamp: Factory.each(() => faker.date.past()),
-  taskID: Factory.each(() => faker.random.uuid()),
-  taskName: Factory.each(() => faker.lorem.word()),
-  model: Factory.each(() => faker.random.arrayElement(Object.values(ModelEnum))),
-  progress: Factory.each(() =>
+const DataSourceMock = Sync.makeFactory<IDataSource>({
+  key: each(() => faker.random.uuid()),
+  timestamp: each(() => faker.date.past()),
+  taskID: each(() => faker.random.uuid()),
+  taskName: each(() => faker.lorem.word()),
+  model: each(() => faker.random.arrayElement(Object.values(ModelEnum))),
+  progress: each(() =>
     faker.random.number({
       min: 0,
       max: 100,
     }),
   ),
-  elaspedTime: Factory.each(() => faker.date.past()),
-  inprogressPhoto: Factory.each(() =>
+  elaspedTime: each(() => faker.date.past()),
+  inprogressPhoto: each(() =>
     faker.random.number({
       min: 0,
       max: 1000,
     }),
   ),
-  totalPhoto: Factory.each(() =>
+  totalPhoto: each(() =>
     faker.random.number({
       min: 1000,
       max: 2000,
@@ -45,8 +41,8 @@ const DataSourceMock = Factory.Sync.makeFactory<IDataSource>({
   ),
 });
 
-const ProgressMock = Factory.Sync.makeFactory({
-  progress: Factory.each(() =>
+const ProgressMock = Sync.makeFactory({
+  progress: each(() =>
     faker.random.number({
       min: 0,
       max: 100,
@@ -54,12 +50,12 @@ const ProgressMock = Factory.Sync.makeFactory({
   ),
 });
 
-const ElaspedTimeMock = Factory.Sync.makeFactory({
-  elaspedTime: Factory.each(() => faker.date.past()),
+const ElaspedTimeMock = Sync.makeFactory({
+  elaspedTime: each(() => faker.date.past()),
 });
 
-const InprogressPhotoMock = Factory.Sync.makeFactory({
-  inprogressPhoto: Factory.each(() =>
+const InprogressPhotoMock = Sync.make({
+  inprogressPhoto: each(() =>
     faker.random.number({
       min: 0,
       max: 1000,
@@ -67,8 +63,8 @@ const InprogressPhotoMock = Factory.Sync.makeFactory({
   ),
 });
 
-const TotalPhotoMock = Factory.Sync.makeFactory({
-  totalPhoto: Factory.each(() =>
+const TotalPhotoMock = Sync.makeFactory({
+  totalPhoto: each(() =>
     faker.random.number({
       min: 1000,
       max: 2000,
