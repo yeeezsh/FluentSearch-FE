@@ -1,11 +1,7 @@
 import * as Factory from 'factory.ts';
 import faker from 'faker';
 import { StatusEnum } from 'Modules/history/models/status.enum';
-
-enum ModelEnum {
-  RESNET = 'ResNet',
-  VGG = 'VGG16',
-}
+import { ModelEnum } from '../models/model.enum';
 
 interface IDataSource {
   key: string;
