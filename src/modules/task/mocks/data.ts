@@ -54,7 +54,7 @@ const ElaspedTimeMock = Sync.makeFactory({
   elaspedTime: each(() => faker.date.past()),
 });
 
-const InprogressPhotoMock = Sync.make({
+const InprogressPhotoMock = Sync.makeFactory({
   inprogressPhoto: each(() =>
     faker.random.number({
       min: 0,
