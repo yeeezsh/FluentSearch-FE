@@ -1,21 +1,37 @@
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 import TaskPage from 'Modules/task/pages';
 import { PurpleTable } from 'Styles/global';
+import taskReducer from 'Modules/task/reducer/taskReducer';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+
+const rootReducer = combineReducers({
+  task: taskReducer,
+});
+
+const store = configureStore({
+  reducer: rootReducer,
+});
 
 describe('Pages/Task test', () => {
+  let wrap;
+  beforeEach(() => {
+    wrap = mount(
+      <Provider store={store}>
+        <TaskPage />
+      </Provider>,
+    );
+  });
   it('TaskPage should be exisiting', () => {
-    const wrap = shallow(<TaskPage />);
     expect(wrap.exists()).toBe(true);
   });
 
   it('Should contain PurpleTable', () => {
-    const wrap = shallow(<TaskPage />);
     expect(wrap.exists(PurpleTable)).toBe(true);
   });
 
   it('Should contain Timestamp, TaskID, TaskName, Model, Progress Columns', () => {
-    const wrap = mount(<TaskPage />);
     expect(wrap.find('th').at(0).text()).toEqual('Timestamp');
     expect(wrap.find('th').at(1).text()).toEqual('TaskID');
     expect(wrap.find('th').at(2).text()).toEqual('Task Name');
