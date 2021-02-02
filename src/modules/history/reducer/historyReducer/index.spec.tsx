@@ -2,8 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { DataSource } from 'Modules/history/mocks/data';
 import { fetchHistory } from 'Modules/history/services/fetch.history';
 import { fetchHistoryData } from './actions';
-import historyReducer from './index';
-import { historyActions } from './index';
+import historyReducer, { historyActions } from './index';
 import { initHistoryState } from './init';
 
 const rootReducer = combineReducers({
