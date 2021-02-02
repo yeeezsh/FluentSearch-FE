@@ -1,5 +1,4 @@
 import { Sync, each } from 'factory.ts';
-
 import faker from 'faker';
 import {
   UserWithId,
