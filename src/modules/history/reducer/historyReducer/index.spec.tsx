@@ -20,7 +20,7 @@ describe('historyReducer test', () => {
     expect(result).toEqual(initHistoryState);
   });
 
-  it('should have pending/fulfill fetchPhotosData', async () => {
+  it('should have pending/fulfill fetchHistoryData', async () => {
     const fetchHistoryMock = jest.fn(fetchHistory).mockResolvedValue(DataSource as never);
     const data = await fetchHistoryMock();
     store.dispatch({ type: fetchHistoryData.fulfilled.type, payload: { data } });
