@@ -21,7 +21,7 @@ const ThumbnailPhoto: React.FC<Props> = (props) => {
 
   return (
     <ThumbnailPhotoWrapperStyled
-      onClick={() => onClick()}
+      onClick={onClick}
       onMouseOver={() => onHover(true)}
       onMouseLeave={() => onHover(false)}>
       <ThumbnailSelectIconWrapperLayoutStyled>
