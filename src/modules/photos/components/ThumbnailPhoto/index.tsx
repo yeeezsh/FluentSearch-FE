@@ -21,13 +21,12 @@ const ThumbnailPhoto: React.FC<Props> = (props) => {
 
   return (
     <ThumbnailPhotoWrapperStyled
-      onClick={onClick}
       onMouseOver={() => onHover(true)}
       onMouseLeave={() => onHover(false)}>
       <ThumbnailSelectIconWrapperLayoutStyled>
         <SelectBadgeIcon hover={hover} selected={selected} onSelect={onSelect} />
       </ThumbnailSelectIconWrapperLayoutStyled>
-      <ThumbnailPhotoDisplayStyled src={src} />
+      <ThumbnailPhotoDisplayStyled onClick={onClick} src={src} />
     </ThumbnailPhotoWrapperStyled>
   );
 };
