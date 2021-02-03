@@ -1,5 +1,6 @@
 // import axios from 'axios';
-import { DataSource } from '../mocks/data';
+import { AlbumPreviewProps } from '../components/AlbumPreview/types';
+import { AlbumPreviewMockData, DashboardMockData } from '../mocks/data';
 import { DashboardData } from '../models/types';
 
 // export const fetchDashboard = async (): Promise<DashboardData> => {
@@ -11,7 +12,17 @@ import { DashboardData } from '../models/types';
 //   return data;
 // };
 
+type DashboardDataType = {
+  DashboardMockData: DashboardData;
+  AlbumPreviewMockData: AlbumPreviewProps[];
+};
+
+const data = {
+  DashboardMockData,
+  AlbumPreviewMockData,
+};
+
 //TODO: Connect with Adapter and real api
-export const fetchDashboard = (): DashboardData => {
-  return DataSource;
+export const fetchDashboard = (): DashboardDataType => {
+  return data;
 };

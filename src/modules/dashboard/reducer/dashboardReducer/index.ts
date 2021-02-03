@@ -30,7 +30,8 @@ export const dashboardSlice = createSlice({
     builder.addCase(fetchDashboardData.fulfilled, (state, action) => {
       state.ready = true;
       state.error = undefined;
-      state.presentation = action.payload.data;
+      state.data.albumPreviewData = action.payload.data.AlbumPreviewMockData;
+      state.data.dashboardData = action.payload.data.DashboardMockData;
     });
   },
 });

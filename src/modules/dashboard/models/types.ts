@@ -1,10 +1,14 @@
-import { PayloadAction } from '@reduxjs/toolkit';
 import { ModelEnum } from 'Modules/dashboard/constants/model.enum';
 import { ErrorState } from 'Stores/common/types/error';
+import { AlbumPreviewProps } from '../components/AlbumPreview/types';
 
 export const DASHBOARD = 'DASHBOARD';
 
 export type DashboardState = {
+  data: {
+    dashboardData: DashboardData;
+    albumPreviewData: AlbumPreviewProps[];
+  };
   presentation: {
     totalPhotos: number;
     totalVideos: number;
