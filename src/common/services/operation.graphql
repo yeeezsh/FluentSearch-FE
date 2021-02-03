@@ -1,0 +1,19 @@
+query getUser {
+    Users {
+      _id
+      createDate
+      deactivate
+      email
+      mainEmail
+      name
+      oauth {
+        provider
+        token
+      }
+      package
+      password
+      role
+      updateDate
+      zone
+    }
+  }
