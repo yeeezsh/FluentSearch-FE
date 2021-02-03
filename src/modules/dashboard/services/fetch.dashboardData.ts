@@ -11,6 +11,7 @@ import { DashboardData } from '../models/types';
 //   return data;
 // };
 
+//TODO: Connect with Adapter and real api
 export const fetchDashboard = (): DashboardData => {
   return DataSource;
 };
