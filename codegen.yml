@@ -1,0 +1,11 @@
+overwrite: true
+schema: "src/common/tests/mock/graphql/schema.graphql"
+documents: "src/common/services/*.graphql"
+generates:
+  src/common/tests/mock/graphql/types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config: 
+      withResultType: true
