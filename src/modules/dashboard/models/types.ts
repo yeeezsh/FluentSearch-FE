@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ModelEnum } from 'Modules/dashboard/constants/model.enum';
-import { ErrorState } from 'Stores/common/error';
+import { ErrorState } from 'Stores/common/types/error';
 
 export const DASHBOARD = 'DASHBOARD';
 
