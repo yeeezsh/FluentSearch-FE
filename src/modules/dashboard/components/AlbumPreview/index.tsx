@@ -11,7 +11,7 @@ import {
 import { AlbumPreviewProps } from './types';
 
 const AlbumPreview: React.FC<AlbumPreviewProps> = (props) => {
-  // TODO - destructing link from props when have a real props link
+  //TODO: destructing link from props when have a real props link
   const { src, albumName, albumLength, label } = props;
   const router = useRouter();
   const link = '/';
@@ -19,7 +19,7 @@ const AlbumPreview: React.FC<AlbumPreviewProps> = (props) => {
     <AlbumWrapper>
       <Container onClick={() => router.push(link)}>
         <img src={src} />
-        {/* TODO - change to 'view album' when have an album*/}
+        {/* TODO:change to 'view album' when have an album*/}
         <Text id="text">View Photo</Text>
       </Container>
 
