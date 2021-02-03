@@ -1,21 +1,9 @@
 import { Sync, each } from 'factory.ts';
 import faker from 'faker';
 import { ModelEnum } from '../constants/model.enum';
+import { DashboardData } from '../models/types';
 
-export interface IDataSource {
-  totalPhotos: number;
-  totalVideos: number;
-  todayPhotos: number;
-  todayVideos: number;
-  upcomingModel: string;
-  model: ModelEnum;
-  processWithModelPhoto: number;
-  finishRunningPhotos: number;
-  totalRunningPhotos: number;
-  progressPhoto: number;
-}
-
-const DataSourceMock = Sync.makeFactory<IDataSource>({
+const DataSourceMock = Sync.makeFactory<DashboardData>({
   totalPhotos: each(() => faker.random.number()),
   totalVideos: each(() => faker.random.number()),
   todayPhotos: each(() => faker.random.number()),
@@ -28,4 +16,4 @@ const DataSourceMock = Sync.makeFactory<IDataSource>({
   progressPhoto: each(() => faker.random.number()),
 });
 
-export const DataSource: IDataSource[] = DataSourceMock.buildList(4);
+export const DataSource: DashboardData = DataSourceMock.build();
