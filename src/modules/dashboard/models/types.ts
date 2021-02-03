@@ -33,3 +33,16 @@ export type DashboardValuePayload = PayloadAction<{
   totalRunningPhotos: number;
   progressPhoto: number;
 }>;
+
+export type DashboardData = {
+  totalPhotos: number;
+  totalVideos: number;
+  todayPhotos: number;
+  todayVideos: number;
+  upcomingModel: string;
+  model: ModelEnum;
+  processWithModelPhoto: number;
+  finishRunningPhotos: number;
+  totalRunningPhotos: number;
+  progressPhoto: number;
+};
