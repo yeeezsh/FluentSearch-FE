@@ -35,3 +35,6 @@ export const dashboardSlice = createSlice({
     });
   },
 });
+
+export default dashboardSlice.reducer;
+export const dashboardActions = dashboardSlice.actions;
