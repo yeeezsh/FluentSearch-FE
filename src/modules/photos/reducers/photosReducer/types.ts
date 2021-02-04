@@ -17,7 +17,7 @@ export type PhotoState = {
     thumbnail?: ThumbnailPhoto[];
     thumbnailGroup?: GroupThumbnailPhotos[];
     views?: {
-      photo?: Photo;
+      photo: Photo;
       album?: Album;
     };
   };
