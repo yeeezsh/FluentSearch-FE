@@ -5,6 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { uploadPhotoData } from 'Modules/upload/reducer/uploadReducer/actions';
 import { StoresState } from 'Stores/index';
 import { Wrapper } from './styled';
+import { fileProgressType } from 'Modules/upload/model/types';
+
+export type uploadDataType = {
+  owner: string;
+  fileToUpload: fileProgressType[];
+};
 
 const UploadProgress: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,9 +20,10 @@ const UploadProgress: React.FC = () => {
   const uploadedFileAmount = size(fileProgress);
 
   useEffect(() => {
-    const fileToUpload = toArray(fileProgress).filter((file) => file.progress === 0);
-    console.log(fileToUpload);
-    dispatch(uploadPhotoData(fileToUpload));
+    const fileToUpload = fileProgress.filter((file) => file.progress === 0);
+    const owner = '34343SR4';
+    const data = { fileToUpload, owner };
+    dispatch(uploadPhotoData(data));
   }, [uploadedFileAmount]);
 
   return uploadedFileAmount > 0 ? (
