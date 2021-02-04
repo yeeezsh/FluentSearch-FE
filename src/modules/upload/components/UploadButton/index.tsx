@@ -12,6 +12,7 @@ const UploadButton: React.FC<UploadButtonPropsType> = (props) => {
     <UploadBtnWrapper>
       <input type="file" name="file" id="file" multiple onChange={onChange} />
       <label htmlFor="file">
+        {/* //TODO: wtf &nbsp */}
         + &nbsp; &nbsp; &nbsp;
         <PictureOutlined /> &nbsp; &nbsp; Select Photos
       </label>

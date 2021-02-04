@@ -1,6 +1,7 @@
 import { size } from 'lodash';
 import { fileProgressType } from '../model/types';
 
+// TODO: WTF this fn
 export const modifyFiles = (
   existingFiles: fileProgressType[],
   files: File[],
