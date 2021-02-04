@@ -5,6 +5,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
+import { CustomApolloProvider } from 'Tests/mock/graphql/provider';
 
 const EXCLUDE_NAVBAR: string[] = ['/login', '/register', '/allphotos', '/upload'];
 
