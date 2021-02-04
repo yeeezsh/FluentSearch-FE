@@ -1,8 +1,8 @@
 overwrite: true
-schema: "src/common/tests/mock/graphql/schema.graphql"
+schema: "http://localhost:5000/graphql"
 documents: "src/common/services/*.graphql"
 generates:
-  src/common/tests/mock/graphql/types.ts:
+  src/common/services/model/types.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
