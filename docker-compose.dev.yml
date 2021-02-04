@@ -1,0 +1,21 @@
+version: '3.4'
+services:
+  fluentsearch-fe:
+    container_name: FluentSearch-FE
+    restart: always
+    environment:
+      NODE_ENV: 'development'
+      TZ: Asia/Bangkok
+      APP_GRAPHQL_ENDPOINT: 'http://localhost:3000/graphql'
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - './src:/src'
+    logging:
+      options:
+        max-size: 50m
+        

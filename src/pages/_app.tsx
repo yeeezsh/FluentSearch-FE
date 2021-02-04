@@ -5,6 +5,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
+import { CustomApolloProvider } from 'Tests/mock/graphql/provider';
 
 const EXCLUDE_NAVBAR: string[] = ['/login', '/register', '/upload'];
 
@@ -15,10 +16,12 @@ export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <GlobalStyle />
-      <Provider store={store}>
-        {!isExcludeNavbar && <HomeNavbar />}
-        <Component {...pageProps} />
-      </Provider>
+      <CustomApolloProvider>
+        <Provider store={store}>
+          {!isExcludeNavbar && <HomeNavbar />}
+          <Component {...pageProps} />
+        </Provider>
+      </CustomApolloProvider>
     </>
   );
 }
