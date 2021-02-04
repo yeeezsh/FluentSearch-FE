@@ -6,7 +6,7 @@ services:
     environment:
       NODE_ENV: 'development'
       TZ: Asia/Bangkok
-      APP_GRAPHQL_ENDPOINT: 'http://localhost:3000/graphql'
+      APP_GRAPHQL_ENDPOINT: 'http://localhost:5000/graphql'
     build:
       context: ./
       dockerfile: Dockerfile
