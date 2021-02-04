@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col } from 'antd';
 import {
   DashboardWrapper,
@@ -11,10 +11,19 @@ import AlbumPreview from 'Modules/dashboard/components/AlbumPreview/index';
 import NumberCard from 'Modules/dashboard/components/DashboardCard/NumberCard/index';
 import ProgressCard from 'Modules/dashboard/components/DashboardCard/ProgressCard/index';
 import ModelCard from 'Modules/dashboard/components/DashboardCard/ModelCard/index';
+import { fetchDashboardData } from '../reducer/dashboardReducer/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { StoresState } from 'Stores/index';
 
 const LabelList: Array<string> = ['label1', 'label2', 'label3'];
 
 const DashboardCard: React.FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDashboardData());
+  }, []);
+  const DashboardData = useSelector((state: StoresState) => state.dashboard);
+  console.log(DashboardData);
   return (
     <CardWrapper>
       <Row justify="space-around" align="middle">
@@ -87,7 +96,7 @@ const DashboardPage: React.FC = () => {
         <DashboardCard />
 
         <AlbumWrapper>
-          {/*TODO - Lastest Album*/}
+          {/*TODO: Lastest Album*/}
           <h3>Lastest Photo</h3>
           <OverviewAlbum />
         </AlbumWrapper>
