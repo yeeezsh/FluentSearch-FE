@@ -1,10 +1,8 @@
-import { ApolloProvider } from '@apollo/client';
 import HomeNavbar from 'Modules/home/components/Navbar';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { client } from 'Services/client';
 import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 
@@ -18,10 +16,10 @@ export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <ApolloProvider client={client}>
+        <CustomApolloProvider>
           {!isExcludeNavbar && <HomeNavbar />}
           <Component {...pageProps} />
-        </ApolloProvider>
+        </CustomApolloProvider>
       </Provider>
     </>
   );
