@@ -2,10 +2,15 @@ import React from 'react';
 import { UploadBtnWrapper } from './styled';
 import { PictureOutlined } from '@ant-design/icons';
 
-const UploadButton: React.FC = () => {
+type UploadButtonPropsType = {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const UploadButton: React.FC<UploadButtonPropsType> = (props) => {
+  const { onChange } = props;
   return (
     <UploadBtnWrapper>
-      <input type="file" name="file" id="file" multiple />
+      <input type="file" name="file" id="file" multiple onChange={onChange} />
       <label htmlFor="file">
         + &nbsp; &nbsp; &nbsp;
         <PictureOutlined /> &nbsp; &nbsp; Select Photos
