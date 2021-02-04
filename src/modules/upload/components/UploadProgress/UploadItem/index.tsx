@@ -3,7 +3,7 @@ import { WrapperItem, LeftSide, ProgressBar, Percentage } from './styled';
 
 type UploadItemProps = {
   file: {
-    file: FileType;
+    file: File;
     progress: number;
   };
 };
