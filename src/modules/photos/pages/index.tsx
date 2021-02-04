@@ -19,6 +19,7 @@ import {
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { Row, Col, Tag } from 'antd';
 import dayjs from 'dayjs';
+import { useGetInsightQuery } from 'Services/model/generated-types';
 
 const tag = ['animal', 'tree', 'people'];
 const boundingBox = [
@@ -77,6 +78,9 @@ const AllPhotosPages: React.FC = () => {
   const [images = [], setImages] = useState<Photos[]>();
   const [currentImage, setCurrentImages] = useState<Photos>(initialState);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const { data, loading } = useGetInsightQuery();
+
+  console.log(data?.getFilesWithInsight.map((e) => e.label));
 
   useEffect(() => {
     fetchImages();
