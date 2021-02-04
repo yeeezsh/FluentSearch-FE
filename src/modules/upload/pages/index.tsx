@@ -9,21 +9,19 @@ const UploadPage: React.FC = () => {
   const { Content } = Layout;
   const [albumName, setAlbumName] = useState<string>('');
 
+  const handleAttachFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('files upload', e.target.files);
+  };
+
   return (
     <Layout>
       <UploadWrapper>
         <Content>
-          <Row justify="end" style={{ marginBottom: '1.5rem' }}>
-            <Col flex={4}>Sort</Col>
-            <Col flex={4}>
-              <button>+ Photos</button>
-            </Col>
-          </Row>
-
+          <h2 style={{ marginBottom: '2%' }}>Upload Photos</h2>
           <hr />
           <Row justify="center" align="middle">
-            <Col style={{ marginTop: '20%' }}>
-              <UploadButton />
+            <Col style={{ marginTop: '15%' }}>
+              <UploadButton onChange={handleAttachFile} />
             </Col>
           </Row>
         </Content>
