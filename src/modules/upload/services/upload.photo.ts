@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { uploadDataType } from '../components/UploadProgress';
 
 //TODO: Change to correct type
-export const uploadPhoto = async (dataToUpload): Promise<uploadDataType> => {
+export const uploadPhoto = async (fileToUpload: any): Promise<any> => {
   const files = new FormData();
-  files.append('file', dataToUpload.fileToUpload);
+  files.append('file', fileToUpload.data);
   const url = 'http://localhost:5000/file';
   const config = {
     headers: {
@@ -13,7 +12,7 @@ export const uploadPhoto = async (dataToUpload): Promise<uploadDataType> => {
     },
   };
   const data = {
-    owner: dataToUpload.owner,
+    owner: fileToUpload.owner,
     files: files,
   };
   const response = await axios.post(url, data, config);

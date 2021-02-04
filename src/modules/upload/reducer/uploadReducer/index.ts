@@ -63,7 +63,7 @@ export const uploadReducer = createSlice({
       state.ready = true;
       state.error = undefined;
       state.owner = '12323';
-      state.data.fileProgress = action.payload.data.fileToUpload;
+      state.data.fileProgress = action.payload.data;
     });
   },
 });
