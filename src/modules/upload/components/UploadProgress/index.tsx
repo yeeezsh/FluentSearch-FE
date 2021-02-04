@@ -27,10 +27,12 @@ const UploadProgress: React.FC = () => {
       {/* //TODO: wtf */}
       {size(fileProgress) > 0
         ? Object.values(fileProgress).map((file) => {
-            <UploadItem
-              key={file._id}
-              file={{ file: file.file, progress: file.progress }}
-            />;
+            return (
+              <UploadItem
+                key={file._id}
+                file={{ file: file.file, progress: file.progress }}
+              />
+            );
           })
         : null}
     </Wrapper>
