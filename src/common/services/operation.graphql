@@ -1,19 +1,10 @@
-query getMeta{
-  getFilesWithInsight(userId: "1234") {
+query getInsight{
+  getFilesWithInsight(userId: "345345") {
     _id
     label
     meta {
       width,
       height
-    }
-  }
-}
-
-
-query getInsight{
-  getFilesWithInsight(limit:10, skip:0, userId: "123") {
-    insight {
-      result
     }
   }
 }
