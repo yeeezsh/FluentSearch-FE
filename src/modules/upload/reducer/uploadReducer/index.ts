@@ -62,6 +62,7 @@ export const uploadReducer = createSlice({
     builder.addCase(uploadPhotoData.fulfilled, (state, action) => {
       state.ready = true;
       state.error = undefined;
+      state.owner = '12323';
       state.data.fileProgress = action.payload.data;
     });
   },
