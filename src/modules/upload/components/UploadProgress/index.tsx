@@ -14,6 +14,7 @@ const UploadProgress: React.FC = () => {
   const uploadedFileAmount = size(fileProgress);
 
   useEffect(() => {
+    // TODO: if empty not try to upload
     const fileToUpload = Object.values(fileProgress).filter(
       (file) => file.progress === 0,
     );
@@ -23,7 +24,8 @@ const UploadProgress: React.FC = () => {
   return uploadedFileAmount > 0 ? (
     <Wrapper>
       <h4>Uploading File</h4>
-      {size(fileProgress)
+      {/* //TODO: wtf */}
+      {size(fileProgress) > 0
         ? Object.values(fileProgress).map((file) => {
             <UploadItem
               key={file._id}
