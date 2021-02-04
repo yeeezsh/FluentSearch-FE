@@ -1,4 +1,5 @@
 import { fileProgressType } from '../model/types';
+import { size } from 'lodash';
 
 export const modifyFiles = (
   existingFiles: fileProgressType[],
@@ -7,12 +8,12 @@ export const modifyFiles = (
   let fileToUpload: fileProgressType[] = [];
 
   for (let i = 0; i < files.length; i++) {
-    const _id = existingFiles.length + i + 1;
+    const _id = size(existingFiles) + i + 1;
 
     fileToUpload = [
       ...fileToUpload,
       {
-        _id: _id.toString(),
+        _id: _id,
         file: files[i],
         progress: 0,
         status: 0,
