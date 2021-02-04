@@ -14,7 +14,6 @@ const UploadPage: React.FC = () => {
 
   const handleAttachFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(uploadActions.setUploadFile(e.target.files));
-    console.log('files upload', e.target.files);
   };
 
   return (
