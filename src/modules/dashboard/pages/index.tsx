@@ -14,91 +14,97 @@ import ModelCard from 'Modules/dashboard/components/DashboardCard/ModelCard/inde
 import { fetchDashboardData } from '../reducer/dashboardReducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
+import { DashboardData } from '../models/types';
+import { AlbumPreviewProps } from '../components/AlbumPreview/types';
 
-const LabelList: Array<string> = ['label1', 'label2', 'label3'];
+type dashboardCardType = {
+  data: DashboardData;
+};
 
-const DashboardCard: React.FC = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchDashboardData());
-  }, []);
-  const DashboardData = useSelector((state: StoresState) => state.dashboard);
-  console.log(DashboardData);
+type OverviewAlbumType = {
+  data: AlbumPreviewProps[];
+};
+
+const DashboardCard: React.FC<dashboardCardType> = (props) => {
+  const { data } = props;
   return (
     <CardWrapper>
       <Row justify="space-around" align="middle">
         <Col md={5}>
-          <NumberCard cardName={'Photos'} largeNumber={123000} todayNumber={123000} />
+          <NumberCard
+            cardName={'Photos'}
+            largeNumber={data.todayVideos}
+            todayNumber={data.todayPhotos}
+          />
         </Col>
         <Col md={5}>
-          <NumberCard cardName={'Videos'} largeNumber={123000} todayNumber={123000} />
+          <NumberCard
+            cardName={'Videos'}
+            largeNumber={data.totalPhotos}
+            todayNumber={data.todayVideos}
+          />
         </Col>
         <Col md={5}>
           <ProgressCard
             cardName={'Task'}
-            progress={75}
-            doneNumber={100}
-            totalNumber={1000}
+            progress={data.progressPhoto}
+            doneNumber={data.finishRunningPhotos}
+            totalNumber={data.totalRunningPhotos}
           />
         </Col>
         <Col md={5}>
-          <ModelCard cardName={'Model'} model={'resNet'} largeNumber={800} />
+          <ModelCard
+            cardName={'Model'}
+            model={data.model}
+            largeNumber={data.processWithModelPhoto}
+          />
         </Col>
       </Row>
     </CardWrapper>
   );
 };
 
-const OverviewAlbum: React.FC = () => {
+const OverviewAlbum: React.FC<OverviewAlbumType> = (props) => {
+  const { data } = props;
   return (
-    <Row justify="space-around" align="middle">
-      <Col md={5}>
-        <AlbumPreview
-          src="https://i.pinimg.com/564x/86/1c/a6/861ca60c3a2813c8e3250b9af138ada0.jpg"
-          albumName="album name"
-          albumLength={1}
-          label={LabelList}
-        />
-      </Col>
-      <Col md={5}>
-        <AlbumPreview
-          src="https://i.pinimg.com/564x/86/1c/a6/861ca60c3a2813c8e3250b9af138ada0.jpg"
-          albumName="album name"
-          albumLength={1}
-          label={LabelList}
-        />
-      </Col>
-      <Col md={5}>
-        <AlbumPreview
-          src="https://i.pinimg.com/564x/86/1c/a6/861ca60c3a2813c8e3250b9af138ada0.jpg"
-          albumName="album name"
-          albumLength={1}
-          label={LabelList}
-        />
-      </Col>
-      <Col md={5}>
-        <AlbumPreview
-          src="https://i.pinimg.com/564x/86/1c/a6/861ca60c3a2813c8e3250b9af138ada0.jpg"
-          albumName="album name"
-          albumLength={1}
-          label={LabelList}
-        />
-      </Col>
+    <Row justify="space-around" align="top">
+      {data.map((album, index) => (
+        <Col md={5} key={index}>
+          <AlbumPreview
+            src={album.src}
+            albumName={album.albumName}
+            albumLength={album.albumLength}
+            label={album.label}
+            link={album.link}
+          />
+        </Col>
+      ))}
     </Row>
   );
 };
 
 const DashboardPage: React.FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDashboardData());
+  }, []);
+  const DashboardData = useSelector(
+    (state: StoresState) => state.dashboard.data.dashboardData,
+  );
+  const AlbumPreviewData = useSelector(
+    (state: StoresState) => state.dashboard.data.albumPreviewData,
+  );
+
   return (
     <DashboardWrapper>
       <ContentWrapper>
         <DashboardHeader>Dashboard</DashboardHeader>
-        <DashboardCard />
+        <DashboardCard data={DashboardData} />
 
         <AlbumWrapper>
           {/*TODO: Lastest Album*/}
           <h3>Lastest Photo</h3>
-          <OverviewAlbum />
+          <OverviewAlbum data={AlbumPreviewData} />
         </AlbumWrapper>
       </ContentWrapper>
     </DashboardWrapper>
