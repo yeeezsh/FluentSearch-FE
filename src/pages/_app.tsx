@@ -7,9 +7,8 @@ import { Provider } from 'react-redux';
 import { client } from 'Services/client';
 import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
-import { CustomApolloProvider } from 'Tests/mock/graphql/provider';
 
-const EXCLUDE_NAVBAR: string[] = ['/login', '/register', '/allphotos'];
+const EXCLUDE_NAVBAR: string[] = ['/login', '/register', '/allphotos', '/upload'];
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const pathname = useRouter().pathname;
