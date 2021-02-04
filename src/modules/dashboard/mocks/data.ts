@@ -15,15 +15,20 @@ const DashboardMock = Sync.makeFactory<DashboardData>({
   processWithModelPhoto: each(() => faker.random.number()),
   finishRunningPhotos: each(() => faker.random.number()),
   totalRunningPhotos: each(() => faker.random.number()),
-  progressPhoto: each(() => faker.random.number()),
+  progressPhoto: each(() =>
+    faker.random.number({
+      min: 0,
+      max: 100,
+    }),
+  ),
 });
 
 const AlbumPreviewMock = Sync.makeFactory<AlbumPreviewProps>({
-  src: each(() => faker.image.imageUrl()),
+  src: each(() => faker.image.image()),
   albumName: each(() => faker.random.word()),
   albumLength: each(() => faker.random.number()),
   label: each(() => makeArray(3, faker.random.word)),
-  link: each(() => faker.random.word()),
+  link: each(() => faker.internet.url()),
 });
 
 export const DashboardMockData: DashboardData = DashboardMock.build();
