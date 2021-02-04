@@ -7,7 +7,7 @@ import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 import { CustomApolloProvider } from 'Tests/mock/graphql/provider';
 
-const EXCLUDE_NAVBAR: string[] = ['/login', '/register'];
+const EXCLUDE_NAVBAR: string[] = ['/login', '/register', '/upload'];
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const pathname = useRouter().pathname;
