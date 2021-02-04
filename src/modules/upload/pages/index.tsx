@@ -5,6 +5,7 @@ import { BottomBar, UploadWrapper } from './styled';
 import UploadButton from '../components/UploadButton';
 import { useDispatch } from 'react-redux';
 import { uploadActions } from '../reducer/uploadReducer';
+import UploadProgress from '../components/UploadProgress';
 
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const UploadPage: React.FC = () => {
           </Row>
         </Content>
       </UploadWrapper>
+      <UploadProgress />
       <BottomBar>
         <Button style={{ backgroundColor: '#5A36CC' }}>Upload Photo </Button>
       </BottomBar>
