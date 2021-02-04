@@ -5,24 +5,20 @@ import { fileProgressType } from '../model/types';
 export const uploadPhoto = async (
   dataToUpload: fileProgressType[],
 ): Promise<fileProgressType[]> => {
-  const files = new FormData();
+  const formData = new FormData();
   dataToUpload.forEach((data) => {
-    console.log(data.file);
-    files.append('files', data.file);
+    formData.append('files', data.file);
   });
 
+  //TODO: receive from env
   const url = 'http://localhost:5000/file';
-  const config = {
-    headers: {
-      'content-type':
-        'multipart/form-data; boundary=----WebKitFormBoundaryqTqJIxvkWFYqvP5s',
-    },
-  };
-  const data = {
-    owner: '343434',
-    files: files,
-  };
-  const response = await axios.post(url, data, config);
+
+  //TODO: remove owner hardcoded
+  formData.append('owner', '1234');
+
+  const response = await axios.post(url, formData, {
+    headers: { 'content-type': 'multipart/form-data' },
+  });
   console.log(response);
   return response.data;
 };
