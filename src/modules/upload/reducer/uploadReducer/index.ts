@@ -18,6 +18,7 @@ export const uploadReducer = createSlice({
       return { ...state, ...initUploadDataState };
     },
     setUploadFile(state, action) {
+      // TODO: wtf this modifyFiles
       const newData = modifyFiles(state.data.fileProgress, action.payload);
       const existData = state.data.fileProgress;
       const mergeData = [...existData, ...newData];
