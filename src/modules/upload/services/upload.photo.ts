@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { uploadDataType } from '../components/UploadProgress';
 
 //TODO: Change to correct type
-export const uploadPhoto = async (dataToUpload: any): Promise<uploadDataType> => {
+export const uploadPhoto = async (dataToUpload: any): Promise<any> => {
   const files = new FormData();
   files.append('file', dataToUpload.fileToUpload);
   const url = 'http://localhost:5000/file';
