@@ -97,7 +97,7 @@ const DashboardPage: React.FC = () => {
   );
 
   return (
-    <LayoutWithSearch title="Dashboard">
+    <LayoutWithSearch>
       <DashboardWrapper>
         <ContentWrapper>
           <DashboardHeader>Dashboard</DashboardHeader>

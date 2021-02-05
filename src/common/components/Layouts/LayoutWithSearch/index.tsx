@@ -104,17 +104,25 @@ const HeaderWrapper: React.FC = () => {
 // TODO: unit test
 const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
   const { title, children } = props;
+  const router = useRouter();
+
   return (
     <CanvasWrapper>
       <Layout>
         <Sider />
         <ContentWrapper>
           <HeaderWrapper />
-          <Content style={{ overflow: 'initial' }}>
-            <h1>{title}</h1>
-            <hr />
-            {children}
-          </Content>
+          {router.pathname === '/dashboard' ? (
+            <Content style={{ padding: '5% 0% 5% 0%', marginLeft: '5%' }}>
+              {children}
+            </Content>
+          ) : (
+            <Content style={{ overflow: 'initial' }}>
+              <h1>{title}</h1>
+              <hr />
+              {children}
+            </Content>
+          )}
         </ContentWrapper>
       </Layout>
     </CanvasWrapper>
