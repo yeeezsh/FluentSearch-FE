@@ -1,4 +1,4 @@
-import axios from 'axios';
+import adapter from 'Services/adapter.service';
 import { fileProgressType } from '../model/types';
 
 //TODO: Change to correct type
@@ -10,13 +10,10 @@ export const uploadPhoto = async (
     formData.append('files', data.file);
   });
 
-  //TODO: receive from env
-  const url = 'http://localhost:5000/file';
-
   //TODO: remove owner hardcoded
   formData.append('owner', '1234');
 
-  const response = await axios.post(url, formData, {
+  const response = await adapter.instance.post('/file', formData, {
     headers: { 'content-type': 'multipart/form-data' },
   });
   console.log(response);
