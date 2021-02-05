@@ -1,5 +1,5 @@
 query getInsight{
-  getFilesWithInsight(userId: "1234") {
+  getFilesWithInsight(userId: "1234", skip: 0, limit: 5) {
     _id
     label
     meta {
@@ -17,7 +17,6 @@ query getInsight{
         ymax
       }
     }
-    createAt
   }
 }
 

@@ -22,10 +22,10 @@ export type AppModel = {
 
 export type BBoxResponseApi = {
   __typename?: 'BBoxResponseApi';
-  xmax: Scalars['Int'];
-  xmin: Scalars['Int'];
-  ymax: Scalars['Int'];
-  ymin: Scalars['Int'];
+  xmax: Scalars['Float'];
+  xmin: Scalars['Float'];
+  ymax: Scalars['Float'];
+  ymin: Scalars['Float'];
 };
 
 
@@ -65,10 +65,11 @@ export type Insight = {
   _id: Scalars['String'];
   bbox: BBoxResponseApi;
   createAt: Scalars['DateTime'];
+  fileId: Scalars['String'];
   label: Scalars['String'];
   lang: LanguageEnum;
   model: ModelEnum;
-  prob: Scalars['Int'];
+  prob: Scalars['Float'];
   result: Scalars['String'];
   updateAt: Scalars['DateTime'];
 };
@@ -107,7 +108,7 @@ export type GetInsightQuery = (
   { __typename?: 'Query' }
   & { getFilesWithInsight: Array<(
     { __typename?: 'ImageFileWithInsight' }
-    & Pick<ImageFileWithInsight, '_id' | 'label' | 'uri' | 'zone' | 'createAt'>
+    & Pick<ImageFileWithInsight, '_id' | 'label' | 'uri' | 'zone'>
     & { meta: (
       { __typename?: 'ImageMeta' }
       & Pick<ImageMeta, 'width' | 'height'>
@@ -125,7 +126,7 @@ export type GetInsightQuery = (
 
 export const GetInsightDocument = gql`
     query getInsight {
-  getFilesWithInsight(userId: "1234") {
+  getFilesWithInsight(userId: "1234", skip: 0, limit: 5) {
     _id
     label
     meta {
@@ -143,7 +144,6 @@ export const GetInsightDocument = gql`
         ymax
       }
     }
-    createAt
   }
 }
     `;
