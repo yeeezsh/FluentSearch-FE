@@ -42,10 +42,10 @@ export const mockData: PhotosAPI[] = [
     tags: [
       {
         result: 'orange',
-        yMin: 2000,
-        yMax: 600,
-        xMin: 1500,
-        xMax: 400,
+        yMin: 2900,
+        yMax: 800,
+        xMin: 2150,
+        xMax: 500,
       },
     ],
   },
