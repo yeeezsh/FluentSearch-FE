@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { instantSearchActions } from 'Modules/photos/reducers/instantSearchReducer';
 import { StoresState } from 'Stores/index';
 
-const InstantSearch = () => {
+const InstantSearch: React.FC = () => {
   const dispatch = useDispatch();
   const onSearch = useSelector((s: StoresState) => s.instantSearch.word);
   const autocomplete = useSelector(
     (s: StoresState) => s.instantSearch.autocomplete,
   ).map((el) => ({ value: el }));
-  const { data, loading, error } = useGetInsightBySearchQuery({
+  const { data, loading } = useGetInsightBySearchQuery({
     variables: {
       word: onSearch,
     },
@@ -31,12 +31,8 @@ const InstantSearch = () => {
   return (
     <AutoComplete
       options={autocomplete}
-      //   prefix={<SearchOutlined />}
-      //   options={options}
-      //   style={{ width: 200 }}
-      //   onSelect={onSelect}
-      //   onSearch={onSearch}
-    >
+      onSelect={(e) => dispatch(instantSearchActions.onSearch({ word: e }))}
+      style={{ width: '70vw' }}>
       <Input
         placeholder="Search"
         prefix={<SearchOutlined />}
