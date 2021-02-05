@@ -3,5 +3,5 @@ import { fetchHistory } from 'Modules/history/services/fetch.history';
 import { HISTORY } from './types';
 
 export const fetchHistoryData = createAsyncThunk(HISTORY, async () => {
-  return { data: (await fetchHistory()).map((el) => ({ ...el, key: el.key })) };
+  return { data: fetchHistory().map((el) => ({ ...el, key: el.key })) };
 });
