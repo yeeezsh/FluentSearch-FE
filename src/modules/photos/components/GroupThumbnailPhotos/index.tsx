@@ -4,6 +4,7 @@ import Header from './Header';
 import { GroupThumbnailPhotosWrapper, PhotoThumbnailStyled } from './styled';
 import { Props } from './types';
 
+// TODO: no implement yet
 const GroupThumbnailPhotos: React.FC<Props> = (props) => {
   const startDate = props.dateRange[0];
 

@@ -15,6 +15,7 @@ export const photosSlice = createSlice({
       const { photoId, albumId } = action.payload;
       const photo = state.data.photos.find((f) => f._id === photoId);
       state.presentation.views = {
+        //TODO: remove any
         photo: { _id: photo?._id || '' } as any,
         album: state.data.albums.find((f) => f._id === albumId),
       };
@@ -23,12 +24,10 @@ export const photosSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchPhotosData.rejected, (state) => {
       state.data.ready = false;
-      state = {
-        ...state,
-        error: {
-          code: ErrorStateCodeEnum.ServerInternalError,
-          msg: 'api error',
-        },
+      state.error = {
+        code: ErrorStateCodeEnum.ServerInternalError,
+        // TODO: need consistency on msg error maybe add enum ?
+        msg: 'api error',
       };
     });
     builder.addCase(fetchPhotosData.pending, (state) => {
