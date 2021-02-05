@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import BoundingBox from '../BoundingBox';
 import { Tag } from 'Modules/photos/models/tags';
 import { Image } from './styled';
