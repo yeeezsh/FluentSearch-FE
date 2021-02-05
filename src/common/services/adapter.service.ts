@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
-export const END_POINT = process.env.APP_BACKEND_ENDPOINT;
+export const END_POINT = process.env.APP_BACKEND_ENDPOINT || 'http://localhost:5000/';
 
 class Adapter {
   instance: AxiosInstance;
