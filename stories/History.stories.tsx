@@ -1,6 +1,8 @@
 import { Meta } from '@storybook/react';
 import HistoryPage from 'Modules/history/pages';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 
 export default {
@@ -11,6 +13,8 @@ export default {
 export const Default = (): JSX.Element => (
   <>
     <GlobalStyle />
-    <HistoryPage />
+    <Provider store={store}>
+      <HistoryPage />
+    </Provider>
   </>
 );
