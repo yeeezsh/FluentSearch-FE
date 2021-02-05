@@ -62,12 +62,6 @@ export const ImageLightbox = styled.div`
   width: 300%;
   text-align: center;
   display: flex;
-  /*TODO: change to style components  */
-  #lightbox-img {
-    height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-  }
 `;
 
 export const ContentLightbox = styled.div`

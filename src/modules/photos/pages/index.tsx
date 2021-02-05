@@ -160,7 +160,6 @@ const AllPhotosPages: React.FC = () => {
               tags={currentImage.tags}
               src={currentImage.urls.thumb}
             />
-            {/* <img id="lightbox-img" src={currentImage.urls.thumb} /> */}
             <NextButton onClick={showNext}>
               <CaretRightOutlined />
             </NextButton>
