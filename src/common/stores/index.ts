@@ -6,6 +6,7 @@ import photosReducer from 'Modules/photos/reducers/photosReducer';
 import uploadReducer from 'Modules/upload/reducer/uploadReducer';
 import userReducer from 'Modules/user/reducers/userReducer';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
+import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   dashboard: dashboardReducer,
   photos: photosReducer,
   upload: uploadReducer,
+  instantSearch: instantSearchReducer,
 });
 
 export const middleware: ThunkMiddleware[] | Middleware[] = [thunk];

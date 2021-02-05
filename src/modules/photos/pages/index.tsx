@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Button from 'Components/Button';
 import { Loader } from 'Components/Loader';
-import PhotosLayout from 'Components/PhotoLayout';
+import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
@@ -21,6 +21,8 @@ import { Row, Col, Tag } from 'antd';
 import dayjs from 'dayjs';
 import { useGetInsightQuery } from 'Services/model/generated-types';
 import { Tag as TagType } from '../models/tags';
+import { useSelector } from 'react-redux';
+import { StoresState } from 'Stores/index';
 
 const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
   const { tags } = props;
@@ -85,6 +87,8 @@ const AllPhotosPages: React.FC = () => {
           small: e.uri,
           thumb: e.uri,
         },
+        created_at: e.createAt,
+        updated_at: e.updateAt,
         tags: e.insight?.map((el) => ({
           result: el.result,
           xMin: el.bbox.xmin,
@@ -94,6 +98,9 @@ const AllPhotosPages: React.FC = () => {
         })),
       } as PhotosAPI),
   ) as PhotosAPI[];
+
+  const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
+  const ids = searchResult.map((el) => el._id);
 
   useEffect(() => {
     setImages(queryData);
@@ -198,7 +205,7 @@ const AllPhotosPages: React.FC = () => {
   };
 
   return (
-    <PhotosLayout title="Photos">
+    <LayoutWithSearch title="Photos">
       {lightboxOpen ? <LightBox /> : null}
       <Link href="/upload">
         <a>
@@ -213,18 +220,32 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {images.map((image: PhotosAPI, index: number) => (
-            <ThumbnailPhoto
-              src={image.urls.thumb}
-              key={index}
-              createAt={new Date()}
-              selected={false}
-              onClick={() => openLightBox(image)}
-            />
-          ))}
+          {ids.length != 0 &&
+            images
+              .filter((f) => (ids.length != 0 ? ids.includes(f.id) : true))
+              .map((image: PhotosAPI, index: number) => (
+                <ThumbnailPhoto
+                  src={image.urls.thumb}
+                  key={index}
+                  createAt={new Date()}
+                  selected={false}
+                  onClick={() => openLightBox(image)}
+                />
+              ))}
+
+          {ids.length == 0 &&
+            images.map((image: PhotosAPI, index: number) => (
+              <ThumbnailPhoto
+                src={image.urls.thumb}
+                key={index}
+                createAt={new Date()}
+                selected={false}
+                onClick={() => openLightBox(image)}
+              />
+            ))}
         </WrapperImage>
       </InfiniteScroll>
-    </PhotosLayout>
+    </LayoutWithSearch>
   );
 };
 

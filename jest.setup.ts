@@ -25,3 +25,5 @@ jest.mock('next/router', () => ({
     pathname: '',
   }),
 }));
+
+global.fetch = jest.fn().mockResolvedValue({});

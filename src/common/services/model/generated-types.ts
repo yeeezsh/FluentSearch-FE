@@ -87,6 +87,7 @@ export enum ModelEnum {
 export type Query = {
   __typename?: 'Query';
   getFilesWithInsight: Array<ImageFileWithInsight>;
+  searchByWord: SearchReponseDto;
   serverStatus: AppModel;
 };
 
@@ -95,6 +96,18 @@ export type QueryGetFilesWithInsightArgs = {
   limit?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
   userId: Scalars['String'];
+};
+
+
+export type QuerySearchByWordArgs = {
+  userId: Scalars['String'];
+  word: Scalars['String'];
+};
+
+export type SearchReponseDto = {
+  __typename?: 'SearchReponseDto';
+  autocomplete: Array<Scalars['String']>;
+  result: Array<ImageFileWithInsight>;
 };
 
 export enum ZoneEnum {
@@ -108,7 +121,7 @@ export type GetInsightQuery = (
   { __typename?: 'Query' }
   & { getFilesWithInsight: Array<(
     { __typename?: 'ImageFileWithInsight' }
-    & Pick<ImageFileWithInsight, '_id' | 'label' | 'uri' | 'zone'>
+    & Pick<ImageFileWithInsight, '_id' | 'label' | 'createAt' | 'updateAt' | 'uri' | 'zone'>
     & { meta: (
       { __typename?: 'ImageMeta' }
       & Pick<ImageMeta, 'width' | 'height'>
@@ -123,16 +136,35 @@ export type GetInsightQuery = (
   )> }
 );
 
+export type GetInsightBySearchQueryVariables = Exact<{
+  word: Scalars['String'];
+}>;
+
+
+export type GetInsightBySearchQuery = (
+  { __typename?: 'Query' }
+  & { searchByWord: (
+    { __typename?: 'SearchReponseDto' }
+    & Pick<SearchReponseDto, 'autocomplete'>
+    & { result: Array<(
+      { __typename?: 'ImageFileWithInsight' }
+      & Pick<ImageFileWithInsight, '_id'>
+    )> }
+  ) }
+);
+
 
 export const GetInsightDocument = gql`
     query getInsight {
-  getFilesWithInsight(userId: "1234", skip: 0, limit: 5) {
+  getFilesWithInsight(userId: "1234", skip: 0, limit: 1000) {
     _id
     label
     meta {
       width
       height
     }
+    createAt
+    updateAt
     uri
     zone
     insight {
@@ -172,3 +204,39 @@ export function useGetInsightLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type GetInsightQueryHookResult = ReturnType<typeof useGetInsightQuery>;
 export type GetInsightLazyQueryHookResult = ReturnType<typeof useGetInsightLazyQuery>;
 export type GetInsightQueryResult = Apollo.QueryResult<GetInsightQuery, GetInsightQueryVariables>;
+export const GetInsightBySearchDocument = gql`
+    query getInsightBySearch($word: String!) {
+  searchByWord(userId: "1234", word: $word) {
+    autocomplete
+    result {
+      _id
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetInsightBySearchQuery__
+ *
+ * To run a query within a React component, call `useGetInsightBySearchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetInsightBySearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetInsightBySearchQuery({
+ *   variables: {
+ *      word: // value for 'word'
+ *   },
+ * });
+ */
+export function useGetInsightBySearchQuery(baseOptions: Apollo.QueryHookOptions<GetInsightBySearchQuery, GetInsightBySearchQueryVariables>) {
+        return Apollo.useQuery<GetInsightBySearchQuery, GetInsightBySearchQueryVariables>(GetInsightBySearchDocument, baseOptions);
+      }
+export function useGetInsightBySearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetInsightBySearchQuery, GetInsightBySearchQueryVariables>) {
+          return Apollo.useLazyQuery<GetInsightBySearchQuery, GetInsightBySearchQueryVariables>(GetInsightBySearchDocument, baseOptions);
+        }
+export type GetInsightBySearchQueryHookResult = ReturnType<typeof useGetInsightBySearchQuery>;
+export type GetInsightBySearchLazyQueryHookResult = ReturnType<typeof useGetInsightBySearchLazyQuery>;
+export type GetInsightBySearchQueryResult = Apollo.QueryResult<GetInsightBySearchQuery, GetInsightBySearchQueryVariables>;
