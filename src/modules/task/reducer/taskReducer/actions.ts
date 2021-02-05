@@ -3,5 +3,5 @@ import { fetchTask } from 'Modules/task/services/fetch.task';
 import { TASK } from './types';
 
 export const fetchTaskData = createAsyncThunk(TASK, async () => {
-  return { data: (await fetchTask()).map((el) => ({ ...el, key: el.key })) };
+  return { data: fetchTask().map((el) => ({ ...el, key: el.key })) };
 });
