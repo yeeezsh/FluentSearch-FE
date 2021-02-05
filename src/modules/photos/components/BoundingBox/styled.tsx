@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 export const SquareStyle = styled.div`
-  height: 50px;
-  width: 50px;
-  position: absolute;
+  max-height: inherit;
+  max-width: inherit;
   border: 3px solid red;
+  background-color: transparent;
+  z-index: 1000;
+  position: absolute;
 `;
