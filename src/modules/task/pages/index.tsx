@@ -13,14 +13,12 @@ const TaskPage: React.FC = () => {
   const taskData = useSelector((state: StoresState) => state.task);
   return (
     <LayoutWithSearch title="Tasks">
-      <PageWrapper>
-        <PurpleTable
-          dataSource={taskData.data}
-          columns={columns}
-          style={{ marginTop: '30px' }}
-          pagination={{ position: ['bottomCenter'] }}
-        />
-      </PageWrapper>
+      <PurpleTable
+        dataSource={taskData.data}
+        columns={columns}
+        style={{ marginTop: '30px' }}
+        pagination={{ position: ['bottomCenter'] }}
+      />
     </LayoutWithSearch>
   );
 };
