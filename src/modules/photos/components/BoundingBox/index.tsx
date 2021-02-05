@@ -14,7 +14,24 @@ const BoundingBox: React.FC<BoundingBoxType> = (props) => {
   console.log(xMin, xMax, yMin, yMax, label);
   return (
     <>
-      <SquareStyle style={{ top: 200, left: 500, width: 30, height: 50 }} />
+      <SquareStyle
+        style={{
+          top: xMin,
+          left: yMin,
+          width: xMax,
+          height: yMax,
+          textAlign: 'right',
+        }}>
+        <div
+          style={{
+            backgroundColor: 'red',
+            position: 'absolute',
+            top: '100%',
+            left: '-3%',
+          }}>
+          sss
+        </div>
+      </SquareStyle>
     </>
   );
 };
