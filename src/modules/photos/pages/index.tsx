@@ -87,6 +87,8 @@ const AllPhotosPages: React.FC = () => {
           small: e.uri,
           thumb: e.uri,
         },
+        created_at: e.createAt,
+        updated_at: e.updateAt,
         tags: e.insight?.map((el) => ({
           result: el.result,
           xMin: el.bbox.xmin,
