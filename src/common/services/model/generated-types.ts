@@ -121,7 +121,7 @@ export type GetInsightQuery = (
   { __typename?: 'Query' }
   & { getFilesWithInsight: Array<(
     { __typename?: 'ImageFileWithInsight' }
-    & Pick<ImageFileWithInsight, '_id' | 'label' | 'uri' | 'zone'>
+    & Pick<ImageFileWithInsight, '_id' | 'label' | 'createAt' | 'updateAt' | 'uri' | 'zone'>
     & { meta: (
       { __typename?: 'ImageMeta' }
       & Pick<ImageMeta, 'width' | 'height'>
@@ -163,6 +163,8 @@ export const GetInsightDocument = gql`
       width
       height
     }
+    createAt
+    updateAt
     uri
     zone
     insight {

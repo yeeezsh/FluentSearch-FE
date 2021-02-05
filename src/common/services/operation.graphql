@@ -6,8 +6,10 @@ query getInsight{
       width
       height
     }
+    createAt
+    updateAt
     uri
-    zone,
+    zone
     insight {
       result
       bbox {
