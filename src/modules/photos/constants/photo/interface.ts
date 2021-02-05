@@ -1,3 +1,5 @@
+import { Tag } from 'Modules/photos/models/tags';
+
 export interface PhotosAPI {
   id: string;
   created_at: string;
@@ -14,6 +16,7 @@ export interface PhotosAPI {
   urls: URLAPI;
   links: Link;
   user: User;
+  tags?: Tag[];
 }
 export interface LocationAPI {
   name: string;
