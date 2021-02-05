@@ -21,6 +21,8 @@ import { Row, Col, Tag } from 'antd';
 import dayjs from 'dayjs';
 import { useGetInsightQuery } from 'Services/model/generated-types';
 import { Tag as TagType } from '../models/tags';
+import { useSelector } from 'react-redux';
+import { StoresState } from 'Stores/index';
 
 const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
   const { tags } = props;
@@ -94,6 +96,18 @@ const AllPhotosPages: React.FC = () => {
         })),
       } as PhotosAPI),
   ) as PhotosAPI[];
+
+  const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
+  const ids = searchResult.map((el) => el._id);
+  // useEffect(() => {
+  //   console.log(searchResult);
+  //   if (queryData.length > 0) {
+  //     const ids = searchResult.map((el) => el._id);
+  //     const filtered = queryData.filter((f) => ids.includes(f.id));
+  //     setImages(filtered);
+  //     console.log(filtered);
+  //   }
+  // }, [searchResult]);
 
   useEffect(() => {
     setImages(queryData);
@@ -213,15 +227,17 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {images.map((image: PhotosAPI, index: number) => (
-            <ThumbnailPhoto
-              src={image.urls.thumb}
-              key={index}
-              createAt={new Date()}
-              selected={false}
-              onClick={() => openLightBox(image)}
-            />
-          ))}
+          {images
+            .filter((f) => (ids.length != 0 ? ids.includes(f.id) : true))
+            .map((image: PhotosAPI, index: number) => (
+              <ThumbnailPhoto
+                src={image.urls.thumb}
+                key={index}
+                createAt={new Date()}
+                selected={false}
+                onClick={() => openLightBox(image)}
+              />
+            ))}
         </WrapperImage>
       </InfiniteScroll>
     </PhotosLayout>
