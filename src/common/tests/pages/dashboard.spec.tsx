@@ -7,6 +7,8 @@ import dashboardReducer from 'Modules/dashboard/reducer/dashboardReducer';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
+import { ApolloProvider } from '@apollo/client';
+import { client } from 'Services/client';
 
 const rootReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -21,7 +23,9 @@ describe('Pages/Dashboard test', () => {
   it('Dashboard should be exisiting', () => {
     const wrap = mount(
       <Provider store={store}>
-        <DashboardPage />
+        <ApolloProvider client={client}>
+          <DashboardPage />
+        </ApolloProvider>
       </Provider>,
     );
     expect(wrap.exists()).toBe(true);
@@ -30,7 +34,9 @@ describe('Pages/Dashboard test', () => {
   it('Should have Overview Album', () => {
     const wrap = mount(
       <Provider store={store}>
-        <DashboardPage />
+        <ApolloProvider client={client}>
+          <DashboardPage />
+        </ApolloProvider>
       </Provider>,
     );
     expect(wrap.exists('OverviewAlbum')).toBe(true);
@@ -39,7 +45,9 @@ describe('Pages/Dashboard test', () => {
   it('Should contain 2 NumberCard, 1 Progress Card and 1 Model Card', () => {
     const wrap = mount(
       <Provider store={store}>
-        <DashboardPage />
+        <ApolloProvider client={client}>
+          <DashboardPage />
+        </ApolloProvider>
       </Provider>,
     );
     expect(wrap.find(NumberCard)).toHaveLength(2);
