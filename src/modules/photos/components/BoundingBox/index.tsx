@@ -1,5 +1,5 @@
 import React from 'react';
-import { SquareStyle } from './styled';
+import { SquareStyle, Label } from './styled';
 
 export type BoundingBoxType = {
   xMin: number;
@@ -8,10 +8,9 @@ export type BoundingBoxType = {
   yMax: number;
   label: string;
 };
-//style={{ top: `${xMin}`, left: `${yMin}`, width: `${xMax}`, height: `${yMax}` }}
+
 const BoundingBox: React.FC<BoundingBoxType> = (props) => {
   const { xMin, xMax, yMin, yMax, label } = props;
-  console.log(xMin, xMax, yMin, yMax, label);
   return (
     <>
       <SquareStyle
@@ -22,15 +21,7 @@ const BoundingBox: React.FC<BoundingBoxType> = (props) => {
           height: yMax,
           textAlign: 'right',
         }}>
-        <div
-          style={{
-            backgroundColor: 'red',
-            position: 'absolute',
-            top: '100%',
-            left: '-3%',
-          }}>
-          sss
-        </div>
+        <Label>{label}</Label>
       </SquareStyle>
     </>
   );
