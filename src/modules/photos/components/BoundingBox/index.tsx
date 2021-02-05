@@ -15,10 +15,10 @@ const BoundingBox: React.FC<BoundingBoxType> = (props) => {
     <>
       <SquareStyle
         style={{
-          top: xMin,
-          left: yMin,
-          width: xMax,
-          height: yMax,
+          top: yMin,
+          left: xMin,
+          width: xMax / 2,
+          height: yMax / 2,
           textAlign: 'right',
         }}>
         <Label>{label}</Label>
