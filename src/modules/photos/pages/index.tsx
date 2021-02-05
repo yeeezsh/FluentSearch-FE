@@ -99,6 +99,7 @@ const AllPhotosPages: React.FC = () => {
     setImages(queryData);
   }, [loading]);
 
+  //TODO: Check duplicate fetchImages
   const fetchImages = async (): Promise<void> => {
     const apiRoot = 'https://api.unsplash.com';
     const accessKey = 'fLLHNmXzlY1Mkc9woN0pQFNNc53hoBfGAgmQTF2OH4w';
@@ -207,7 +208,6 @@ const AllPhotosPages: React.FC = () => {
 
       <InfiniteScroll
         dataLength={images.length}
-        // next={fetchImages}
         next={fetchImages}
         hasMore={true}
         loader={<Loader />}
