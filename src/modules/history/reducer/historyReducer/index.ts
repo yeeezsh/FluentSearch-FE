@@ -14,13 +14,7 @@ export const historySlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchHistoryData.rejected, (state) => {
       state.ready = false;
-      state = {
-        ...state,
-        error: {
-          code: ErrorStateCodeEnum.ServerInternalError,
-          msg: 'api error',
-        },
-      };
+      state.error = { code: ErrorStateCodeEnum.ServerInternalError, msg: 'api error' };
     });
     builder.addCase(fetchHistoryData.pending, (state) => {
       state.ready = false;
