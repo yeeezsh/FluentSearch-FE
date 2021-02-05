@@ -5,9 +5,11 @@ import { PurpleTable } from 'Styles/global';
 import taskReducer from 'Modules/task/reducer/taskReducer';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
 
 const rootReducer = combineReducers({
   task: taskReducer,
+  instantSearch: instantSearchReducer,
 });
 
 const store = configureStore({

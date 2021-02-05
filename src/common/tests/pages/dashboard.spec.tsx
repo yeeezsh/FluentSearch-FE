@@ -6,9 +6,11 @@ import ProgressCard from 'Modules/dashboard/components/DashboardCard/ProgressCar
 import dashboardReducer from 'Modules/dashboard/reducer/dashboardReducer';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
 
 const rootReducer = combineReducers({
   dashboard: dashboardReducer,
+  instantSearch: instantSearchReducer,
 });
 
 const store = configureStore({
