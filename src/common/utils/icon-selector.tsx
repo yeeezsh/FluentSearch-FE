@@ -1,4 +1,12 @@
-import { CarOutlined } from '@ant-design/icons';
+import {
+  CarOutlined,
+  HomeOutlined,
+  BookOutlined,
+  HistoryOutlined,
+  InboxOutlined,
+  PictureOutlined,
+  DeleteOutlined,
+} from '@ant-design/icons';
 import React from 'react';
 
 interface IconSelectorProps {
@@ -8,6 +16,12 @@ interface IconSelectorProps {
 const IconSelector: React.FC<IconSelectorProps> = (props: IconSelectorProps) => {
   const Icons = {
     CarOulined: <CarOutlined />,
+    HomeOutlined: <HomeOutlined />,
+    BookOutlined: <BookOutlined />,
+    HistoryOutlined: <HistoryOutlined />,
+    InboxOutlined: <InboxOutlined />,
+    PictureOutlined: <PictureOutlined />,
+    DeleteOutlined: <DeleteOutlined />,
   };
 
   const getIcon = (type: string) => {

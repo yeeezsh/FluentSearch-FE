@@ -1,19 +1,22 @@
-query getUser {
-    Users {
-      _id
-      createDate
-      deactivate
-      email
-      mainEmail
-      name
-      oauth {
-        provider
-        token
+query getInsight{
+  getFilesWithInsight(userId: "1234", skip: 0, limit: 5) {
+    _id
+    label
+    meta {
+      width
+      height
+    }
+    uri
+    zone,
+    insight {
+      result
+      bbox {
+        xmax
+        xmin
+        ymin
+        ymax
       }
-      package
-      password
-      role
-      updateDate
-      zone
     }
   }
+}
+
