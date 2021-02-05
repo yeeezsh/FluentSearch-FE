@@ -20,21 +20,11 @@ import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { Row, Col, Tag } from 'antd';
 import dayjs from 'dayjs';
 import { useGetInsightQuery } from 'Services/model/generated-types';
+import { Tag as TagType } from '../models/tags';
 
-const tag = ['animal', 'tree', 'people'];
-const boundingBox = [
-  [12, 24, 54, 54],
-  [23, 434, 455, 456],
-];
-
-const TagRender: React.FC = () => {
-  return (
-    <>
-      {tag.map((e, index) => (
-        <Tag key={index}>{e}</Tag>
-      ))}
-    </>
-  );
+const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
+  const { tags } = props;
+  return <>{tags && tags.map((e, index) => <Tag key={index}>{e.result}</Tag>)}</>;
 };
 
 const AllPhotosPages: React.FC = () => {
@@ -93,6 +83,13 @@ const AllPhotosPages: React.FC = () => {
           small: e.uri,
           thumb: e.uri,
         },
+        tags: e.insight?.map((el) => ({
+          result: el.result,
+          xMin: el.bbox.xmin,
+          xMax: el.bbox.xmax,
+          yMin: el.bbox.ymin,
+          yMax: el.bbox.ymax,
+        })),
       } as PhotosAPI),
   ) as PhotosAPI[];
 
@@ -160,7 +157,7 @@ const AllPhotosPages: React.FC = () => {
             <br />
             <b> Tag</b>
             <br />
-            <TagRender />
+            <TagRender tags={currentImage.tags} />
             <br />
             <br />
             <b> Details</b>
