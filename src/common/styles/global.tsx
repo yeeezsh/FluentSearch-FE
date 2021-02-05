@@ -1,8 +1,12 @@
 import 'antd/dist/antd.css';
 import styled, { createGlobalStyle, css } from 'styled-components';
-import { Table } from 'antd';
+import { Table, Input } from 'antd';
 
 export const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 100%;
+  }
+
   :root {
       //COLORS
     --primary-color: #4425A7;
@@ -51,8 +55,8 @@ export const GlobalStyle = createGlobalStyle`
 
 
   body {
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
@@ -153,4 +157,9 @@ export const PurpleTable = styled(Table)`
 export const PageWrapper = styled.div`
   margin: 10% 10% 0% 10%;
   padding-bottom: 5%;
+`;
+
+export const InputLine = styled(Input)`
+  border: 0px;
+  border-bottom: 1px solid lightgrey;
 `;
