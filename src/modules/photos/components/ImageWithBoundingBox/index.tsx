@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import BoundingBox from '../BoundingBox';
 import { Tag } from 'Modules/photos/models/tags';
 import { Image } from './styled';
+
 type ImageWithBoundingBoxType = {
   tags?: Tag[];
   src: string;
@@ -28,14 +29,34 @@ const RenderBoundingBox: React.FC<{ tags?: Tag[] }> = (props) => {
 };
 
 const ImageWithBoundingBox: React.FC<ImageWithBoundingBoxType> = (props) => {
+  const ref = useRef<HTMLImageElement>(null);
+  const [imageHeight, setImageHeight] = useState(0);
+  const [imageWidth, setImageWidth] = useState(0);
+  useEffect(() => {
+    if (ref.current) {
+      setImageHeight(ref.current.offsetHeight);
+      setImageWidth(ref.current.offsetWidth);
+    }
+  }, [ref]);
+
+  console.log(imageHeight, imageWidth);
   const { tags, src } = props;
-  console.log(tags);
+  const width = 2880;
+  const height = 1040;
+  const scaleX = width / imageWidth;
+  const scaleY = height / imageHeight;
+  console.log(scaleX, scaleY);
   return (
     <>
       {/* <RenderBoundingBox tags={tags} /> */}
-      <BoundingBox xMax={10} xMin={50} yMax={60} yMin={70} label={'juy'} />
-
-      <Image src={src} />
+      <BoundingBox
+        xMax={10 * scaleX}
+        xMin={2 * scaleX}
+        yMax={10 * scaleY}
+        yMin={28 * scaleY}
+        label={'juy'}
+      />
+      <Image ref={ref} src={src} />
     </>
   );
 };
