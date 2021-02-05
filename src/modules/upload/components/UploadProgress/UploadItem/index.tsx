@@ -8,15 +8,6 @@ type UploadItemProps = {
   };
 };
 
-type FileType = {
-  lastModified: number;
-  lastModifiedDate: Date;
-  name: string;
-  size: number;
-  type: string;
-  webkitRelativePath: string;
-};
-
 const UploadItem: React.FC<UploadItemProps> = (props) => {
   const { file, progress } = props.file;
   return file ? (

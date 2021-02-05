@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import styled, { createGlobalStyle, css } from 'styled-components';
-import { Input } from 'antd';
+import { Table, Input } from 'antd';
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -135,6 +135,28 @@ const handleAlignType = (align?: PComponentProps['align']) => {
 export const P = styled.p<PComponentProps>`
   ${({ align }) => handleAlignType(align)};
   color: darkgray;
+`;
+
+export const PurpleTable = styled(Table)`
+  .ant-table-thead > tr > th {
+    background: #e1d8ff;
+    color: var(--secondary-color);
+  }
+  .ant-pagination-item-active {
+    border: 1px solid var(--secondary-color);
+  }
+  .ant-pagination-item-active a {
+    color: var(--secondary-color);
+  }
+
+  .ant-table-cell {
+    text-align: center;
+  }
+`;
+
+export const PageWrapper = styled.div`
+  margin: 10% 10% 0% 10%;
+  padding-bottom: 5%;
 `;
 
 export const InputLine = styled(Input)`
