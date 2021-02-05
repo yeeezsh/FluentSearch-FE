@@ -227,9 +227,21 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {images
-            .filter((f) => (ids.length != 0 ? ids.includes(f.id) : true))
-            .map((image: PhotosAPI, index: number) => (
+          {ids.length != 0 &&
+            images
+              .filter((f) => (ids.length != 0 ? ids.includes(f.id) : true))
+              .map((image: PhotosAPI, index: number) => (
+                <ThumbnailPhoto
+                  src={image.urls.thumb}
+                  key={index}
+                  createAt={new Date()}
+                  selected={false}
+                  onClick={() => openLightBox(image)}
+                />
+              ))}
+
+          {ids.length == 0 &&
+            images.map((image: PhotosAPI, index: number) => (
               <ThumbnailPhoto
                 src={image.urls.thumb}
                 key={index}
