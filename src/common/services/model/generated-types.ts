@@ -156,7 +156,7 @@ export type GetInsightBySearchQuery = (
 
 export const GetInsightDocument = gql`
     query getInsight {
-  getFilesWithInsight(userId: "1234", skip: 0, limit: 5) {
+  getFilesWithInsight(userId: "1234", skip: 0, limit: 1000) {
     _id
     label
     meta {
