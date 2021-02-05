@@ -1,4 +1,4 @@
-import { ImageProps } from '../Layouts/types';
+import { ImageProps } from 'Components/PhotoLayout/types';
 import { Img } from './styled';
 
 // TODO: not use ?
