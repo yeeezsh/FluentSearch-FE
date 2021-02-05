@@ -7,7 +7,7 @@ export default {
   component: RegisterPage,
 } as Meta;
 
-export const RegisterStories = (): JSX.Element => (
+export const Default = (): JSX.Element => (
   <>
     <GlobalStyle />
     <RegisterPage />
