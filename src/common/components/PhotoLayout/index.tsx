@@ -20,6 +20,7 @@ import {
   PHOTOS_SIDEBAR_CONSTANT,
 } from 'Modules/photos/constants/menu/index';
 import IconSelector from 'Utils/icon-selector';
+import InstantSearch from 'Modules/photos/components/InstantSearch';
 
 const { Header, Content } = Layout;
 
@@ -91,7 +92,7 @@ const HeaderWrapper: React.FC = () => {
     <Header>
       <Row justify="center">
         <Col xl={8}>
-          <Input placeholder="Search" prefix={<SearchOutlined />} />
+          <InstantSearch />
         </Col>
         <Col xl={4} push={3}>
           <UserContainer />
