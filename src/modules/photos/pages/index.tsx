@@ -23,6 +23,7 @@ import { useGetInsightQuery } from 'Services/model/generated-types';
 import { Tag as TagType } from '../models/tags';
 import ImageWithBoundingBox from '../components/ImageWithBoundingBox';
 import { initialState } from '../models/init';
+import { mockData } from '../mocks/data';
 
 const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
   const { tags } = props;
@@ -62,9 +63,9 @@ const AllPhotosPages: React.FC = () => {
       } as PhotosAPI),
   ) as PhotosAPI[];
 
-  // useEffect(() => {
-  //   queryData.unshift();
-  // }, [])
+  useEffect(() => {
+    mockData.map((data) => queryData.unshift(data));
+  }, []);
 
   useEffect(() => {
     setImages(queryData);
