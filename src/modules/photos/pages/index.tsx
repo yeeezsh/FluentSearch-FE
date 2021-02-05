@@ -64,7 +64,7 @@ const AllPhotosPages: React.FC = () => {
   ) as PhotosAPI[];
 
   useEffect(() => {
-    mockData.map((data) => queryData.unshift(data));
+    setTimeout(() => mockData.map((data) => queryData.unshift(data), 3000));
   }, []);
 
   useEffect(() => {
@@ -124,6 +124,8 @@ const AllPhotosPages: React.FC = () => {
             <ImageWithBoundingBox
               tags={currentImage.tags}
               src={currentImage.urls.thumb}
+              width={currentImage.width}
+              height={currentImage.height}
             />
             <NextButton onClick={showNext}>
               <CaretRightOutlined />
