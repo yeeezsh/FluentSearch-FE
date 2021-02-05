@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PrevButton = styled.button`
-  display: block;
+  display: inline-block;
   height: 50px;
   width: 50px;
   position: absolute;
@@ -16,22 +16,19 @@ export const PrevButton = styled.button`
   border: 0px;
 `;
 export const NextButton = styled.button`
-  display: block;
+  display: inline-block;
   height: 50px;
   width: 50px;
   position: absolute;
-  border-color: transparent;
-  text-decoration: none;
-  box-shadow: none;
-  top: 50%;
-  right: 35%;
   border-radius: 100%;
   font-size: 1rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
-  border: 0px;
-  font-weight: bold;
+  top: 50%;
+  left: 50%;
   background: rgba(129, 129, 129, 0.5);
   color: white;
+  text-decoration: none;
+  border: 0px;
 `;
 export const LightboxWrapper = styled.div`
   z-index: 1000;
@@ -60,6 +57,7 @@ export const ImageLightbox = styled.div`
   height: 80vh;
   width: 300%;
   text-align: center;
+  display: block;
   /*TODO: change to style components  */
   #lightbox-img {
     height: 100%;
