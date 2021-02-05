@@ -13,6 +13,7 @@ const EXCLUDE_NAVBAR: string[] = [
   '/allphotos',
   '/upload',
   '/history',
+  '/dashboard',
 ];
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
