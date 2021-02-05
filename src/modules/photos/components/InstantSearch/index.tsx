@@ -35,7 +35,7 @@ const InstantSearch: React.FC = () => {
     <AutoComplete
       options={autocomplete}
       onSelect={(e) => dispatch(instantSearchActions.onSearch({ word: e }))}
-      style={{ width: '70vw' }}>
+      style={{ width: '40vw' }}>
       <Input
         placeholder="Search"
         prefix={<SearchOutlined />}
