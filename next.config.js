@@ -10,5 +10,6 @@ module.exports = {
   },
   env: {
     APP_GRAPHQL_ENDPOINT: process.env.APP_GRAPHQL_ENDPOINT,
+    APP_BACKEND_ENDPOINT: process.env.APP_BACKEND_ENDPOINT,
   },
 };
