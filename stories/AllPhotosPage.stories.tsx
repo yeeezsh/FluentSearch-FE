@@ -9,6 +9,7 @@ export default {
 
 export const AllPhotoStories = (): JSX.Element => (
   <>
-    <GlobalStyle />(<AllPhotosPage />
+    <GlobalStyle />
+    <AllPhotosPage />
   </>
 );

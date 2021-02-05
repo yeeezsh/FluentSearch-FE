@@ -1,10 +1,9 @@
 import axios from 'axios';
 import Button from 'Components/Button';
 import { Loader } from 'Components/Loader';
-import AllPhotosLayout from 'Modules/photos/components/Layouts';
+import PhotosLayout from 'Components/PhotoLayout';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { WrapperImage } from '../components/Layouts/styled';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
 import { PhotosAPI } from '../constants/photo/interface';
 import Link from 'next/link';
@@ -15,6 +14,7 @@ import {
   ContentLightbox,
   ImageLightbox,
   Wrapper,
+  WrapperImage,
 } from './styled';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { Row, Col, Tag } from 'antd';
@@ -209,7 +209,7 @@ const AllPhotosPages: React.FC = () => {
   };
 
   return (
-    <AllPhotosLayout title="Photos">
+    <PhotosLayout title="Photos">
       {lightboxOpen ? <LightBox /> : null}
       <Link href="/upload">
         <a>
@@ -235,7 +235,7 @@ const AllPhotosPages: React.FC = () => {
           ))}
         </WrapperImage>
       </InfiniteScroll>
-    </AllPhotosLayout>
+    </PhotosLayout>
   );
 };
 
