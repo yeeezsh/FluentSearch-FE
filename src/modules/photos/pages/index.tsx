@@ -28,6 +28,8 @@ const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
 };
 
 const AllPhotosPages: React.FC = () => {
+  //TODO: WTF extract to smaller component
+
   const initialState = {
     id: '',
     created_at: '',

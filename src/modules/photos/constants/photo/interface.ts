@@ -1,5 +1,6 @@
 import { Tag } from 'Modules/photos/models/tags';
 
+// TODO: deprecate this interface
 export interface PhotosAPI {
   id: string;
   created_at: string;

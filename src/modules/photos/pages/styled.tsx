@@ -60,6 +60,7 @@ export const ImageLightbox = styled.div`
   height: 80vh;
   width: 300%;
   text-align: center;
+  /*TODO: change to style components  */
   #lightbox-img {
     height: 100%;
     max-width: 100%;
