@@ -1,4 +1,4 @@
-export interface Photos {
+export interface PhotosAPI {
   id: string;
   created_at: string;
   updated_at: string;
@@ -10,18 +10,18 @@ export interface Photos {
   likes: number;
   liked_by_user: boolean;
   description: string;
-  location: Location;
-  urls: URL;
+  location: LocationAPI;
+  urls: URLAPI;
   links: Link;
   user: User;
 }
-export interface Location {
+export interface LocationAPI {
   name: string;
   city: string;
   country: string;
   title?: string;
 }
-export interface URL {
+export interface URLAPI {
   raw: string;
   full: string;
   regular: string;

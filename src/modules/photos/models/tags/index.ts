@@ -1,6 +1,7 @@
 export type Tag = {
-  _id: string;
-  label: string;
-  topLeft: number;
-  bottomRight: number;
+  result: string;
+  xMin: number;
+  xMax: number;
+  yMin: number;
+  yMax: number;
 };

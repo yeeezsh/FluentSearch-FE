@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { WrapperImage } from '../components/Layouts/styled';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
-import { Photos } from '../constants/photo/interface';
+import { PhotosAPI } from '../constants/photo/interface';
 import Link from 'next/link';
 import {
   LightboxWrapper,
@@ -75,8 +75,8 @@ const AllPhotosPages: React.FC = () => {
     },
   };
 
-  const [images = [], setImages] = useState<Photos[]>();
-  const [currentImage, setCurrentImages] = useState<Photos>(initialState);
+  const [images = [], setImages] = useState<PhotosAPI[]>();
+  const [currentImage, setCurrentImages] = useState<PhotosAPI>(initialState);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const { data, loading } = useGetInsightQuery();
 
@@ -93,8 +93,8 @@ const AllPhotosPages: React.FC = () => {
           small: e.uri,
           thumb: e.uri,
         },
-      } as Photos),
-  ) as Photos[];
+      } as PhotosAPI),
+  ) as PhotosAPI[];
 
   useEffect(() => {
     setImages(queryData);
@@ -110,7 +110,7 @@ const AllPhotosPages: React.FC = () => {
       });
   };
 
-  const openLightBox = (image: Photos) => {
+  const openLightBox = (image: PhotosAPI) => {
     setCurrentImages(image);
     setLightboxOpen(true);
   };
@@ -214,7 +214,7 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {images.map((image: Photos, index: number) => (
+          {images.map((image: PhotosAPI, index: number) => (
             <ThumbnailPhoto
               src={image.urls.thumb}
               key={index}
