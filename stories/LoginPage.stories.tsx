@@ -7,7 +7,7 @@ export default {
   component: LoginPage,
 } as Meta;
 
-export const LoginStories = (): JSX.Element => (
+export const Default = (): JSX.Element => (
   <>
     <GlobalStyle />
     <LoginPage />

@@ -3,7 +3,7 @@ import React from 'react';
 import SelectBadgeIcon, { HoverIcon, InnerHoverIcon, SelectedIcon } from './index';
 
 describe('SelectIcon spec', () => {
-  const onSelect = (s: boolean) => {
+  const onSelect = () => {
     return;
   };
 

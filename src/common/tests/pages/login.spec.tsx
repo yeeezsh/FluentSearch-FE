@@ -5,9 +5,9 @@ import React from 'react';
 import LoginPage from 'Modules/user/pages/login';
 
 describe('Pages/Login test', () => {
-  it('Render correcly', () => {
+  it('Render correctly', () => {
     const wrap = shallow(<LoginPage />);
-    expect(wrap).toMatchSnapshot();
+    expect(wrap.html()).toMatchSnapshot();
   });
 
   it('LoginPage should be exisiting', () => {
