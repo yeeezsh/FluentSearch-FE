@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StoresState } from 'Stores/index';
 
 import { fetchHistoryData } from '../reducer/historyReducer/actions';
-import PhotosLayout from 'Components/PhotoLayout';
+import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 const HistoryPages: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -13,7 +13,7 @@ const HistoryPages: React.FC = () => {
   }, []);
   const historyData = useSelector((state: StoresState) => state.history);
   return (
-    <PhotosLayout title="History">
+    <LayoutWithSearch title="History">
       <PageWrapper>
         <hr />
         <PurpleTable
@@ -23,7 +23,7 @@ const HistoryPages: React.FC = () => {
           pagination={{ position: ['bottomCenter'] }}
         />
       </PageWrapper>
-    </PhotosLayout>
+    </LayoutWithSearch>
   );
 };
 

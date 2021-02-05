@@ -102,7 +102,8 @@ const HeaderWrapper: React.FC = () => {
   );
 };
 
-const PhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
+// TODO: unit test
+const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
   const { title, children } = props;
   return (
     <CanvasWrapper>
@@ -121,4 +122,4 @@ const PhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
   );
 };
 
-export default PhotosLayout;
+export default LayoutWithSearch;

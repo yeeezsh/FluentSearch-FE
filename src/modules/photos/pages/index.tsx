@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Button from 'Components/Button';
 import { Loader } from 'Components/Loader';
-import PhotosLayout from 'Components/PhotoLayout';
+import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
@@ -203,7 +203,7 @@ const AllPhotosPages: React.FC = () => {
   };
 
   return (
-    <PhotosLayout title="Photos">
+    <LayoutWithSearch title="Photos">
       {lightboxOpen ? <LightBox /> : null}
       <Link href="/upload">
         <a>
@@ -243,7 +243,7 @@ const AllPhotosPages: React.FC = () => {
             ))}
         </WrapperImage>
       </InfiniteScroll>
-    </PhotosLayout>
+    </LayoutWithSearch>
   );
 };
 

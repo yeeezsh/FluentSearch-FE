@@ -1,4 +1,4 @@
-import { ImageProps } from 'Components/PhotoLayout/types';
+import { ImageProps } from 'Components/Layouts/LayoutWithSearch/types';
 import { Img } from './styled';
 
 // TODO: not use ?

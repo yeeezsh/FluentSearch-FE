@@ -4,7 +4,7 @@ import { PurpleTable, PageWrapper } from 'Styles/global';
 import { fetchTaskData } from '../reducer/taskReducer/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
-import PhotosLayout from 'Components/PhotoLayout';
+import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 const TaskPage: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -12,7 +12,7 @@ const TaskPage: React.FC = () => {
   }, []);
   const taskData = useSelector((state: StoresState) => state.task);
   return (
-    <PhotosLayout title="Tasks">
+    <LayoutWithSearch title="Tasks">
       <PageWrapper>
         <PurpleTable
           dataSource={taskData.data}
@@ -21,7 +21,7 @@ const TaskPage: React.FC = () => {
           pagination={{ position: ['bottomCenter'] }}
         />
       </PageWrapper>
-    </PhotosLayout>
+    </LayoutWithSearch>
   );
 };
 

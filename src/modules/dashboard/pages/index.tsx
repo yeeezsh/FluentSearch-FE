@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { DashboardData } from '../models/types';
 import { AlbumPreviewProps } from '../components/AlbumPreview/types';
-import PhotosLayout from 'Components/PhotoLayout';
+import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 
 type dashboardCardType = {
   data: DashboardData;
@@ -97,7 +97,7 @@ const DashboardPage: React.FC = () => {
   );
 
   return (
-    <PhotosLayout title="Dashboard">
+    <LayoutWithSearch title="Dashboard">
       <DashboardWrapper>
         <ContentWrapper>
           <DashboardHeader>Dashboard</DashboardHeader>
@@ -110,7 +110,7 @@ const DashboardPage: React.FC = () => {
           </AlbumWrapper>
         </ContentWrapper>
       </DashboardWrapper>
-    </PhotosLayout>
+    </LayoutWithSearch>
   );
 };
 
