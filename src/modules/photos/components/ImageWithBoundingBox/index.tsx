@@ -1,22 +1,42 @@
 import React from 'react';
 import BoundingBox from '../BoundingBox';
-
+import { Tag } from 'Modules/photos/models/tags';
+import { Image } from './styled';
 type ImageWithBoundingBoxType = {
-  xMin: number;
-  xMax: number;
-  yMin: number;
-  yMax: number;
-  label: string;
+  tags?: Tag[];
   src: string;
 };
 
-const ImageWithBoundingBox: React.FC<ImageWithBoundingBoxType> = (props) => {
-  const { xMin, xMax, yMin, yMax, label, src } = props;
+const RenderBoundingBox: React.FC<{ tags?: Tag[] }> = (props) => {
+  const { tags } = props;
+
   return (
-    <div style={{ position: 'relative' }}>
-      <img src={src} />
-      <BoundingBox xMax={xMax} xMin={xMin} yMax={yMax} yMin={yMin} label={label} />
-    </div>
+    <>
+      {tags &&
+        tags.map((e, index) => {
+          <BoundingBox
+            key={index}
+            xMax={e.xMax}
+            xMin={e.xMin}
+            yMax={e.yMax}
+            yMin={e.yMin}
+            label={e.result}
+          />;
+        })}
+    </>
+  );
+};
+
+const ImageWithBoundingBox: React.FC<ImageWithBoundingBoxType> = (props) => {
+  const { tags, src } = props;
+  console.log(tags);
+  return (
+    <>
+      {/* <RenderBoundingBox tags={tags} /> */}
+      <BoundingBox xMax={10} xMin={50} yMax={60} yMin={70} label={'juy'} />
+
+      <Image src={src} />
+    </>
   );
 };
 
