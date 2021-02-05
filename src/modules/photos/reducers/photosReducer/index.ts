@@ -23,12 +23,9 @@ export const photosSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchPhotosData.rejected, (state) => {
       state.data.ready = false;
-      state = {
-        ...state,
-        error: {
-          code: ErrorStateCodeEnum.ServerInternalError,
-          msg: 'api error',
-        },
+      state.error = {
+        code: ErrorStateCodeEnum.ServerInternalError,
+        msg: 'api error',
       };
     });
     builder.addCase(fetchPhotosData.pending, (state) => {
