@@ -19,6 +19,8 @@ const InstantSearch: React.FC = () => {
   });
 
   useEffect(() => {
+    //   preventing from load all list
+    // if (onSearch !== '') {
     dispatch(
       instantSearchActions.onData({
         data: data?.searchByWord.result || [],
@@ -26,6 +28,7 @@ const InstantSearch: React.FC = () => {
         autocomplete: data?.searchByWord.autocomplete || [],
       }),
     );
+    // }
   }, [onSearch, loading]);
 
   return (
