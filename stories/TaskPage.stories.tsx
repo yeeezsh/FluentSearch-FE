@@ -1,5 +1,8 @@
 import { Meta } from '@storybook/react';
 import TaskPage from 'Modules/task/pages/';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 
 export default {
@@ -10,6 +13,8 @@ export default {
 export const Default = (): JSX.Element => (
   <>
     <GlobalStyle />
-    <TaskPage />
+    <Provider store={store}>
+      <TaskPage />
+    </Provider>
   </>
 );
