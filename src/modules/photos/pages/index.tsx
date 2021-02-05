@@ -99,15 +99,6 @@ const AllPhotosPages: React.FC = () => {
 
   const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
   const ids = searchResult.map((el) => el._id);
-  // useEffect(() => {
-  //   console.log(searchResult);
-  //   if (queryData.length > 0) {
-  //     const ids = searchResult.map((el) => el._id);
-  //     const filtered = queryData.filter((f) => ids.includes(f.id));
-  //     setImages(filtered);
-  //     console.log(filtered);
-  //   }
-  // }, [searchResult]);
 
   useEffect(() => {
     setImages(queryData);
