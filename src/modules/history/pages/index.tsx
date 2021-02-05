@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StoresState } from 'Stores/index';
 
 import { fetchHistoryData } from '../reducer/historyReducer/actions';
+import PhotosLayout from 'Components/PhotoLayout';
 const HistoryPages: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -12,16 +13,17 @@ const HistoryPages: React.FC = () => {
   }, []);
   const historyData = useSelector((state: StoresState) => state.history);
   return (
-    <PageWrapper>
-      <h3>History</h3>
-      <hr />
-      <PurpleTable
-        dataSource={historyData.data}
-        columns={columns}
-        style={{ marginTop: '30px' }}
-        pagination={{ position: ['bottomCenter'] }}
-      />
-    </PageWrapper>
+    <PhotosLayout title="History">
+      <PageWrapper>
+        <hr />
+        <PurpleTable
+          dataSource={historyData.data}
+          columns={columns}
+          style={{ marginTop: '30px' }}
+          pagination={{ position: ['bottomCenter'] }}
+        />
+      </PageWrapper>
+    </PhotosLayout>
   );
 };
 
