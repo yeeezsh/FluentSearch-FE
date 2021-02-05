@@ -64,11 +64,8 @@ const AllPhotosPages: React.FC = () => {
   ) as PhotosAPI[];
 
   useEffect(() => {
-    setTimeout(() => mockData.map((data) => queryData.unshift(data), 3000));
-  }, []);
-
-  useEffect(() => {
-    setImages(queryData);
+    // setImages(queryData);
+    setImages(mockData);
   }, [loading]);
 
   //TODO: Check duplicate fetchImages
