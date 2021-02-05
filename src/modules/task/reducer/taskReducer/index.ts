@@ -15,13 +15,7 @@ export const taskSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchTaskData.rejected, (state) => {
       state.ready = false;
-      state = {
-        ...state,
-        error: {
-          code: ErrorStateCodeEnum.ServerInternalError,
-          msg: 'api error',
-        },
-      };
+      state.error = { code: ErrorStateCodeEnum.ServerInternalError, msg: 'api error' };
     });
     builder.addCase(fetchTaskData.pending, (state) => {
       state.ready = false;
