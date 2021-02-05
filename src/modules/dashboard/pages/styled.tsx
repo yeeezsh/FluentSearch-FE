@@ -2,37 +2,6 @@ import styled from 'styled-components';
 
 export const DashboardWrapper = styled.div`
   height: 100vh;
-
-  h1 {
-    font-size: 3.05rem;
-    font-weight: bold;
-  }
-
-  h2 {
-    font-size: 2.44rem;
-    font-weight: bold;
-  }
-
-  h3 {
-    font-size: 1.95rem;
-    font-weight: bold;
-  }
-
-  h4 {
-    font-size: 1.56rem;
-    font-weight: bold;
-  }
-
-  h5 {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  body,
-  p,
-  span {
-    font-size: 1rem;
-  }
 `;
 
 export const CaptionText = styled.p`
