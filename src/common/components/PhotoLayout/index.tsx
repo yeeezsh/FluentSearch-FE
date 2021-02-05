@@ -8,7 +8,7 @@ import {
   UserWrapper,
   ContentWrapper,
   IconWrapper,
-} from 'Modules/photos/components/Layouts/styled';
+} from './styled';
 import { SearchOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -101,7 +101,7 @@ const HeaderWrapper: React.FC = () => {
   );
 };
 
-const AllPhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
+const PhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
   const { title, children } = props;
   return (
     <CanvasWrapper>
@@ -120,4 +120,4 @@ const AllPhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
   );
 };
 
-export default AllPhotosLayout;
+export default PhotosLayout;
