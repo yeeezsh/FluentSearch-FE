@@ -6,26 +6,31 @@ import { Image } from './styled';
 type ImageWithBoundingBoxType = {
   tags?: Tag[];
   src: string;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
 };
 
-const RenderBoundingBox: React.FC<{ tags?: Tag[] }> = (props) => {
-  const { tags } = props;
+type RenderBoundingBoxType = {
+  tags: Tag[];
+  scaleX: number;
+  scaleY: number;
+};
+
+const RenderBoundingBox: React.FC<RenderBoundingBoxType> = (props) => {
+  const { tags, scaleX, scaleY } = props;
 
   return (
     <>
-      {tags &&
-        tags.map((e, index) => {
-          <BoundingBox
-            key={index}
-            xMax={e.xMax}
-            xMin={e.xMin}
-            yMax={e.yMax}
-            yMin={e.yMin}
-            label={e.result}
-          />;
-        })}
+      {tags.map((e, index) => {
+        <BoundingBox
+          key={index}
+          xMax={e.xMax / scaleX}
+          xMin={e.xMin / scaleX - 100}
+          yMax={e.yMax / scaleY}
+          yMin={e.yMin / scaleY + 110}
+          label={e.result}
+        />;
+      })}
     </>
   );
 };
@@ -34,31 +39,36 @@ const ImageWithBoundingBox: React.FC<ImageWithBoundingBoxType> = (props) => {
   const ref = useRef<HTMLImageElement>(null);
   const [imageHeight, setImageHeight] = useState(0);
   const [imageWidth, setImageWidth] = useState(0);
-  useEffect(() => {
-    if (ref.current) {
-      setImageHeight(ref.current.offsetHeight);
-      setImageWidth(ref.current.offsetWidth);
-    }
-  }, [ref]);
 
-  console.log(imageHeight, imageWidth);
-  const { tags, src } = props;
-  const width = 2880;
-  const height = 1040;
+  const handleImageLoad = (event) => {
+    setImageHeight(event.target.clientHeight);
+    setImageWidth(event.target.clientWidth);
+  };
+
+  const { tags, src, width, height } = props;
+
   const scaleX = width / imageWidth;
   const scaleY = height / imageHeight;
+  console.log(imageHeight, imageWidth);
+  console.log(width, height);
   console.log(scaleX, scaleY);
+
   return (
     <>
-      {/* <RenderBoundingBox tags={tags} /> */}
-      <BoundingBox
-        xMax={10 * scaleX}
-        xMin={2 * scaleX}
-        yMax={10 * scaleY}
-        yMin={28 * scaleY}
-        label={'juy'}
-      />
-      <Image ref={ref} src={src} />
+      {tags && (
+        <>
+          <BoundingBox
+            xMax={tags[0].xMax / scaleX}
+            xMin={tags[0].xMin / scaleX - 100}
+            yMax={tags[0].yMax / scaleY}
+            yMin={tags[0].yMin / scaleY + 110}
+            label={tags[0].result}
+          />
+          ;{/* <RenderBoundingBox tags={tags} scaleX={scaleX} scaleY={scaleY} /> */}
+        </>
+      )}
+      ;
+      <Image ref={ref} src={src} onLoad={handleImageLoad} />
     </>
   );
 };
