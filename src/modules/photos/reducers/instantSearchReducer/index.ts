@@ -7,6 +7,7 @@ const initialState: InstantSearchReducer = {
   loading: false,
 };
 
+//TODO: unit test
 export const instantSearchSlice = createSlice({
   name: INSTANT_SEARCH,
   initialState,
