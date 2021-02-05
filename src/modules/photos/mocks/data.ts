@@ -27,7 +27,7 @@ export const mockData: PhotosAPI[] = [
       regular: '',
       small: '',
       thumb:
-        'https://images.unsplash.com/photo-1612476957058-3328f66cbea7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+        'https://images.unsplash.com/photo-1612293905838-667dea27cc79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80',
     },
     links: {
       self: '',
@@ -41,18 +41,11 @@ export const mockData: PhotosAPI[] = [
     },
     tags: [
       {
-        result: 'cake',
-        xMin: 837,
-        xMax: 1266,
-        yMin: 2483,
-        yMax: 1451,
-      },
-      {
-        result: 'cake',
-        xMin: 2248,
-        xMax: 1266,
-        yMin: 2864,
-        yMax: 1451,
+        result: 'orange',
+        yMin: 2000,
+        yMax: 600,
+        xMin: 1500,
+        xMax: 400,
       },
     ],
   },
