@@ -7,7 +7,13 @@ import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 import { CustomApolloProvider } from 'Tests/mock/graphql/provider';
 
-const EXCLUDE_NAVBAR: string[] = ['/login', '/register', '/dashboard'];
+const EXCLUDE_NAVBAR: string[] = [
+  '/login',
+  '/register',
+  '/dashboard',
+  '/allphotos',
+  '/upload',
+];
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const pathname = useRouter().pathname;
@@ -16,12 +22,12 @@ export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <GlobalStyle />
-      <CustomApolloProvider>
-        <Provider store={store}>
+      <Provider store={store}>
+        <CustomApolloProvider>
           {!isExcludeNavbar && <HomeNavbar />}
           <Component {...pageProps} />
-        </Provider>
-      </CustomApolloProvider>
+        </CustomApolloProvider>
+      </Provider>
     </>
   );
 }
