@@ -3,10 +3,6 @@ import React from 'react';
 import SelectBadgeIcon, { HoverIcon, InnerHoverIcon, SelectedIcon } from './index';
 
 describe('SelectIcon spec', () => {
-  const onSelect = (s: boolean) => {
-    return;
-  };
-
   it('Should show nothing when hover and selected is false ', () => {
     const wrap = mount(
       <SelectBadgeIcon hover={false} selected={false} onSelect={onSelect} />,

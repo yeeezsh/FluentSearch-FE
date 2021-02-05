@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { PhotosAPI } from 'Modules/photos/constants/photo/interface';
 import { fetchImages } from 'Modules/photos/services/fetch.images';
 import { fetchPhotosData } from './actions';
 import photosReducer, { photosActions } from './index';
@@ -20,7 +21,7 @@ describe('photoReducer test', () => {
   });
 
   it('should have pending/fulfill fetchPhotosData', async () => {
-    const fetchImagesMock = jest.fn(fetchImages).mockResolvedValue(mockdata as any);
+    const fetchImagesMock = jest.fn(fetchImages).mockResolvedValue(mockdata);
     const data = await fetchImagesMock();
     store.dispatch({ type: fetchPhotosData.fulfilled.type, payload: { data } });
     expect(store.getState().photos.data.ready).toBe(true);
@@ -33,7 +34,7 @@ describe('photoReducer test', () => {
   });
 });
 
-const mockdata = [
+const mockdata = ([
   {
     id: 'gd0US-3s-KM',
     created_at: '2021-01-11T09:50:05-05:00',
@@ -395,4 +396,4 @@ const mockdata = [
     views: 205791,
     downloads: 805,
   },
-].map((el) => ({ ...el, _id: el.id }));
+].map((el) => ({ ...el, _id: el.id })) as unknown) as PhotosAPI[];
