@@ -1,10 +1,23 @@
 query getInsight{
-  getFilesWithInsight(userId: "345345") {
+  getFilesWithInsight(userId: "1234") {
     _id
     label
     meta {
-      width,
+      width
       height
     }
+    uri
+    zone,
+    insight {
+      result
+      bbox {
+        xmax
+        xmin
+        ymin
+        ymax
+      }
+    }
+    createAt
   }
 }
+

@@ -2,10 +2,8 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -30,9 +28,10 @@ export type BBoxResponseApi = {
   ymin: Scalars['Int'];
 };
 
+
 export enum FileExtensionEnum {
   Jpg = 'JPG',
-  Png = 'PNG',
+  Png = 'PNG'
 }
 
 export type ImageFileWithInsight = {
@@ -76,12 +75,12 @@ export type Insight = {
 
 export enum LanguageEnum {
   Enus = 'enus',
-  Th = 'th',
+  Th = 'th'
 }
 
 export enum ModelEnum {
   Detection_600 = 'detection_600',
-  FacesEmo = 'faces_emo',
+  FacesEmo = 'faces_emo'
 }
 
 export type Query = {
@@ -90,6 +89,7 @@ export type Query = {
   serverStatus: AppModel;
 };
 
+
 export type QueryGetFilesWithInsightArgs = {
   limit?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
@@ -97,32 +97,56 @@ export type QueryGetFilesWithInsightArgs = {
 };
 
 export enum ZoneEnum {
-  Th = 'TH',
+  Th = 'TH'
 }
 
-export type GetInsightQueryVariables = Exact<{ [key: string]: never }>;
+export type GetInsightQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type GetInsightQuery = { __typename?: 'Query' } & {
-  getFilesWithInsight: Array<
-    { __typename?: 'ImageFileWithInsight' } & Pick<
-      ImageFileWithInsight,
-      '_id' | 'label'
-    > & { meta: { __typename?: 'ImageMeta' } & Pick<ImageMeta, 'width' | 'height'> }
-  >;
-};
+
+export type GetInsightQuery = (
+  { __typename?: 'Query' }
+  & { getFilesWithInsight: Array<(
+    { __typename?: 'ImageFileWithInsight' }
+    & Pick<ImageFileWithInsight, '_id' | 'label' | 'uri' | 'zone' | 'createAt'>
+    & { meta: (
+      { __typename?: 'ImageMeta' }
+      & Pick<ImageMeta, 'width' | 'height'>
+    ), insight?: Maybe<Array<(
+      { __typename?: 'Insight' }
+      & Pick<Insight, 'result'>
+      & { bbox: (
+        { __typename?: 'BBoxResponseApi' }
+        & Pick<BBoxResponseApi, 'xmax' | 'xmin' | 'ymin' | 'ymax'>
+      ) }
+    )>> }
+  )> }
+);
+
 
 export const GetInsightDocument = gql`
-  query getInsight {
-    getFilesWithInsight(userId: "345345") {
-      _id
-      label
-      meta {
-        width
-        height
+    query getInsight {
+  getFilesWithInsight(userId: "1234") {
+    _id
+    label
+    meta {
+      width
+      height
+    }
+    uri
+    zone
+    insight {
+      result
+      bbox {
+        xmax
+        xmin
+        ymin
+        ymax
       }
     }
+    createAt
   }
-`;
+}
+    `;
 
 /**
  * __useGetInsightQuery__
@@ -139,25 +163,12 @@ export const GetInsightDocument = gql`
  *   },
  * });
  */
-export function useGetInsightQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetInsightQuery, GetInsightQueryVariables>,
-) {
-  return Apollo.useQuery<GetInsightQuery, GetInsightQueryVariables>(
-    GetInsightDocument,
-    baseOptions,
-  );
-}
-export function useGetInsightLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<GetInsightQuery, GetInsightQueryVariables>,
-) {
-  return Apollo.useLazyQuery<GetInsightQuery, GetInsightQueryVariables>(
-    GetInsightDocument,
-    baseOptions,
-  );
-}
+export function useGetInsightQuery(baseOptions?: Apollo.QueryHookOptions<GetInsightQuery, GetInsightQueryVariables>) {
+        return Apollo.useQuery<GetInsightQuery, GetInsightQueryVariables>(GetInsightDocument, baseOptions);
+      }
+export function useGetInsightLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetInsightQuery, GetInsightQueryVariables>) {
+          return Apollo.useLazyQuery<GetInsightQuery, GetInsightQueryVariables>(GetInsightDocument, baseOptions);
+        }
 export type GetInsightQueryHookResult = ReturnType<typeof useGetInsightQuery>;
 export type GetInsightLazyQueryHookResult = ReturnType<typeof useGetInsightLazyQuery>;
-export type GetInsightQueryResult = Apollo.QueryResult<
-  GetInsightQuery,
-  GetInsightQueryVariables
->;
+export type GetInsightQueryResult = Apollo.QueryResult<GetInsightQuery, GetInsightQueryVariables>;

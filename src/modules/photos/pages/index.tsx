@@ -80,11 +80,25 @@ const AllPhotosPages: React.FC = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const { data, loading } = useGetInsightQuery();
 
-  console.log(data?.getFilesWithInsight.map((e) => e.label));
+  const queryData = data?.getFilesWithInsight.map(
+    (e) =>
+      ({
+        ...initialState,
+        id: e._id,
+        user: { name: '1234', total_likes: 5 },
+        urls: {
+          raw: e.uri,
+          full: e.uri,
+          regular: e.uri,
+          small: e.uri,
+          thumb: e.uri,
+        },
+      } as Photos),
+  ) as Photos[];
 
   useEffect(() => {
-    fetchImages();
-  }, []);
+    setImages(queryData);
+  }, [loading]);
 
   const fetchImages = async (): Promise<void> => {
     const apiRoot = 'https://api.unsplash.com';
@@ -194,6 +208,7 @@ const AllPhotosPages: React.FC = () => {
 
       <InfiniteScroll
         dataLength={images.length}
+        // next={fetchImages}
         next={fetchImages}
         hasMore={true}
         loader={<Loader />}
