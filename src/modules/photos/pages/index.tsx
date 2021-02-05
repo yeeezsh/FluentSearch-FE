@@ -71,8 +71,8 @@ const AllPhotosPages: React.FC = () => {
   const ids = searchResult.map((el) => el._id);
 
   useEffect(() => {
-    // setImages(queryData);
-    setImages(mockData);
+    setImages(queryData);
+    // setImages(mockData);
   }, [loading]);
 
   //TODO: Check duplicate fetchImages
@@ -128,8 +128,8 @@ const AllPhotosPages: React.FC = () => {
             <ImageWithBoundingBox
               tags={currentImage.tags}
               src={currentImage.urls.thumb}
-              width={currentImage.width}
-              height={currentImage.height}
+              originalWidht={currentImage.width}
+              originalHeight={currentImage.height}
             />
             <NextButton onClick={showNext}>
               <CaretRightOutlined />
