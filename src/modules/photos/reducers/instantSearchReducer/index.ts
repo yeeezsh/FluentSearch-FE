@@ -13,7 +13,12 @@ export const instantSearchSlice = createSlice({
   initialState,
   reducers: {
     onSearch(state, action: PayloadAction<{ word: string }>) {
-      state.word = action.payload.word;
+      const word = action.payload.word;
+      if (word === '') {
+        return initialState;
+      } else {
+        state.word = word;
+      }
     },
     onData(
       state,
