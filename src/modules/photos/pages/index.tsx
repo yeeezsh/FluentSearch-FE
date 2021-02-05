@@ -21,6 +21,7 @@ import { Row, Col, Tag } from 'antd';
 import dayjs from 'dayjs';
 import { useGetInsightQuery } from 'Services/model/generated-types';
 import { Tag as TagType } from '../models/tags';
+import ImageWithBoundingBox from '../components/ImageWithBoundingBox';
 
 const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
   const { tags } = props;
@@ -78,6 +79,8 @@ const AllPhotosPages: React.FC = () => {
         ...initialState,
         id: e._id,
         user: { name: '1234', total_likes: 5 },
+        width: e.meta.width,
+        height: e.meta.height,
         urls: {
           raw: e.uri,
           full: e.uri,
@@ -94,6 +97,10 @@ const AllPhotosPages: React.FC = () => {
         })),
       } as PhotosAPI),
   ) as PhotosAPI[];
+
+  // useEffect(() => {
+  //   queryData.unshift();
+  // }, [])
 
   useEffect(() => {
     setImages(queryData);
@@ -149,7 +156,11 @@ const AllPhotosPages: React.FC = () => {
             <PrevButton onClick={showPrev}>
               <CaretLeftOutlined />
             </PrevButton>
-            <img id="lightbox-img" src={currentImage.urls.thumb} />
+            <ImageWithBoundingBox
+              tags={currentImage.tags}
+              src={currentImage.urls.thumb}
+            />
+            {/* <img id="lightbox-img" src={currentImage.urls.thumb} /> */}
             <NextButton onClick={showNext}>
               <CaretRightOutlined />
             </NextButton>
