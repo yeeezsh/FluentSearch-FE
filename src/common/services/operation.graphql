@@ -20,3 +20,12 @@ query getInsight{
   }
 }
 
+query getInsightBySearch($word: String!) {
+  searchByWord(userId: "1234", word: $word) {
+    autocomplete
+    result {
+      _id
+    }
+  }
+}
+
