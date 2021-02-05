@@ -7,18 +7,18 @@ import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 import { CustomApolloProvider } from 'Tests/mock/graphql/provider';
 
-const EXCLUDE_NAVBAR: string[] = ['/login', '/register', '/allphotos', '/upload'];
+const INCLUDE_NAVBAR: string[] = ['/'];
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const pathname = useRouter().pathname;
-  const isExcludeNavbar = EXCLUDE_NAVBAR.includes(pathname);
+  const isIncludeNavbar = INCLUDE_NAVBAR.includes(pathname);
 
   return (
     <>
       <GlobalStyle />
       <Provider store={store}>
         <CustomApolloProvider>
-          {!isExcludeNavbar && <HomeNavbar />}
+          {isIncludeNavbar && <HomeNavbar />}
           <Component {...pageProps} />
         </CustomApolloProvider>
       </Provider>
