@@ -6,6 +6,8 @@ import { Image } from './styled';
 type ImageWithBoundingBoxType = {
   tags?: Tag[];
   src: string;
+  width?: number;
+  height?: number;
 };
 
 const RenderBoundingBox: React.FC<{ tags?: Tag[] }> = (props) => {
