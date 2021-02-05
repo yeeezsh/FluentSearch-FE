@@ -10,9 +10,10 @@ import { CustomApolloProvider } from 'Tests/mock/graphql/provider';
 const EXCLUDE_NAVBAR: string[] = [
   '/login',
   '/register',
-  '/dashboard',
   '/allphotos',
   '/upload',
+  '/history',
+  '/dashboard',
 ];
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
