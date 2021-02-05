@@ -88,7 +88,7 @@ const DashboardPage: React.FC = () => {
   useEffect(() => {
     dispatch(fetchDashboardData());
   }, []);
-  const DashboardData = useSelector(
+  const DashboardDataStore = useSelector(
     (state: StoresState) => state.dashboard.data.dashboardData,
   );
   const AlbumPreviewData = useSelector(
@@ -99,7 +99,7 @@ const DashboardPage: React.FC = () => {
     <DashboardWrapper>
       <ContentWrapper>
         <DashboardHeader>Dashboard</DashboardHeader>
-        <DashboardCard data={DashboardData} />
+        <DashboardCard data={DashboardDataStore} />
 
         <AlbumWrapper>
           {/*TODO: Lastest Album*/}
