@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { DashboardData } from '../models/types';
 import { AlbumPreviewProps } from '../components/AlbumPreview/types';
+import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 
 type dashboardCardType = {
   data: DashboardData;
@@ -96,18 +97,20 @@ const DashboardPage: React.FC = () => {
   );
 
   return (
-    <DashboardWrapper>
-      <ContentWrapper>
-        <DashboardHeader>Dashboard</DashboardHeader>
-        <DashboardCard data={DashboardDataStore} />
+    <LayoutWithSearch title="Dashboard">
+      <DashboardWrapper>
+        <ContentWrapper>
+          <DashboardHeader>Dashboard</DashboardHeader>
+          <DashboardCard data={DashboardDataStore} />
 
-        <AlbumWrapper>
-          {/*TODO: Lastest Album*/}
-          <h3>Lastest Photo</h3>
-          <OverviewAlbum data={AlbumPreviewData} />
-        </AlbumWrapper>
-      </ContentWrapper>
-    </DashboardWrapper>
+          <AlbumWrapper>
+            {/*TODO: Lastest Album*/}
+            <h3>Lastest Photo</h3>
+            <OverviewAlbum data={AlbumPreviewData} />
+          </AlbumWrapper>
+        </ContentWrapper>
+      </DashboardWrapper>
+    </LayoutWithSearch>
   );
 };
 

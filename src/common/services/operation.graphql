@@ -1,13 +1,15 @@
 query getInsight{
-  getFilesWithInsight(userId: "1234", skip: 0, limit: 5) {
+  getFilesWithInsight(userId: "1234", skip: 0, limit: 1000) {
     _id
     label
     meta {
       width
       height
     }
+    createAt
+    updateAt
     uri
-    zone,
+    zone
     insight {
       result
       bbox {
@@ -16,6 +18,15 @@ query getInsight{
         ymin
         ymax
       }
+    }
+  }
+}
+
+query getInsightBySearch($word: String!) {
+  searchByWord(userId: "1234", word: $word) {
+    autocomplete
+    result {
+      _id
     }
   }
 }

@@ -5,9 +5,13 @@ import { PurpleTable } from 'Styles/global';
 import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import historyReducer from 'Modules/history/reducer/historyReducer';
+import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
+import { ApolloProvider } from '@apollo/client';
+import { client } from 'Services/client';
 
 const rootReducer = combineReducers({
   history: historyReducer,
+  instantSearch: instantSearchReducer,
 });
 
 const store = configureStore({
@@ -18,9 +22,11 @@ describe('Pages/History test', () => {
   let wrap;
   beforeEach(() => {
     wrap = mount(
-      <Provider store={store}>
-        <HistoryPage />
-      </Provider>,
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <HistoryPage />
+        </Provider>
+      </ApolloProvider>,
     );
   });
   it('HistoryPage should be exisiting', () => {

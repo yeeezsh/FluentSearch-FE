@@ -5,9 +5,13 @@ import { PurpleTable } from 'Styles/global';
 import taskReducer from 'Modules/task/reducer/taskReducer';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
+import { client } from 'Services/client';
+import { ApolloProvider } from '@apollo/client';
 
 const rootReducer = combineReducers({
   task: taskReducer,
+  instantSearch: instantSearchReducer,
 });
 
 const store = configureStore({
@@ -19,7 +23,9 @@ describe('Pages/Task test', () => {
   beforeEach(() => {
     wrap = mount(
       <Provider store={store}>
-        <TaskPage />
+        <ApolloProvider client={client}>
+          <TaskPage />
+        </ApolloProvider>
       </Provider>,
     );
   });

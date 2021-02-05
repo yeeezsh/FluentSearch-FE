@@ -1,25 +1,25 @@
-import React from 'react';
-import { Menu, Layout, Input, Row, Col, Avatar, Dropdown } from 'antd';
-import {
-  CanvasWrapper,
-  SiderWrapper,
-  MenuWrapper,
-  MenuItem,
-  UserWrapper,
-  ContentWrapper,
-  IconWrapper,
-} from './styled';
-import { SearchOutlined } from '@ant-design/icons';
-import Image from 'next/image';
-import Link from 'next/link';
-import { AllPhotoLayoutProps } from './types';
-import pathJoin from 'Utils/path-join';
-import { useRouter } from 'next/router';
+import { Avatar, Col, Dropdown, Layout, Menu, Row } from 'antd';
+import InstantSearch from 'Modules/photos/components/InstantSearch';
 import {
   DROPDOWN_SIDEBAR_CONSTANT,
   PHOTOS_SIDEBAR_CONSTANT,
 } from 'Modules/photos/constants/menu/index';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
 import IconSelector from 'Utils/icon-selector';
+import pathJoin from 'Utils/path-join';
+import {
+  CanvasWrapper,
+  ContentWrapper,
+  IconWrapper,
+  MenuItem,
+  MenuWrapper,
+  SiderWrapper,
+  UserWrapper,
+} from './styled';
+import { AllPhotoLayoutProps } from './types';
 
 const { Header, Content } = Layout;
 
@@ -91,7 +91,7 @@ const HeaderWrapper: React.FC = () => {
     <Header>
       <Row justify="center">
         <Col xl={8}>
-          <Input placeholder="Search" prefix={<SearchOutlined />} />
+          <InstantSearch />
         </Col>
         <Col xl={4} push={3}>
           <UserContainer />
@@ -101,7 +101,8 @@ const HeaderWrapper: React.FC = () => {
   );
 };
 
-const PhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
+// TODO: unit test
+const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
   const { title, children } = props;
   return (
     <CanvasWrapper>
@@ -120,4 +121,4 @@ const PhotosLayout: React.FC<AllPhotoLayoutProps> = (props) => {
   );
 };
 
-export default PhotosLayout;
+export default LayoutWithSearch;
