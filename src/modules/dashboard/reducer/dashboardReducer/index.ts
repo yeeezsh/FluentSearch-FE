@@ -15,12 +15,9 @@ export const dashboardSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchDashboardData.rejected, (state) => {
       state.ready = false;
-      state = {
-        ...state,
-        error: {
-          code: ErrorStateCodeEnum.ServerInternalError,
-          msg: 'api error',
-        },
+      state.error = {
+        code: ErrorStateCodeEnum.ServerInternalError,
+        msg: 'api error',
       };
     });
     builder.addCase(fetchDashboardData.pending, (state) => {
