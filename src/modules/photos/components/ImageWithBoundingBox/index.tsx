@@ -35,22 +35,18 @@ const ImageWithBoundingBox: React.FC<ImageWithBoundingBoxType> = (props) => {
 
   return (
     <>
-      {tags && (
-        <>
-          {props.tags &&
-            props.tags?.map((originSize) => (
-              <BoundingBox
-                key={Math.random()}
-                xMin={originSize.xMin * scaleX}
-                xMax={originSize.xMax * scaleX}
-                yMin={originSize.yMin * scaleY}
-                yMax={originSize.yMax * scaleY}
-                label={originSize.result}
-              />
-            ))}
-        </>
-      )}
-      ;
+      {tags &&
+        tags?.map((originSize) => (
+          <BoundingBox
+            key={Math.random()}
+            xMin={originSize.xMin * scaleX}
+            xMax={originSize.xMax * scaleX}
+            yMin={originSize.yMin * scaleY}
+            yMax={originSize.yMax * scaleY}
+            label={originSize.result}
+          />
+        ))}
+
       <Image ref={ref} src={src} onLoad={handleImageLoad} />
     </>
   );

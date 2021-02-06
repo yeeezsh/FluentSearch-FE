@@ -11,14 +11,15 @@ export type BoundingBoxType = {
 
 const BoundingBox: React.FC<BoundingBoxType> = (props) => {
   const { xMin, xMax, yMin, yMax, label } = props;
+
   return (
     <>
       <SquareStyle
         style={{
           top: yMin,
           left: xMin,
-          width: xMax / 2,
-          height: yMax / 2,
+          width: Math.abs(xMax - xMin),
+          height: Math.abs(yMax - yMin),
           textAlign: 'right',
         }}>
         <Label>{label}</Label>

@@ -128,7 +128,7 @@ const AllPhotosPages: React.FC = () => {
             <ImageWithBoundingBox
               tags={currentImage.tags}
               src={currentImage.urls.thumb}
-              originalWidht={currentImage.width}
+              originalWidth={currentImage.width}
               originalHeight={currentImage.height}
             />
             <NextButton onClick={showNext}>
