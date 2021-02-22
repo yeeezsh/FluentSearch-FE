@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const LightboxWrapper = styled.div``;
+const LightboxWrapper = styled.div`
+  height: 100vh;
+  width: 100%;
+  background-color: gray;
+`;
 
 const LightboxCard = styled.div``;
 
