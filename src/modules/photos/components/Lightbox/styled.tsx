@@ -6,7 +6,17 @@ const LightboxWrapper = styled.div`
   background-color: gray;
 `;
 
-const LightboxCard = styled.div``;
+const LightboxCard = styled.div`
+  display: flex;
+  flex-direction: row;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  box-shadow: var(--box-shadow);
+`;
 
 const DetailCard = styled.div``;
 
