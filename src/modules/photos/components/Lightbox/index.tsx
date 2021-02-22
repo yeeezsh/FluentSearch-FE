@@ -1,3 +1,10 @@
+import {
+  LightboxWrapper,
+  LightboxCard,
+  LightboxCardLeft,
+  OptionWrapper,
+  LightboxCardRight,
+} from './styled';
 import React, { useState, useEffect, useRef } from 'react';
 
 type LightboxPropsType = {
@@ -52,7 +59,16 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
     }
   }, [currentImagesize, scaleX, scaleY]);
 
-  return <div></div>;
+  return (
+    <LightboxWrapper>
+      <LightboxCard>
+        <LightboxCardLeft>
+          <OptionWrapper></OptionWrapper>
+        </LightboxCardLeft>
+        <LightboxCardRight></LightboxCardRight>
+      </LightboxCard>
+    </LightboxWrapper>
+  );
 };
 
 export default Lightbox;
