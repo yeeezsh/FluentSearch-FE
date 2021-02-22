@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const LightboxWrapper = styled.div`
+export const LightboxWrapper = styled.div`
   height: 100vh;
   width: 100%;
   background-color: gray;
 `;
 
-const LightboxCard = styled.div`
+export const LightboxCard = styled.div`
   display: flex;
   flex-direction: row;
   top: 50%;
@@ -18,14 +18,14 @@ const LightboxCard = styled.div`
   box-shadow: var(--box-shadow);
 `;
 
-const LightboxCardLeft = styled.div``;
+export const LightboxCardLeft = styled.div``;
 
-const LightboxCardRight = styled.div``;
+export const LightboxCardRight = styled.div``;
 
-const DetailCard = styled.div``;
+export const DetailCard = styled.div``;
 
-const OptionWrapper = styled.div``;
+export const OptionWrapper = styled.div``;
 
-const ButtonWrapper = styled.div``;
+export const ButtonWrapper = styled.div``;
 
-const ImageWrapper = styled.div``;
+export const ImageWrapper = styled.div``;
