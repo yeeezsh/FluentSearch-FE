@@ -18,6 +18,10 @@ const LightboxCard = styled.div`
   box-shadow: var(--box-shadow);
 `;
 
+const LightboxCardLeft = styled.div``;
+
+const LightboxCardRight = styled.div``;
+
 const DetailCard = styled.div``;
 
 const OptionWrapper = styled.div``;
