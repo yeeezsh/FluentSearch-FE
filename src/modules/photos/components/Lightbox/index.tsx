@@ -16,6 +16,8 @@ type LightboxPropsType = {
   boxWidth: number;
   top: number;
   left: number;
+  onPrev: () => void;
+  onNext: () => void;
 };
 
 type currentImageSizeType = {
@@ -24,7 +26,7 @@ type currentImageSizeType = {
 };
 
 const Lightbox: React.FC<LightboxPropsType> = (props) => {
-  const { image, boxHeight, boxWidth, top, left } = props;
+  const { image, boxHeight, boxWidth, top, left, onPrev, onNext } = props;
   const ref = useRef<HTMLImageElement>(null);
   const [currentImagesize, setCurrentImageSize] = useState<currentImageSizeType>();
   const [scaleX, setScaleX] = useState(0);

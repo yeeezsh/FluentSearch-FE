@@ -26,6 +26,7 @@ import { initialState } from '../models/init';
 import { mockData } from '../mocks/data';
 import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
+import Lightbox from '../components/Lightbox';
 
 const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
   const { tags } = props;
@@ -180,7 +181,9 @@ const AllPhotosPages: React.FC = () => {
 
   return (
     <LayoutWithSearch title="Photos">
-      {lightboxOpen ? <LightBox /> : null}
+      {lightboxOpen ? (
+        <Lightbox image={currentImage} onPrev={showPrev} onNext={showNext} />
+      ) : null}
       <Link href="/upload">
         <a>
           <Button style={{ marginTop: '3%', marginBottom: '-3%' }}>+ Photo</Button>
