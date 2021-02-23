@@ -18,7 +18,15 @@ export const LightboxCard = styled.div`
   box-shadow: var(--box-shadow);
 `;
 
-export const LightboxCardLeft = styled.div``;
+export const LightboxCardLeft = styled.div`
+  width: 50%;
+  position: relative;
+  background-color: black;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  transition: width 2s;
+`;
 
 export const LightboxCardRight = styled.div``;
 
@@ -26,6 +34,8 @@ export const DetailCard = styled.div``;
 
 export const OptionWrapper = styled.div``;
 
-export const ButtonWrapper = styled.div``;
+export const ButtonLeft = styled.button``;
+
+export const ButtonRight = styled.button``;
 
 export const ImageWrapper = styled.div``;
