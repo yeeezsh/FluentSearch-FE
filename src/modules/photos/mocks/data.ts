@@ -47,6 +47,13 @@ export const mockData: PhotosAPI[] = [
         yMin: 496,
         yMax: 320,
       },
+      {
+        result: 'orange',
+        xMin: 334 - 200,
+        xMax: 200 - 200,
+        yMin: 496 - 200,
+        yMax: 320 - 200,
+      },
     ],
   },
   {
