@@ -37,7 +37,12 @@ export const LightboxCardRight = styled.div`
 
 export const DetailCard = styled.div``;
 
-export const OptionWrapper = styled.div``;
+export const OptionWrapper = styled.div`
+  position: absolute;
+  display: block;
+  top: 5%;
+  right: 5%;
+`;
 
 export const ButtonLeft = styled.button``;
 
