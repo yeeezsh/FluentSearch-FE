@@ -103,7 +103,7 @@ const AllPhotosPages: React.FC = () => {
     <LayoutWithSearch title="Photos">
       {lightboxVisible ? (
         <Lightbox
-          closeLightBox={closeLightbox}
+          closeLightbox={closeLightbox}
           image={currentImage}
           onPrev={showPrev}
           onNext={showNext}
