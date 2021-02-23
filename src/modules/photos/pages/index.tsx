@@ -7,38 +7,20 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
 import { PhotosAPI } from '../constants/photo/interface';
 import Link from 'next/link';
-import {
-  LightboxWrapper,
-  PrevButton,
-  NextButton,
-  ContentLightbox,
-  ImageLightbox,
-  Wrapper,
-  WrapperImage,
-} from './styled';
-import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
-import { Row, Col, Tag } from 'antd';
-import dayjs from 'dayjs';
+import { WrapperImage } from './styled';
 import { useGetInsightQuery } from 'Services/model/generated-types';
-import { Tag as TagType } from '../models/tags';
-import ImageWithBoundingBox from '../components/ImageWithBoundingBox';
 import { initialState } from '../models/init';
 import { mockData } from '../mocks/data';
 import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import Lightbox from '../components/Lightbox';
 
-const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
-  const { tags } = props;
-  return <>{tags && tags.map((e, index) => <Tag key={index}>{e.result}</Tag>)}</>;
-};
-
 const AllPhotosPages: React.FC = () => {
   //TODO: WTF extract to smaller component
 
   const [images = [], setImages] = useState<PhotosAPI[]>();
   const [currentImage, setCurrentImages] = useState<PhotosAPI>(initialState);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxVisible, setLightboxVisible] = useState(false);
   const { data, loading } = useGetInsightQuery();
 
   const queryData = data?.getFilesWithInsight.map(
@@ -90,19 +72,19 @@ const AllPhotosPages: React.FC = () => {
 
   const openLightBox = (image: PhotosAPI) => {
     setCurrentImages(image);
-    setLightboxOpen(true);
+    setLightboxVisible(true);
   };
 
   const closeLightBox = () => {
     setCurrentImages(initialState);
-    setLightboxOpen(false);
+    setLightboxVisible(false);
   };
 
   const showNext = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const currentIndex = images.indexOf(currentImage);
     if (currentIndex >= images.length - 1) {
-      setLightboxOpen(false);
+      setLightboxVisible(false);
     } else {
       const nextImage = images[currentIndex + 1];
       setCurrentImages(nextImage);
@@ -112,77 +94,16 @@ const AllPhotosPages: React.FC = () => {
   const showPrev = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const currentIndex = images.indexOf(currentImage);
-    if (currentIndex <= 0) setLightboxOpen(false);
+    if (currentIndex <= 0) setLightboxVisible(false);
     else {
       const nextImage = images[currentIndex - 1];
       setCurrentImages(nextImage);
     }
   };
 
-  const LightBox: React.FC = () => {
-    return (
-      <LightboxWrapper onClick={closeLightBox}>
-        <Wrapper>
-          <ImageLightbox>
-            <PrevButton onClick={showPrev}>
-              <CaretLeftOutlined />
-            </PrevButton>
-            <ImageWithBoundingBox
-              tags={currentImage.tags}
-              src={currentImage.urls.thumb}
-              originalWidth={currentImage.width}
-              originalHeight={currentImage.height}
-            />
-            <NextButton onClick={showNext}>
-              <CaretRightOutlined />
-            </NextButton>
-          </ImageLightbox>
-          <ContentLightbox>
-            <b> Info</b>
-            <hr />
-            <br />
-            <b> Tag</b>
-            <br />
-            <TagRender tags={currentImage.tags} />
-            <br />
-            <br />
-            <b> Details</b>
-            <br />
-            <Row>
-              <Col md={8}>
-                <b> Date</b>
-              </Col>
-              <Col>
-                {dayjs(currentImage.created_at).format('MMM DD, YYYY')}
-                <br />
-                {dayjs(currentImage.created_at).format('ddd,hh:mmA Z')}
-              </Col>
-            </Row>
-            <Row>
-              <Col md={8}>
-                <b> Photo</b>
-              </Col>
-              <Col>
-                {currentImage.id} .jpg
-                <br />
-                Width {currentImage.width}px
-              </Col>
-            </Row>
-            <Row>
-              <Col md={8}>
-                <b> Place</b>
-              </Col>
-              <Col>{currentImage.location.title ? currentImage.location.title : '-'}</Col>
-            </Row>
-          </ContentLightbox>
-        </Wrapper>
-      </LightboxWrapper>
-    );
-  };
-
   return (
     <LayoutWithSearch title="Photos">
-      {lightboxOpen ? (
+      {lightboxVisible ? (
         <Lightbox image={currentImage} onPrev={showPrev} onNext={showNext} />
       ) : null}
       <Link href="/upload">
