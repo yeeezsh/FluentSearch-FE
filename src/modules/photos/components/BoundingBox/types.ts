@@ -5,6 +5,6 @@ export type BoundingBoxType = {
   yMax: number;
   label: string;
   scaleBorder: number;
-  width: number;
-  height: number;
+  currentImgWidth: number;
+  currentImgHeight: number;
 };

@@ -89,8 +89,8 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                       yMax={originSize.yMax * scaleY}
                       label={originSize.result}
                       scaleBorder={scaleBorder}
-                      width={currentImagesize?.width}
-                      height={currentImagesize?.height}
+                      currentImgWidth={currentImagesize?.width}
+                      currentImgHeight={currentImagesize?.height}
                     />
                   );
                 }
