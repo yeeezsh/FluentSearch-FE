@@ -13,7 +13,7 @@ export type BoundingBoxType = {
 const BoundingBox: React.FC<BoundingBoxType> = (props) => {
   const { xMin, xMax, yMin, yMax, label, scaleBorder } = props;
 
-  const borderConfig = `${scaleBorder} solid red`;
+  const borderConfig = `${scaleBorder} solid #5a36cc`;
 
   return (
     <>
