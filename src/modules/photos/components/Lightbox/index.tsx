@@ -55,7 +55,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
     if (currentImagesize) {
       setScaleX(currentImagesize?.width / image.width);
       setScaleY(currentImagesize?.height / image.height);
-      setScaleBorder(3 / scaleX);
+      setScaleBorder(3 * scaleX);
     }
   }, [currentImagesize, scaleX, scaleY]);
 
@@ -77,7 +77,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                     <BoundingBox
                       key={Math.random()}
                       xMin={originSize.xMin * scaleX}
-                      xMax={originSize.xMax * scaleY}
+                      xMax={originSize.xMax * scaleX}
                       yMin={originSize.yMin * scaleY}
                       yMax={originSize.yMax * scaleY}
                       label={originSize.result}

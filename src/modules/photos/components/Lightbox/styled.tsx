@@ -50,8 +50,6 @@ export const LightboxCardRight = styled.div`
   width: 50%;
 `;
 
-export const DetailCard = styled.div``;
-
 export const OptionWrapper = styled.div`
   position: absolute;
   display: block;
@@ -99,7 +97,12 @@ export const ButtonRight = styled.button`
 `;
 
 export const Image = styled.img`
-  height: 100%;
   width: 100%;
+  height: 100%;
   object-fit: contain;
+`;
+
+export const ImageWrapper = styled.div`
+  position: relative;
+  height: 100%;
 `;
