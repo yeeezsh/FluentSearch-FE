@@ -107,7 +107,6 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           <br />
           <b> Tag</b>
           <br />
-          {/*TODO: dont forget to show 1 tag per object */}
           <TagRender tags={allTags} />
           <br />
           <br />
