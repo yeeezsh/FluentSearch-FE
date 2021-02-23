@@ -72,8 +72,9 @@ const AllPhotosPages: React.FC = () => {
   const ids = searchResult.map((el) => el._id);
 
   useEffect(() => {
-    setImages(queryData);
-    // setImages(mockData);
+    //TODO: Change back to query data
+    //setImages(queryData);
+    setImages(mockData);
   }, [loading]);
 
   //TODO: Check duplicate fetchImages
