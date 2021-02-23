@@ -58,5 +58,5 @@ export const mock: LightboxPropsType = {
   },
   onPrev: mockFunction,
   onNext: mockFunction,
-  closeLightBox: mockFunction,
+  closeLightbox: mockFunction,
 };
