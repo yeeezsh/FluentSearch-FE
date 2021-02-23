@@ -7,10 +7,13 @@ export type BoundingBoxType = {
   yMin: number;
   yMax: number;
   label: string;
+  scaleBorder: number;
 };
 
 const BoundingBox: React.FC<BoundingBoxType> = (props) => {
-  const { xMin, xMax, yMin, yMax, label } = props;
+  const { xMin, xMax, yMin, yMax, label, scaleBorder } = props;
+
+  const borderConfig = `${scaleBorder} solid red`;
 
   return (
     <>
@@ -21,6 +24,7 @@ const BoundingBox: React.FC<BoundingBoxType> = (props) => {
           width: Math.abs(xMax - xMin),
           height: Math.abs(yMax - yMin),
           textAlign: 'right',
+          border: borderConfig,
         }}>
         <Label>{label}</Label>
       </SquareStyle>
