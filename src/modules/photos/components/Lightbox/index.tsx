@@ -24,9 +24,9 @@ const TagRender: React.FC<{ tags?: string[] }> = (props) => {
 };
 
 const Lightbox: React.FC<LightboxPropsType> = (props) => {
-  const { image, onPrev, onNext, closeLightBox } = props;
+  const { image, onPrev, onNext, closeLightbox } = props;
   const ref = useRef<HTMLImageElement>(null);
-  const [currentImagesize, setCurrentImageSize] = useState<currentImageSizeType>();
+  const [currentImageSize, setCurrentImageSize] = useState<currentImageSizeType>();
   const [scaleX, setScaleX] = useState(0);
   const [scaleY, setScaleY] = useState(0);
   const [detailCardVisible, setDetailCardVisible] = useState(true);
@@ -54,12 +54,12 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (currentImagesize) {
-      setScaleX(currentImagesize?.width / image.width);
-      setScaleY(currentImagesize?.height / image.height);
+    if (currentImageSize) {
+      setScaleX(currentImageSize?.width / image.width);
+      setScaleY(currentImageSize?.height / image.height);
       setScaleBorder(3 * scaleX);
     }
-  }, [currentImagesize, scaleX, scaleY]);
+  }, [currentImageSize, scaleX, scaleY]);
 
   const allTags = image.tags?.reduce((acc: string[], tag: TagType) => {
     if (acc.indexOf(tag.result) == -1) acc.push(tag.result);
@@ -67,7 +67,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
   }, []);
 
   return (
-    <LightboxWrapper onClick={closeLightBox}>
+    <LightboxWrapper onClick={closeLightbox}>
       <LightboxCard>
         <LightboxCardLeft>
           <OptionWrapper>
@@ -79,7 +79,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           <ImageWrapper>
             {image.tags &&
               image.tags?.map((originSize) => {
-                if (currentImagesize) {
+                if (currentImageSize) {
                   return (
                     <BoundingBox
                       key={Math.random()}
@@ -89,8 +89,8 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                       yMax={originSize.yMax * scaleY}
                       label={originSize.result}
                       scaleBorder={scaleBorder}
-                      currentImgWidth={currentImagesize?.width}
-                      currentImgHeight={currentImagesize?.height}
+                      currentImgWidth={currentImageSize?.width}
+                      currentImgHeight={currentImageSize?.height}
                     />
                   );
                 }

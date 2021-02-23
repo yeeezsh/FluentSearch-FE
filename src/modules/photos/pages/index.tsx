@@ -68,12 +68,12 @@ const AllPhotosPages: React.FC = () => {
       });
   };
 
-  const openLightBox = (image: PhotosAPI) => {
+  const openLightbox = (image: PhotosAPI) => {
     setCurrentImages(image);
     setLightboxVisible(true);
   };
 
-  const closeLightBox = () => {
+  const closeLightbox = () => {
     setCurrentImages(initialState);
     setLightboxVisible(false);
   };
@@ -103,7 +103,7 @@ const AllPhotosPages: React.FC = () => {
     <LayoutWithSearch title="Photos">
       {lightboxVisible ? (
         <Lightbox
-          closeLightBox={closeLightBox}
+          closeLightBox={closeLightbox}
           image={currentImage}
           onPrev={showPrev}
           onNext={showNext}
@@ -131,7 +131,7 @@ const AllPhotosPages: React.FC = () => {
                   key={index}
                   createAt={new Date()}
                   selected={false}
-                  onClick={() => openLightBox(image)}
+                  onClick={() => openLightbox(image)}
                 />
               ))}
 
@@ -142,7 +142,7 @@ const AllPhotosPages: React.FC = () => {
                 key={index}
                 createAt={new Date()}
                 selected={false}
-                onClick={() => openLightBox(image)}
+                onClick={() => openLightbox(image)}
               />
             ))}
         </WrapperImage>
