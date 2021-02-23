@@ -6,9 +6,12 @@ import {
   LightboxCardRight,
   ButtonLeft,
   ButtonRight,
+  ImageWrapper,
 } from './styled';
 import React, { useState, useEffect, useRef } from 'react';
 import { PhotosAPI } from 'Modules/photos/constants/photo/interface';
+import BoundingBox from '../BoundingBox';
+import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 
 type LightboxPropsType = {
   image: PhotosAPI;
@@ -66,8 +69,12 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           <OptionWrapper>
             <button onClick={() => handleDetailCard()}>i</button>
           </OptionWrapper>
-          <ButtonLeft>{'<'}</ButtonLeft>
-          <ButtonRight>{'>'}</ButtonRight>
+          <ButtonLeft>
+            <CaretLeftOutlined />
+          </ButtonLeft>
+          <ButtonRight>
+            <CaretRightOutlined />
+          </ButtonRight>
         </LightboxCardLeft>
         <LightboxCardRight></LightboxCardRight>
       </LightboxCard>
