@@ -9,5 +9,4 @@ export const Label = styled.div`
   position: absolute;
   color: white;
   top: 100%;
-  right: -6%;
 `;
