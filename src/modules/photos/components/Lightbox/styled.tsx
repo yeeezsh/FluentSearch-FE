@@ -10,6 +10,15 @@ export const LightboxWrapper = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(31, 28, 28, 0.5);
+  button:hover {
+    cursor: pointer;
+    background: rgba(172, 170, 170, 0.5);
+  }
+  button:focus {
+    box-shadow: none;
+    border-color: transparent;
+    outline: 0;
+  }
 `;
 
 export const LightboxCard = styled.div`
@@ -51,35 +60,42 @@ export const OptionWrapper = styled.div`
 `;
 
 export const ButtonLeft = styled.button`
+  z-index: 1;
   display: block;
-  position: absolute;
-  left: 3%;
   max-height: 50px;
   max-width: 50px;
-  top: 50%;
-  z-index: 1;
-  background-color: red;
   padding: 0.5rem 1rem 0.5rem 1rem;
+  position: absolute;
+  left: 3%;
+  top: 50%;
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
   color: white;
-  transform: translateY(-50%);
+  background: rgba(129, 129, 129, 0.5);
   border-radius: 100%;
   text-decoration: none;
+  border: 0;
 `;
 
 export const ButtonRight = styled.button`
+  z-index: 1;
   display: block;
   max-height: 50px;
   max-width: 50px;
   padding: 0.5rem 1rem 0.5rem 1rem;
   position: absolute;
   top: 50%;
-  z-index: 1;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
   color: white;
   right: 3%;
   transform: translateY(-50%);
-  background-color: red;
+  background: rgba(129, 129, 129, 0.5);
   border-radius: 100%;
   text-decoration: none;
+  border: 0;
 `;
 
 export const ImageWrapper = styled.div`
