@@ -88,7 +88,8 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           </ButtonRight>
         </LightboxCardLeft>
         <LightboxCardRight>
-          <TagRender />
+          {/*TODO: dont forget to show 1 tag per object */}
+          <TagRender tags={image.tags} />
         </LightboxCardRight>
       </LightboxCard>
     </LightboxWrapper>
