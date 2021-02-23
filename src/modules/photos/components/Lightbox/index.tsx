@@ -9,19 +9,15 @@ import {
   ImageWrapper,
 } from './styled';
 import React, { useState, useEffect, useRef } from 'react';
-import { PhotosAPI } from 'Modules/photos/constants/photo/interface';
 import BoundingBox from '../BoundingBox';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { Tag } from 'antd';
+import { Tag as TagType } from 'Modules/photos/models/tags/';
+import { LightboxPropsType, currentImageSizeType } from './types';
 
-type LightboxPropsType = {
-  image: PhotosAPI;
-  onPrev: (e: React.MouseEvent<HTMLElement>) => void;
-  onNext: (e: React.MouseEvent<HTMLElement>) => void;
-};
-
-type currentImageSizeType = {
-  width: number;
-  height: number;
+const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
+  const { tags } = props;
+  return <>{tags && tags.map((e, index) => <Tag key={index}>{e.result}</Tag>)}</>;
 };
 
 const Lightbox: React.FC<LightboxPropsType> = (props) => {
@@ -91,7 +87,9 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
             <CaretRightOutlined />
           </ButtonRight>
         </LightboxCardLeft>
-        <LightboxCardRight></LightboxCardRight>
+        <LightboxCardRight>
+          <TagRender />
+        </LightboxCardRight>
       </LightboxCard>
     </LightboxWrapper>
   );
