@@ -104,7 +104,12 @@ const AllPhotosPages: React.FC = () => {
   return (
     <LayoutWithSearch title="Photos">
       {lightboxVisible ? (
-        <Lightbox image={currentImage} onPrev={showPrev} onNext={showNext} />
+        <Lightbox
+          closeLightBox={closeLightBox}
+          image={currentImage}
+          onPrev={showPrev}
+          onNext={showNext}
+        />
       ) : null}
       <Link href="/upload">
         <a>

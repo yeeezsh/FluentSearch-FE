@@ -24,7 +24,7 @@ const TagRender: React.FC<{ tags?: string[] }> = (props) => {
 };
 
 const Lightbox: React.FC<LightboxPropsType> = (props) => {
-  const { image, onPrev, onNext } = props;
+  const { image, onPrev, onNext, closeLightBox } = props;
   const ref = useRef<HTMLImageElement>(null);
   const [currentImagesize, setCurrentImageSize] = useState<currentImageSizeType>();
   const [scaleX, setScaleX] = useState(0);
@@ -66,14 +66,12 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
     return acc;
   }, []);
 
-  console.log(allTags);
-
   return (
-    <LightboxWrapper>
+    <LightboxWrapper onClick={closeLightBox}>
       <LightboxCard>
         <LightboxCardLeft>
           <OptionWrapper>
-            <button onClick={() => handleDetailCard()}>i</button>
+            <button onClick={handleDetailCard}>i</button>
           </OptionWrapper>
           <ButtonLeft onClick={onPrev}>
             <CaretLeftOutlined />
