@@ -16,8 +16,6 @@ import { StoresState } from 'Stores/index';
 import Lightbox from '../components/Lightbox';
 
 const AllPhotosPages: React.FC = () => {
-  //TODO: WTF extract to smaller component
-
   const [images = [], setImages] = useState<PhotosAPI[]>();
   const [currentImage, setCurrentImages] = useState<PhotosAPI>(initialState);
   const [lightboxVisible, setLightboxVisible] = useState(false);
