@@ -16,8 +16,8 @@ type LightboxPropsType = {
   boxWidth: number;
   top: number;
   left: number;
-  onPrev: () => void;
-  onNext: () => void;
+  onPrev: (e: React.MouseEvent<HTMLElement>) => void;
+  onNext: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
 type currentImageSizeType = {
