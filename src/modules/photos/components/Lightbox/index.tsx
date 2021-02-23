@@ -15,10 +15,12 @@ import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { Tag } from 'antd';
 import { Tag as TagType } from 'Modules/photos/models/tags/';
 import { LightboxPropsType, currentImageSizeType } from './types';
+import { Row, Col } from 'antd';
+import dayjs from 'dayjs';
 
-const TagRender: React.FC<{ tags?: TagType[] }> = (props) => {
+const TagRender: React.FC<{ tags?: string[] }> = (props) => {
   const { tags } = props;
-  return <>{tags && tags.map((e, index) => <Tag key={index}>{e.result}</Tag>)}</>;
+  return <>{tags && tags.map((e, index) => <Tag key={index}>{e}</Tag>)}</>;
 };
 
 const Lightbox: React.FC<LightboxPropsType> = (props) => {
@@ -59,6 +61,13 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
     }
   }, [currentImagesize, scaleX, scaleY]);
 
+  const allTags = image.tags?.reduce((acc: string[], tag: TagType) => {
+    if (acc.indexOf(tag.result) == -1) acc.push(tag.result);
+    return acc;
+  }, []);
+
+  console.log(allTags);
+
   return (
     <LightboxWrapper>
       <LightboxCard>
@@ -95,8 +104,43 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           </ButtonRight>
         </LightboxCardLeft>
         <LightboxCardRight>
+          <b> Info</b>
+          <hr />
+          <br />
+          <b> Tag</b>
+          <br />
           {/*TODO: dont forget to show 1 tag per object */}
-          <TagRender tags={image.tags} />
+          <TagRender tags={allTags} />
+          <br />
+          <br />
+          <b> Details</b>
+          <br />
+          <Row>
+            <Col md={8}>
+              <b> Date</b>
+            </Col>
+            <Col>
+              {dayjs(image.created_at).format('MMM DD, YYYY')}
+              <br />
+              {dayjs(image.created_at).format('ddd,hh:mmA Z')}
+            </Col>
+          </Row>
+          <Row>
+            <Col md={8}>
+              <b> Photo</b>
+            </Col>
+            <Col>
+              {image.id} .jpg
+              <br />
+              Width {image.width}px
+            </Col>
+          </Row>
+          <Row>
+            <Col md={8}>
+              <b> Place</b>
+            </Col>
+            <Col>{image.location.title ? image.location.title : '-'}</Col>
+          </Row>
         </LightboxCardRight>
       </LightboxCard>
     </LightboxWrapper>
