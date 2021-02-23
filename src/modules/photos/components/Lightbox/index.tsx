@@ -6,6 +6,7 @@ import {
   LightboxCardRight,
   ButtonLeft,
   ButtonRight,
+  ImageWrapper,
   Image,
 } from './styled';
 import React, { useState, useEffect, useRef } from 'react';
@@ -46,15 +47,15 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
     handleCurrentImageSize();
     window.addEventListener('resize', handleCurrentImageSize);
     return () => {
-      window.addEventListener('resize', handleCurrentImageSize);
+      window.removeEventListener('resize', handleCurrentImageSize);
     };
-  }, [currentImagesize]);
+  }, []);
 
   useEffect(() => {
     if (currentImagesize) {
-      setScaleX(image.width / currentImagesize?.width);
-      setScaleY(image.height / currentImagesize?.height);
-      setScaleBorder((3 / scaleX) * scaleY);
+      setScaleX(currentImagesize?.width / image.width);
+      setScaleY(currentImagesize?.height / image.height);
+      setScaleBorder(3 / scaleX);
     }
   }, [currentImagesize, scaleX, scaleY]);
 
@@ -68,19 +69,27 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           <ButtonLeft onClick={onPrev}>
             <CaretLeftOutlined />
           </ButtonLeft>
-          {image.tags &&
-            image.tags?.map((originSize) => (
-              <BoundingBox
-                key={Math.random()}
-                xMin={originSize.xMin * scaleX}
-                xMax={originSize.xMax * scaleX}
-                yMin={originSize.yMin * scaleY}
-                yMax={originSize.yMax * scaleY}
-                label={originSize.result}
-                scaleBorder={scaleBorder}
-              />
-            ))}
-          <Image src={image.urls.thumb} />
+          <ImageWrapper>
+            {image.tags &&
+              image.tags?.map((originSize) => {
+                if (currentImagesize) {
+                  return (
+                    <BoundingBox
+                      key={Math.random()}
+                      xMin={originSize.xMin * scaleX}
+                      xMax={originSize.xMax * scaleY}
+                      yMin={originSize.yMin * scaleY}
+                      yMax={originSize.yMax * scaleY}
+                      label={originSize.result}
+                      scaleBorder={scaleBorder}
+                      width={currentImagesize?.width}
+                      height={currentImagesize?.height}
+                    />
+                  );
+                }
+              })}
+            <Image ref={ref} src={image.urls.thumb} onLoad={handleCurrentImageSize} />
+          </ImageWrapper>
           <ButtonRight onClick={onNext}>
             <CaretRightOutlined />
           </ButtonRight>
