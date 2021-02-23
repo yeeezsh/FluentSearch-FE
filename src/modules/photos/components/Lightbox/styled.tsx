@@ -98,9 +98,8 @@ export const ButtonRight = styled.button`
   border: 0;
 `;
 
-export const ImageWrapper = styled.div`
-  position: relative;
-  img {
-    width: 100%;
-  }
+export const Image = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 `;

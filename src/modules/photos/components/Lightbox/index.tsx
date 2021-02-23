@@ -6,7 +6,7 @@ import {
   LightboxCardRight,
   ButtonLeft,
   ButtonRight,
-  ImageWrapper,
+  Image,
 } from './styled';
 import React, { useState, useEffect, useRef } from 'react';
 import BoundingBox from '../BoundingBox';
@@ -68,21 +68,19 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           <ButtonLeft onClick={onPrev}>
             <CaretLeftOutlined />
           </ButtonLeft>
-          <ImageWrapper>
-            {image.tags &&
-              image.tags?.map((originSize) => (
-                <BoundingBox
-                  key={Math.random()}
-                  xMin={originSize.xMin * scaleX}
-                  xMax={originSize.xMax * scaleX}
-                  yMin={originSize.yMin * scaleY}
-                  yMax={originSize.yMax * scaleY}
-                  label={originSize.result}
-                  scaleBorder={scaleBorder}
-                />
-              ))}
-            <img src={image.urls.thumb} alt="" />
-          </ImageWrapper>
+          {image.tags &&
+            image.tags?.map((originSize) => (
+              <BoundingBox
+                key={Math.random()}
+                xMin={originSize.xMin * scaleX}
+                xMax={originSize.xMax * scaleX}
+                yMin={originSize.yMin * scaleY}
+                yMax={originSize.yMax * scaleY}
+                label={originSize.result}
+                scaleBorder={scaleBorder}
+              />
+            ))}
+          <Image src={image.urls.thumb} />
           <ButtonRight onClick={onNext}>
             <CaretRightOutlined />
           </ButtonRight>
