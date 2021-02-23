@@ -6,8 +6,8 @@ export const mockData: PhotosAPI[] = [
     created_at: '',
     updated_at: '',
 
-    width: 4000,
-    height: 6000,
+    width: 668,
+    height: 1002,
 
     color: '',
     blur_hash: '',
@@ -42,10 +42,10 @@ export const mockData: PhotosAPI[] = [
     tags: [
       {
         result: 'orange',
-        yMin: 2900,
-        yMax: 800,
-        xMin: 2150,
-        xMax: 500,
+        xMin: 334,
+        xMax: 200,
+        yMin: 496,
+        yMax: 320,
       },
     ],
   },
@@ -54,8 +54,8 @@ export const mockData: PhotosAPI[] = [
     created_at: '',
     updated_at: '',
 
-    width: 6048,
-    height: 4024,
+    width: 1052,
+    height: 700,
 
     color: '',
     blur_hash: '',
@@ -90,10 +90,10 @@ export const mockData: PhotosAPI[] = [
     tags: [
       {
         result: 'cat',
-        xMin: 2182,
-        xMax: 1738,
-        yMin: 1099,
-        yMax: 1669,
+        xMin: 309,
+        xMax: 387 + 309,
+        yMin: 169,
+        yMax: 305 + 169,
       },
     ],
   },
