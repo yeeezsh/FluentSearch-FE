@@ -12,10 +12,6 @@ import { PhotosAPI } from 'Modules/photos/constants/photo/interface';
 
 type LightboxPropsType = {
   image: PhotosAPI;
-  boxHeight: number;
-  boxWidth: number;
-  top: number;
-  left: number;
   onPrev: (e: React.MouseEvent<HTMLElement>) => void;
   onNext: (e: React.MouseEvent<HTMLElement>) => void;
 };
@@ -26,7 +22,7 @@ type currentImageSizeType = {
 };
 
 const Lightbox: React.FC<LightboxPropsType> = (props) => {
-  const { image, boxHeight, boxWidth, top, left, onPrev, onNext } = props;
+  const { image, onPrev, onNext } = props;
   const ref = useRef<HTMLImageElement>(null);
   const [currentImagesize, setCurrentImageSize] = useState<currentImageSizeType>();
   const [scaleX, setScaleX] = useState(0);
