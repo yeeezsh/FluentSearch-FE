@@ -57,7 +57,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
   useEffect(() => {
     if (currentImagesize) {
       setScaleX(image.width / currentImagesize?.width);
-      setScaleX(image.height / currentImagesize?.height);
+      setScaleY(image.height / currentImagesize?.height);
       setScaleBorder((3 / scaleX) * scaleY);
     }
   }, [currentImagesize, scaleX, scaleY]);
@@ -69,10 +69,25 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           <OptionWrapper>
             <button onClick={() => handleDetailCard()}>i</button>
           </OptionWrapper>
-          <ButtonLeft>
+          <ButtonLeft onClick={onPrev}>
             <CaretLeftOutlined />
           </ButtonLeft>
-          <ButtonRight>
+          <ImageWrapper>
+            {image.tags &&
+              image.tags?.map((originSize) => (
+                <BoundingBox
+                  key={Math.random()}
+                  xMin={originSize.xMin * scaleX}
+                  xMax={originSize.xMax * scaleX}
+                  yMin={originSize.yMin * scaleY}
+                  yMax={originSize.yMax * scaleY}
+                  label={originSize.result}
+                  scaleBorder={scaleBorder}
+                />
+              ))}
+            <img src={image.urls.thumb} alt="" />
+          </ImageWrapper>
+          <ButtonRight onClick={onNext}>
             <CaretRightOutlined />
           </ButtonRight>
         </LightboxCardLeft>
