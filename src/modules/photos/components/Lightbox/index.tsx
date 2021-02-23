@@ -63,7 +63,9 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
     <LightboxWrapper>
       <LightboxCard>
         <LightboxCardLeft>
-          <OptionWrapper></OptionWrapper>
+          <OptionWrapper>
+            <button onClick={() => handleDetailCard()}>i</button>
+          </OptionWrapper>
         </LightboxCardLeft>
         <LightboxCardRight></LightboxCardRight>
       </LightboxCard>
