@@ -4,12 +4,14 @@ import {
   LightboxCardLeft,
   OptionWrapper,
   LightboxCardRight,
+  ButtonLeft,
+  ButtonRight,
 } from './styled';
 import React, { useState, useEffect, useRef } from 'react';
+import { PhotosAPI } from 'Modules/photos/constants/photo/interface';
 
 type LightboxPropsType = {
-  width: number;
-  height: number;
+  image: PhotosAPI;
   boxHeight: number;
   boxWidth: number;
   top: number;
@@ -22,7 +24,7 @@ type currentImageSizeType = {
 };
 
 const Lightbox: React.FC<LightboxPropsType> = (props) => {
-  const { width, height, boxHeight, boxWidth, top, left } = props;
+  const { image, boxHeight, boxWidth, top, left } = props;
   const ref = useRef<HTMLImageElement>(null);
   const [currentImagesize, setCurrentImageSize] = useState<currentImageSizeType>();
   const [scaleX, setScaleX] = useState(0);
@@ -53,8 +55,8 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
 
   useEffect(() => {
     if (currentImagesize) {
-      setScaleX(width / currentImagesize?.width);
-      setScaleX(height / currentImagesize?.height);
+      setScaleX(image.width / currentImagesize?.width);
+      setScaleX(image.height / currentImagesize?.height);
       setScaleBorder((3 / scaleX) * scaleY);
     }
   }, [currentImagesize, scaleX, scaleY]);
@@ -66,6 +68,8 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
           <OptionWrapper>
             <button onClick={() => handleDetailCard()}>i</button>
           </OptionWrapper>
+          <ButtonLeft>{'<'}</ButtonLeft>
+          <ButtonRight>{'>'}</ButtonRight>
         </LightboxCardLeft>
         <LightboxCardRight></LightboxCardRight>
       </LightboxCard>
