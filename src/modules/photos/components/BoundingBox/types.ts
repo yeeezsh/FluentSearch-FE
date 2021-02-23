@@ -1,4 +1,4 @@
-export type Props = {
+export type BoundingBoxType = {
   xMin: number;
   xMax: number;
   yMin: number;

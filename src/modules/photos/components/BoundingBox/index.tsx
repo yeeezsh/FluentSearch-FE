@@ -1,8 +1,8 @@
 import React from 'react';
 import { SquareStyle, Label } from './styled';
-import { Props } from './types';
+import { BoundingBoxType } from './types';
 
-const BoundingBox: React.FC<Props> = (props) => {
+const BoundingBox: React.FC<BoundingBoxType> = (props) => {
   const { xMin, xMax, yMin, yMax, label, width, height, scaleBorder } = props;
   const borderConfig = `${Math.round(scaleBorder)}px solid #5a36cc`;
   return (
