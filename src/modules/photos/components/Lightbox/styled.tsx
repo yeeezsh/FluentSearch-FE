@@ -45,8 +45,7 @@ export const LightboxCardLeft = styled.div`
 
 export const LightboxCardRight = styled.div`
   background-color: white;
-  padding-left: 5%;
-  padding-top: 5%;
+  padding: 5%;
   width: 50%;
 `;
 
