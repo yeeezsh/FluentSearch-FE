@@ -28,7 +28,12 @@ export const LightboxCardLeft = styled.div`
   transition: width 2s;
 `;
 
-export const LightboxCardRight = styled.div``;
+export const LightboxCardRight = styled.div`
+  background-color: white;
+  padding-left: 5%;
+  padding-top: 5%;
+  width: 50%;
+`;
 
 export const DetailCard = styled.div``;
 
