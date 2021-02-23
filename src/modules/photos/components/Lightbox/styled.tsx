@@ -43,4 +43,9 @@ export const ButtonLeft = styled.button``;
 
 export const ButtonRight = styled.button``;
 
-export const ImageWrapper = styled.div``;
+export const ImageWrapper = styled.div`
+  position: relative;
+  img {
+    width: 100%;
+  }
+`;
