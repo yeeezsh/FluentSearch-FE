@@ -7,12 +7,17 @@ import {
   ButtonLeft,
   ButtonRight,
   ImageWrapper,
+  InfoButton,
   Image,
   Overlay,
 } from './styled';
 import React, { useState, useEffect, useRef } from 'react';
 import BoundingBox from '../BoundingBox';
-import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
+import {
+  CaretLeftOutlined,
+  CaretRightOutlined,
+  InfoCircleOutlined,
+} from '@ant-design/icons';
 import { Tag } from 'antd';
 import { Tag as TagType } from 'Modules/photos/models/tags/';
 import { LightboxPropsType, currentImageSizeType } from './types';
@@ -71,9 +76,11 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
     <LightboxWrapper>
       <Overlay onClick={closeLightbox} />
       <LightboxCard>
-        <LightboxCardLeft>
+        <LightboxCardLeft half={detailCardVisible}>
           <OptionWrapper>
-            <button onClick={handleDetailCard}>i</button>
+            <InfoButton onClick={handleDetailCard}>
+              <InfoCircleOutlined />
+            </InfoButton>
           </OptionWrapper>
           <ButtonLeft onClick={onPrev}>
             <CaretLeftOutlined />
@@ -103,44 +110,46 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
             <CaretRightOutlined />
           </ButtonRight>
         </LightboxCardLeft>
-        <LightboxCardRight>
-          <b> Info</b>
-          <hr />
-          <br />
-          <b> Tag</b>
-          <br />
-          <TagRender tags={allTags} />
-          <br />
-          <br />
-          <b> Details</b>
-          <br />
-          <Row>
-            <Col md={8}>
-              <b> Date</b>
-            </Col>
-            <Col>
-              {dayjs(image.created_at).format('MMM DD, YYYY')}
-              <br />
-              {dayjs(image.created_at).format('ddd,hh:mmA Z')}
-            </Col>
-          </Row>
-          <Row>
-            <Col md={8}>
-              <b> Photo</b>
-            </Col>
-            <Col>
-              {image.id} .jpg
-              <br />
-              Width {image.width}px
-            </Col>
-          </Row>
-          <Row>
-            <Col md={8}>
-              <b> Place</b>
-            </Col>
-            <Col>{image.location.title ? image.location.title : '-'}</Col>
-          </Row>
-        </LightboxCardRight>
+        {detailCardVisible ? (
+          <LightboxCardRight>
+            <b> Info</b>
+            <hr />
+            <br />
+            <b> Tag</b>
+            <br />
+            <TagRender tags={allTags} />
+            <br />
+            <br />
+            <b> Details</b>
+            <br />
+            <Row>
+              <Col md={8}>
+                <b> Date</b>
+              </Col>
+              <Col>
+                {dayjs(image.created_at).format('MMM DD, YYYY')}
+                <br />
+                {dayjs(image.created_at).format('ddd,hh:mmA Z')}
+              </Col>
+            </Row>
+            <Row>
+              <Col md={8}>
+                <b> Photo</b>
+              </Col>
+              <Col>
+                {image.id} .jpg
+                <br />
+                Width {image.width}px
+              </Col>
+            </Row>
+            <Row>
+              <Col md={8}>
+                <b> Place</b>
+              </Col>
+              <Col>{image.location.title ? image.location.title : '-'}</Col>
+            </Row>
+          </LightboxCardRight>
+        ) : null}
       </LightboxCard>
     </LightboxWrapper>
   );

@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface ILightboxCardLeft {
+  half: boolean;
+}
 
 export const Overlay = styled.div`
   background-color: rgba(31, 28, 28, 0.5);
@@ -37,14 +41,25 @@ export const LightboxCard = styled.div`
   box-shadow: var(--box-shadow);
 `;
 
-export const LightboxCardLeft = styled.div`
-  width: 50%;
+export const LightboxCardLeft = styled.div<ILightboxCardLeft>`
+  width: 100%;
+  transition: width 2s;
   position: relative;
   background-color: black;
   height: 80vh;
   display: flex;
   align-items: center;
-  transition: width 2s;
+
+  ${(props) =>
+    props.half &&
+    css`
+      width: 50%;
+      position: relative;
+      background-color: black;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+    `}
 `;
 
 export const LightboxCardRight = styled.div`
@@ -55,7 +70,7 @@ export const LightboxCardRight = styled.div`
 
 export const OptionWrapper = styled.div`
   position: absolute;
-  display: block;
+  display: flex;
   top: 5%;
   right: 5%;
 `;
@@ -81,7 +96,6 @@ export const ButtonLeft = styled.button`
 
 export const ButtonRight = styled.button`
   z-index: 1;
-  display: block;
   max-height: 50px;
   max-width: 50px;
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -108,4 +122,20 @@ export const Image = styled.img`
 export const ImageWrapper = styled.div`
   position: relative;
   height: 100%;
+`;
+
+export const InfoButton = styled.button`
+  span {
+    font-size: 1.5rem;
+  }
+  color: white;
+  z-index: 1;
+  background-color: transparent;
+  text-decoration: none;
+  border: 0;
+  right: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: absolute;
 `;
