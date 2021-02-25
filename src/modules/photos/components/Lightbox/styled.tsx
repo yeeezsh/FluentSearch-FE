@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 
+export const Overlay = styled.div`
+  background-color: rgba(31, 28, 28, 0.5);
+  width: 100%;
+  height: 100%;
+`;
+
 export const LightboxWrapper = styled.div`
   //TODO: Change z-index
   z-index: 1000;
-  position: absolute;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0%;
+  left: 0%;
   width: 100%;
   height: 100%;
-  background-color: rgba(31, 28, 28, 0.5);
   button:hover {
     cursor: pointer;
     background: rgba(172, 170, 170, 0.5);

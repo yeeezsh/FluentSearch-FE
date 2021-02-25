@@ -8,6 +8,7 @@ import {
   ButtonRight,
   ImageWrapper,
   Image,
+  Overlay,
 } from './styled';
 import React, { useState, useEffect, useRef } from 'react';
 import BoundingBox from '../BoundingBox';
@@ -67,7 +68,8 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
   }, []);
 
   return (
-    <LightboxWrapper onClick={closeLightbox}>
+    <LightboxWrapper>
+      <Overlay onClick={closeLightbox} />
       <LightboxCard>
         <LightboxCardLeft>
           <OptionWrapper>
