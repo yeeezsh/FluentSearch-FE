@@ -43,7 +43,6 @@ export const LightboxCard = styled.div`
 
 export const LightboxCardLeft = styled.div<ILightboxCardLeft>`
   width: 100%;
-  transition: width 2s;
   position: relative;
   background-color: black;
   height: 80vh;

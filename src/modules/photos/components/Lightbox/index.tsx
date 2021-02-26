@@ -48,7 +48,9 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
 
   function handleDetailCard() {
     setDetailCardVisible(!detailCardVisible);
-    handleCurrentImageSize();
+    setTimeout(() => {
+      handleCurrentImageSize();
+    }, 100);
   }
 
   useEffect(() => {
@@ -65,7 +67,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
       setScaleY(currentImageSize?.height / image.height);
       setScaleBorder(3 * scaleX);
     }
-  }, [currentImageSize, scaleX, scaleY]);
+  }, [currentImageSize, detailCardVisible]);
 
   const allTags = image.tags?.reduce((acc: string[], tag: TagType) => {
     if (acc.indexOf(tag.result) == -1) acc.push(tag.result);
