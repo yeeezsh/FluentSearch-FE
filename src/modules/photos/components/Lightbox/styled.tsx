@@ -122,6 +122,7 @@ export const Image = styled.img`
 export const ImageWrapper = styled.div`
   position: relative;
   height: 100%;
+  width: 100%;
 `;
 
 export const InfoButton = styled.button`
