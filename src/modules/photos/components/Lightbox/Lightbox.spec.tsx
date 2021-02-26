@@ -24,6 +24,16 @@ describe('Lightbox Components', () => {
     expect(wrap.find(Image).exists()).toBe(true);
   });
 
+  it('Should have Tag, Details, Date, Photo, Place on DetailCard', () => {
+    console.log(wrap.debug());
+    expect(wrap.find('b').at(0).text()).toEqual(' Info');
+    expect(wrap.find('b').at(1).text()).toEqual(' Tag');
+    expect(wrap.find('b').at(2).text()).toEqual(' Details');
+    expect(wrap.find('b').at(3).text()).toEqual(' Date');
+    expect(wrap.find('b').at(4).text()).toEqual(' Photo');
+    expect(wrap.find('b').at(5).text()).toEqual(' Place');
+  });
+
   it('Should have properly props', () => {
     expect(wrap.prop('image')).not.toBeNull();
     expect(wrap.prop('onPrev')).not.toBeNull();
