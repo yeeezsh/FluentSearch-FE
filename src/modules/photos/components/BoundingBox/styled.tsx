@@ -8,5 +8,6 @@ export const Label = styled.div`
   padding: 5px;
   position: absolute;
   color: white;
-  top: 100%;
+  // use 99% since 100% gonna has whitespace between border and label
+  top: 99%;
 `;
