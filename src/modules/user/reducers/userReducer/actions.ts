@@ -1,4 +1,8 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { FormLogin } from 'Modules/user/pages/login/types';
+import { RequestToLogin } from 'Modules/user/services';
+import { USER } from './types';
 
-export const INIT_USER = 'USER/INIT';
-export const initUserState = createAction(INIT_USER);
+export const requestLogin = createAsyncThunk(USER, async (userData: FormLogin) => {
+  return { data: RequestToLogin(userData) };
+});

@@ -1,3 +1,5 @@
+export const USER = 'USER';
+
 export type UserState = {
   id: string;
   username: string;
