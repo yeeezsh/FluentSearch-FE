@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchTaskData } from './actions';
 import { initTaskState } from './init';
@@ -10,6 +10,12 @@ export const taskSlice = createSlice({
   reducers: {
     init(state) {
       return { ...state, ...initTaskState };
+    },
+    setActiveStatus(state, action: PayloadAction<{ active: boolean }>) {
+      return {
+        ...state,
+        active: !action.payload.active,
+      };
     },
   },
   extraReducers: (builder) => {
