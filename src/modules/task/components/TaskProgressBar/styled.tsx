@@ -21,10 +21,10 @@ export const Caption = styled.p`
   margin: 0;
 `;
 
-export const TaskProgressBarWrapper = styled.div`
-  text-align: center;
-  align-items: center;
-  display: inline-block;
+export const Wrapper = styled.div`
+  display: flex;
+  margin: 0% 10% 0% 10%;
+  justify-content: center;
 `;
 
 export const PausePlayButton = styled.button<IPausePlayButton>`
@@ -33,13 +33,23 @@ export const PausePlayButton = styled.button<IPausePlayButton>`
   color: white;
   max-height: 30px;
   display: inline-block;
+  margin: 1rem 1rem 0rem 2rem;
   max-width: 30px;
   padding: 0.25rem 1rem 1rem 0.5rem;
   border-radius: 100%;
+  border-color: transparent;
   border: none;
+  box-shadow: none;
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    cursor: pointer;
+  }
   ${(props) =>
     props.active &&
     css`
+      border-color: transparent;
       display: inline-block;
       text-decoration: none;
       padding: 0.5rem 1rem 0.5rem 1rem;
@@ -47,7 +57,13 @@ export const PausePlayButton = styled.button<IPausePlayButton>`
       max-width: 30px;
       border-radius: 100%;
       background-color: var(--green-color);
-      border: none;
+      box-shadow: none;
+      &:focus {
+        outline: 0;
+      }
+      &:hover {
+        cursor: pointer;
+      }
     `};
 `;
 
@@ -55,6 +71,23 @@ export const StopButton = styled.button`
   display: inline-block;
   text-decoration: none;
   color: var(--red-color);
+  box-shadow: none;
+  border-color: transparent;
   background-color: transparent;
-  border: none;
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const ProgressBarWrapper = styled.div`
+  display: inline-block;
+  width: 50%;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: inline-block;
+  height: 100%;
 `;
