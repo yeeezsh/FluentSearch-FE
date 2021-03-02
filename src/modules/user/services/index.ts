@@ -38,7 +38,6 @@ export async function RequestToLogin(
     const url = '/users/auth/requestor';
     const response = await adapter.instance.post(url, userData);
     SaveCredential(response.data);
-    SaveCredential(response.data);
     return { auth: true };
   } catch (err) {
     const error = err as AxiosError;
