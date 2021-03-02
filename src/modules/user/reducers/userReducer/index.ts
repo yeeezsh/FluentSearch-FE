@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { MSG_INTERNAL_ERROR } from 'Modules/user/services/default.msg';
 import { requestLogin } from './actions';
 import { initUserState } from './init';
 import { USER } from './types';
@@ -23,12 +24,12 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(requestLogin.rejected, (state) => {
       state.authenticated = false;
+      state.msg = MSG_INTERNAL_ERROR;
     });
     builder.addCase(requestLogin.pending, (state) => {
       state.authenticated = false;
     });
-    builder.addCase(requestLogin.fulfilled, (state, action) => {
-      //TODO: Set id, username, displayname
+    builder.addCase(requestLogin.fulfilled, (state) => {
       state.authenticated = true;
     });
   },
