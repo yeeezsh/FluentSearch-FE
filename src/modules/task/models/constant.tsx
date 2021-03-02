@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { stringCutter } from 'Modules/task/utils/stringCutter';
 import TaskProgressBar from 'Modules/task/components/TaskProgressBar';
-import { ElaspedTime, InprogressPhoto, TotalPhoto } from '../mocks/data';
+import { ElaspedTime, InprogressPhoto, TotalPhoto, Active } from '../mocks/data';
 
 export const columns = [
   {
@@ -48,6 +48,7 @@ export const columns = [
           totalPhoto={TotalPhoto.totalPhoto}
           elaspedTime={ElaspedTime.elaspedTime}
           progress={progress}
+          active={Active.active}
         />
       );
     },

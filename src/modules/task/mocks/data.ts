@@ -12,12 +12,10 @@ export interface IDataSource {
   elaspedTime: Date;
   inprogressPhoto: number;
   totalPhoto: number;
-  active: boolean;
 }
 
 const DataSourceMock = Sync.makeFactory<IDataSource>({
   key: each(() => faker.random.uuid()),
-  active: each(() => faker.random.boolean()),
   timestamp: each(() => faker.date.past()),
   taskID: each(() => faker.random.uuid()),
   taskName: each(() => faker.lorem.word()),
@@ -74,8 +72,13 @@ const TotalPhotoMock = Sync.makeFactory({
   ),
 });
 
+const ActiveMock = Sync.makeFactory({
+  active: each(() => faker.random.boolean()),
+});
+
 export const DataSource: IDataSource[] = DataSourceMock.buildList(10);
 export const Progress = ProgressMock.build();
 export const ElaspedTime = ElaspedTimeMock.build();
 export const InprogressPhoto = InprogressPhotoMock.build();
 export const TotalPhoto = TotalPhotoMock.build();
+export const Active = ActiveMock.build();
