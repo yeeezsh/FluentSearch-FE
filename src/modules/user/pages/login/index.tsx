@@ -11,6 +11,8 @@ import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
 import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
 import { FormErrorValue, FormFinishValue, FormLogin } from './types';
+import { useDispatch } from 'react-redux';
+import { requestLogin } from 'Modules/user/reducers/userReducer/actions';
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -44,9 +46,11 @@ const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = 
 
 const LoginPage: React.FC<Props> = (props) => {
   const [form] = useForm<FormLogin>();
+  const dispatch = useDispatch();
 
   const onFinish: FormFinishValue = (values) => {
     props.onSubmit && props.onSubmit(values);
+    dispatch(requestLogin(values));
     console.log('Success:', values);
   };
 
@@ -90,6 +94,7 @@ const LoginPage: React.FC<Props> = (props) => {
                 placeholder="Password"
               />
             </Form.Item>
+
             <LoginButton />
             <BreakLineWithCaption>or</BreakLineWithCaption>
             <LoginWithFacebookButton onSubmit={props.onSubmitOAuth} />
