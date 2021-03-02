@@ -52,7 +52,8 @@ export const PausePlayButton = styled.button<IPausePlayButton>`
       border-color: transparent;
       display: inline-block;
       text-decoration: none;
-      padding: 0.5rem 1rem 0.5rem 1rem;
+      margin: 1rem 1rem 0rem 2rem;
+      padding: 0.25rem 1rem 1rem 0.5rem;
       max-height: 30px;
       max-width: 30px;
       border-radius: 100%;
