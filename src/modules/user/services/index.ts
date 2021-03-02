@@ -36,8 +36,8 @@ export async function RequestToLogin(
 ): Promise<{ auth: boolean; msg?: string }> {
   try {
     const url = '/users/auth/requestor';
-    const response = await adapter.instance.post(url, userData);
-    SaveCredential(response.data);
+    const data = (await adapter.instance.post(url, userData)).data;
+    SaveCredential(data);
     return { auth: true };
   } catch (err) {
     const error = err as AxiosError;
