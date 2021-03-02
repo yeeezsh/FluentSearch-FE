@@ -15,6 +15,7 @@ export type TaskState = {
       elaspedTime: Date;
       inprogressPhoto: number;
       totalPhoto: number;
+      active: boolean;
     },
   ][];
   ready: boolean;

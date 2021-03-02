@@ -12,10 +12,12 @@ export interface IDataSource {
   elaspedTime: Date;
   inprogressPhoto: number;
   totalPhoto: number;
+  active: boolean;
 }
 
 const DataSourceMock = Sync.makeFactory<IDataSource>({
   key: each(() => faker.random.uuid()),
+  active: each(() => faker.random.boolean()),
   timestamp: each(() => faker.date.past()),
   taskID: each(() => faker.random.uuid()),
   taskName: each(() => faker.lorem.word()),
