@@ -4,5 +4,5 @@ import { RequestToLogin } from 'Modules/user/services';
 import { USER } from './types';
 
 export const requestLogin = createAsyncThunk(USER, async (userData: FormLogin) => {
-  return { data: RequestToLogin(userData) };
+  return { data: await RequestToLogin(userData) };
 });
