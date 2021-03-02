@@ -5,4 +5,5 @@ export type UserState = {
   username: string;
   displayName: string;
   authenticated: boolean;
+  msg?: string;
 };
