@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 
 export const PausePlayButton = styled.button<IPausePlayButton>`
   text-decoration: none;
-  background-color: var(--secondary-color);
+  background-color: var(--green-color);
   color: white;
   max-height: 30px;
   display: inline-block;
@@ -57,7 +57,7 @@ export const PausePlayButton = styled.button<IPausePlayButton>`
       max-height: 30px;
       max-width: 30px;
       border-radius: 100%;
-      background-color: var(--green-color);
+      background-color: var(--secondary-color);
       box-shadow: none;
       &:focus {
         outline: 0;
