@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { client } from 'Services/client';
 import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
-import { appWithTranslation } from 'next-i18next';
+import 'out/i18n.ts';
 
 const INCLUDE_NAVBAR: string[] = ['/'];
 
@@ -28,4 +28,4 @@ export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   );
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;
