@@ -1,6 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { message } from 'antd';
 import HomeNavbar from 'Modules/home/components/Navbar';
+import { userActions } from 'Modules/user/reducers/userReducer';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -25,13 +26,12 @@ adapter.instance.interceptors.response.use(
     const unauthorized = logs.includes('401');
     const tokenTimeout = logs.includes('410');
     if (unauthorized) {
-      // dispatch logout
-      message.info('กำลังพากลับสู่หน้าล็อคอิน');
+      dispatch(userActions.deleteUser());
       router.push('/login');
     }
     if (tokenTimeout) {
       // request for access token
-      // authorrze again
+      // authorize again
       router.push('/refresh');
     }
   },
