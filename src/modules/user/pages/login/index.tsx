@@ -5,14 +5,17 @@ import { OAuthEnum } from 'Models/oauth/enum';
 import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { P } from 'Styles/global';
 import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
 import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
 import { FormErrorValue, FormFinishValue, FormLogin } from './types';
-import { useDispatch } from 'react-redux';
-import { requestLogin } from 'Modules/user/reducers/userReducer/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser, requestLogin } from 'Modules/user/reducers/userReducer/actions';
+import userReducer, { userActions } from 'Modules/user/reducers/userReducer';
+import { StoresState } from 'Stores/index';
+import { Router, useRouter } from 'next/router';
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -46,12 +49,17 @@ const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = 
 
 const LoginPage: React.FC<Props> = (props) => {
   const [form] = useForm<FormLogin>();
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const auth = useSelector((state: StoresState) => state.user.authenticated);
+  const router = useRouter();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   const onFinish: FormFinishValue = (values) => {
     props.onSubmit && props.onSubmit(values);
-    dispatch(requestLogin(values));
-    console.log('Success:', values);
   };
 
   const onError: FormErrorValue = (formValue) => {

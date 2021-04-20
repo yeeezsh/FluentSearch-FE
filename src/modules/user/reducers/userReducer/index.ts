@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { MSG_INTERNAL_ERROR } from 'Modules/user/services/default.msg';
-import { requestLogin } from './actions';
+import { getUser, requestLogin } from './actions';
 import { initUserState } from './init';
 import { USER } from './types';
 
@@ -30,6 +30,15 @@ const userSlice = createSlice({
       state.authenticated = false;
     });
     builder.addCase(requestLogin.fulfilled, (state) => {
+      state.authenticated = true;
+    });
+    builder.addCase(getUser.rejected, (state) => {
+      state.authenticated = false;
+    });
+    builder.addCase(getUser.pending, (state) => {
+      state.authenticated = false;
+    });
+    builder.addCase(getUser.fulfilled, (state) => {
       state.authenticated = true;
     });
   },

@@ -12,3 +12,7 @@ export const requestLogin = createAsyncThunk(USER, async (userData: FormLogin) =
 export const register = createAsyncThunk(USER, async (userData: FormRegister) => {
   return { data: await Register(userData) };
 });
+
+export const getUser = createAsyncThunk(USER, async () => {
+  return;
+});
