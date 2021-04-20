@@ -1,5 +1,4 @@
 import { ApolloProvider } from '@apollo/client';
-import { message } from 'antd';
 import HomeNavbar from 'Modules/home/components/Navbar';
 import { userActions } from 'Modules/user/reducers/userReducer';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
