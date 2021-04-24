@@ -67,8 +67,27 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
 
   const BottomControl = () => (
     <BottomControlWrapper>
-      <Row>
-        <Col>
+      <Row justify="space-between" gutter={[0, 0]}>
+        <Col span={24}>
+          <Slider
+            min={0}
+            max={100}
+            played={played * 100}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onChange={onVideoSliderChange}
+          />
+        </Col>
+      </Row>
+      <Row justify="space-between" gutter={[0, 0]}>
+        <Col span={10}>
+          <Row>
+            <Col>
+              <BottomIcons>
+                {isPlaying ? <PauseOutlined /> : <CaretRightOutlined />}
+              </BottomIcons>
+            </Col>
+          </Row>
           <BottomIcons>
             {muted ? (
               <NotificationOutlined onClick={onMute} />
