@@ -5,6 +5,7 @@ import {
   BottomIcons,
   ControlIcons,
   ControlWrapper,
+  VolumeSliderWrapper,
 } from './styled';
 import { PlayerControlPropsType } from './types';
 import {
@@ -65,14 +66,21 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     <BottomControlWrapper>
       <Row>
         <Col>
-          <Slider
-            min={0}
-            max={100}
-            played={played * 100}
-            onMouseDown={onMouseDown}
-            onMouseUp={onMouseUp}
-            onChange={onVideoSliderChange}
-          />
+          <BottomIcons>
+            {muted ? <NotificationOutlined /> : <SoundOutlined />}
+          </BottomIcons>
+        </Col>
+        <Col>
+          <VolumeSliderWrapper>
+            <Slider
+              min={0}
+              max={100}
+              played={played * 100}
+              onMouseDown={onMouseDown}
+              onMouseUp={onMouseUp}
+              onChange={onVideoSliderChange}
+            />
+          </VolumeSliderWrapper>
         </Col>
       </Row>
       <Row>
