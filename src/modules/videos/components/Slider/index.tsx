@@ -3,13 +3,13 @@ import { SliderWrapper } from './styled';
 import { SliderPropsType } from './types';
 
 const Slider: React.FC<SliderPropsType> = (props) => {
-  const { onMouseUp, onMouseDown, onChange, played } = props;
+  const { min, max, onMouseUp, onMouseDown, onChange, played } = props;
   return (
     <SliderWrapper>
       <input
         type="range"
-        min={0}
-        max={1}
+        min={min}
+        max={max}
         step="any"
         value={played}
         onMouseUp={onMouseUp}
