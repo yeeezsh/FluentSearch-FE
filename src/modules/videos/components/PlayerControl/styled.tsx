@@ -14,3 +14,13 @@ export const ControlWrapper = styled.div`
   justify-content: space-between;
   z-index: 1;
 `;
+
+export const ControlIcons = styled.div`
+  color: #777;
+  font-size: 50px;
+  transform: scale(0.9);
+  &:hover {
+    color: #fff;
+    transform: scale(1);
+  }
+`;
