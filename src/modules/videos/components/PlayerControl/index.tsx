@@ -49,17 +49,21 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     <Row justify="center">
       <Col>
         <ControlIcons>
-          <BackwardOutlined />
+          <BackwardOutlined onClick={onRewind} />
         </ControlIcons>
       </Col>
       <Col>
         <ControlIcons>
-          {isPlaying ? <PauseOutlined /> : <CaretRightOutlined />}
+          {isPlaying ? (
+            <PauseOutlined onClick={onPlaying} />
+          ) : (
+            <CaretRightOutlined onClick={onPlaying} />
+          )}
         </ControlIcons>
       </Col>
       <Col>
         <ControlIcons>
-          <ForwardOutlined />
+          <ForwardOutlined onClick={onFastForward} />
         </ControlIcons>
       </Col>
     </Row>
@@ -105,7 +109,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
                 <Slider
                   min={0}
                   max={100}
-                  played={played * 100}
+                  played={volume * 100}
                   onMouseDown={onMouseDown}
                   onMouseUp={onMouseUp}
                   onChange={onVideoSliderChange}
@@ -114,13 +118,18 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
             </Col>
           </Row>
         </Col>
-        <Col span={1}>
-          <BottomIcons>
-            <ExpandOutlined
-              style={{ paddingTop: '0.2rem' }}
-              onClick={onToggleFullScreen}
-            />
-          </BottomIcons>
+        <Col span={4}>
+          <Row justify="space-around">
+            <Col>{playbackRate}</Col>
+            <Col>
+              <BottomIcons>
+                <ExpandOutlined
+                  style={{ paddingTop: '0.2rem' }}
+                  onClick={onToggleFullScreen}
+                />
+              </BottomIcons>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </BottomControlWrapper>
