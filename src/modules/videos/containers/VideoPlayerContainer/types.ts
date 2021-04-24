@@ -1,9 +1,9 @@
 type VideoPlayerStateType = {
   muted: boolean;
-  playing: boolean;
+  isPlaying: boolean;
   volume: number;
   playbackRate: string;
-  seeking: boolean;
+  isSeeking: boolean;
   duration: number;
   played: number;
 };
