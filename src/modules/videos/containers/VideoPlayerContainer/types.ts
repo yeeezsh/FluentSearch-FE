@@ -1,4 +1,4 @@
-type VideoStateType = {
+type VideoPlayerStateType = {
   muted: boolean;
   playing: boolean;
   volume: number;
@@ -8,4 +8,4 @@ type VideoStateType = {
   played: number;
 };
 
-export type { VideoStateType };
+export type { VideoPlayerStateType };
