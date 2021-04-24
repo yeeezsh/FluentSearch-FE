@@ -3,10 +3,18 @@ import ReactPlayer from 'react-player';
 import { VideoPlayerPropsType } from './types';
 
 const VideoPlayer: React.FC<VideoPlayerPropsType> = (props) => {
-  const { playerRef, muted, isPlaying, volume, playbackRate, handleProgress } = props;
+  const {
+    url,
+    playerRef,
+    muted,
+    isPlaying,
+    volume,
+    playbackRate,
+    handleProgress,
+  } = props;
   return (
     <ReactPlayer
-      url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+      url={url}
       ref={playerRef}
       width="100%"
       height="100%"
