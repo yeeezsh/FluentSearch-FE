@@ -24,3 +24,19 @@ export const ControlIcons = styled.div`
     transform: scale(1);
   }
 `;
+
+export const BottomControlWrapper = styled.div`
+  padding: 1rem;
+`;
+
+export const BottomIcons = styled.div`
+  color: #999;
+  font-size: 18px;
+  &:hover {
+    color: #fff;
+  }
+`;
+
+export const VolumeSliderWrapper = styled.div`
+  width: 100%;
+`;

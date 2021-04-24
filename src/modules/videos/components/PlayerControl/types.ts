@@ -1,3 +1,4 @@
+import { React } from '@ungap/global-this';
 import { VideoPlayerStateType } from 'Modules/videos/containers/VideoPlayerContainer/types';
 
 type PlayerControlPropsType = VideoPlayerStateType & {
@@ -5,6 +6,10 @@ type PlayerControlPropsType = VideoPlayerStateType & {
   onFastForward: () => void;
   onRewind: () => void;
   onMute: () => void;
+  onMouseDown: () => void;
+  onMouseUp: () => void;
+  onVideoSliderChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onToggleFullScreen: () => void;
 };
 
 export type { PlayerControlPropsType };
