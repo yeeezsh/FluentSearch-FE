@@ -28,9 +28,12 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     playbackRate,
     played,
     onMouseDown,
+    onMute,
     onMouseUp,
     onVideoSliderChange,
     onToggleFullScreen,
+    onFastForward,
+    onRewind,
   } = props;
 
   const TopControl = () => (
@@ -67,7 +70,11 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
       <Row>
         <Col>
           <BottomIcons>
-            {muted ? <NotificationOutlined /> : <SoundOutlined />}
+            {muted ? (
+              <NotificationOutlined onClick={onMute} />
+            ) : (
+              <SoundOutlined onClick={onMute} />
+            )}
           </BottomIcons>
         </Col>
         <Col>
