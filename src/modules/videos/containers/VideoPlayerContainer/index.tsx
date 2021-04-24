@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { VideoPlayerWrapper } from './styled';
 import { VideoPlayerStateType } from './types';
 
 const VideoPlayerContainer = () => {
@@ -12,7 +13,7 @@ const VideoPlayerContainer = () => {
     played: 0,
   });
 
-  return <div></div>;
+  return <VideoPlayerWrapper></VideoPlayerWrapper>;
 };
 
 export default VideoPlayerContainer;
