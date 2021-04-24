@@ -80,47 +80,47 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
         </Col>
       </Row>
       <Row justify="space-between" gutter={[0, 0]}>
-        <Col span={10}>
-          <Row>
+        <Col span={6}>
+          <Row justify="space-around">
             <Col>
               <BottomIcons>
-                {isPlaying ? <PauseOutlined /> : <CaretRightOutlined />}
+                {isPlaying ? (
+                  <PauseOutlined onClick={onPlaying} />
+                ) : (
+                  <CaretRightOutlined onClick={onPlaying} />
+                )}
               </BottomIcons>
             </Col>
-          </Row>
-          <BottomIcons>
-            {muted ? (
-              <NotificationOutlined onClick={onMute} />
-            ) : (
-              <SoundOutlined onClick={onMute} />
-            )}
-          </BottomIcons>
-        </Col>
-        <Col>
-          <VolumeSliderWrapper>
-            <Slider
-              min={0}
-              max={100}
-              played={played * 100}
-              onMouseDown={onMouseDown}
-              onMouseUp={onMouseUp}
-              onChange={onVideoSliderChange}
-            />
-          </VolumeSliderWrapper>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Row>
             <Col>
               <BottomIcons>
-                <ExpandOutlined
-                  style={{ paddingTop: '0.2rem' }}
-                  onClick={onToggleFullScreen}
+                {muted ? (
+                  <NotificationOutlined onClick={onMute} />
+                ) : (
+                  <SoundOutlined onClick={onMute} />
+                )}
+              </BottomIcons>
+            </Col>
+            <Col>
+              <VolumeSliderWrapper>
+                <Slider
+                  min={0}
+                  max={100}
+                  played={played * 100}
+                  onMouseDown={onMouseDown}
+                  onMouseUp={onMouseUp}
+                  onChange={onVideoSliderChange}
                 />
-              </BottomIcons>
+              </VolumeSliderWrapper>
             </Col>
           </Row>
+        </Col>
+        <Col span={1}>
+          <BottomIcons>
+            <ExpandOutlined
+              style={{ paddingTop: '0.2rem' }}
+              onClick={onToggleFullScreen}
+            />
+          </BottomIcons>
         </Col>
       </Row>
     </BottomControlWrapper>
