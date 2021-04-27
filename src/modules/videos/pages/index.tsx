@@ -4,7 +4,7 @@ import { PageWrapper } from 'Styles/global';
 
 const ViewVideoPage: React.FC = () => {
   return (
-    <LayoutWithSearch title="History">
+    <LayoutWithSearch border={false}>
       <PageWrapper></PageWrapper>
     </LayoutWithSearch>
   );
