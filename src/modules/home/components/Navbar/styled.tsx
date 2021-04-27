@@ -7,7 +7,6 @@ export const NavStyle = styled.nav`
   padding: 0 15px 20px 20px;
   display: flex;
   justify-content: space-between;
-
   background-color: white;
 `;
 
@@ -17,8 +16,8 @@ export const MenuDivStyle = styled.div`
 `;
 
 export const LogoStyle = styled.div`
-  padding-top: 15px;
   font-weight: 2em;
+  display: inline-block;
 `;
 
 export const ButtonSideMenuStyle = styled.button`
@@ -52,9 +51,9 @@ export const NavbarContainerItem = styled.li`
 `;
 
 export const MenuItemStyled = styled.p<{ isSelecting: boolean }>`
-  color: ${(props) => (props.isSelecting ? '#0BB5C2' : 'black')};
+  color: ${(props) => (props.isSelecting ? '#5A36CC' : 'black')};
   cursor: pointer;
   &:hover {
-    color: #0bb5c2;
+    color: #5a36cc;
   }
 `;

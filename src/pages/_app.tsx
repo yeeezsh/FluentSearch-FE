@@ -8,21 +8,21 @@ import { client } from 'Services/client';
 import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 
-const EXCLUDE_NAVBAR: string[] = ['/login', '/register'];
+const INCLUDE_NAVBAR: string[] = ['/'];
 
 export function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const pathname = useRouter().pathname;
-  const isExcludeNavbar = EXCLUDE_NAVBAR.includes(pathname);
+  const isIncludeNavbar = INCLUDE_NAVBAR.includes(pathname);
 
   return (
     <>
       <GlobalStyle />
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          {!isExcludeNavbar && <HomeNavbar />}
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          {isIncludeNavbar && <HomeNavbar />}
           <Component {...pageProps} />
-        </Provider>
-      </ApolloProvider>
+        </ApolloProvider>
+      </Provider>
     </>
   );
 }
