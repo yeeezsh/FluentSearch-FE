@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { DataSource } from 'Modules/task/mocks/data';
-import { fetchTask } from 'Modules/task/services/fetch.task';
 import { fetchTaskData } from './actions';
 import taskReducer, { taskActions } from './index';
 import { initTaskState } from './init';

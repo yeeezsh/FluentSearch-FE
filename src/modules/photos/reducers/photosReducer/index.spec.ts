@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { PhotosAPI } from 'Modules/photos/constants/photo/interface';
-import { fetchImages } from 'Modules/photos/services/fetch.images';
 import { fetchPhotosData } from './actions';
 import photosReducer, { photosActions } from './index';
 import { initPhotosState } from './init';
@@ -21,9 +20,10 @@ describe('photoReducer test', () => {
   });
 
   it('should have pending/fulfill fetchPhotosData', async () => {
-    const fetchImagesMock = jest.fn(fetchImages).mockResolvedValue(mockdata);
-    const data = await fetchImagesMock();
-    store.dispatch({ type: fetchPhotosData.fulfilled.type, payload: { data } });
+    store.dispatch({
+      type: fetchPhotosData.fulfilled.type,
+      payload: { data: mockdata },
+    });
     expect(store.getState().photos.data.ready).toBe(true);
   });
 

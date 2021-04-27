@@ -4,19 +4,19 @@ import { ModelEnum } from '../models/model.enum';
 
 export interface IDataSource {
   key: string;
-  timestamp: Date;
+  timestamp: string;
   taskID: string;
   taskName: string;
   model: ModelEnum;
   progress: number;
-  elaspedTime: Date;
+  elaspedTime: string;
   inprogressPhoto: number;
   totalPhoto: number;
 }
 
 const DataSourceMock = Sync.makeFactory<IDataSource>({
   key: each(() => faker.random.uuid()),
-  timestamp: each(() => faker.date.past()),
+  timestamp: each(() => faker.date.past().toISOString()),
   taskID: each(() => faker.random.uuid()),
   taskName: each(() => faker.lorem.word()),
   model: each(() => faker.random.arrayElement(Object.values(ModelEnum))),
@@ -26,7 +26,7 @@ const DataSourceMock = Sync.makeFactory<IDataSource>({
       max: 100,
     }),
   ),
-  elaspedTime: each(() => faker.date.past()),
+  elaspedTime: each(() => faker.date.past().toISOString()),
   inprogressPhoto: each(() =>
     faker.random.number({
       min: 0,
@@ -51,7 +51,7 @@ const ProgressMock = Sync.makeFactory({
 });
 
 const ElaspedTimeMock = Sync.makeFactory({
-  elaspedTime: each(() => faker.date.past()),
+  elaspedTime: each(() => faker.date.past().toISOString()),
 });
 
 const InprogressPhotoMock = Sync.makeFactory({
