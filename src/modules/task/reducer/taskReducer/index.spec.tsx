@@ -21,9 +21,8 @@ describe('taskReducer test', () => {
   });
 
   it('should have pending/fulfill fetchtTaskData', async () => {
-    const fetchTaskMock = jest.fn(fetchTask).mockResolvedValue(DataSource as never);
-    const data = await fetchTaskMock();
-    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data } });
+    store.dispatch(taskActions.init());
+    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: {} });
     expect(store.getState().task.ready).toBe(true);
   });
 });
