@@ -1,4 +1,4 @@
-import { Row, Col } from 'antd';
+import { Row, Col, Select } from 'antd';
 import React, { forwardRef } from 'react';
 import {
   BottomControlWrapper,
@@ -32,9 +32,12 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     onMouseUp,
     onVideoSliderChange,
     onToggleFullScreen,
+    onPlaybackRateChange,
     onFastForward,
     onRewind,
   } = props;
+
+  const { Option } = Select;
 
   const TopControl = () => (
     <Row justify="space-between" style={{ padding: 16 }}>
@@ -120,7 +123,20 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
         </Col>
         <Col span={4}>
           <Row justify="space-around">
-            <Col>{playbackRate}</Col>
+            <Col>
+              <Select
+                defaultValue="1X"
+                bordered={false}
+                onChange={onPlaybackRateChange}
+                value={playbackRate}
+                style={{ color: 'white' }}>
+                {['2.0', '1.5', '1', '0.75', '0.5'].map((e, i) => (
+                  <Option key={i} value={e}>
+                    {e + 'X'}
+                  </Option>
+                ))}
+              </Select>
+            </Col>
             <Col>
               <BottomIcons>
                 <ExpandOutlined
