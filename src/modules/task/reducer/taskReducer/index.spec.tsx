@@ -21,8 +21,18 @@ describe('taskReducer test', () => {
   });
 
   it('should have pending/fulfill fetchtTaskData', async () => {
-    store.dispatch(taskActions.init());
-    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: {} });
+    const parsed = DataSource.map((el) => {
+      const keys = Object.keys(el);
+      const element = keys.reduce((acc, cur: unknown) => {
+        if (cur instanceof Date) {
+          return { ...acc, cur: cur.toDateString() };
+        }
+        return { ...acc, cur };
+      }, {});
+      return element;
+    });
+
+    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: parsed } });
     expect(store.getState().task.ready).toBe(true);
   });
 });
