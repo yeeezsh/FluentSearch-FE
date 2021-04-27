@@ -103,7 +103,7 @@ const HeaderWrapper: React.FC = () => {
 
 // TODO: unit test
 const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
-  const { title, children } = props;
+  const { title, children, border = true } = props;
   return (
     <CanvasWrapper>
       <Layout>
@@ -112,7 +112,7 @@ const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
           <HeaderWrapper />
           <Content style={{ overflow: 'initial' }}>
             <h1>{title}</h1>
-            <hr />
+            {border ? <hr /> : null}
             {children}
           </Content>
         </ContentWrapper>
