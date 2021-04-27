@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'http://localhost:5000/graphql'
+schema: 'codegen/schema.gql'
 documents: '**/*.graphql'
 generates:
   src/common/generated/generated-types.ts:
