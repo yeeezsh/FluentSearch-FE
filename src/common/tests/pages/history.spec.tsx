@@ -1,12 +1,11 @@
-import { mount, shallow, ShallowWrapper } from 'enzyme';
-import React from 'react';
-import HistoryPage from 'Modules/history/pages';
-import { PurpleTable } from 'Styles/global';
-import { Provider } from 'react-redux';
+import { ApolloProvider } from '@apollo/client';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { shallow, ShallowWrapper } from 'enzyme';
+import HistoryPage from 'Modules/history/pages';
 import historyReducer from 'Modules/history/reducer/historyReducer';
 import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
-import { ApolloProvider } from '@apollo/client';
+import React from 'react';
+import { Provider } from 'react-redux';
 import { client } from 'Services/client';
 
 const rootReducer = combineReducers({
