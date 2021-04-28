@@ -3,4 +3,8 @@ type AvatarPropsType = {
   src: string;
 };
 
-export type { AvatarPropsType };
+type AvatarWrapperProps = {
+  selected: boolean;
+};
+
+export type { AvatarPropsType, AvatarWrapperProps };
