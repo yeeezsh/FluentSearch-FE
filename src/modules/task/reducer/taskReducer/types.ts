@@ -7,12 +7,12 @@ export type TaskState = {
   data: [
     {
       key: string;
-      timestamp: Date;
+      timestamp: string;
       taskID: string;
       taskName: string;
       model: ModelEnum;
       progress: number;
-      elaspedTime: Date;
+      elaspedTime: string;
       inprogressPhoto: number;
       totalPhoto: number;
     },
