@@ -1,5 +1,5 @@
 type AvatarPropsType = {
-  selected: boolean;
+  selected?: boolean;
   src: string;
 };
 
