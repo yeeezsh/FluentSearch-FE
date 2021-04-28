@@ -1,18 +1,14 @@
-import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
+import { render } from '@testing-library/react';
 import { mount, shallow } from 'enzyme';
 import { OAuthEnum } from 'Models/oauth/enum';
-import React from 'react';
+import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import LoginPage from 'Modules/user/pages/login';
+import React from 'react';
 
 describe('Pages/Login test', () => {
   it('Render correctly', () => {
-    const wrap = shallow(<LoginPage />);
-    expect(wrap.html()).toMatchSnapshot();
-  });
-
-  it('LoginPage should be exisiting', () => {
-    const wrap = shallow(<LoginPage />);
-    expect(wrap.exists()).toBe(true);
+    const { container } = render(<LoginPage />);
+    expect(container).toMatchSnapshot();
   });
 
   it('Should contain FormCenter Layout', () => {
@@ -61,7 +57,7 @@ describe('Pages/Login test', () => {
     const emailField = wrap.find('input[id="email"]');
     const passwordField = wrap.find('input[id="password"]');
 
-    emailField.simulate('change', { target: { value: 'Hello' } });
+    emailField.simulate('change', { target: { value: 'Hello@world.com' } });
     passwordField.simulate('change', { target: { value: '1234' } });
 
     wrap.find('#login-btn').at(0).simulate('submit');
