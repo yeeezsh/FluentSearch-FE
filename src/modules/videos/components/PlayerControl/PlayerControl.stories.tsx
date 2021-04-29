@@ -34,6 +34,7 @@ export const PlayerControlStories: React.FC = () => {
         onMouseUp={handleMock}
         onVideoSliderChange={handleMockWithEvent}
         onToggleFullScreen={handleMock}
+        onPlaybackRateChange={handleMock}
         onRewind={handleMock}
       />
     </>
