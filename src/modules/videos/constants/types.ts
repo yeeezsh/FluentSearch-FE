@@ -3,8 +3,8 @@ type AnnotaionType = {
   label: string;
   startTime?: number;
   endTime?: number;
-  finish: boolean;
   incidents: IncidentType[];
+  src: string;
 };
 
 type IncidentType = {
@@ -13,6 +13,7 @@ type IncidentType = {
   height: number;
   width: number;
   nthFps: number;
+  finish: boolean;
 };
 
 export type { AnnotaionType, IncidentType };
