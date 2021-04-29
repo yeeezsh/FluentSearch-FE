@@ -1,23 +1,31 @@
 import { Row, Col, Card } from 'antd';
 import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 import React from 'react';
-import { PageWrapper } from 'Styles/global';
+import Avatar from '../components/Avatar';
+import { annotation } from '../mocks/annotation';
+import { VideoDetailCard } from './styled';
 
-const PeopleCard = () => (
-  <Card title="N People">
-    <p>Card content</p>
-    <p>Card content</p>
-    <p>Card content</p>
-  </Card>
-);
+const handleSelectAvatar = () => {
+  console.log('selected');
+};
 
-const LabelCard = () => (
-  <Card title="N Labels">
-    <p>Card content</p>
-    <p>Card content</p>
-    <p>Card content</p>
-  </Card>
-);
+const numberOfAnnotation = annotation.length;
+
+const PeopleCard = () => {
+  return (
+    <VideoDetailCard title={`${numberOfAnnotation} People`}>
+      {numberOfAnnotation > 0
+        ? annotation.map((el, index) => (
+            <Avatar src={el.src} key={index} onClick={() => handleSelectAvatar()} />
+          ))
+        : 'no people'}
+    </VideoDetailCard>
+  );
+};
+
+const LabelCard = () => {
+  return <Card title={`${numberOfAnnotation} Labels`}></Card>;
+};
 
 const DetailCard = () => (
   <Card title="Details">
@@ -30,19 +38,17 @@ const DetailCard = () => (
 const ViewVideoPage: React.FC = () => {
   return (
     <LayoutWithSearch border={false}>
-      <PageWrapper>
-        Photos <br />
-        video-wedding <br />
-        <hr />
-        <Row justify="space-between">
-          <Col span={12}>video with marker</Col>
-          <Col span={10}>
-            <PeopleCard /> <br />
-            <LabelCard /> <br />
-            <DetailCard /> <br />
-          </Col>
-        </Row>
-      </PageWrapper>
+      {'<'} Photos <br />
+      <h3>video-wedding</h3>
+      <hr />
+      <Row justify="space-between">
+        <Col span={12}>video with marker</Col>
+        <Col span={10}>
+          <PeopleCard /> <br />
+          <LabelCard /> <br />
+          <DetailCard /> <br />
+        </Col>
+      </Row>
     </LayoutWithSearch>
   );
 };
