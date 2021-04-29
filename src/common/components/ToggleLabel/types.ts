@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
+
 type ToggleLabelProps = {
   selected?: boolean;
-  children: React.ReactChildren;
+  children: ReactNode;
 };
 
 type ToggleLabelWrapperProps = {
