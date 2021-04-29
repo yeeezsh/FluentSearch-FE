@@ -10,8 +10,6 @@ export default {
 
 const LabelStories: Story<LabelProps> = (args) => <Label {...args} />;
 
-// Color
-
 export const Default = LabelStories.bind({});
 Default.args = {
   color: 'purple',
