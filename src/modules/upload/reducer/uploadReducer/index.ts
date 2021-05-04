@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FileUpload, UPLOAD, UploadTask } from 'Modules/upload/model/types';
+import { requestURLToUpload } from './actions';
 
 import { initUploadState } from './init';
 
@@ -26,7 +27,6 @@ export const uploadReducer = createSlice({
         state: 'failed',
       });
     },
-
     // setUploadFile(state, action: PayloadAction<FileList>) {
     //   const mappedData: fileProgressType[] = [];
     //   Array.from(action.payload).forEach((file, index) =>
@@ -60,6 +60,14 @@ export const uploadReducer = createSlice({
     //   const { url } = action.payload;
     //   state.uploadUrl = url;
     // },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(
+      requestURLToUpload.fulfilled,
+      (state, action: PayloadAction<{ data: string }>) => {
+        state.url = action.payload.data;
+      },
+    );
   },
 });
 export default uploadReducer.reducer;
