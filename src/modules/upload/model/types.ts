@@ -18,6 +18,7 @@ type GroupTask = {
 };
 
 type UploadTask = {
+  url: string;
   pendingQueue: FileUpload[];
   fulfillQueue: FileUpload[];
   present: {
