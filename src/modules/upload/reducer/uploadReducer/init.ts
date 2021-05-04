@@ -1,10 +1,12 @@
-import { UploadDataState } from 'Modules/upload/model/types';
+import { UploadTask } from 'Modules/upload/model/types';
 
-export const initUploadDataState: UploadDataState = {
-  owner: '',
-  uploadUrl: '',
-  data: {
-    fileProgress: [],
+export const initUploadState: UploadTask = {
+  pendingQueue: [],
+  fulfillQueue: [],
+  present: {
+    current: [],
+    group: [],
+    progress: -1,
+    total: -1,
   },
-  ready: false,
 };
