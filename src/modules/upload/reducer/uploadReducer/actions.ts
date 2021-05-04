@@ -29,3 +29,35 @@ export const uploadFileData = async (group: string): Promise<void> => {
 export const requestURLToUpload = createAsyncThunk(UPLOAD, async () => {
   return { data: await requestURL() };
 });
+
+export const getUploadProgress = (): void => {
+  const pendingQueue = store.getState().upload.pendingQueue;
+  const fulfillQueue = store.getState().upload.fulfillQueue;
+
+  const total = pendingQueue.length + fulfillQueue.length;
+
+  const totalFullfillProgress = fulfillQueue
+    .map((el) => el.progress)
+    .reduce((acc, cur) => (acc += cur), 0);
+
+  store.dispatch(uploadActions.setProgress(totalFullfillProgress));
+  store.dispatch(uploadActions.setProgress(total));
+
+  const allTasks = [...pendingQueue, ...fulfillQueue];
+  const groupDistinct = new Set(allTasks.map((el) => el.group));
+
+  const groups = Array.from(groupDistinct).map((groupId) => {
+    const allTasksFormGroup = allTasks.filter((f) => f.group);
+
+    const fulfillTaskGroupProgress = allTasksFormGroup
+      .filter((f) => f.state === 'failed' || f.state === 'finish' || f.state === 'cancel')
+      .map((el) => el.progress)
+      .reduce((acc, cur) => (acc += cur), 0);
+    return {
+      label: groupId,
+      progress: fulfillTaskGroupProgress,
+      total: allTasksFormGroup.length,
+    };
+  });
+  store.dispatch(uploadActions.setGroup(groups));
+};
