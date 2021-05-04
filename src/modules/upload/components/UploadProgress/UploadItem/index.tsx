@@ -1,9 +1,10 @@
+import { GroupTask } from 'Modules/upload/model/types';
 import React from 'react';
 import { WrapperItem, LeftSide, ProgressBar, Percentage } from './styled';
 
 type UploadItemProps = {
   file: {
-    file: File;
+    file: GroupTask;
     progress: number;
   };
 };
@@ -15,7 +16,7 @@ const UploadItem: React.FC<UploadItemProps> = (props) => {
       <LeftSide>
         <ProgressBar>
           <div style={{ width: `${progress}%` }} />
-          <label>{file.name}</label>
+          <label>{file.label}</label>
         </ProgressBar>
       </LeftSide>
       <Percentage>{progress}</Percentage>
