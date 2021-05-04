@@ -1,3 +1,6 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { UPLOAD } from 'Modules/upload/model/types';
+import { requestURL } from 'Modules/upload/services/request.url';
 import { uploadFile } from 'Modules/upload/services/upload.file';
 import { store } from 'Stores/index';
 import { uploadActions } from '.';
@@ -22,3 +25,7 @@ export const uploadFileData = async (group: string): Promise<void> => {
     }
   }
 };
+
+export const requestURLToUpload = createAsyncThunk(UPLOAD, async () => {
+  return { data: await requestURL() };
+});
