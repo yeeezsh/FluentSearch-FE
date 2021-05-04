@@ -1,11 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fileProgressType, UPLOAD } from 'Modules/upload/model/types';
-import { uploadPhoto } from 'Modules/upload/services/upload.photo';
+import { FileUpload } from 'Modules/upload/model/types';
+import { store } from 'Stores/index';
 
-export const uploadPhotoData = createAsyncThunk(
-  UPLOAD,
-  // TODO: use ThunkAPI to calculate upload progress
-  async (dataToUpload: fileProgressType[]) => {
-    return { data: await uploadPhoto(dataToUpload) };
-  },
-);
+export const uploadFile = async (group: string, type: FileUpload['type']) => {
+  const pendingQueue = store
+    .getState()
+    .upload.pendingQueue.filter((f) => f.group === group);
+};
