@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UPLOAD } from 'Modules/upload/model/types';
 import { modifyFiles } from 'Modules/upload/utils/uploadFile.utils';
-import { ErrorStateCodeEnum } from 'Stores/common/types/error';
-import { uploadPhotoData } from './actions';
 import { initUploadDataState } from './init';
 
 interface UploadProgress {
