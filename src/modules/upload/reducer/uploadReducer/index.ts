@@ -20,6 +20,12 @@ export const uploadReducer = createSlice({
         progress: 1,
       });
     },
+    failureUploadFile(state, action: PayloadAction<FileUpload>) {
+      state.fulfillQueue.push({
+        ...action.payload,
+        state: 'failed',
+      });
+    },
 
     // setUploadFile(state, action: PayloadAction<FileList>) {
     //   const mappedData: fileProgressType[] = [];
