@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FileUpload, UPLOAD, UploadTask } from 'Modules/upload/model/types';
+import { FileUpload, GroupTask, UPLOAD, UploadTask } from 'Modules/upload/model/types';
 import { requestURLToUpload } from './actions';
 
 import { initUploadState } from './init';
@@ -19,6 +19,9 @@ export const uploadReducer = createSlice({
     },
     setTotal(state, action: PayloadAction<number>) {
       state.present.total = action.payload;
+    },
+    setGroup(state, action: PayloadAction<GroupTask[]>) {
+      state.present.group = action.payload;
     },
     successUploadFile(state, action: PayloadAction<FileUpload>) {
       state.fulfillQueue.push({
