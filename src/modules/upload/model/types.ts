@@ -28,4 +28,4 @@ type UploadTask = {
   };
 };
 
-export type { UploadTask };
+export type { FileUpload, GroupTask, UploadTask };
