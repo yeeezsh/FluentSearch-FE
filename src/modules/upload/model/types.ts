@@ -27,3 +27,5 @@ type UploadTask = {
     total: number;
   };
 };
+
+export type { UploadTask };
