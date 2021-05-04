@@ -10,3 +10,9 @@ type FileUpload = {
   group: string;
   state: 'waiting' | 'queue' | 'failed' | 'finish' | 'cancel';
 };
+
+type GroupTask = {
+  label: string;
+  progress: number;
+  total: number;
+};
