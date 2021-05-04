@@ -16,3 +16,14 @@ type GroupTask = {
   progress: number;
   total: number;
 };
+
+type UploadTask = {
+  pendingQueue: FileUpload[];
+  fulfillQueue: FileUpload[];
+  present: {
+    current: FileUpload[];
+    group: GroupTask[];
+    progress: number;
+    total: number;
+  };
+};
