@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UPLOAD, UploadTask } from 'Modules/upload/model/types';
+import { FileUpload, UPLOAD, UploadTask } from 'Modules/upload/model/types';
+
 import { initUploadState } from './init';
 
 export const uploadReducer = createSlice({
@@ -11,6 +12,13 @@ export const uploadReducer = createSlice({
     },
     setPendingQueue(state, action: PayloadAction<UploadTask['pendingQueue']>) {
       state.pendingQueue = action.payload;
+    },
+    successUploadFile(state, action: PayloadAction<FileUpload>) {
+      state.fulfillQueue.push({
+        ...action.payload,
+        state: 'finish',
+        progress: 1,
+      });
     },
 
     // setUploadFile(state, action: PayloadAction<FileList>) {
