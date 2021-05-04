@@ -22,6 +22,7 @@
     "@apollo/client": "^3.3.6",
     "@reduxjs/toolkit": "^1.4.0",
     "antd": "^4.7.3",
+    "axios": "^0.21.1",
     "dayjs": "^1.10.3",
     "graphql": "^15.4.0",
     "next": "10.0.4",
@@ -29,8 +30,7 @@
     "react-dom": "16.14",
     "react-redux": "7.2.2",
     "redux": "^4.0.5",
-    "styled-components": "^5.2.1",
-    "axios": "^0.21.1"
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -85,6 +85,7 @@
     "ts-jest": "^26.4.4",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typescript": "^4.0.5",
+    "uuidv4": "^6.2.7",
     "wait-for-expect": "^3.0.2"
   }
 }
