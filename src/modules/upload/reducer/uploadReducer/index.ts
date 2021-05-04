@@ -17,6 +17,9 @@ export const uploadReducer = createSlice({
     setProgress(state, action: PayloadAction<number>) {
       state.present.progress = action.payload;
     },
+    setTotal(state, action: PayloadAction<number>) {
+      state.present.total = action.payload;
+    },
     successUploadFile(state, action: PayloadAction<FileUpload>) {
       state.fulfillQueue.push({
         ...action.payload,
