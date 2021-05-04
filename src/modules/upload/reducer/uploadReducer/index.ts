@@ -45,26 +45,6 @@ export const uploadReducer = createSlice({
       state.uploadUrl = url;
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(uploadPhotoData.rejected, (state) => {
-      state.ready = false;
-      state.error = {
-        code: ErrorStateCodeEnum.ServerInternalError,
-        msg: 'api error',
-      };
-    });
-    builder.addCase(uploadPhotoData.pending, (state) => {
-      state.ready = false;
-      state.error = undefined;
-    });
-    builder.addCase(uploadPhotoData.fulfilled, (state, action) => {
-      state.ready = true;
-      state.error = undefined;
-      // TODO: remove hardcoded
-      state.owner = '1234';
-      state.data.fileProgress = action.payload.data;
-    });
-  },
 });
 export default uploadReducer.reducer;
 export const uploadActions = uploadReducer.actions;
