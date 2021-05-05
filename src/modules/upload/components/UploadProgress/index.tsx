@@ -3,7 +3,7 @@ import UploadItem from './UploadItem';
 import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { Wrapper } from './styled';
-
+import { v4 as uuid } from 'uuid';
 const UploadProgress: React.FC = () => {
   const group = useSelector((state: StoresState) => state.upload.present.group);
   const total = useSelector((state: StoresState) => state.upload.present.total);
@@ -14,10 +14,7 @@ const UploadProgress: React.FC = () => {
       {total > 0
         ? Object.values(group).map((file) => {
             return (
-              <UploadItem
-                key={Math.random()}
-                file={{ file: file, progress: file.progress }}
-              />
+              <UploadItem key={uuid()} file={{ file: file, progress: file.progress }} />
             );
           })
         : null}
