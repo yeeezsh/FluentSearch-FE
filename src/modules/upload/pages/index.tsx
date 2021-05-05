@@ -6,9 +6,10 @@ import UploadButton from '../components/UploadButton';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadProgress from '../components/UploadProgress';
 import { StoresState } from 'Stores/index';
-import { getUploadProgress } from '../reducer/uploadReducer/actions';
+import { getUploadProgress, uploadFileData } from '../reducer/uploadReducer/actions';
 import { FileUpload } from '../model/types';
 import { uuid } from 'uuidv4';
+import { uploadActions } from '../reducer/uploadReducer';
 
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,10 +26,10 @@ const UploadPage: React.FC = () => {
   const handleFileOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawFiles = e.target.files;
 
-    if (rawFiles) {
-      const filesToUpload: FileUpload[] = [];
-      const groupGenerated: string = uuid();
+    const filesToUpload: FileUpload[] = [];
+    const groupGenerated: string = uuid();
 
+    if (rawFiles) {
       let type: FileUpload['type'] = 'single';
       if (rawFiles.length > 0) type = 'multiple';
 
@@ -49,16 +50,14 @@ const UploadPage: React.FC = () => {
 
         filesToUpload.push(newFile);
       }
-
-      //initUpload(filesToUpload);
+      initUpload(groupGenerated, filesToUpload);
     }
   };
 
-  // const initUpload = (files: FileUpload[]) => {
-  //   files.forEach((el) => dispatch(uploadActions.setFulfillQueue(el)));
-  //   const groupIdGenerated = Math.random().toLocaleString();
-  //   uploadFileData(groupIdGenerated);
-  // };
+  const initUpload = (group: string, files: FileUpload[]) => {
+    files.forEach((el) => dispatch(uploadActions.setFulfillQueue(el)));
+    uploadFileData(group);
+  };
 
   return (
     <Layout>
