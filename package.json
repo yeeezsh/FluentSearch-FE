@@ -86,7 +86,6 @@
     "ts-jest": "^26.4.4",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typescript": "^4.0.5",
-    "uuidv4": "^6.2.7",
     "wait-for-expect": "^3.0.2"
   }
 }
