@@ -15,11 +15,23 @@ export const ContentWrapper = styled.div`
   height: 35%;
   background-color: #5a36cc;
   z-index: -1;
-  padding: 8% 10% 10% 10%;
 
+  @media (min-width: 1600px) {
+    padding: 10% 5% 5% 10%;
+  }
+  @media (min-width: 1200px) and (max-width: 1599px) {
+    padding: 10% 5% 5% 15%;
+  }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    padding: 10% 5% 5% 20%;
+  }
+  @media (max-width: 991px) {
+    padding: 20% 10% 5% 10%;
+  }
   @media (max-width: 768px) {
     height: 50%;
     padding-top: 20%;
+    padding: 8% 10% 10% 10%;
   }
 `;
 
