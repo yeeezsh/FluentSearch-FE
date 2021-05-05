@@ -8,7 +8,7 @@ import UploadProgress from '../components/UploadProgress';
 import { StoresState } from 'Stores/index';
 import { getUploadProgress, uploadFileData } from '../reducer/uploadReducer/actions';
 import { FileUpload } from '../model/types';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import { uploadActions } from '../reducer/uploadReducer';
 
 const UploadPage: React.FC = () => {
@@ -27,7 +27,7 @@ const UploadPage: React.FC = () => {
     const rawFiles = e.target.files;
 
     const filesToUpload: FileUpload[] = [];
-    const groupGenerated: string = uuid();
+    const groupGenerated: string = uuidv4();
 
     if (rawFiles) {
       let type: FileUpload['type'] = 'single';
@@ -38,7 +38,7 @@ const UploadPage: React.FC = () => {
         formData.append('file', file);
 
         const newFile = {
-          _id: uuid() as string,
+          _id: uuidv4() as string,
           file: formData,
           progress: 0,
           originFilename: file.name,
