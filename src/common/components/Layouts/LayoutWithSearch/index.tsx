@@ -12,6 +12,7 @@ import IconSelector from 'Utils/icon-selector';
 import pathJoin from 'Utils/path-join';
 import {
   CanvasWrapper,
+  ContentWithPadding,
   ContentWrapper,
   IconWrapper,
   MenuItem,
@@ -21,7 +22,7 @@ import {
 } from './styled';
 import { AllPhotoLayoutProps } from './types';
 
-const { Header, Content } = Layout;
+const { Header } = Layout;
 
 const MenuContainer: React.FC = () => {
   const router = useRouter();
@@ -113,15 +114,13 @@ const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
         <ContentWrapper>
           <HeaderWrapper />
           {router.pathname === '/dashboard' ? (
-            <Content style={{ padding: '5% 0% 5% 0%', marginLeft: '5%' }}>
-              {children}
-            </Content>
+            <ContentWithPadding>{children}</ContentWithPadding>
           ) : (
-            <Content style={{ overflow: 'initial' }}>
+            <ContentWithPadding isPadding={true}>
               <h1>{title}</h1>
               <hr />
               {children}
-            </Content>
+            </ContentWithPadding>
           )}
         </ContentWrapper>
       </Layout>

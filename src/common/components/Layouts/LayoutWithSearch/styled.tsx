@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 const { Sider, Content } = Layout;
 
 type ContentWithPaddingPropsType = {
-  padding: boolean;
+  isPadding?: boolean;
 };
 
 export const CanvasWrapper = styled.div`
@@ -23,25 +23,6 @@ export const CanvasWrapper = styled.div`
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     z-index: 999;
     /* margin-left: 10%; */
-  }
-
-  .ant-layout-content {
-    background-color: white;
-    overflow-y: scroll;
-    width: 100%;
-
-    @media (min-width: 1600px) {
-      padding: 10% 5% 5% 10%;
-    }
-    @media (min-width: 1200px) and (max-width: 1599px) {
-      padding: 10% 5% 5% 15%;
-    }
-    @media (min-width: 992px) and (max-width: 1199px) {
-      padding: 10% 5% 5% 20%;
-    }
-    @media (max-width: 991px) {
-      padding: 20% 10% 5% 10%;
-    }
   }
 `;
 
@@ -135,10 +116,25 @@ export const UserWrapper = styled.div`
 `;
 
 export const ContentWithPadding = styled(Content)<ContentWithPaddingPropsType>`
+  overflow-y: scroll;
   ${(props) =>
-    props.padding &&
+    props.isPadding &&
     `
-    padding: 5% 0% 5% 0%;
-    margin-left: 5%;
-  `}
+    overflow-y: initial;
+    background-color: white;
+    width: 100%;
+
+    @media (min-width: 1600px) {
+      padding: 10% 5% 5% 10%;
+    }
+    @media (min-width: 1200px) and (max-width: 1599px) {
+      padding: 10% 5% 5% 15%;
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+      padding: 10% 5% 5% 20%;
+    }
+    @media (max-width: 991px) {
+      padding: 20% 10% 5% 10%;
+    }
+  `};
 `;
