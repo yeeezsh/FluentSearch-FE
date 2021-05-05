@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Layout } from 'antd';
-const { Sider } = Layout;
+const { Sider, Content } = Layout;
+
+type ContentWithPaddingPropsType = {
+  padding: boolean;
+};
 
 export const CanvasWrapper = styled.div`
   overflow: hidden;
@@ -128,4 +132,13 @@ export const UserWrapper = styled.div`
     color: #f56a00;
     background-color: #fde3cf;
   }
+`;
+
+export const ContentWithPadding = styled(Content)<ContentWithPaddingPropsType>`
+  ${(props) =>
+    props.padding &&
+    `
+    padding: 5% 0% 5% 0%;
+    margin-left: 5%;
+  `}
 `;
