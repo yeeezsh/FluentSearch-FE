@@ -81,6 +81,3 @@ const UploadPage: React.FC = () => {
 };
 
 export default UploadPage;
-function uuidv4() {
-  throw new Error('Function not implemented.');
-}
