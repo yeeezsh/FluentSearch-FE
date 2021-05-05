@@ -102,7 +102,6 @@ const HeaderWrapper: React.FC = () => {
   );
 };
 
-// TODO: unit test
 const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
   const { title, children } = props;
   const router = useRouter();
