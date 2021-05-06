@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Col, Layout, Row } from 'antd';
 import Button from 'Components/Button';
 import { BottomBar, UploadWrapper } from './styled';
-import UploadButton from '../components/UploadButton';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadProgress from '../components/UploadProgress';
 import { StoresState } from 'Stores/index';
@@ -10,10 +9,12 @@ import { getUploadProgress, uploadFileData } from '../reducer/uploadReducer/acti
 import { FileUpload } from '../model/types';
 import { v4 as uuidv4 } from 'uuid';
 import { uploadActions } from '../reducer/uploadReducer';
+import SelectFileButton from '../components/SelectFileButton';
 
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
   const { Content } = Layout;
+
   //TODO: add setAlbumName, InputLine Component
 
   const pendingQueue = useSelector((state: StoresState) => state.upload.pendingQueue);
@@ -67,7 +68,7 @@ const UploadPage: React.FC = () => {
           <hr />
           <Row justify="center" align="middle">
             <Col style={{ marginTop: '15%' }}>
-              <UploadButton onChange={handleFileOnChange} />
+              <SelectFileButton onChange={handleFileOnChange} />
             </Col>
           </Row>
         </Content>
