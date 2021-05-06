@@ -44,4 +44,10 @@ describe('uploadReducer test', () => {
     const result = store.getState().upload.present.progress;
     expect(result).toEqual(5);
   });
+
+  it('it should set total', () => {
+    store.dispatch(uploadActions.setTotal(5));
+    const result = store.getState().upload.present.total;
+    expect(result).toEqual(5);
+  });
 });
