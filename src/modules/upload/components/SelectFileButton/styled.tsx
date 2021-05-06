@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UploadBtnWrapper = styled.div`
+export const Wrapper = styled.div`
   input[type='file'] {
     width: 0.1px;
     height: 0.1px;
