@@ -14,6 +14,7 @@ import SelectFileButton from '../components/SelectFileButton';
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
   const { Content } = Layout;
+  const formData = new FormData();
 
   //TODO: add setAlbumName, InputLine Component
 
@@ -35,12 +36,10 @@ const UploadPage: React.FC = () => {
       if (rawFiles.length > 0) type = 'multiple';
 
       for (const file of rawFiles) {
-        const formData = new FormData();
         formData.append('file', file);
 
         const newFile = {
           _id: uuidv4() as string,
-          file: formData,
           progress: 0,
           originFilename: file.name,
           createAt: new Date(),
@@ -48,7 +47,6 @@ const UploadPage: React.FC = () => {
           group: groupGenerated,
           state: 'waiting',
         } as FileUpload;
-
         filesToUpload.push(newFile);
       }
       initUpload(groupGenerated, filesToUpload);
