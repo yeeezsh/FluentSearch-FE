@@ -27,3 +27,8 @@ export const Wrapper = styled.div`
     background-color: #ebe4ff;
   }
 `;
+
+export const IconWrapper = styled.span`
+  margin-left: 1em;
+  margin-right: 1em;
+`;
