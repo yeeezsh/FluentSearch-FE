@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Layout, Row } from 'antd';
 import Button from 'Components/Button';
-import { BottomBar, UploadWrapper } from './styled';
+import { BottomBar, LineInput, UploadWrapper } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadProgress from '../components/UploadProgress';
 import { StoresState } from 'Stores/index';
@@ -14,7 +14,7 @@ import SelectFileButton from '../components/SelectFileButton';
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
   const { Content } = Layout;
-  const formData = new FormData();
+  const [files, setFiles] = useState<File[]>([]);
 
   //TODO: add setAlbumName, InputLine Component
 
@@ -36,8 +36,7 @@ const UploadPage: React.FC = () => {
       if (rawFiles.length > 0) type = 'multiple';
 
       for (const file of rawFiles) {
-        formData.append('file', file);
-
+        setFiles((prevFiles) => ({ ...prevFiles, file }));
         const newFile = {
           _id: uuidv4() as string,
           progress: 0,
