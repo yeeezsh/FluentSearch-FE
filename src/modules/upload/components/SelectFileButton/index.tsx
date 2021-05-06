@@ -6,7 +6,7 @@ type UploadButtonPropsType = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const UploadButton: React.FC<UploadButtonPropsType> = (props) => {
+const SelectFileButton: React.FC<UploadButtonPropsType> = (props) => {
   const { onChange } = props;
   return (
     <UploadBtnWrapper>
@@ -20,4 +20,4 @@ const UploadButton: React.FC<UploadButtonPropsType> = (props) => {
   );
 };
 
-export default UploadButton;
+export default SelectFileButton;
