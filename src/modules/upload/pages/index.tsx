@@ -52,9 +52,9 @@ const UploadPage: React.FC = () => {
     }
   };
 
-  const initUpload = (group: string, files: FileUpload[]) => {
-    files.forEach((el) => dispatch(uploadActions.setFulfillQueue(el)));
-    uploadFileData(group);
+  const initUpload = (group: string, metaDataFiles: FileUpload[]) => {
+    metaDataFiles.forEach((el) => dispatch(uploadActions.setFulfillQueue(el)));
+    uploadFileData(group, files);
   };
 
   return (

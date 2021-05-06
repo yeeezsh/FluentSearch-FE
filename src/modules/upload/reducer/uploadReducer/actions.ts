@@ -5,20 +5,23 @@ import { uploadFile } from 'Modules/upload/services/upload.file';
 import { store } from 'Stores/index';
 import { uploadActions } from '.';
 
-export const uploadFileData = async (group: string): Promise<void> => {
+export const uploadFileData = async (group: string, files: File[]): Promise<void> => {
   const pendingQueue = store
     .getState()
     .upload.pendingQueue.filter((f) => f.group === group);
 
   for (const task of pendingQueue) {
+    const formData = new FormData();
     const id = task._id;
     const pendingQueueFilterID = store
       .getState()
       .upload.pendingQueue.filter((f) => f._id !== id);
     store.dispatch(uploadActions.setPendingQueue(pendingQueueFilterID));
 
+    const file = files.find((file) => file.name === task.originFilename);
+    if (file) formData.append('file', file);
     try {
-      await uploadFile(task.file);
+      await uploadFile(formData);
       store.dispatch(uploadActions.successUploadFile(task));
     } catch (error) {
       store.dispatch(uploadActions.failureUploadFile(task));
