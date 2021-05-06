@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Layout, Row } from 'antd';
 import Button from 'Components/Button';
-import { BottomBar, LineInput, UploadWrapper } from './styled';
+import { BottomBar, UploadWrapper } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadProgress from '../components/UploadProgress';
 import { StoresState } from 'Stores/index';
