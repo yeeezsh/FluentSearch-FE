@@ -42,7 +42,7 @@ const UploadPage: React.FC = () => {
           _id: uuidv4() as string,
           progress: 0,
           originFilename: file.name,
-          createAt: new Date(),
+          createAt: new Date().toString(),
           type: type,
           group: groupGenerated,
           state: 'waiting',

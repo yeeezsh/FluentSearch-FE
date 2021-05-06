@@ -15,7 +15,7 @@ const mockFile: FileUpload = {
   _id: '1',
   progress: 0,
   originFilename: 'test.jpg',
-  createAt: new Date(),
+  createAt: new Date().toString(),
   type: 'single',
   group: 'groupnametest',
   state: 'waiting',

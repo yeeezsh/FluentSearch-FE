@@ -4,7 +4,7 @@ type FileUpload = {
   _id: string;
   progress: number;
   originFilename: string;
-  createAt: Date;
+  createAt: string;
   type: 'single' | 'multiple';
   group: string;
   state: 'waiting' | 'queue' | 'failed' | 'finish' | 'cancel';
