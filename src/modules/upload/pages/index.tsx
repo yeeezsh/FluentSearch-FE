@@ -10,6 +10,7 @@ import { FileUpload } from '../model/types';
 import { v4 as uuidv4 } from 'uuid';
 import { uploadActions } from '../reducer/uploadReducer';
 import SelectFileButton from '../components/SelectFileButton';
+import { InputLine } from 'Styles/global';
 
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -62,7 +63,13 @@ const UploadPage: React.FC = () => {
       <UploadWrapper>
         <Content>
           <h2 style={{ marginBottom: '2%' }}>Upload Photos</h2>
+          <Row>
+            <Col span={10} style={{ marginBottom: '1em' }}>
+              <InputLine placeholder="Album Name" />
+            </Col>
+          </Row>
           <hr />
+
           <Row justify="center" align="middle">
             <Col style={{ marginTop: '15%' }}>
               <SelectFileButton onChange={handleFileOnChange} />
