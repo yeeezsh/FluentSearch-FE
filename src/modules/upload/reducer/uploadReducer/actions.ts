@@ -15,8 +15,9 @@ export const uploadFileData = async (group: string, files: File[]): Promise<void
     const id = task._id;
     const pendingQueueFilterID = store
       .getState()
-      .upload.pendingQueue.filter((f) => f._id !== id);
-    store.dispatch(uploadActions.setPendingQueue(pendingQueueFilterID));
+      .upload.pendingQueue.find((f) => f._id !== id);
+    if (pendingQueueFilterID)
+      store.dispatch(uploadActions.setPendingQueue(pendingQueueFilterID));
 
     const file = files.find((file) => file.name === task.originFilename);
     if (file) formData.append('file', file);
