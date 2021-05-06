@@ -43,12 +43,6 @@ describe('uploadReducer test', () => {
     expect(result).toEqual([mockFile]);
   });
 
-  it('it should set fulfill queue correctly ', () => {
-    store.dispatch(uploadActions.setFulfillQueue(mockFile));
-    const result = store.getState().upload.pendingQueue;
-    expect(result).toEqual([mockFile]);
-  });
-
   it('it should set progress', () => {
     store.dispatch(uploadActions.setProgress(5));
     const result = store.getState().upload.present.progress;
@@ -65,5 +59,12 @@ describe('uploadReducer test', () => {
     store.dispatch(uploadActions.setGroup(mockGroupTask));
     const result = store.getState().upload.present.group;
     expect(result).toEqual(mockGroupTask);
+  });
+
+  it('it should set success progress', () => {
+    store.dispatch(uploadActions.successUploadFile(mockFile));
+    const result = store.getState().upload.fulfillQueue;
+    console.log(result);
+    expect(result).toEqual([{ ...mockFile, progress: 1, state: 'finish' }]);
   });
 });

@@ -14,9 +14,6 @@ export const uploadReducer = createSlice({
     setPendingQueue(state, action: PayloadAction<FileUpload>) {
       state.pendingQueue.push(action.payload);
     },
-    setFulfillQueue(state, action: PayloadAction<FileUpload>) {
-      state.fulfillQueue.push(action.payload);
-    },
     setProgress(state, action: PayloadAction<number>) {
       state.present.progress = action.payload;
     },
