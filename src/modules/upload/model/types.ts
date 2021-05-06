@@ -2,7 +2,6 @@ export const UPLOAD = 'UPLOAD';
 
 type FileUpload = {
   _id: string;
-  file: FormData;
   progress: number;
   originFilename: string;
   createAt: Date;
