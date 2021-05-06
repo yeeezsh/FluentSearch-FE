@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { FileUpload } from 'Modules/upload/model/types';
+import { FileUpload, GroupTask } from 'Modules/upload/model/types';
 import uploadReducer, { uploadActions } from '.';
 import { initUploadState } from './init';
 
@@ -20,6 +20,16 @@ const mockFile: FileUpload = {
   group: 'groupnametest',
   state: 'waiting',
 };
+
+const mockGroupTask: GroupTask[] = [
+  {
+    label: 'group1',
+    progress: 1,
+    total: 100,
+  },
+  { label: 'group2', progress: 0, total: 0 },
+];
+
 describe('uploadReducer test', () => {
   it('it should correctly define initial state', () => {
     store.dispatch(uploadActions.init());
@@ -49,5 +59,11 @@ describe('uploadReducer test', () => {
     store.dispatch(uploadActions.setTotal(5));
     const result = store.getState().upload.present.total;
     expect(result).toEqual(5);
+  });
+
+  it('it should set group', () => {
+    store.dispatch(uploadActions.setGroup(mockGroupTask));
+    const result = store.getState().upload.present.group;
+    expect(result).toEqual(mockGroupTask);
   });
 });
