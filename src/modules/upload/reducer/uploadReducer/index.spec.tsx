@@ -61,10 +61,17 @@ describe('uploadReducer test', () => {
     expect(result).toEqual(mockGroupTask);
   });
 
-  it('it should set success progress', () => {
+  it('it should set success upload', () => {
     store.dispatch(uploadActions.successUploadFile(mockFile));
     const result = store.getState().upload.fulfillQueue;
-    console.log(result);
+
     expect(result).toEqual([{ ...mockFile, progress: 1, state: 'finish' }]);
+  });
+
+  it('it should set failed upload', () => {
+    store.dispatch(uploadActions.init());
+    store.dispatch(uploadActions.failureUploadFile(mockFile));
+    const result = store.getState().upload.fulfillQueue;
+    expect(result).toEqual([{ ...mockFile, state: 'failed' }]);
   });
 });
