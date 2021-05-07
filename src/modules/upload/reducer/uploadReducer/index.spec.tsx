@@ -31,6 +31,10 @@ const mockGroupTask: GroupTask[] = [
 ];
 
 describe('uploadReducer test', () => {
+  beforeEach(() => {
+    store.dispatch(uploadActions.init());
+  });
+
   it('it should correctly define initial state', () => {
     store.dispatch(uploadActions.init());
     const result = store.getState().upload;
@@ -43,33 +47,32 @@ describe('uploadReducer test', () => {
     expect(result).toEqual([mockFile]);
   });
 
-  it('it should set progress', () => {
+  it('it should set progress correctly', () => {
     store.dispatch(uploadActions.setProgress(5));
     const result = store.getState().upload.present.progress;
     expect(result).toEqual(5);
   });
 
-  it('it should set total', () => {
+  it('it should set total correctly', () => {
     store.dispatch(uploadActions.setTotal(5));
     const result = store.getState().upload.present.total;
     expect(result).toEqual(5);
   });
 
-  it('it should set group', () => {
+  it('it should set group correctly', () => {
     store.dispatch(uploadActions.setGroup(mockGroupTask));
     const result = store.getState().upload.present.group;
     expect(result).toEqual(mockGroupTask);
   });
 
-  it('it should set success upload', () => {
+  it('it should set success upload correctly', () => {
     store.dispatch(uploadActions.successUploadFile(mockFile));
     const result = store.getState().upload.fulfillQueue;
 
     expect(result).toEqual([{ ...mockFile, progress: 1, state: 'finish' }]);
   });
 
-  it('it should set failed upload', () => {
-    store.dispatch(uploadActions.init());
+  it('it should set failed upload correctly', () => {
     store.dispatch(uploadActions.failureUploadFile(mockFile));
     const result = store.getState().upload.fulfillQueue;
     expect(result).toEqual([{ ...mockFile, state: 'failed' }]);
