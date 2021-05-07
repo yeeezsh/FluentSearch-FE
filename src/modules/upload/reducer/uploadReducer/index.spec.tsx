@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FileUpload, GroupTask } from 'Modules/upload/model/types';
 import uploadReducer, { uploadActions } from '.';
+import { requestURLToUpload } from './actions';
 import { initUploadState } from './init';
 
 const rootReducer = combineReducers({
@@ -76,5 +77,15 @@ describe('uploadReducer test', () => {
     store.dispatch(uploadActions.failureUploadFile(mockFile));
     const result = store.getState().upload.fulfillQueue;
     expect(result).toEqual([{ ...mockFile, state: 'failed' }]);
+  });
+
+  it('it should get url correctly', () => {
+    const url = 'www.test.com';
+    store.dispatch({
+      type: requestURLToUpload.fulfilled.type,
+      payload: { data: url },
+    });
+    const result = store.getState().upload.url;
+    expect(result).toEqual(url);
   });
 });
