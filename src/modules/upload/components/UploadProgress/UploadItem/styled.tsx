@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ProgressBarPropsType } from './types';
 
 export const WrapperItem = styled.div`
   display: grid;
@@ -37,4 +38,11 @@ export const ProgressBarWrapper = styled.div`
 
 export const Percentage = styled.span`
   margin-left: 12px;
+`;
+
+export const ProgressBar = styled.div<ProgressBarPropsType>`
+  ${(props) =>
+    props.width &&
+    `
+   width: ${props.width}%`}
 `;

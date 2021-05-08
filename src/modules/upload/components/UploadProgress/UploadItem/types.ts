@@ -6,4 +6,8 @@ type UploadItemProps = {
   };
 };
 
-export type { UploadItemProps };
+type ProgressBarPropsType = {
+  width: number;
+};
+
+export type { UploadItemProps, ProgressBarPropsType };
