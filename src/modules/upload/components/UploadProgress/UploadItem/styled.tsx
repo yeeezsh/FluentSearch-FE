@@ -21,7 +21,7 @@ export const LeftSide = styled.div`
   }
 `;
 
-export const ProgressBar = styled.div`
+export const ProgressBarWrapper = styled.div`
   width: 100%;
   height: 15px;
   background-color: lightgray;
