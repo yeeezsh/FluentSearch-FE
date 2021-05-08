@@ -1,4 +1,4 @@
-import { ApolloClient, ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { Meta } from '@storybook/react';
 import TaskPage from 'Modules/task/pages/';
 import React from 'react';
