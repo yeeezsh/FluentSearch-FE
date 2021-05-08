@@ -3,16 +3,16 @@ import { WrapperItem, LeftSide, ProgressBar, Percentage } from './styled';
 import { UploadItemProps } from './types';
 
 const UploadItem: React.FC<UploadItemProps> = (props) => {
-  const { file, progress } = props.file;
+  const { file } = props.file;
   return file ? (
     <WrapperItem>
       <LeftSide>
         <ProgressBar>
-          <div style={{ width: `${progress}%` }} />
+          <div style={{ width: `${file.progress}%` }} />
           <label>{file.label}</label>
         </ProgressBar>
       </LeftSide>
-      <Percentage>{progress}</Percentage>
+      <Percentage>{file.progress}</Percentage>
     </WrapperItem>
   ) : null;
 };
