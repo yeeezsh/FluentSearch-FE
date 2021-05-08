@@ -1,13 +1,6 @@
-import { GroupTask } from 'Modules/upload/model/types';
 import React from 'react';
 import { WrapperItem, LeftSide, ProgressBar, Percentage } from './styled';
-
-type UploadItemProps = {
-  file: {
-    file: GroupTask;
-    progress: number;
-  };
-};
+import { UploadItemProps } from './types';
 
 const UploadItem: React.FC<UploadItemProps> = (props) => {
   const { file, progress } = props.file;
