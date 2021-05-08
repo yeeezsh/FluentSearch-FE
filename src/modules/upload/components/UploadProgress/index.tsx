@@ -13,9 +13,7 @@ const UploadProgress: React.FC = () => {
       <h4>Uploading File</h4>
       {total > 0
         ? Object.values(group).map((file) => {
-            return (
-              <UploadItem key={uuid()} file={{ file: file, progress: file.progress }} />
-            );
+            return <UploadItem key={uuid()} file={{ file: file }} />;
           })
         : null}
     </Wrapper>
