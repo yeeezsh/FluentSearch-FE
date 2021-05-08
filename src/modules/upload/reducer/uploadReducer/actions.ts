@@ -5,6 +5,10 @@ import { uploadFile } from 'Modules/upload/services/upload.file';
 import { store } from 'Stores/index';
 import { uploadActions } from '.';
 
+export const requestURLToUpload = createAsyncThunk(UPLOAD, async () => {
+  return { data: await requestURL() };
+});
+
 export const uploadFileData = async (group: string, files: File[]): Promise<void> => {
   const pendingQueue = store
     .getState()
@@ -29,10 +33,6 @@ export const uploadFileData = async (group: string, files: File[]): Promise<void
     }
   }
 };
-
-export const requestURLToUpload = createAsyncThunk(UPLOAD, async () => {
-  return { data: await requestURL() };
-});
 
 export const getUploadProgress = (): void => {
   const pendingQueue = store.getState().upload.pendingQueue;
