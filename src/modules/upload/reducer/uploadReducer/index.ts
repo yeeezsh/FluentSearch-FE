@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FileUpload, GroupTask, UPLOAD } from 'Modules/upload/model/types';
+import { requestURLToUpload } from './actions';
 import { initUploadState } from './init';
 
 export const uploadReducer = createSlice({
@@ -34,6 +35,14 @@ export const uploadReducer = createSlice({
         state: 'failed',
       });
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(
+      requestURLToUpload.fulfilled,
+      (state, action: PayloadAction<{ data: string }>) => {
+        state.url = action.payload.data;
+      },
+    );
   },
 });
 export default uploadReducer.reducer;
