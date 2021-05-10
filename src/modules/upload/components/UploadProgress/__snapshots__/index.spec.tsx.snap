@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components/UploadProgress test  Should match snapshot 1`] = `
+<div
+  className="styled__Wrapper-hutygj-0 kOrSMU"
+>
+  <h4>
+    Uploading File
+  </h4>
+  <div
+    className="styled__WrapperItem-ukzgv1-0 efQqci"
+  >
+    <div
+      className="styled__LeftSide-ukzgv1-1 jWWiFz"
+    >
+      <div
+        className="styled__ProgressBarWrapper-ukzgv1-2 gPOYAe"
+      >
+        <div
+          className="styled__ProgressBar-ukzgv1-4 bvhUjA"
+          width={1}
+        />
+        <label>
+          individual1
+        </label>
+      </div>
+    </div>
+    <span
+      className="styled__Percentage-ukzgv1-3 lojdNb"
+    >
+      1
+    </span>
+  </div>
+  <div
+    className="styled__WrapperItem-ukzgv1-0 efQqci"
+  >
+    <div
+      className="styled__LeftSide-ukzgv1-1 jWWiFz"
+    >
+      <div
+        className="styled__ProgressBarWrapper-ukzgv1-2 gPOYAe"
+      >
+        <div
+          className="styled__ProgressBar-ukzgv1-4 SsSLN"
+          width={4}
+        />
+        <label>
+          group1
+        </label>
+      </div>
+    </div>
+    <span
+      className="styled__Percentage-ukzgv1-3 lojdNb"
+    >
+      4
+    </span>
+  </div>
+</div>
+`;
