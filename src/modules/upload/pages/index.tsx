@@ -17,8 +17,6 @@ const UploadPage: React.FC = () => {
   const { Content } = Layout;
   const [files, setFiles] = useState<File[]>([]);
 
-  //TODO: add setAlbumName, InputLine Component
-
   const pendingQueue = useSelector((state: StoresState) => state.upload.pendingQueue);
   const fulfillQueue = useSelector((state: StoresState) => state.upload.fulfillQueue);
 
