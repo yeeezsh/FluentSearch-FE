@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FileUpload, GroupTask } from 'Modules/upload/model/types';
 import uploadReducer, { uploadActions } from '.';
+import { requestURLToUpload } from './actions';
 import { initUploadState } from './init';
 
 const rootReducer = combineReducers({

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FileUpload, GroupTask, UPLOAD } from 'Modules/upload/model/types';
+import { requestURLToUpload } from './actions';
 import { initUploadState } from './init';
 
 export const uploadReducer = createSlice({
