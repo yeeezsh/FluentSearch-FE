@@ -11,8 +11,10 @@ import screenful from 'screenfull';
 
 const VideoPlayerContainer: React.FC = () => {
   const dispatch = useDispatch();
+
   const playerRef = useRef<ReactPlayer>(null);
   const playerContainerRef = useRef<HTMLDivElement>(null);
+  const controlRef = useRef<HTMLDivElement>(null);
 
   const muted = useSelector((state: StoresState) => state.video.present.muted);
   const duration = useSelector((state: StoresState) => state.video.present.duration);
@@ -46,7 +48,7 @@ const VideoPlayerContainer: React.FC = () => {
   };
 
   return (
-    <VideoPlayerWrapper ref={playerContainerRef}>
+    <VideoPlayerWrapper ref={playerContainerRef} onMouseMove={} onMouseLeave={}>
       <VideoPlayer
         url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         ref={playerRef}
@@ -57,6 +59,7 @@ const VideoPlayerContainer: React.FC = () => {
         volume={volume}
       />
       <PlayerControl
+        ref={controlRef}
         onPlaying={handlePlaying}
         onFastForward={() => console.log('temp')}
         onMouseDown={() => console.log('temp')}
