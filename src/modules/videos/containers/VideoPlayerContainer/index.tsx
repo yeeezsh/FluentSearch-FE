@@ -11,6 +11,7 @@ import { ProgressState } from './types';
 const VideoPlayerContainer: React.FC = () => {
   const dispatch = useDispatch();
   const playerRef = useRef<ReactPlayer>(null);
+  const playerContainerRef = useRef<HTMLDivElement>(null);
 
   const muted = useSelector((state: StoresState) => state.video.present.muted);
   const duration = useSelector((state: StoresState) => state.video.present.duration);
@@ -39,7 +40,7 @@ const VideoPlayerContainer: React.FC = () => {
   };
 
   return (
-    <VideoPlayerWrapper>
+    <VideoPlayerWrapper ref={playerContainerRef}>
       <VideoPlayer
         url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         ref={playerRef}
