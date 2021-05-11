@@ -31,6 +31,10 @@ const VideoPlayerContainer: React.FC = () => {
 
   const handleMuted = () => {
     dispatch(videoActions.setMuted());
+    const defaultVolume = 50 / 100;
+    if (muted !== false) {
+      dispatch(videoActions.setVolume({ volume: defaultVolume, muted: false }));
+    }
   };
 
   return (

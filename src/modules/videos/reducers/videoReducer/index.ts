@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initVideoState } from './init';
 import { VIDEO } from './types';
 
@@ -14,6 +14,11 @@ const videoSlice = createSlice({
     },
     setMuted(state) {
       state.present.muted = !state.present.muted;
+    },
+    setVolume(state, action: PayloadAction<{ volume: number; muted: boolean }>) {
+      const { volume, muted } = action.payload;
+      state.present.volume = volume;
+      state.present.muted = muted;
     },
   },
 });
