@@ -8,6 +8,7 @@ import { StoresState } from 'Stores/index';
 import { VideoPlayerWrapper } from './styled';
 import { ProgressState } from './types';
 import screenful from 'screenfull';
+import { PlaybackRateType } from 'Modules/videos/reducers/videoReducer/types';
 
 const VideoPlayerContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -57,6 +58,10 @@ const VideoPlayerContainer: React.FC = () => {
     controlRef.current.style.visibility = 'hidden';
   };
 
+  const handlePlaybackRateChange = (value: PlaybackRateType) => {
+    dispatch(videoActions.setPlaybackRate({ playbackRate: value }));
+  };
+
   return (
     <VideoPlayerWrapper
       ref={playerContainerRef}
@@ -78,7 +83,7 @@ const VideoPlayerContainer: React.FC = () => {
         onMouseDown={() => console.log('temp')}
         onMouseUp={() => console.log('temp')}
         onMute={handleMuted}
-        onPlaybackRateChange={() => console.log('temp')}
+        onPlaybackRateChange={handlePlaybackRateChange}
         onRewind={() => console.log('temp')}
         onToggleFullScreen={handleToggleFullScreen}
         onVideoSliderChange={() => console.log('temp')}

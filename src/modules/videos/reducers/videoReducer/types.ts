@@ -1,9 +1,11 @@
+type PlaybackRateType = '0.5' | '0.75' | '1.0' | '1.5' | '2.0';
+
 type VideoState = {
   present: {
     muted: boolean;
     playing: boolean;
     volume: number;
-    playbackRate: '0.5' | '0.75' | '1.0' | '1.5' | '2.0';
+    playbackRate: PlaybackRateType;
     seeking: boolean;
     duration: number;
     played: number;
@@ -12,5 +14,5 @@ type VideoState = {
 
 const VIDEO = 'VIDEO';
 
-export type { VideoState };
+export type { VideoState, PlaybackRateType };
 export { VIDEO };
