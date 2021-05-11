@@ -10,6 +10,8 @@ type PlayerControlPropsType = VideoPlayerStateType & {
   onVideoSliderChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onToggleFullScreen: () => void;
   onPlaybackRateChange: (value: PlaybackRateType) => void;
+  onMouseUp: () => void;
+  onMouseDown: () => void;
 };
 
 export type { PlayerControlPropsType };

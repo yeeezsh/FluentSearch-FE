@@ -95,6 +95,8 @@ const VideoPlayerContainer: React.FC = () => {
         onPlaybackRateChange={handlePlaybackRateChange}
         onToggleFullScreen={handleToggleFullScreen}
         onVideoSliderChange={() => console.log('temp')}
+        onMouseUp={() => console.log('temp')}
+        onMouseDown={() => console.log('temp')}
       />
     </VideoPlayerWrapper>
   );
