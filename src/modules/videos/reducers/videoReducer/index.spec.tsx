@@ -53,4 +53,10 @@ describe('reducers/videoReducer test', () => {
     const result = store.getState().video.present.player.playbackRate;
     expect(result).toEqual('2.0');
   });
+
+  it('it should set full screen correctly', () => {
+    store.dispatch(videoActions.setFullScreen());
+    const result = store.getState().video.present.player.fullscreen;
+    expect(result).toEqual(true);
+  });
 });
