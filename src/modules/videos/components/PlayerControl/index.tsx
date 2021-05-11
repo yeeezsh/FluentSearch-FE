@@ -39,15 +39,6 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
 
   const { Option } = Select;
 
-  const TopControl = () => (
-    <Row justify="space-between" style={{ padding: 16 }}>
-      <Col>
-        <h4 style={{ color: 'white' }}>Video Title</h4>
-      </Col>
-      <Col>bookmark</Col>
-    </Row>
-  );
-
   const MiddleControl = () => (
     <Row justify="center">
       <Col>
@@ -153,8 +144,6 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
 
   return (
     <ControlWrapper ref={ref}>
-      <TopControl />
-      <br />
       <MiddleControl />
       <br />
       <BottomControl />
