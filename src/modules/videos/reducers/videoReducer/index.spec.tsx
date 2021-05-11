@@ -47,4 +47,10 @@ describe('reducers/videoReducer test', () => {
     const result = store.getState().video.present.player.played;
     expect(result).toEqual(99);
   });
+
+  it('it should set playback rate correctly', () => {
+    store.dispatch(videoActions.setPlaybackRate({ playbackRate: '2.0' }));
+    const result = store.getState().video.present.player.playbackRate;
+    expect(result).toEqual('2.0');
+  });
 });
