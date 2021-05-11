@@ -18,15 +18,9 @@ type ProgressState = {
 
 type PlaybackRate = '0.5' | '0.75' | '1.0' | '1.5' | '2.0';
 
-enum MediaType {
-  VIDEO = 'video',
-  IMAGE = 'image',
-}
+type MediaType = 'video' | 'image' | 'undefined';
 
-enum MediaFormat {
-  MP4 = '.mp4',
-  JPG = '.jpg',
-}
+type MediaFormat = '.mp4' | '.jpg' | 'undefined';
 
 type AnnotaionType = {
   id: string;
@@ -47,5 +41,24 @@ type IncidentType = {
   finish: boolean;
 };
 
-export type { VideoState, ProgressState, PlaybackRate, AnnotaionType, IncidentType };
-export { MediaType, MediaFormat };
+type VideoFileType = {
+  originalFileName: string;
+  delete: boolean;
+  size: number;
+  type: MediaType;
+  format: MediaFormat;
+  width: number;
+  height: number;
+  incidents: AnnotaionType[];
+};
+
+export type {
+  VideoState,
+  ProgressState,
+  PlaybackRate,
+  AnnotaionType,
+  IncidentType,
+  MediaType,
+  MediaFormat,
+  VideoFileType,
+};

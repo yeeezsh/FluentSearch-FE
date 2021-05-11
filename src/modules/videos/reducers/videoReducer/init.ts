@@ -1,13 +1,12 @@
-import { MediaFormat, MediaType } from 'Modules/videos/models/types';
 import { initVideoStateType } from './types';
 
 export const initVideoState: initVideoStateType = {
-  file: {
+  videoFile: {
     originalFileName: '',
     delete: false,
     size: 0,
-    type: MediaType.IMAGE,
-    format: MediaFormat.JPG,
+    type: 'undefined',
+    format: 'undefined',
     width: 0,
     height: 0,
     incidents: [],
