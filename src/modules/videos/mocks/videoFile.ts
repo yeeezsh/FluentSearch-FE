@@ -8,5 +8,7 @@ export const videoFile: VideoFileType = {
   format: 'undefined',
   width: 1200,
   height: 800,
+  date: new Date().toString(),
+  place: 'Jujutsu Academy',
   incidents: [],
 };

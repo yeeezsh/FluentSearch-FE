@@ -10,6 +10,8 @@ export const initVideoState: initVideoStateType = {
     width: 0,
     height: 0,
     incidents: [],
+    date: '',
+    place: '',
   },
   present: {
     person: [],

@@ -43,12 +43,14 @@ type IncidentType = {
 
 type VideoFileType = {
   originalFileName: string;
-  delete: boolean;
-  size: number;
   type: MediaType;
   format: MediaFormat;
   width: number;
   height: number;
+  date: string;
+  place: string;
+  delete: boolean;
+  size: number;
   incidents: AnnotaionType[];
 };
 
