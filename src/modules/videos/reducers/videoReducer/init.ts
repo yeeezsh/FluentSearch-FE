@@ -14,6 +14,16 @@ export const initVideoState: initVideoStateType = {
     place: '',
   },
   present: {
+    metaData: {
+      originalFileName: '',
+      size: 0,
+      type: 'undefined',
+      format: 'undefined',
+      width: 0,
+      height: 0,
+      date: '',
+      place: '',
+    },
     person: [],
     label: [],
     player: {

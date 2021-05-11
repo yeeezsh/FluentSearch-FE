@@ -54,6 +54,8 @@ type VideoFileType = {
   incidents: AnnotaionType[];
 };
 
+type MetaDataType = Omit<VideoFileType, 'delete' | 'incidents'>;
+
 export type {
   VideoState,
   ProgressState,
@@ -63,4 +65,5 @@ export type {
   MediaType,
   MediaFormat,
   VideoFileType,
+  MetaDataType,
 };
