@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { strictEqual } from 'assert';
 import { combineReducers } from 'redux';
 import videoReducer, { videoActions } from '.';
 import { initVideoState } from './init';
@@ -32,5 +33,13 @@ describe('reducers/videoReducer test', () => {
     store.dispatch(videoActions.setMuted());
     const result = store.getState().video.present.player.muted;
     expect(result).toEqual(true);
+  });
+
+  it('it should set volume correctly ', () => {
+    store.dispatch(videoActions.setVolume({ volume: 99 / 100, muted: false }));
+    const resultVolume = store.getState().video.present.player.volume;
+    const resultMuted = store.getState().video.present.player.muted;
+    expect(resultVolume).toEqual(0.99);
+    expect(resultMuted).toEqual(true);
   });
 });
