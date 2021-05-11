@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { DataSource } from 'Modules/task/mocks/data';
-import { fetchTask } from 'Modules/task/services/fetch.task';
 import { fetchTaskData } from './actions';
 import taskReducer, { taskActions } from './index';
 import { initTaskState } from './init';
@@ -21,9 +20,17 @@ describe('taskReducer test', () => {
   });
 
   it('should have pending/fulfill fetchtTaskData', async () => {
-    const fetchTaskMock = jest.fn(fetchTask).mockResolvedValue(DataSource as never);
-    const data = await fetchTaskMock();
-    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data } });
+    const parsed = DataSource.map((el) => {
+      const keys = Object.keys(el);
+      return keys.reduce((acc, cur: unknown) => {
+        if (cur instanceof Date) {
+          return { ...acc, cur: cur.toDateString() };
+        }
+        return { ...acc, cur };
+      }, {});
+    });
+
+    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: parsed } });
     expect(store.getState().task.ready).toBe(true);
   });
 });

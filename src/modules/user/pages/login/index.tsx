@@ -47,11 +47,9 @@ const LoginPage: React.FC<Props> = (props) => {
 
   const onFinish: FormFinishValue = (values) => {
     props.onSubmit && props.onSubmit(values);
-    console.log('Success:', values);
   };
 
   const onError: FormErrorValue = (formValue) => {
-    console.log('Error: ', formValue);
     props.onError &&
       props.onError({
         errorFields: formValue.errorFields,
