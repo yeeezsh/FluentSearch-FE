@@ -1,3 +1,4 @@
+import PlayerControl from 'Modules/videos/components/PlayerControl';
 import VideoPlayer from 'Modules/videos/components/VideoPlayer';
 import React, { useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
@@ -29,7 +30,7 @@ const VideoPlayerContainer: React.FC = () => {
   return (
     <VideoPlayerWrapper>
       <VideoPlayer
-        url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         ref={playerRef}
         isPlaying={videoPlayerState.isPlaying}
         muted={videoPlayerState.muted}

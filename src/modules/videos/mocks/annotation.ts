@@ -4,7 +4,7 @@ export const annotation: AnnotaionType[] = [
   {
     id: '1',
     label: 'dog',
-    src: 'http://image.dek-d.com/27/0887/6293/131391732',
+    src: 'https://image.dek-d.com/27/0887/6293/131391732',
     selected: false,
     incidents: [
       {
@@ -171,7 +171,7 @@ export const annotation: AnnotaionType[] = [
   },
   {
     id: '2',
-    src: 'http://i.pinimg.com/originals/aa/1d/41/aa1d411cb475430ae3989c79dee66427.jpg',
+    src: 'https://i.pinimg.com/originals/aa/1d/41/aa1d411cb475430ae3989c79dee66427.jpg',
     selected: false,
     label: 'cat',
     incidents: [
