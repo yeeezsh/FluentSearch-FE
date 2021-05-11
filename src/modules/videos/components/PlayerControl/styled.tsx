@@ -17,8 +17,10 @@ export const ControlWrapper = styled.div`
 
 export const ControlIcons = styled.div`
   color: #777;
-  font-size: 50px;
   transform: scale(0.9);
+  span {
+    font-size: 3rem;
+  }
   &:hover {
     color: #fff;
     transform: scale(1);
@@ -31,7 +33,9 @@ export const BottomControlWrapper = styled.div`
 
 export const BottomIcons = styled.div`
   color: #999;
-  font-size: 18px;
+  span {
+    font-size: 1.5rem;
+  }
   &:hover {
     color: #fff;
   }
