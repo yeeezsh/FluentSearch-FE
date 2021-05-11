@@ -1,4 +1,4 @@
-type initVideoPlayerStateType = {
+type initVideoStateType = {
   muted: boolean;
   playing: boolean;
   volume: number;
@@ -8,4 +8,7 @@ type initVideoPlayerStateType = {
   played: number;
 };
 
-export type { initVideoPlayerStateType };
+const VIDEO = 'VIDEO';
+
+export type { initVideoStateType };
+export { VIDEO };
