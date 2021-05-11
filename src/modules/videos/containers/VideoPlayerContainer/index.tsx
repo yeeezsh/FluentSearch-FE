@@ -6,9 +6,8 @@ import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { VideoPlayerWrapper } from './styled';
-import { ProgressState } from './types';
 import screenful from 'screenfull';
-import { PlaybackRateType } from 'Modules/videos/reducers/videoReducer/types';
+import { PlaybackRate, ProgressState } from 'Modules/videos/models/types';
 
 const VideoPlayerContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -68,7 +67,7 @@ const VideoPlayerContainer: React.FC = () => {
     controlRef.current.style.visibility = 'hidden';
   };
 
-  const handlePlaybackRateChange = (value: PlaybackRateType) => {
+  const handlePlaybackRateChange = (value: PlaybackRate) => {
     dispatch(videoActions.setPlaybackRate({ playbackRate: value }));
   };
 
@@ -88,6 +87,13 @@ const VideoPlayerContainer: React.FC = () => {
       />
       <PlayerControl
         ref={controlRef}
+        played={played}
+        muted={muted}
+        volume={volume}
+        playing={playing}
+        seeking={seeking}
+        duration={duration}
+        playbackRate={playbackRate}
         onPlaying={handlePlaying}
         onRewind={handleRewind}
         onFastForward={handleFastForward}

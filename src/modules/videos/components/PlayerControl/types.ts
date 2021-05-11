@@ -1,15 +1,14 @@
 import { React } from '@ungap/global-this';
-import { VideoPlayerStateType } from 'Modules/videos/containers/VideoPlayerContainer/types';
-import { PlaybackRateType } from 'Modules/videos/reducers/videoReducer/types';
+import { PlaybackRate, VideoState } from 'Modules/videos/models/types';
 
-type PlayerControlPropsType = VideoPlayerStateType & {
+type PlayerControlPropsType = VideoState & {
   onPlaying: () => void;
   onFastForward: () => void;
   onRewind: () => void;
   onMute: () => void;
   onVideoSliderChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onToggleFullScreen: () => void;
-  onPlaybackRateChange: (value: PlaybackRateType) => void;
+  onPlaybackRateChange: (value: PlaybackRate) => void;
   onMouseUp: () => void;
   onMouseDown: () => void;
 };

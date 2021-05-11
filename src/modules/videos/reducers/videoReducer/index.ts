@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PlaybackRate } from 'Modules/videos/models/types';
 import { initVideoState } from './init';
-import { PlaybackRateType, VIDEO } from './types';
+import { VIDEO } from './types';
 
 const videoSlice = createSlice({
   name: VIDEO,
@@ -24,7 +25,7 @@ const videoSlice = createSlice({
       const { played } = action.payload;
       state.present.played = played;
     },
-    setPlaybackRate(state, action: PayloadAction<{ playbackRate: PlaybackRateType }>) {
+    setPlaybackRate(state, action: PayloadAction<{ playbackRate: PlaybackRate }>) {
       const { playbackRate } = action.payload;
       state.present.playbackRate = playbackRate;
     },

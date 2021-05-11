@@ -1,6 +1,6 @@
-import { VideoState } from './types';
+import { initVideoStateType } from './types';
 
-export const initVideoState: VideoState = {
+export const initVideoState: initVideoStateType = {
   present: {
     muted: false,
     playing: false,

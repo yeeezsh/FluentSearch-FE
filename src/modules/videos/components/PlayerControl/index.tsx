@@ -21,7 +21,7 @@ import Slider from '../Slider';
 
 const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props, ref) => {
   const {
-    isPlaying,
+    playing,
     muted,
     onPlaying,
     volume,
@@ -57,7 +57,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
       </Col>
       <Col>
         <ControlIcons>
-          {isPlaying ? (
+          {playing ? (
             <PauseOutlined onClick={onPlaying} />
           ) : (
             <CaretRightOutlined onClick={onPlaying} />
@@ -91,7 +91,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
           <Row justify="space-around">
             <Col>
               <BottomIcons>
-                {isPlaying ? (
+                {playing ? (
                   <PauseOutlined onClick={onPlaying} />
                 ) : (
                   <CaretRightOutlined onClick={onPlaying} />

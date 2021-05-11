@@ -1,4 +1,4 @@
-import { ProgressState } from 'Modules/videos/containers/VideoPlayerContainer/types';
+import { ProgressState } from 'Modules/videos/models/types';
 
 type VideoPlayerPropsType = {
   url: string;
