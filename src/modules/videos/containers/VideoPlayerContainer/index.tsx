@@ -6,6 +6,7 @@ import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { VideoPlayerWrapper } from './styled';
+import { ProgressState } from './types';
 
 const VideoPlayerContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,8 @@ const VideoPlayerContainer: React.FC = () => {
   const seeking = useSelector((state: StoresState) => state.video.present.seeking);
   const volume = useSelector((state: StoresState) => state.video.present.volume);
 
-  const handleProgress = () => {
-    console.log('progress');
+  const handleProgress = (changeState: ProgressState) => {
+    if (!seeking) dispatch(videoActions.setProgress({ played: changeState.played }));
   };
 
   const handlePlaying = () => {

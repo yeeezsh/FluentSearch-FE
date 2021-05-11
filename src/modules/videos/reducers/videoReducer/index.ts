@@ -20,6 +20,10 @@ const videoSlice = createSlice({
       state.present.volume = volume;
       state.present.muted = muted;
     },
+    setProgress(state, action: PayloadAction<{ played: number }>) {
+      const { played } = action.payload;
+      state.present.played = played;
+    },
   },
 });
 export default videoSlice.reducer;
