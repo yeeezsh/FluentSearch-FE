@@ -1,3 +1,4 @@
+import PlayerControl from 'Modules/videos/components/PlayerControl';
 import VideoPlayer from 'Modules/videos/components/VideoPlayer';
 import { videoActions } from 'Modules/videos/reducers/videoReducer';
 import React, { useRef } from 'react';
@@ -28,6 +29,10 @@ const VideoPlayerContainer: React.FC = () => {
     dispatch(videoActions.setPlaying());
   };
 
+  const handleMuted = () => {
+    dispatch(videoActions.setMuted());
+  };
+
   return (
     <VideoPlayerWrapper>
       <VideoPlayer
@@ -38,6 +43,17 @@ const VideoPlayerContainer: React.FC = () => {
         playbackRate={playbackRate}
         handleProgress={handleProgress}
         volume={volume}
+      />
+      <PlayerControl
+        onPlaying={handlePlaying}
+        onFastForward={() => console.log('temp')}
+        onMouseDown={() => console.log('temp')}
+        onMouseUp={() => console.log('temp')}
+        onMute={handleMuted}
+        onPlaybackRateChange={() => console.log('temp')}
+        onRewind={() => console.log('temp')}
+        onToggleFullScreen={() => console.log('temp')}
+        onVideoSliderChange={() => console.log('temp')}
       />
     </VideoPlayerWrapper>
   );

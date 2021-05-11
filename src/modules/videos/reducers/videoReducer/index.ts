@@ -12,6 +12,9 @@ const videoSlice = createSlice({
     setPlaying(state) {
       state.present.playing = !state.present.playing;
     },
+    setMuted(state) {
+      state.present.muted = !state.present.muted;
+    },
   },
 });
 export default videoSlice.reducer;
