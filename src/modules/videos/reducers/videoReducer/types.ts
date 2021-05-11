@@ -1,9 +1,28 @@
-import { VideoState } from 'Modules/videos/models/types';
+import {
+  AnnotaionType,
+  MediaFormat,
+  MediaType,
+  VideoState,
+} from 'Modules/videos/models/types';
 
 const VIDEO = 'VIDEO';
 
 type initVideoStateType = {
-  present: VideoState;
+  file: {
+    originalFileName: string;
+    delete: boolean;
+    size: string;
+    type: MediaType;
+    format: MediaFormat;
+    width: number;
+    height: number;
+    incidents: AnnotaionType[];
+  };
+  present: {
+    person: AnnotaionType[];
+    label: AnnotaionType[];
+    player: VideoState;
+  };
 };
 
 export { VIDEO };

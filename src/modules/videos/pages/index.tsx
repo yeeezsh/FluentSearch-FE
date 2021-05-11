@@ -4,7 +4,7 @@ import React from 'react';
 import Avatar from '../components/Avatar';
 import VideoPlayerContainer from '../containers/VideoPlayerContainer';
 import { annotation } from '../mocks/annotation';
-import { VideoDetailCard } from './styled';
+import { Header, VideoDetailCard } from './styled';
 
 const handleSelectAvatar = () => {
   console.log('selected');
@@ -40,7 +40,7 @@ const ViewVideoPage: React.FC = () => {
   return (
     <LayoutWithSearch border={false}>
       {'<'} Photos <br />
-      <h3>video-wedding</h3>
+      <Header>video-wedding</Header>
       <hr />
       <Row style={{ marginTop: '5%' }}>
         <Col span={13}>

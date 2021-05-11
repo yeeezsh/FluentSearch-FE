@@ -16,16 +16,20 @@ const VideoPlayerContainer: React.FC = () => {
   const playerContainerRef = useRef<HTMLDivElement>(null);
   const controlRef = useRef<HTMLDivElement>(null);
 
-  const muted = useSelector((state: StoresState) => state.video.present.muted);
-  const duration = useSelector((state: StoresState) => state.video.present.duration);
-  const playing = useSelector((state: StoresState) => state.video.present.playing);
-  const playbackRate = useSelector(
-    (state: StoresState) => state.video.present.playbackRate,
+  const muted = useSelector((state: StoresState) => state.video.present.player.muted);
+  const duration = useSelector(
+    (state: StoresState) => state.video.present.player.duration,
   );
-  const played = useSelector((state: StoresState) => state.video.present.played);
-  const seeking = useSelector((state: StoresState) => state.video.present.seeking);
-  const volume = useSelector((state: StoresState) => state.video.present.volume);
-  const fullscreen = useSelector((state: StoresState) => state.video.present.fullscreen);
+  const playing = useSelector((state: StoresState) => state.video.present.player.playing);
+  const playbackRate = useSelector(
+    (state: StoresState) => state.video.present.player.playbackRate,
+  );
+  const played = useSelector((state: StoresState) => state.video.present.player.played);
+  const seeking = useSelector((state: StoresState) => state.video.present.player.seeking);
+  const volume = useSelector((state: StoresState) => state.video.present.player.volume);
+  const fullscreen = useSelector(
+    (state: StoresState) => state.video.present.player.fullscreen,
+  );
 
   const handleProgress = (changeState: ProgressState) => {
     if (!seeking) dispatch(videoActions.setProgress({ played: changeState.played }));

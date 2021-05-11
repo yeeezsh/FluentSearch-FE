@@ -6,4 +6,8 @@ const VideoDetailCard = styled(Card)`
   border-radius: 0.5em;
 `;
 
-export { VideoDetailCard };
+const Header = styled.h3`
+  color: var(--secondary-color);
+`;
+
+export { VideoDetailCard, Header };

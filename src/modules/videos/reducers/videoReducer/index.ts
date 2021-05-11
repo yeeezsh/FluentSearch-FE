@@ -11,26 +11,26 @@ const videoSlice = createSlice({
       return { ...state, ...initVideoState };
     },
     setPlaying(state) {
-      state.present.playing = !state.present.playing;
+      state.present.player.playing = !state.present.player.playing;
     },
     setMuted(state) {
-      state.present.muted = !state.present.muted;
+      state.present.player.muted = !state.present.player.muted;
     },
     setVolume(state, action: PayloadAction<{ volume: number; muted: boolean }>) {
       const { volume, muted } = action.payload;
-      state.present.volume = volume;
-      state.present.muted = muted;
+      state.present.player.volume = volume;
+      state.present.player.muted = muted;
     },
     setProgress(state, action: PayloadAction<{ played: number }>) {
       const { played } = action.payload;
-      state.present.played = played;
+      state.present.player.played = played;
     },
     setPlaybackRate(state, action: PayloadAction<{ playbackRate: PlaybackRate }>) {
       const { playbackRate } = action.payload;
-      state.present.playbackRate = playbackRate;
+      state.present.player.playbackRate = playbackRate;
     },
     setFullScreen(state) {
-      state.present.fullscreen = !state.present.fullscreen;
+      state.present.player.fullscreen = !state.present.player.fullscreen;
     },
   },
 });

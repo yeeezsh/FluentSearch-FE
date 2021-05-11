@@ -1,4 +1,4 @@
-import { AnnotaionType } from '../constants/types';
+import { AnnotaionType } from '../models/types';
 
 export const annotation: AnnotaionType[] = [
   {
