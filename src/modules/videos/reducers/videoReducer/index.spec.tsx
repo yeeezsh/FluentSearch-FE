@@ -21,4 +21,10 @@ describe('reducers/videoReducer test', () => {
     const result = store.getState().video;
     expect(result).toEqual(initVideoState);
   });
+
+  it('it should set playing correctly ', () => {
+    store.dispatch(videoActions.setPlaying());
+    const result = store.getState().video.present.player.playing;
+    expect(result).toEqual(true);
+  });
 });
