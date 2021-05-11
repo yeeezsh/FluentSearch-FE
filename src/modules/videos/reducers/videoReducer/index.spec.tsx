@@ -27,4 +27,10 @@ describe('reducers/videoReducer test', () => {
     const result = store.getState().video.present.player.playing;
     expect(result).toEqual(true);
   });
+
+  it('it should set muted correctly', () => {
+    store.dispatch(videoActions.setMuted());
+    const result = store.getState().video.present.player.muted;
+    expect(result).toEqual(true);
+  });
 });
