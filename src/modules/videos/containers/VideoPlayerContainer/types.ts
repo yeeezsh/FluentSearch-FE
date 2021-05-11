@@ -8,4 +8,11 @@ type VideoPlayerStateType = {
   played: number;
 };
 
-export type { VideoPlayerStateType };
+type ProgressState = {
+  loaded: number;
+  loadedSeconds: number;
+  played: number;
+  playedSeconds: number;
+};
+
+export type { VideoPlayerStateType, ProgressState };
