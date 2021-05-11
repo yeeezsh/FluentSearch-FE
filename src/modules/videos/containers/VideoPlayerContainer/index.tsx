@@ -1,11 +1,13 @@
 import VideoPlayer from 'Modules/videos/components/VideoPlayer';
+import { videoActions } from 'Modules/videos/reducers/videoReducer';
 import React, { useRef } from 'react';
 import ReactPlayer from 'react-player';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { VideoPlayerWrapper } from './styled';
 
 const VideoPlayerContainer: React.FC = () => {
+  const dispatch = useDispatch();
   const playerRef = useRef<ReactPlayer>(null);
 
   const muted = useSelector((state: StoresState) => state.video.present.muted);
@@ -20,6 +22,10 @@ const VideoPlayerContainer: React.FC = () => {
 
   const handleProgress = () => {
     console.log('progress');
+  };
+
+  const handlePlaying = () => {
+    dispatch(videoActions.setPlaying());
   };
 
   return (

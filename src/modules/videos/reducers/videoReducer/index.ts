@@ -9,6 +9,9 @@ const videoSlice = createSlice({
     init(state) {
       return { ...state, ...initVideoState };
     },
+    setPlaying(state) {
+      state.present.playing = !state.present.playing;
+    },
   },
 });
 export default videoSlice.reducer;
