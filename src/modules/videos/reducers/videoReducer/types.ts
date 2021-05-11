@@ -11,7 +11,7 @@ type initVideoStateType = {
   file: {
     originalFileName: string;
     delete: boolean;
-    size: string;
+    size: number;
     type: MediaType;
     format: MediaFormat;
     width: number;

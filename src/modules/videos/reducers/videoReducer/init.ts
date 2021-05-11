@@ -5,7 +5,7 @@ export const initVideoState: initVideoStateType = {
   file: {
     originalFileName: '',
     delete: false,
-    size: '',
+    size: 0,
     type: MediaType.IMAGE,
     format: MediaFormat.JPG,
     width: 0,
