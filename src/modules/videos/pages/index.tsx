@@ -2,6 +2,7 @@ import { Row, Col, Card } from 'antd';
 import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 import React from 'react';
 import Avatar from '../components/Avatar';
+import VideoPlayerContainer from '../containers/VideoPlayerContainer';
 import { annotation } from '../mocks/annotation';
 import { VideoDetailCard } from './styled';
 
@@ -41,9 +42,11 @@ const ViewVideoPage: React.FC = () => {
       {'<'} Photos <br />
       <h3>video-wedding</h3>
       <hr />
-      <Row justify="space-between">
-        <Col span={12}>video with marker</Col>
-        <Col span={10}>
+      <Row style={{ marginTop: '5%' }}>
+        <Col span={12}>
+          <VideoPlayerContainer />
+        </Col>
+        <Col span={10} offset={2}>
           <PeopleCard /> <br />
           <LabelCard /> <br />
           <DetailCard /> <br />
