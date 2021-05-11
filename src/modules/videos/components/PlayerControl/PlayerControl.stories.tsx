@@ -20,9 +20,9 @@ export const PlayerControlStories: React.FC = () => {
     <>
       <GlobalStyle />
       <PlayerControl
-        isSeeking={false}
+        seeking={false}
         duration={3.0}
-        isPlaying={false}
+        playing={false}
         muted={false}
         volume={50}
         playbackRate={'1.0'}
