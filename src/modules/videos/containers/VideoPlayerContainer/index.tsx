@@ -47,8 +47,21 @@ const VideoPlayerContainer: React.FC = () => {
       screenful.toggle(playerContainerRef.current);
   };
 
+  const handleMouseMove = () => {
+    if (!controlRef.current) return;
+    controlRef.current.style.visibility = 'visible';
+  };
+
+  const handleMouseLeave = () => {
+    if (!controlRef.current) return;
+    controlRef.current.style.visibility = 'hidden';
+  };
+
   return (
-    <VideoPlayerWrapper ref={playerContainerRef} onMouseMove={} onMouseLeave={}>
+    <VideoPlayerWrapper
+      ref={playerContainerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}>
       <VideoPlayer
         url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         ref={playerRef}
