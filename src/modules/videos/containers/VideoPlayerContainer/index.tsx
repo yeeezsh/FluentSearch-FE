@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { VideoPlayerWrapper } from './styled';
 import { ProgressState } from './types';
+import screenful from 'screenfull';
 
 const VideoPlayerContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,11 @@ const VideoPlayerContainer: React.FC = () => {
     }
   };
 
+  const handleToggleFullScreen = () => {
+    if (screenful.isEnabled && playerContainerRef.current)
+      screenful.toggle(playerContainerRef.current);
+  };
+
   return (
     <VideoPlayerWrapper ref={playerContainerRef}>
       <VideoPlayer
@@ -58,7 +64,7 @@ const VideoPlayerContainer: React.FC = () => {
         onMute={handleMuted}
         onPlaybackRateChange={() => console.log('temp')}
         onRewind={() => console.log('temp')}
-        onToggleFullScreen={() => console.log('temp')}
+        onToggleFullScreen={handleToggleFullScreen}
         onVideoSliderChange={() => console.log('temp')}
       />
     </VideoPlayerWrapper>
