@@ -35,6 +35,16 @@ const VideoPlayerContainer: React.FC = () => {
     dispatch(videoActions.setPlaying());
   };
 
+  const handleRewind = () => {
+    if (playerRef.current)
+      playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10);
+  };
+
+  const handleFastForward = () => {
+    if (playerRef.current)
+      playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10);
+  };
+
   const handleMuted = () => {
     dispatch(videoActions.setMuted());
     const defaultVolume = 50 / 100;
@@ -79,12 +89,10 @@ const VideoPlayerContainer: React.FC = () => {
       <PlayerControl
         ref={controlRef}
         onPlaying={handlePlaying}
-        onFastForward={() => console.log('temp')}
-        onMouseDown={() => console.log('temp')}
-        onMouseUp={() => console.log('temp')}
+        onRewind={handleRewind}
+        onFastForward={handleFastForward}
         onMute={handleMuted}
         onPlaybackRateChange={handlePlaybackRateChange}
-        onRewind={() => console.log('temp')}
         onToggleFullScreen={handleToggleFullScreen}
         onVideoSliderChange={() => console.log('temp')}
       />
