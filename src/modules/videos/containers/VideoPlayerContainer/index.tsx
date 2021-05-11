@@ -8,13 +8,15 @@ import { VideoPlayerWrapper } from './styled';
 const VideoPlayerContainer: React.FC = () => {
   const playerRef = useRef<ReactPlayer>(null);
 
-  const muted = useSelector((state: StoresState) => state.video.muted);
-  const duration = useSelector((state: StoresState) => state.video.duration);
-  const playing = useSelector((state: StoresState) => state.video.playing);
-  const playbackRate = useSelector((state: StoresState) => state.video.playbackRate);
-  const played = useSelector((state: StoresState) => state.video.played);
-  const seeking = useSelector((state: StoresState) => state.video.seeking);
-  const volume = useSelector((state: StoresState) => state.video.volume);
+  const muted = useSelector((state: StoresState) => state.video.present.muted);
+  const duration = useSelector((state: StoresState) => state.video.present.duration);
+  const playing = useSelector((state: StoresState) => state.video.present.playing);
+  const playbackRate = useSelector(
+    (state: StoresState) => state.video.present.playbackRate,
+  );
+  const played = useSelector((state: StoresState) => state.video.present.played);
+  const seeking = useSelector((state: StoresState) => state.video.present.seeking);
+  const volume = useSelector((state: StoresState) => state.video.present.volume);
 
   const handleProgress = () => {
     console.log('progress');

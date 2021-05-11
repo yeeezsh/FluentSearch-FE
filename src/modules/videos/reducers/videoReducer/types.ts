@@ -1,14 +1,16 @@
-type initVideoStateType = {
-  muted: boolean;
-  playing: boolean;
-  volume: number;
-  playbackRate: '0.5' | '0.75' | '1.0' | '1.5' | '2.0';
-  seeking: boolean;
-  duration: number;
-  played: number;
+type VideoState = {
+  present: {
+    muted: boolean;
+    playing: boolean;
+    volume: number;
+    playbackRate: '0.5' | '0.75' | '1.0' | '1.5' | '2.0';
+    seeking: boolean;
+    duration: number;
+    played: number;
+  };
 };
 
 const VIDEO = 'VIDEO';
 
-export type { initVideoStateType };
+export type { VideoState };
 export { VIDEO };
