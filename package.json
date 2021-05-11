@@ -22,6 +22,7 @@
     "@apollo/client": "^3.3.6",
     "@reduxjs/toolkit": "^1.4.0",
     "antd": "^4.7.3",
+    "axios": "^0.21.1",
     "dayjs": "^1.10.3",
     "graphql": "^15.4.0",
     "next": "10.0.4",
@@ -30,8 +31,8 @@
     "react-player": "^2.9.0",
     "react-redux": "7.2.2",
     "redux": "^4.0.5",
-    "styled-components": "^5.2.1",
-    "axios": "^0.21.1"
+    "screenfull": "^5.1.0",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
