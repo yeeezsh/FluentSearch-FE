@@ -43,10 +43,10 @@ const ViewVideoPage: React.FC = () => {
       <h3>video-wedding</h3>
       <hr />
       <Row style={{ marginTop: '5%' }}>
-        <Col span={12}>
+        <Col span={13}>
           <VideoPlayerContainer />
         </Col>
-        <Col span={10} offset={2}>
+        <Col span={10} offset={1}>
           <PeopleCard /> <br />
           <LabelCard /> <br />
           <DetailCard /> <br />
