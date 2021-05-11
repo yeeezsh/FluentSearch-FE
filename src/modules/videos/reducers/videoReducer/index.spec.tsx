@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { strictEqual } from 'assert';
 import { combineReducers } from 'redux';
 import videoReducer, { videoActions } from '.';
 import { initVideoState } from './init';
@@ -40,6 +39,12 @@ describe('reducers/videoReducer test', () => {
     const resultVolume = store.getState().video.present.player.volume;
     const resultMuted = store.getState().video.present.player.muted;
     expect(resultVolume).toEqual(0.99);
-    expect(resultMuted).toEqual(true);
+    expect(resultMuted).toEqual(false);
+  });
+
+  it('it should set progress correctly', () => {
+    store.dispatch(videoActions.setProgress({ played: 99 }));
+    const result = store.getState().video.present.player.played;
+    expect(result).toEqual(99);
   });
 });
