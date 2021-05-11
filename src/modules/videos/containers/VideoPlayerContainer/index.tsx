@@ -25,6 +25,7 @@ const VideoPlayerContainer: React.FC = () => {
   const played = useSelector((state: StoresState) => state.video.present.played);
   const seeking = useSelector((state: StoresState) => state.video.present.seeking);
   const volume = useSelector((state: StoresState) => state.video.present.volume);
+  const fullscreen = useSelector((state: StoresState) => state.video.present.fullscreen);
 
   const handleProgress = (changeState: ProgressState) => {
     if (!seeking) dispatch(videoActions.setProgress({ played: changeState.played }));
@@ -53,8 +54,10 @@ const VideoPlayerContainer: React.FC = () => {
   };
 
   const handleToggleFullScreen = () => {
-    if (screenful.isEnabled && playerContainerRef.current)
+    if (screenful.isEnabled && playerContainerRef.current) {
       screenful.toggle(playerContainerRef.current);
+      dispatch(videoActions.setFullScreen());
+    }
   };
 
   const handleMouseMove = () => {
@@ -77,7 +80,7 @@ const VideoPlayerContainer: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}>
       <VideoPlayer
-        url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        url="https://www.youtube.com/watch?v=zFT3f9biz68"
         ref={playerRef}
         isPlaying={playing}
         muted={muted}
@@ -87,6 +90,7 @@ const VideoPlayerContainer: React.FC = () => {
       />
       <PlayerControl
         ref={controlRef}
+        fullscreen={fullscreen}
         played={played}
         muted={muted}
         volume={volume}

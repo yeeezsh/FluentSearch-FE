@@ -20,6 +20,7 @@ export const PlayerControlStories: React.FC = () => {
     <>
       <GlobalStyle />
       <PlayerControl
+        fullscreen={false}
         seeking={false}
         duration={3.0}
         playing={false}

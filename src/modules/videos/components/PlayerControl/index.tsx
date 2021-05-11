@@ -5,6 +5,7 @@ import {
   BottomIcons,
   ControlIcons,
   ControlWrapper,
+  Overlay,
   VolumeSliderWrapper,
 } from './styled';
 import { PlayerControlPropsType } from './types';
@@ -35,6 +36,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     onPlaybackRateChange,
     onFastForward,
     onRewind,
+    fullscreen,
   } = props;
 
   const { Option } = Select;
@@ -65,7 +67,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
 
   const BottomControl = () => (
     <BottomControlWrapper>
-      <Row justify="space-between" gutter={[0, 0]}>
+      <Row justify="space-between">
         <Col span={24}>
           <Slider
             min={0}
@@ -77,10 +79,10 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
           />
         </Col>
       </Row>
-      <Row justify="space-between" gutter={[0, 0]}>
-        <Col span={6}>
-          <Row justify="space-around">
-            <Col>
+      <Row justify="space-between">
+        <Col xl={14}>
+          <Row>
+            <Col xl={2} push={1}>
               <BottomIcons>
                 {playing ? (
                   <PauseOutlined onClick={onPlaying} />
@@ -89,7 +91,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
                 )}
               </BottomIcons>
             </Col>
-            <Col>
+            <Col xl={2} push={2}>
               <BottomIcons>
                 {muted ? (
                   <NotificationOutlined onClick={onMute} />
@@ -98,7 +100,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
                 )}
               </BottomIcons>
             </Col>
-            <Col>
+            <Col xl={6} push={3}>
               <VolumeSliderWrapper>
                 <Slider
                   min={0}
@@ -112,15 +114,15 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
             </Col>
           </Row>
         </Col>
-        <Col span={4}>
+        <Col xl={6}>
           <Row justify="space-around">
-            <Col>
+            <Col xl={2} pull={1}>
               <Select
                 defaultValue="1X"
                 bordered={false}
                 onChange={onPlaybackRateChange}
                 value={playbackRate}
-                style={{ color: 'white' }}>
+                style={{ color: 'white', margin: 0 }}>
                 {['2.0', '1.5', '1', '0.75', '0.5'].map((e, i) => (
                   <Option key={i} value={e}>
                     {e + 'X'}
@@ -128,12 +130,9 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
                 ))}
               </Select>
             </Col>
-            <Col>
+            <Col xl={2} pull={1}>
               <BottomIcons>
-                <ExpandOutlined
-                  style={{ paddingTop: '0.2rem' }}
-                  onClick={onToggleFullScreen}
-                />
+                <ExpandOutlined onClick={onToggleFullScreen} />
               </BottomIcons>
             </Col>
           </Row>
@@ -143,12 +142,12 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
   );
 
   return (
-    <ControlWrapper ref={ref}>
-      <MiddleControl />
-      <br />
-      <BottomControl />
-      <br />
-    </ControlWrapper>
+    <Overlay ref={ref}>
+      <ControlWrapper fullscreen={fullscreen}>
+        <MiddleControl />
+        <BottomControl />
+      </ControlWrapper>
+    </Overlay>
   );
 });
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { ControlWrapperPropsType } from './types';
 
-export const ControlWrapper = styled.div`
+export const Overlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -9,10 +10,22 @@ export const ControlWrapper = styled.div`
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+`;
+
+export const ControlWrapper = styled.div<ControlWrapperPropsType>`
+  height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  z-index: 1;
+  justify-content: space-around;
+  top: 20%;
+  padding-bottom: 5%;
+  ${(props) =>
+    props.fullscreen &&
+    `
+  padding-bottom: 0%;
+  `}
 `;
 
 export const ControlIcons = styled.div`
@@ -28,14 +41,16 @@ export const ControlIcons = styled.div`
 `;
 
 export const BottomControlWrapper = styled.div`
-  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;
 
 export const BottomIcons = styled.div`
   color: #999;
   span {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
+
   &:hover {
     color: #fff;
   }

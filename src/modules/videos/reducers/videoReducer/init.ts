@@ -9,5 +9,6 @@ export const initVideoState: initVideoStateType = {
     seeking: false,
     duration: 0,
     played: 0,
+    fullscreen: false,
   },
 };

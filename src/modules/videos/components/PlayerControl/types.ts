@@ -1,6 +1,10 @@
 import { React } from '@ungap/global-this';
 import { PlaybackRate, VideoState } from 'Modules/videos/models/types';
 
+type ControlWrapperPropsType = {
+  fullscreen: boolean;
+};
+
 type PlayerControlPropsType = VideoState & {
   onPlaying: () => void;
   onFastForward: () => void;
@@ -13,4 +17,4 @@ type PlayerControlPropsType = VideoState & {
   onMouseDown: () => void;
 };
 
-export type { PlayerControlPropsType };
+export type { PlayerControlPropsType, ControlWrapperPropsType };

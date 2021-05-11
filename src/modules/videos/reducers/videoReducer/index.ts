@@ -29,6 +29,9 @@ const videoSlice = createSlice({
       const { playbackRate } = action.payload;
       state.present.playbackRate = playbackRate;
     },
+    setFullScreen(state) {
+      state.present.fullscreen = !state.present.fullscreen;
+    },
   },
 });
 export default videoSlice.reducer;

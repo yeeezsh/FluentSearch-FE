@@ -6,6 +6,7 @@ type VideoState = {
   seeking: boolean;
   duration: number;
   played: number;
+  fullscreen: boolean;
 };
 
 type ProgressState = {
