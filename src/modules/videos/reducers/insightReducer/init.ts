@@ -5,6 +5,8 @@ export const initInsightState: initInsightStateType = {
   present: {
     person: [],
     label: [],
+    avatarSelected: '',
+    labelSelected: '',
   },
   ready: false,
 };
