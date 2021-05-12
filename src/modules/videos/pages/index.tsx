@@ -1,12 +1,15 @@
 import { Row, Col, Card } from 'antd';
 import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
+import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import Avatar from '../components/Avatar';
 import VideoPlayerContainer from '../containers/VideoPlayerContainer';
 import { annotation } from '../mocks/annotation';
+import { fetchInsightData } from '../reducers/insightReducer/actions';
 import { fetchVideoData } from '../reducers/videoReducer/actions';
+import { convertToDayOfWeek } from '../utils/convertToDayOfWeek';
 import { DetailHeader, Header, VideoDetailCard } from './styled';
 
 const ViewVideoPage: React.FC = () => {
@@ -29,6 +32,7 @@ const ViewVideoPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchVideoData());
+    dispatch(fetchInsightData());
   }, []);
 
   const handleSelectAvatar = () => {
@@ -58,9 +62,9 @@ const ViewVideoPage: React.FC = () => {
           <DetailHeader>Date</DetailHeader>
         </Col>
         <Col span={18}>
-          May 21,2018
+          {dayjs(date).format('MMM DD, YYYY')}
           <br />
-          Mon, 3:33Pm GMT+07:00
+          {convertToDayOfWeek(dayjs(date).day())} {dayjs(date).format(',h:mA [GMT]Z')}
         </Col>
       </Row>
       <Row style={{ marginTop: '5%' }}>
@@ -69,7 +73,7 @@ const ViewVideoPage: React.FC = () => {
         </Col>
         <Col span={18}>
           YellowCats.jpg
-          <br /> 0.7MP 1700 x 424
+          <br /> {size} {width} x {height}
         </Col>
       </Row>
       <Row style={{ marginTop: '5%' }}>
