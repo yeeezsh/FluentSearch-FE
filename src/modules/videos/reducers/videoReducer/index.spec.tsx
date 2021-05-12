@@ -67,17 +67,6 @@ describe('reducers/videoReducer test', () => {
       type: fetchVideoData.fulfilled.type,
       payload: { data: videoFile },
     });
-    const result = store.getState().video.videoFile;
-    expect(result).toEqual(videoFile);
-  });
-
-  it('it should set fetchVideoData correctly', () => {
-    store.dispatch({
-      type: fetchVideoData.fulfilled.type,
-      payload: { data: videoFile },
-    });
-
-    store.dispatch(videoActions.setFetchVideoData());
 
     const expectedResult = {
       originalFileName: 'Jujutsu Kaisen',
@@ -90,7 +79,10 @@ describe('reducers/videoReducer test', () => {
       place: 'Jujutsu Academy',
     };
 
-    const result = store.getState().video.present.metaData;
-    expect(result).toEqual(expectedResult);
+    const result = store.getState().video.videoFile;
+    const resultMetaData = store.getState().video.present.metaData;
+
+    expect(result).toEqual(videoFile);
+    expect(resultMetaData).toEqual(expectedResult);
   });
 });

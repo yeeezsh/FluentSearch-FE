@@ -50,11 +50,11 @@ type VideoFileType = {
   height: number;
   date: string;
   place: string;
-  delete: boolean;
+  deleteFlag: boolean;
   size: number;
 };
 
-type MetaDataType = Omit<VideoFileType, 'delete' | 'incidents' | 'url'>;
+type MetaDataType = Omit<VideoFileType, 'deleteFlag' | 'incidents' | 'url'>;
 
 export type {
   VideoState,

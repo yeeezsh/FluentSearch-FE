@@ -4,7 +4,7 @@ export const initVideoState: initVideoStateType = {
   videoFile: {
     originalFileName: '',
     url: '',
-    delete: false,
+    deleteFlag: false,
     size: 0,
     type: 'undefined',
     format: 'undefined',

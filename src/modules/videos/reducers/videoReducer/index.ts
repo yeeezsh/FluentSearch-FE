@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { database } from 'faker';
 import { MetaDataType, PlaybackRate, VideoFileType } from 'Modules/videos/models/types';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchVideoData } from './actions';
@@ -34,17 +35,6 @@ const videoSlice = createSlice({
     setFullScreen(state) {
       state.present.player.fullscreen = !state.present.player.fullscreen;
     },
-    setFetchVideoData(state) {
-      const metaData = state.videoFile;
-      state.present.metaData.date = metaData.date;
-      state.present.metaData.format = metaData.format;
-      state.present.metaData.height = metaData.height;
-      state.present.metaData.originalFileName = metaData.originalFileName;
-      state.present.metaData.place = metaData.place;
-      state.present.metaData.size = metaData.size;
-      state.present.metaData.type = metaData.type;
-      state.present.metaData.width = metaData.width;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchVideoData.rejected, (state) => {
@@ -64,7 +54,15 @@ const videoSlice = createSlice({
         const { data } = action.payload;
         state.ready = true;
         state.error = undefined;
-        state.videoFile = { ...data };
+        state.videoFile = data;
+
+        const metaData = Object.keys(data).reduce((accumulator, key) => {
+          if (key !== 'deleteFlag' && key !== 'url') {
+            accumulator[key] = data[key];
+          }
+          return accumulator;
+        }, {}) as MetaDataType;
+        state.present.metaData = metaData;
       },
     );
   },

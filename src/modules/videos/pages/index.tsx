@@ -6,7 +6,6 @@ import { StoresState } from 'Stores/index';
 import Avatar from '../components/Avatar';
 import VideoPlayerContainer from '../containers/VideoPlayerContainer';
 import { annotation } from '../mocks/annotation';
-import { videoActions } from '../reducers/videoReducer';
 import { fetchVideoData } from '../reducers/videoReducer/actions';
 import { DetailHeader, Header, VideoDetailCard } from './styled';
 
@@ -20,6 +19,7 @@ const ViewVideoPage: React.FC = () => {
   const width = useSelector((state: StoresState) => state.video.present.metaData.width);
   const height = useSelector((state: StoresState) => state.video.present.metaData.height);
   const place = useSelector((state: StoresState) => state.video.present.metaData.place);
+
   const incidents = useSelector((state: StoresState) => state.insight.present.label);
   const personIncidents = useSelector(
     (state: StoresState) => state.insight.present.person,
@@ -29,7 +29,6 @@ const ViewVideoPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchVideoData());
-    dispatch(videoActions.setFetchVideoData());
   }, []);
 
   const handleSelectAvatar = () => {
