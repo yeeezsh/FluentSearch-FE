@@ -38,4 +38,5 @@ export const initVideoState: initVideoStateType = {
       fullscreen: false,
     },
   },
+  ready: false,
 };
