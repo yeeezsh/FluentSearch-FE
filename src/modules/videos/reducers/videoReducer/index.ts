@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { database } from 'faker';
 import { MetaDataType, PlaybackRate, VideoFileType } from 'Modules/videos/models/types';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchVideoData } from './actions';
