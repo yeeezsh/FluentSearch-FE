@@ -43,6 +43,7 @@ type IncidentType = {
 
 type VideoFileType = {
   originalFileName: string;
+  url: string;
   type: MediaType;
   format: MediaFormat;
   width: number;
@@ -54,7 +55,7 @@ type VideoFileType = {
   incidents: AnnotaionType[];
 };
 
-type MetaDataType = Omit<VideoFileType, 'delete' | 'incidents'>;
+type MetaDataType = Omit<VideoFileType, 'delete' | 'incidents' | 'url'>;
 
 export type {
   VideoState,

@@ -3,6 +3,7 @@ import { initVideoStateType } from './types';
 export const initVideoState: initVideoStateType = {
   videoFile: {
     originalFileName: '',
+    url: '',
     delete: false,
     size: 0,
     type: 'undefined',
