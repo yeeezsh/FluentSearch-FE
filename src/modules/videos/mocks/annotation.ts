@@ -3,7 +3,7 @@ import { AnnotaionType } from '../models/types';
 export const annotation: AnnotaionType[] = [
   {
     id: '1',
-    label: 'dog',
+    label: 'person',
     src: 'https://image.dek-d.com/27/0887/6293/131391732',
     selected: false,
     incidents: [
