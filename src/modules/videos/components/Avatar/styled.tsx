@@ -13,3 +13,9 @@ export const AvatarWrapper = styled(Avatar)<AvatarWrapperProps>`
     cursor: pointer;
   }
 `;
+
+export const Wrapper = styled.button`
+  padding: 0;
+  border: none;
+  background: none;
+`;

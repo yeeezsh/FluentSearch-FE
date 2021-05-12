@@ -22,10 +22,12 @@ export const Default = AvatarStories.bind({});
 Default.args = {
   src: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
   selected: false,
+  id: 1,
 };
 
 export const Selected = AvatarStories.bind({});
 Selected.args = {
   src: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
   selected: true,
+  id: 2,
 };

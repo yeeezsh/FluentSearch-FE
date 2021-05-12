@@ -37,16 +37,22 @@ const ViewVideoPage: React.FC = () => {
     dispatch(fetchInsightData());
   }, []);
 
-  const handleSelectAvatar = () => {
-    console.log('selected');
+  const handleSelectAvatar = (id: string) => {
+    console.log('selected id' + id);
   };
 
   const PeopleCard = () => {
     return (
       <VideoDetailCard title={`${totalIncidents} People`}>
         {totalIncidents > 0
-          ? annotation.map((el, index) => (
-              <Avatar src={el.src} key={index} onClick={() => handleSelectAvatar()} />
+          ? annotation.map((el) => (
+              <Avatar
+                src={el.src}
+                key={el.id}
+                id={el.id}
+                handleOnClick={handleSelectAvatar}
+                selected={el.selected}
+              />
             ))
           : 'no people'}
       </VideoDetailCard>
