@@ -10,6 +10,6 @@ export const videoFile: VideoFileType = {
   format: 'undefined',
   width: 1200,
   height: 800,
-  date: new Date().toString(),
+  date: 'Wed May 12 2021 23:06:42 GMT+0700 (Indochina Time)',
   place: 'Jujutsu Academy',
 };

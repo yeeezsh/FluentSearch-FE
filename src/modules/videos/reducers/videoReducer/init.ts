@@ -24,8 +24,6 @@ export const initVideoState: initVideoStateType = {
       date: '',
       place: '',
     },
-    person: [],
-    label: [],
     player: {
       muted: false,
       playing: false,

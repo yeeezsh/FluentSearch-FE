@@ -70,4 +70,27 @@ describe('reducers/videoReducer test', () => {
     const result = store.getState().video.videoFile;
     expect(result).toEqual(videoFile);
   });
+
+  it('it should set fetchVideoData correctly', () => {
+    store.dispatch({
+      type: fetchVideoData.fulfilled.type,
+      payload: { data: videoFile },
+    });
+
+    store.dispatch(videoActions.setFetchVideoData());
+
+    const expectedResult = {
+      originalFileName: 'Jujutsu Kaisen',
+      size: 26530018,
+      type: 'undefined',
+      format: 'undefined',
+      width: 1200,
+      height: 800,
+      date: 'Wed May 12 2021 23:06:42 GMT+0700 (Indochina Time)',
+      place: 'Jujutsu Academy',
+    };
+
+    const result = store.getState().video.present.metaData;
+    expect(result).toEqual(expectedResult);
+  });
 });
