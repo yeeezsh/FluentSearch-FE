@@ -31,6 +31,13 @@ describe('reducer/insightReducer test', () => {
     expect(result).toEqual(expectedId);
   });
 
+  it('it should set selectedLabel correctly', () => {
+    const expectedId = '21245d';
+    store.dispatch(insightActions.setSelectedLabel({ id: expectedId }));
+    const result = store.getState().insight.present.selectedLabel;
+    expect(result).toEqual(expectedId);
+  });
+
   it('it should fetchInsightData correctly ', () => {
     store.dispatch({
       type: fetchInsightData.fulfilled.type,

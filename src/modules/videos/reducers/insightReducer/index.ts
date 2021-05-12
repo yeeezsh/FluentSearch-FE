@@ -16,6 +16,10 @@ const insightSlice = createSlice({
       const { id } = action.payload;
       state.present.selectedPerson = id;
     },
+    setSelectedLabel(state, action: PayloadAction<{ id: string }>) {
+      const { id } = action.payload;
+      state.present.selectedLabel = id;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchInsightData.pending, (state) => {
