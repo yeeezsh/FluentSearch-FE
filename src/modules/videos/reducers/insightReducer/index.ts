@@ -32,6 +32,9 @@ const insightSlice = createSlice({
         state.ready = true;
         state.error = undefined;
         state.incidentData = data;
+
+        state.present.label = data.filter((el) => el.label !== 'person');
+        state.present.person = data.filter((el) => el.label === 'person');
       },
     );
   },
