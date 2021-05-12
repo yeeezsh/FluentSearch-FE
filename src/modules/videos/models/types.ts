@@ -33,10 +33,10 @@ type AnnotaionType = {
 };
 
 type IncidentType = {
-  x: number;
-  y: number;
-  height: number;
-  width: number;
+  xmax: number;
+  ymax: number;
+  ymin: number;
+  xmin: number;
   nthFps: number;
   finish: boolean;
 };
@@ -52,7 +52,6 @@ type VideoFileType = {
   place: string;
   delete: boolean;
   size: number;
-  incidents: AnnotaionType[];
 };
 
 type MetaDataType = Omit<VideoFileType, 'delete' | 'incidents' | 'url'>;
