@@ -29,7 +29,7 @@ type AnnotaionType = {
   endTime?: number;
   incidents: IncidentType[];
   src: string;
-  selected: false;
+  selected: boolean;
 };
 
 type IncidentType = {

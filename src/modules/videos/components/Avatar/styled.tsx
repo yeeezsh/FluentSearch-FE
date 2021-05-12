@@ -18,4 +18,5 @@ export const Wrapper = styled.button`
   padding: 0;
   border: none;
   background: none;
+  margin: 0.25rem;
 `;

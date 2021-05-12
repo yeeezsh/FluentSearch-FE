@@ -12,6 +12,7 @@ import { fetchVideoData } from '../reducers/videoReducer/actions';
 import { convertToDayOfWeek } from '../utils/convertToDayOfWeek';
 import { DetailHeader, Header, VideoDetailCard } from './styled';
 import filesize from 'filesize';
+import { insightActions } from '../reducers/insightReducer';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,22 +31,24 @@ const ViewVideoPage: React.FC = () => {
     (state: StoresState) => state.insight.present.person,
   );
 
-  const totalIncidents = incidents.length + personIncidents.length;
+  const totalPeople = personIncidents.length;
+  const totalIncidents = incidents.length;
+
+  const handleSelectAvatar = (id: string) => {
+    dispatch(insightActions.setSelectedPerson({ id: id }));
+    //console.log('selected id' + id);
+  };
 
   useEffect(() => {
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
   }, []);
 
-  const handleSelectAvatar = (id: string) => {
-    console.log('selected id' + id);
-  };
-
   const PeopleCard = () => {
     return (
-      <VideoDetailCard title={`${totalIncidents} People`}>
-        {totalIncidents > 0
-          ? annotation.map((el) => (
+      <VideoDetailCard title={`${totalPeople} People`}>
+        {totalPeople > 0
+          ? personIncidents.map((el) => (
               <Avatar
                 src={el.src}
                 key={el.id}
@@ -60,11 +63,11 @@ const ViewVideoPage: React.FC = () => {
   };
 
   const LabelCard = () => {
-    return <Card title={`${totalIncidents} Labels`}></Card>;
+    return <VideoDetailCard title={`${totalIncidents} Labels`}></VideoDetailCard>;
   };
 
   const DetailCard = () => (
-    <Card title="Details">
+    <VideoDetailCard title="Details">
       <Row>
         <Col span={6}>
           <DetailHeader>Date</DetailHeader>
@@ -90,7 +93,7 @@ const ViewVideoPage: React.FC = () => {
         </Col>
         <Col span={18}>{place}</Col>
       </Row>
-    </Card>
+    </VideoDetailCard>
   );
   return (
     <LayoutWithSearch border={false}>

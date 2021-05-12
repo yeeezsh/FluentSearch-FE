@@ -15,6 +15,14 @@ const insightSlice = createSlice({
     setSelectedPerson(state, action: PayloadAction<{ id: string }>) {
       const { id } = action.payload;
       state.present.selectedPerson = id;
+      state.incidentData.forEach((el) => {
+        if (el.id === id) el.selected = true;
+        else el.selected = false;
+      });
+      state.present.person.forEach((el) => {
+        if (el.id === id) el.selected = true;
+        else el.selected = false;
+      });
     },
     setSelectedLabel(state, action: PayloadAction<{ id: string }>) {
       const { id } = action.payload;
@@ -41,7 +49,7 @@ const insightSlice = createSlice({
         state.error = undefined;
         state.incidentData = data;
 
-        state.present.label = data.filter((el) => el.label !== 'person');
+        state.present.label = data;
         state.present.person = data.filter((el) => el.label === 'person');
       },
     );
