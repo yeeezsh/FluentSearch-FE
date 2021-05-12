@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PlaybackRate } from 'Modules/videos/models/types';
+import { PlaybackRate, VideoFileType } from 'Modules/videos/models/types';
+import { ErrorStateCodeEnum } from 'Stores/common/types/error';
+import { fetchVideoData } from './actions';
 import { initVideoState } from './init';
 import { VIDEO } from './types';
 
@@ -32,6 +34,28 @@ const videoSlice = createSlice({
     setFullScreen(state) {
       state.present.player.fullscreen = !state.present.player.fullscreen;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchVideoData.rejected, (state) => {
+      state.ready = false;
+      state.error = {
+        code: ErrorStateCodeEnum.ServerInternalError,
+        msg: 'api error',
+      };
+    });
+    builder.addCase(fetchVideoData.pending, (state) => {
+      state.ready = false;
+      state.error = undefined;
+    });
+    builder.addCase(
+      fetchVideoData.fulfilled,
+      (state, action: PayloadAction<{ data: VideoFileType }>) => {
+        const { data } = action.payload;
+        state.ready = true;
+        state.error = undefined;
+        state.videoFile = { ...data };
+      },
+    );
   },
 });
 export default videoSlice.reducer;
