@@ -16,9 +16,10 @@ import filesize from 'filesize';
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
   const date = useSelector((state: StoresState) => state.video.present.metaData.date);
-  const fileName = useSelector(
+  const originalFileName = useSelector(
     (state: StoresState) => state.video.present.metaData.originalFileName,
   );
+  const format = useSelector((state: StoresState) => state.video.present.metaData.format);
   const size = useSelector((state: StoresState) => state.video.present.metaData.size);
   const width = useSelector((state: StoresState) => state.video.present.metaData.width);
   const height = useSelector((state: StoresState) => state.video.present.metaData.height);
@@ -65,7 +66,7 @@ const ViewVideoPage: React.FC = () => {
         <Col span={18}>
           {dayjs(date).format('MMM DD, YYYY')}
           <br />
-          {convertToDayOfWeek(dayjs(date).day())} {dayjs(date).format(',h:mA [GMT]Z')}
+          {convertToDayOfWeek(dayjs(date).day()) + dayjs(date).format(',h:mA [GMT]Z')}
         </Col>
       </Row>
       <Row style={{ marginTop: '5%' }}>
@@ -73,7 +74,7 @@ const ViewVideoPage: React.FC = () => {
           <DetailHeader>Photo</DetailHeader>
         </Col>
         <Col span={18}>
-          YellowCats.jpg
+          {originalFileName + format}
           <br /> {filesize(size)} {width} x {height}
         </Col>
       </Row>

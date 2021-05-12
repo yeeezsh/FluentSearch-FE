@@ -7,7 +7,7 @@ export const videoFile: VideoFileType = {
   deleteFlag: false,
   size: 26530018,
   type: 'undefined',
-  format: 'undefined',
+  format: '.jpg',
   width: 1200,
   height: 800,
   date: 'Wed May 12 2021 23:06:42 GMT+0700 (Indochina Time)',
