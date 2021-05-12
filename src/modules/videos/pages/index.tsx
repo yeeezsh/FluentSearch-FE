@@ -11,6 +11,7 @@ import { fetchInsightData } from '../reducers/insightReducer/actions';
 import { fetchVideoData } from '../reducers/videoReducer/actions';
 import { convertToDayOfWeek } from '../utils/convertToDayOfWeek';
 import { DetailHeader, Header, VideoDetailCard } from './styled';
+import filesize from 'filesize';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const ViewVideoPage: React.FC = () => {
         </Col>
         <Col span={18}>
           YellowCats.jpg
-          <br /> {size} {width} x {height}
+          <br /> {filesize(size)} {width} x {height}
         </Col>
       </Row>
       <Row style={{ marginTop: '5%' }}>
