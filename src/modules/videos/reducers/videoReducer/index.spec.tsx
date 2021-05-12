@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { videoFile } from 'Modules/videos/mocks/videoFile';
 import { combineReducers } from 'redux';
 import videoReducer, { videoActions } from '.';
+import { fetchVideoData } from './actions';
 import { initVideoState } from './init';
 
 const rootReducer = combineReducers({
@@ -58,5 +60,14 @@ describe('reducers/videoReducer test', () => {
     store.dispatch(videoActions.setFullScreen());
     const result = store.getState().video.present.player.fullscreen;
     expect(result).toEqual(true);
+  });
+
+  it('it should set video file correctly', () => {
+    store.dispatch({
+      type: fetchVideoData.fulfilled.type,
+      payload: { data: videoFile },
+    });
+    const result = store.getState().video.videoFile;
+    expect(result).toEqual(videoFile);
   });
 });
