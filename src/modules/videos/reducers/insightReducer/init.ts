@@ -6,7 +6,7 @@ export const initInsightState: initInsightStateType = {
     person: [],
     label: [],
     selectedPerson: '',
-    selectedLevel: '',
+    selectedLabel: '',
   },
   ready: false,
 };

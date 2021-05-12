@@ -9,7 +9,7 @@ type initInsightStateType = {
     person: AnnotaionType[];
     label: AnnotaionType[];
     selectedPerson: string;
-    selectedLevel: string;
+    selectedLabel: string;
   };
   ready: boolean;
   error?: ErrorState;
