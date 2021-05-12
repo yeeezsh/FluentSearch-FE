@@ -8,8 +8,8 @@ type initInsightStateType = {
   present: {
     person: AnnotaionType[];
     label: AnnotaionType[];
-    avatarSelected: string;
-    labelSelected: string;
+    selectedPerson: string;
+    selectedLevel: string;
   };
   ready: boolean;
   error?: ErrorState;
