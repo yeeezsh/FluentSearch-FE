@@ -12,6 +12,10 @@ const insightSlice = createSlice({
     init(state) {
       return { ...state, ...initInsightState };
     },
+    setSelectedPerson(state, action: PayloadAction<{ id: string }>) {
+      const { id } = action.payload;
+      state.present.selectedPerson = id;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchInsightData.pending, (state) => {

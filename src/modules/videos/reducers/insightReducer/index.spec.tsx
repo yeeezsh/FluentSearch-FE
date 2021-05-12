@@ -24,6 +24,13 @@ describe('reducer/insightReducer test', () => {
     expect(result).toEqual(initInsightState);
   });
 
+  it('it should set selectedPerson correctly', () => {
+    const expectedId = '21245d';
+    store.dispatch(insightActions.setSelectedPerson({ id: expectedId }));
+    const result = store.getState().insight.present.selectedPerson;
+    expect(result).toEqual(expectedId);
+  });
+
   it('it should fetchInsightData correctly ', () => {
     store.dispatch({
       type: fetchInsightData.fulfilled.type,
