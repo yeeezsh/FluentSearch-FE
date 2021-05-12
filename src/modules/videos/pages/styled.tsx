@@ -10,4 +10,8 @@ const Header = styled.h3`
   color: var(--secondary-color);
 `;
 
-export { VideoDetailCard, Header };
+const DetailHeader = styled.span`
+  font-weight: bold;
+`;
+
+export { VideoDetailCard, Header, DetailHeader };
