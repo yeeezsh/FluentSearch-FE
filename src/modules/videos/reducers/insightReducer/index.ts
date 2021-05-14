@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AnnotationResultType } from 'Modules/videos/models/types';
+import { AnnotationResultType, LabelPresentType } from 'Modules/videos/models/types';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchInsightData } from './actions';
 import { initInsightState } from './init';
@@ -49,9 +49,18 @@ const insightSlice = createSlice({
         state.ready = true;
         state.error = undefined;
         state.incidentData = data;
-        // state.present.label = data.reduce((acc , cur) => {
-        //   if (acc.find()) acc.push(cur);
-        // }, []);
+        state.present.label = data.reduce((acc: LabelPresentType[], cur) => {
+          {
+            const { classes } = cur;
+            const exist = acc.findIndex((el) => {
+              return el.cat === classes[0]?.cat;
+            });
+            if (exist) {
+              classes.forEach((el) => acc.push({ ...el, selected: false }));
+            }
+          }
+          return acc;
+        }, []);
         state.present.person = data
           .filter((el) => el.classes[0]?.cat === 'person')
           .map((el) => ({ ...el, selected: false }));

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { annotation } from 'Modules/videos/mocks/annotation';
+import { LabelPresentType, PersonPresentType } from 'Modules/videos/models/types';
 import { combineReducers } from 'redux';
 import insightReducer, { insightActions } from '.';
 import { fetchInsightData } from './actions';
@@ -38,21 +39,37 @@ describe('reducer/insightReducer test', () => {
     expect(result).toEqual(expectedId);
   });
 
-  // it('it should fetchInsightData correctly ', () => {
-  //   store.dispatch({
-  //     type: fetchInsightData.fulfilled.type,
-  //     payload: { data: annotation },
-  //   });
+  it('it should fetchInsightData correctly ', () => {
+    store.dispatch({
+      type: fetchInsightData.fulfilled.type,
+      payload: { data: annotation },
+    });
 
-  //   const expectedResultLabel = annotation.filter((el) => el. !== 'person');
-  //   const expectedResultPerson = annotation.filter((el) => el.label === 'person');
+    const expectedResultLabel: LabelPresentType[] = annotation.reduce(
+      (acc: LabelPresentType[], cur) => {
+        {
+          const { classes } = cur;
+          const exist = acc.findIndex((el) => {
+            return el.cat === classes[0]?.cat;
+          });
+          if (exist) {
+            classes.forEach((el) => acc.push({ ...el, selected: false }));
+          }
+        }
+        return acc;
+      },
+      [],
+    );
+    const expectedResultPerson: PersonPresentType[] = annotation
+      .filter((el) => el.classes[0]?.cat === 'person')
+      .map((el) => ({ ...el, selected: false }));
 
-  //   const result = store.getState().insight.incidentData;
-  //   const resultPerson = store.getState().insight.present.person;
-  //   const resultLabel = store.getState().insight.present.label;
+    const result = store.getState().insight.incidentData;
+    const resultPerson = store.getState().insight.present.person;
+    const resultLabel = store.getState().insight.present.label;
 
-  //   expect(result).toEqual(annotation);
-  //   expect(resultPerson).toEqual(expectedResultPerson);
-  //   expect(resultLabel).toEqual(expectedResultLabel);
-  // });
+    expect(result).toEqual(annotation);
+    expect(resultPerson).toEqual(expectedResultPerson);
+    expect(resultLabel).toEqual(expectedResultLabel);
+  });
 });

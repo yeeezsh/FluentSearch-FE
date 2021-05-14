@@ -1,4 +1,4 @@
-import { Row, Col, Card } from 'antd';
+import { Row, Col } from 'antd';
 import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import Avatar from '../components/Avatar';
 import VideoPlayerContainer from '../containers/VideoPlayerContainer';
-import { annotation } from '../mocks/annotation';
 import { fetchInsightData } from '../reducers/insightReducer/actions';
 import { fetchVideoData } from '../reducers/videoReducer/actions';
 import { convertToDayOfWeek } from '../utils/convertToDayOfWeek';
