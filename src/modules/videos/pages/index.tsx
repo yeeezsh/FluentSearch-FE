@@ -34,9 +34,8 @@ const ViewVideoPage: React.FC = () => {
   const totalPeople = personIncidents.length;
   const totalIncidents = incidents.length;
 
-  const handleSelectAvatar = (id: string) => {
-    dispatch(insightActions.setSelectedPerson({ id: id }));
-    //console.log('selected id' + id);
+  const handleSelectAvatar = (person: string) => {
+    dispatch(insightActions.setSelectedPerson({ person: person }));
   };
 
   useEffect(() => {
@@ -46,13 +45,13 @@ const ViewVideoPage: React.FC = () => {
 
   const PeopleCard = () => {
     return (
-      <VideoDetailCard title={`${totalPeople} People`}>
+      <VideoDetailCard title={`${totalPeople} People`} extra={'clear'}>
         {totalPeople > 0
-          ? personIncidents.map((el) => (
+          ? personIncidents.map((el, index) => (
               <Avatar
-                src={el.src}
-                key={el.id}
-                id={el.id}
+                src={el.uri}
+                key={index}
+                label={el.classes[0]?.cat}
                 handleOnClick={handleSelectAvatar}
                 selected={el.selected}
               />
@@ -63,7 +62,13 @@ const ViewVideoPage: React.FC = () => {
   };
 
   const LabelCard = () => {
-    return <VideoDetailCard title={`${totalIncidents} Labels`}></VideoDetailCard>;
+    return (
+      <VideoDetailCard title={`${totalIncidents} Labels`}>
+        {incidents.map((el, index) => (
+          <p key={index}>{el.cat}</p>
+        ))}
+      </VideoDetailCard>
+    );
   };
 
   const DetailCard = () => (

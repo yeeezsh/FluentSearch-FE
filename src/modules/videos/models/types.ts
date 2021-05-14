@@ -22,23 +22,31 @@ type MediaType = 'video' | 'image' | 'undefined';
 
 type MediaFormat = '.mp4' | '.jpg' | 'undefined';
 
-type AnnotaionType = {
-  id: string;
-  label: string;
-  startTime?: number;
-  endTime?: number;
-  incidents: IncidentType[];
-  src: string;
+type PersonPresentType = {
+  _id?: string;
+  classes: IncidentType[];
+  uri: string;
+  nFps: string;
   selected: boolean;
 };
 
-type IncidentType = {
+type LabelPresentType = {
+  bbox: BoundingBoxType;
+  last?: boolean;
+  prob: number;
+  cat: string;
+  selected: boolean;
+};
+
+type IncidentType = Omit<LabelPresentType, 'selected'>;
+
+type AnnotationResultType = Omit<PersonPresentType, 'selected'>;
+
+type BoundingBoxType = {
   xmax: number;
   ymax: number;
   ymin: number;
   xmin: number;
-  nthFps: number;
-  finish: boolean;
 };
 
 type VideoFileType = {
@@ -60,10 +68,13 @@ export type {
   VideoState,
   ProgressState,
   PlaybackRate,
-  AnnotaionType,
+  PersonPresentType,
+  LabelPresentType,
+  AnnotationResultType,
   IncidentType,
   MediaType,
   MediaFormat,
   VideoFileType,
   MetaDataType,
+  BoundingBoxType,
 };

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AnnotaionType } from 'Modules/videos/models/types';
+import { AnnotationResultType } from 'Modules/videos/models/types';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchInsightData } from './actions';
 import { initInsightState } from './init';
@@ -12,21 +12,21 @@ const insightSlice = createSlice({
     init(state) {
       return { ...state, ...initInsightState };
     },
-    setSelectedPerson(state, action: PayloadAction<{ id: string }>) {
-      const { id } = action.payload;
-      state.present.selectedPerson = id;
-      state.incidentData.forEach((el) => {
-        if (el.id === id) el.selected = true;
-        else el.selected = false;
-      });
+    setSelectedPerson(state, action: PayloadAction<{ person: string }>) {
+      const { person } = action.payload;
+      state.present.selectedPerson = person;
       state.present.person.forEach((el) => {
-        if (el.id === id) el.selected = true;
+        if (el.classes[0]?.cat === person) el.selected = true;
         else el.selected = false;
       });
     },
-    setSelectedLabel(state, action: PayloadAction<{ id: string }>) {
-      const { id } = action.payload;
-      state.present.selectedLabel = id;
+    setSelectedLabel(state, action: PayloadAction<{ category: string }>) {
+      const { category } = action.payload;
+      state.present.selectedLabel = category;
+      state.present.label.forEach((el) => {
+        if (el.cat === category) el.selected = true;
+        else el.selected = false;
+      });
     },
   },
   extraReducers: (builder) => {
@@ -41,16 +41,20 @@ const insightSlice = createSlice({
         msg: 'api error',
       };
     });
+
     builder.addCase(
       fetchInsightData.fulfilled,
-      (state, action: PayloadAction<{ data: AnnotaionType[] }>) => {
+      (state, action: PayloadAction<{ data: AnnotationResultType[] }>) => {
         const { data } = action.payload;
         state.ready = true;
         state.error = undefined;
         state.incidentData = data;
-
-        state.present.label = data;
-        state.present.person = data.filter((el) => el.label === 'person');
+        // state.present.label = data.reduce((acc , cur) => {
+        //   if (acc.find()) acc.push(cur);
+        // }, []);
+        state.present.person = data
+          .filter((el) => el.classes[0]?.cat === 'person')
+          .map((el) => ({ ...el, selected: false }));
       },
     );
   },

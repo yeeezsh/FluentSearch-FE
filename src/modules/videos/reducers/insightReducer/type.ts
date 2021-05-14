@@ -1,13 +1,17 @@
-import { AnnotaionType } from 'Modules/videos/models/types';
+import {
+  AnnotationResultType,
+  LabelPresentType,
+  PersonPresentType,
+} from 'Modules/videos/models/types';
 import { ErrorState } from 'Stores/common/types/error';
 
 const INSIGHT = 'INSIGHT';
 
 type initInsightStateType = {
-  incidentData: AnnotaionType[];
+  incidentData: AnnotationResultType[];
   present: {
-    person: AnnotaionType[];
-    label: AnnotaionType[];
+    person: PersonPresentType[];
+    label: LabelPresentType[];
     selectedPerson: string;
     selectedLabel: string;
   };
