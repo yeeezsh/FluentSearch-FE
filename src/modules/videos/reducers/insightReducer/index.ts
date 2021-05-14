@@ -49,20 +49,36 @@ const insightSlice = createSlice({
         state.ready = true;
         state.error = undefined;
         state.incidentData = data;
+
         state.present.label = data.reduce((acc: LabelPresentType[], cur) => {
           {
-            const { classes } = cur;
-            const exist = acc.findIndex((el) => {
-              return el.cat === classes[0]?.cat;
-            });
-            if (exist) {
-              classes.forEach((el) => acc.push({ ...el, selected: false }));
+            const { classes, nFps } = cur;
+            if (classes.length > 0) {
+              classes.map((el) => {
+                const category = el.cat;
+                const foundCategory = acc.find((el) => {
+                  return el.cat === category;
+                });
+
+                if (foundCategory) {
+                  foundCategory.bbox.push(el.bbox);
+                  foundCategory.nFps.push(nFps);
+                } else {
+                  acc.push({
+                    cat: category,
+                    selected: false,
+                    bbox: [el.bbox],
+                    nFps: [nFps],
+                  });
+                }
+              });
             }
           }
           return acc;
         }, []);
+
         state.present.person = data
-          .filter((el) => el.classes[0]?.cat === 'person')
+          .filter((el) => el.classes[0]?.cat === 'Person')
           .map((el) => ({ ...el, selected: false }));
       },
     );

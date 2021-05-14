@@ -31,14 +31,19 @@ type PersonPresentType = {
 };
 
 type LabelPresentType = {
+  bbox: BoundingBoxType[];
+  last?: boolean;
+  cat: string;
+  selected: boolean;
+  nFps: string[];
+};
+
+type IncidentType = {
   bbox: BoundingBoxType;
   last?: boolean;
   prob: number;
   cat: string;
-  selected: boolean;
 };
-
-type IncidentType = Omit<LabelPresentType, 'selected'>;
 
 type AnnotationResultType = Omit<PersonPresentType, 'selected'>;
 

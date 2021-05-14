@@ -61,6 +61,7 @@ const ViewVideoPage: React.FC = () => {
   };
 
   const LabelCard = () => {
+    console.log(incidents);
     return (
       <VideoDetailCard title={`${totalIncidents} Labels`}>
         {incidents.map((el, index) => (
