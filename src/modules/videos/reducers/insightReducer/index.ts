@@ -60,14 +60,11 @@ const insightSlice = createSlice({
                   return el.cat === category;
                 });
 
-                if (foundCategory) {
-                  foundCategory.bbox.push(el.bbox);
-                  foundCategory.nFps.push(nFps);
-                } else {
+                if (foundCategory) foundCategory.nFps.push(nFps);
+                else {
                   acc.push({
                     cat: category,
                     selected: false,
-                    bbox: [el.bbox],
                     nFps: [nFps],
                   });
                 }

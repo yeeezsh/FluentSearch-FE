@@ -130,33 +130,11 @@ describe('reducer/insightReducer test', () => {
       {
         cat: 'Person',
         selected: false,
-        bbox: [
-          {
-            ymin: 0,
-            ymax: 2,
-            xmin: 3,
-            xmax: 4,
-          },
-          {
-            ymin: 5,
-            ymax: 99,
-            xmin: 31,
-            xmax: 4,
-          },
-        ],
         nFps: ['0', '1'],
       },
       {
         cat: 'Cat',
         selected: false,
-        bbox: [
-          {
-            ymin: 0,
-            ymax: 2,
-            xmin: 3,
-            xmax: 4,
-          },
-        ],
         nFps: ['1'],
       },
     ];

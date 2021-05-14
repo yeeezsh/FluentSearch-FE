@@ -31,8 +31,6 @@ type PersonPresentType = {
 };
 
 type LabelPresentType = {
-  bbox: BoundingBoxType[];
-  last?: boolean;
   cat: string;
   selected: boolean;
   nFps: string[];
