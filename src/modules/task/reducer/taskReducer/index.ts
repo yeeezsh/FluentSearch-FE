@@ -13,13 +13,13 @@ export const taskSlice = createSlice({
     },
     setStatus(state, action: PayloadAction<{ _id: string; status: TaskStatusEnum }>) {
       const { _id, status } = action.payload;
-      const task = state.present.find((el) => el._id === _id);
-      state.present[task?._id || ''].status = status;
+      const task = state.present.queue.find((el) => el._id === _id);
+      state.present.queue[task?._id || ''].status = status;
     },
     setProgress(state, action: PayloadAction<{ _id: string; progress: number }>) {
       const { _id, progress } = action.payload;
-      const task = state.present.find((el) => el._id === _id);
-      state.present[task?._id || ''].progress = progress;
+      const task = state.present.queue.find((el) => el._id === _id);
+      state.present.queue[task?._id || ''].progress = progress;
     },
   },
 
@@ -44,7 +44,7 @@ export const taskSlice = createSlice({
           ...el,
           status: TaskStatusEnum.WAITING,
         })) as TaskPresent[];
-        state.present.push(...prepareData);
+        state.present.queue.push(...prepareData);
       },
     );
   },

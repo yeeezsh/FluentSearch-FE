@@ -31,7 +31,9 @@ export type TaskPresent = TaskData & TaskStatus;
 
 export type TaskState = {
   data: TaskData[];
-  present: TaskPresent[];
+  present: {
+    queue: TaskPresent[];
+  };
   ready: boolean;
   error?: ErrorState;
 };

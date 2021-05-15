@@ -2,6 +2,8 @@ import { TaskState } from './types';
 
 export const initTaskState: TaskState = {
   data: [],
-  present: [],
+  present: {
+    queue: [],
+  },
   ready: false,
 };

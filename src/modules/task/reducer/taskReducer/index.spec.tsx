@@ -93,7 +93,7 @@ describe('taskReducer test', () => {
 
   it('should have pending/fulfill fetchTaskData', async () => {
     store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
-    const result = store.getState().task.present;
+    const result = store.getState().task.present.queue;
     expect(store.getState().task.ready).toBe(true);
     expect(result).toEqual(expectedResult);
 
@@ -101,21 +101,21 @@ describe('taskReducer test', () => {
       type: fetchTaskData.fulfilled.type,
       payload: { data: newMockData },
     });
-    const addNewDataResult = store.getState().task.present;
+    const addNewDataResult = store.getState().task.present.queue;
     expect(addNewDataResult).toEqual(newExpectedResult);
   });
 
   it('should setProgress correctly', () => {
     store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
     store.dispatch(taskActions.setProgress({ _id: '1', progress: 99 }));
-    const progressResult = store.getState().task.present['1'].progress;
+    const progressResult = store.getState().task.present.queue['1'].progress;
     expect(progressResult).toEqual(99);
   });
 
   it('should setStatus correctly', () => {
     store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
     store.dispatch(taskActions.setStatus({ _id: '1', status: TaskStatusEnum.FINISH }));
-    const progressStatus = store.getState().task.present['1'].status;
+    const progressStatus = store.getState().task.present.queue['1'].status;
     expect(progressStatus).toEqual(TaskStatusEnum.FINISH);
   });
 });

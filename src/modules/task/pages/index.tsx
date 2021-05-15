@@ -8,7 +8,7 @@ import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 
 const TaskPage: React.FC = () => {
   const dispatch = useDispatch();
-  const presentData = useSelector((state: StoresState) => state.task.present);
+  const taskData = useSelector((state: StoresState) => state.task.present.queue);
 
   useEffect(() => {
     dispatch(fetchTaskData());
@@ -18,7 +18,7 @@ const TaskPage: React.FC = () => {
     <LayoutWithSearch title="Tasks">
       <PageWrapper>
         <PurpleTable
-          dataSource={presentData}
+          dataSource={taskData}
           columns={columns}
           style={{ marginTop: '30px' }}
           pagination={{ position: ['bottomCenter'] }}
