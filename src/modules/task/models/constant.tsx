@@ -46,7 +46,7 @@ export const columns = [
         <TaskProgressBar
           inprogressPhoto={InprogressPhoto.inprogressPhoto}
           totalPhoto={TotalPhoto.totalPhoto}
-          elaspedTime={ElaspedTime.elaspedTime}
+          elaspedTime={new Date(ElaspedTime.elaspedTime)}
           progress={progress}
         />
       );
