@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 type ToggleLabelProps = {
   selected?: boolean;
   children: ReactNode;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 type ToggleLabelWrapperProps = {

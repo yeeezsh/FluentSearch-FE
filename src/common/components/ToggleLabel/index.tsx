@@ -5,7 +5,7 @@ import { ToggleLabelProps } from './types';
 const ToggleLabel: React.FC<ToggleLabelProps> = (props) => {
   const { children, selected = false, onClick } = props;
   return (
-    <ToggelLabelWrapper selected={selected} onClick={() => onClick}>
+    <ToggelLabelWrapper selected={selected} onClick={() => onClick()}>
       {children}
     </ToggelLabelWrapper>
   );
