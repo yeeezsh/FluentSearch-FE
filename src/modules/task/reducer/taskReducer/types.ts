@@ -4,7 +4,7 @@ import { ErrorState } from 'Stores/common/types/error';
 export const TASK = 'TASK';
 
 export type TaskData = {
-  key: string;
+  _id: string;
   timestamp: string;
   taskID: string;
   taskName: string;
