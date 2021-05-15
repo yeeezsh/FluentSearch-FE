@@ -33,8 +33,8 @@ const ViewVideoPage: React.FC = () => {
   const totalPeople = personIncidents.length;
   const totalIncidents = incidents.length;
 
-  const handleSelectAvatar = (person: string) => {
-    dispatch(insightActions.setSelectedPerson({ person: person }));
+  const handleSelectAvatar = (index: number) => {
+    dispatch(insightActions.setSelectedPerson({ index: index }));
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const ViewVideoPage: React.FC = () => {
               <Avatar
                 src={el.uri}
                 key={index}
-                label={el.classes[0]?.cat}
+                index={index}
                 handleOnClick={handleSelectAvatar}
                 selected={el.selected}
               />

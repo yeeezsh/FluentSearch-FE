@@ -12,9 +12,9 @@ const insightSlice = createSlice({
     init(state) {
       return { ...state, ...initInsightState };
     },
-    setSelectedPerson(state, action: PayloadAction<{ person: string }>) {
-      const { person } = action.payload;
-      state.present.selectedPerson = person;
+    setSelectedPerson(state, action: PayloadAction<{ index: number }>) {
+      const { index } = action.payload;
+      state.present.selectedPerson = index;
     },
     setSelectedLabel(state, action: PayloadAction<{ category: string }>) {
       const { category } = action.payload;
@@ -67,7 +67,7 @@ const insightSlice = createSlice({
 
         state.present.person = data
           .filter((f) => f.classes.map((el) => el.cat.includes('Person')))
-          .map((el) => ({ ...el, selected: false }));
+          .map((el) => ({ uri: el.uri, nFps: el.nFps, selected: false }));
       },
     );
   },

@@ -5,7 +5,7 @@ export const initInsightState: initInsightStateType = {
   present: {
     person: [],
     label: [],
-    selectedPerson: '',
+    selectedPerson: -1,
     selectedLabel: '',
   },
   ready: false,

@@ -29,10 +29,10 @@ describe('reducer/insightReducer test', () => {
   });
 
   it('it should set selectedPerson correctly', () => {
-    const expectedId = '21245d';
-    store.dispatch(insightActions.setSelectedPerson({ person: expectedId }));
+    const expectedIndex = 1;
+    store.dispatch(insightActions.setSelectedPerson({ index: expectedIndex }));
     const result = store.getState().insight.present.selectedPerson;
-    expect(result).toEqual(expectedId);
+    expect(result).toEqual(expectedIndex);
   });
 
   it('it should set selectedLabel correctly', () => {

@@ -1,8 +1,8 @@
 type AvatarPropsType = {
   selected?: boolean;
   src: string;
-  handleOnClick: (id: string) => void;
-  label: string;
+  handleOnClick: (index: number) => void;
+  index: number;
 };
 
 type AvatarWrapperProps = {

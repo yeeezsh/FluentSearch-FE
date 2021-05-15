@@ -12,7 +12,7 @@ type initInsightStateType = {
   present: {
     person: PersonPresentType[];
     label: LabelPresentType[];
-    selectedPerson: string;
+    selectedPerson: number;
     selectedLabel: string;
   };
   ready: boolean;
