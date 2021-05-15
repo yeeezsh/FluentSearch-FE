@@ -9,9 +9,10 @@ import VideoPlayerContainer from '../containers/VideoPlayerContainer';
 import { fetchInsightData } from '../reducers/insightReducer/actions';
 import { fetchVideoData } from '../reducers/videoReducer/actions';
 import { convertToDayOfWeek } from '../utils/convertToDayOfWeek';
-import { DetailHeader, Header, VideoDetailCard } from './styled';
+import { DetailHeader, Header } from './styled';
 import filesize from 'filesize';
 import { insightActions } from '../reducers/insightReducer';
+import PeopleCard from '../components/VideoDetailCard/PeopleCard';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -41,24 +42,6 @@ const ViewVideoPage: React.FC = () => {
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
   }, []);
-
-  const PeopleCard = () => {
-    return (
-      <VideoDetailCard title={`${totalPeople} People`} extra={'clear'}>
-        {totalPeople > 0
-          ? personIncidents.map((el, index) => (
-              <Avatar
-                src={el.uri}
-                key={index}
-                index={index}
-                handleOnClick={handleSelectAvatar}
-                selected={el.selected}
-              />
-            ))
-          : 'no people'}
-      </VideoDetailCard>
-    );
-  };
 
   const LabelCard = () => {
     console.log(incidents);
@@ -110,7 +93,12 @@ const ViewVideoPage: React.FC = () => {
           <VideoPlayerContainer />
         </Col>
         <Col span={10} offset={1}>
-          <PeopleCard /> <br />
+          <PeopleCard
+            totalPeople={totalPeople}
+            incidents={personIncidents}
+            handleSelectAvatar={handleSelectAvatar}
+          />
+          <br />
           <LabelCard /> <br />
           <DetailCard /> <br />
         </Col>
