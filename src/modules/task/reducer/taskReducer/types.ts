@@ -15,8 +15,16 @@ export type TaskData = {
   totalPhoto: number;
 };
 
+export enum TaskStatusEnum {
+  PAUSE = 'PAUSE',
+  WAITING = 'WAITING',
+  CANCEL = 'CANCEL',
+  FINISH = 'FINISH',
+  RUNNING = 'RUNNING',
+}
+
 export type TaskStatus = {
-  status: 'pause' | 'waiting' | 'cancel' | 'finish' | 'running';
+  status: TaskStatusEnum;
 };
 
 export type TaskPresent = TaskData & TaskStatus;

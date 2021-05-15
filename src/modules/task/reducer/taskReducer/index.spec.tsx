@@ -4,7 +4,7 @@ import { ModelEnum } from 'Modules/task/models/model.enum';
 import { fetchTaskData } from './actions';
 import taskReducer, { taskActions } from './index';
 import { initTaskState } from './init';
-import { TaskData, TaskPresent } from './types';
+import { TaskData, TaskPresent, TaskStatusEnum } from './types';
 
 const rootReducer = combineReducers({
   task: taskReducer,
@@ -53,7 +53,7 @@ const expectedResult: TaskPresent[] = [
     elaspedTime: '23.00',
     inprogressPhoto: 1,
     totalPhoto: 1,
-    status: 'waiting',
+    status: TaskStatusEnum.WAITING,
   },
 ];
 
@@ -68,7 +68,7 @@ const newExpectedResult: TaskPresent[] = [
     elaspedTime: '23.00',
     inprogressPhoto: 1,
     totalPhoto: 1,
-    status: 'waiting',
+    status: TaskStatusEnum.WAITING,
   },
   {
     _id: '2',
@@ -80,7 +80,7 @@ const newExpectedResult: TaskPresent[] = [
     elaspedTime: '23.00',
     inprogressPhoto: 1,
     totalPhoto: 1,
-    status: 'waiting',
+    status: TaskStatusEnum.WAITING,
   },
 ];
 
@@ -127,5 +127,15 @@ describe('taskReducer test', () => {
     store.dispatch(taskActions.setProgress({ _id: '1', progress: 99 }));
     const progressResult = store.getState().task.present['1'].progress;
     expect(progressResult).toEqual(99);
+  });
+
+  it('should setStatus correctly', () => {
+    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
+    const data = store.getState().task.data;
+
+    store.dispatch(taskActions.setFetchTaskData({ data: data }));
+    store.dispatch(taskActions.setStatus({ _id: '1', status: TaskStatusEnum.FINISH }));
+    const progressStatus = store.getState().task.present['1'].status;
+    expect(progressStatus).toEqual(TaskStatusEnum.FINISH);
   });
 });
