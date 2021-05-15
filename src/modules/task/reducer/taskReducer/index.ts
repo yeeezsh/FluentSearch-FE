@@ -20,6 +20,11 @@ export const taskSlice = createSlice({
       const task = state.present.find((el) => el._id === _id);
       state.present[task?._id || ''].status = status;
     },
+    setProgress(state, action: PayloadAction<{ _id: string; progress: number }>) {
+      const { _id, progress } = action.payload;
+      const task = state.present.find((el) => el._id === _id);
+      state.present[task?._id || ''].progress = progress;
+    },
   },
 
   extraReducers: (builder) => {
