@@ -19,7 +19,7 @@ export type TaskStatus = {
   status: 'pause' | 'waiting' | 'cancel' | 'finish' | 'running';
 };
 
-export type TaskPresent = TaskData | TaskStatus;
+export type TaskPresent = TaskData & TaskStatus;
 
 export type TaskState = {
   data: TaskData[];

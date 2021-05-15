@@ -19,7 +19,7 @@ describe('taskReducer test', () => {
     expect(result).toEqual(initTaskState);
   });
 
-  it('should have pending/fulfill fetchtTaskData', async () => {
+  it('should have pending/fulfill fetchTaskData', async () => {
     const parsed = DataSource.map((el) => {
       const keys = Object.keys(el);
       return keys.reduce((acc, cur: unknown) => {
