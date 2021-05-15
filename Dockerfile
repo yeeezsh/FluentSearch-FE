@@ -15,14 +15,9 @@ VOLUME [ "/src" ]
 CMD ["yarn", "dev"]
 EXPOSE 3000
 
-FROM base AS build
+FROM base AS service
 ADD . .
 RUN yarn test
 RUN yarn build
-
-
-FROM nginx:alpine AS nginx
-COPY --from=build /out /var/www
-COPY /server/nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
-ENTRYPOINT ["nginx","-g","daemon off;"]
+ENTRYPOINT [ "yarn", "start" ]
+EXPOSE 3000
