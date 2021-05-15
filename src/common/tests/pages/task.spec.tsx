@@ -1,13 +1,12 @@
-import { mount } from 'enzyme';
-import React from 'react';
-import TaskPage from 'Modules/task/pages';
-import { PurpleTable } from 'Styles/global';
-import taskReducer from 'Modules/task/reducer/taskReducer';
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
-import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
-import { client } from 'Services/client';
 import { ApolloProvider } from '@apollo/client';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { shallow } from 'enzyme';
+import instantSearchReducer from 'Modules/photos/reducers/instantSearchReducer';
+import TaskPage from 'Modules/task/pages';
+import taskReducer from 'Modules/task/reducer/taskReducer';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { client } from 'Services/client';
 
 const rootReducer = combineReducers({
   task: taskReducer,
@@ -21,7 +20,7 @@ const store = configureStore({
 describe('Pages/Task test', () => {
   let wrap;
   beforeEach(() => {
-    wrap = mount(
+    wrap = shallow(
       <Provider store={store}>
         <ApolloProvider client={client}>
           <TaskPage />
@@ -29,19 +28,8 @@ describe('Pages/Task test', () => {
       </Provider>,
     );
   });
+
   it('TaskPage should be exisiting', () => {
     expect(wrap.exists()).toBe(true);
-  });
-
-  it('Should contain PurpleTable', () => {
-    expect(wrap.exists(PurpleTable)).toBe(true);
-  });
-
-  it('Should contain Timestamp, TaskID, TaskName, Model, Progress Columns', () => {
-    expect(wrap.find('th').at(0).text()).toEqual('Timestamp');
-    expect(wrap.find('th').at(1).text()).toEqual('TaskID');
-    expect(wrap.find('th').at(2).text()).toEqual('Task Name');
-    expect(wrap.find('th').at(3).text()).toEqual('Model');
-    expect(wrap.find('th').at(4).text()).toEqual('Progress');
   });
 });
