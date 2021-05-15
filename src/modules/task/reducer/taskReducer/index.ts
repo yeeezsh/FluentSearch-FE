@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchTaskData } from './actions';
 import { initTaskState } from './init';
-import { TASK, TaskData, TaskStatus } from './types';
+import { TASK, TaskData, TaskPresent, TaskStatus } from './types';
 
 export const taskSlice = createSlice({
   name: TASK,
@@ -13,7 +13,11 @@ export const taskSlice = createSlice({
     },
     setFetchTaskData(state, action: PayloadAction<{ data: TaskData[] }>) {
       const { data } = action.payload;
-      state.present = data.map((el) => ({ ...el, status: 'waiting' }));
+      const prepareData = data.map((el) => ({
+        ...el,
+        status: 'waiting',
+      })) as TaskPresent[];
+      state.present.push(...prepareData);
     },
     setStatus(state, action: PayloadAction<{ _id: string; status: TaskStatus }>) {
       const { _id, status } = action.payload;
