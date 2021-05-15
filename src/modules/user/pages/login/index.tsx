@@ -65,7 +65,6 @@ const LoginPage: React.FC<Props> = (props) => {
   };
 
   const onError: FormErrorValue = (formValue) => {
-    console.log('Error: ', formValue);
     props.onError &&
       props.onError({
         errorFields: formValue.errorFields,
