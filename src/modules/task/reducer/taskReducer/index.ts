@@ -11,14 +11,6 @@ export const taskSlice = createSlice({
     init(state) {
       return { ...state, ...initTaskState };
     },
-    setFetchTaskData(state, action: PayloadAction<{ data: TaskData[] }>) {
-      const { data } = action.payload;
-      const prepareData = data.map((el) => ({
-        ...el,
-        status: TaskStatusEnum.WAITING,
-      })) as TaskPresent[];
-      state.present.push(...prepareData);
-    },
     setStatus(state, action: PayloadAction<{ _id: string; status: TaskStatusEnum }>) {
       const { _id, status } = action.payload;
       const task = state.present.find((el) => el._id === _id);
@@ -47,6 +39,12 @@ export const taskSlice = createSlice({
         state.ready = true;
         state.error = undefined;
         state.data = data;
+
+        const prepareData = data.map((el) => ({
+          ...el,
+          status: TaskStatusEnum.WAITING,
+        })) as TaskPresent[];
+        state.present.push(...prepareData);
       },
     );
   },

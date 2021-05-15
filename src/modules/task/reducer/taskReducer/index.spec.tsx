@@ -92,39 +92,28 @@ describe('taskReducer test', () => {
   });
 
   it('should have pending/fulfill fetchTaskData', async () => {
-    const parsed = DataSource.map((el) => {
-      const keys = Object.keys(el);
-      return keys.reduce((acc, cur: unknown) => {
-        if (cur instanceof Date) {
-          return { ...acc, cur: cur.toDateString() };
-        }
-        return { ...acc, cur };
-      }, {});
-    });
-
-    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: parsed } });
-    expect(store.getState().task.ready).toBe(true);
-  });
-
-  it('should setFetchTaskData correctly', () => {
-    store.dispatch(taskActions.setFetchTaskData({ data: mockData }));
+    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
     const result = store.getState().task.present;
+    expect(store.getState().task.ready).toBe(true);
     expect(result).toEqual(expectedResult);
 
-    store.dispatch(taskActions.setFetchTaskData({ data: newMockData }));
+    store.dispatch({
+      type: fetchTaskData.fulfilled.type,
+      payload: { data: newMockData },
+    });
     const addNewDataResult = store.getState().task.present;
     expect(addNewDataResult).toEqual(newExpectedResult);
   });
 
   it('should setProgress correctly', () => {
-    store.dispatch(taskActions.setFetchTaskData({ data: mockData }));
+    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
     store.dispatch(taskActions.setProgress({ _id: '1', progress: 99 }));
     const progressResult = store.getState().task.present['1'].progress;
     expect(progressResult).toEqual(99);
   });
 
   it('should setStatus correctly', () => {
-    store.dispatch(taskActions.setFetchTaskData({ data: mockData }));
+    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
     store.dispatch(taskActions.setStatus({ _id: '1', status: TaskStatusEnum.FINISH }));
     const progressStatus = store.getState().task.present['1'].status;
     expect(progressStatus).toEqual(TaskStatusEnum.FINISH);
