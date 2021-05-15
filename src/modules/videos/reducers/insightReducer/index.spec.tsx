@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
-  AnnotationResultType,
-  LabelPresentType,
-  PersonPresentType,
-} from 'Modules/videos/models/types';
+  mockData,
+  expectedResultLabel,
+  expectedResultPerson,
+} from 'Modules/videos/mocks/fetchInsightDataTest';
 import { combineReducers } from 'redux';
 import insightReducer, { insightActions } from '.';
 import { fetchInsightData } from './actions';
@@ -43,77 +43,6 @@ describe('reducer/insightReducer test', () => {
   });
 
   it('it should fetchInsightData correctly ', () => {
-    const mockData: AnnotationResultType[] = [
-      {
-        classes: [
-          {
-            bbox: {
-              ymin: 0,
-              ymax: 2,
-              xmin: 3,
-              xmax: 4,
-            },
-            prob: 0.35,
-            cat: 'Person',
-          },
-        ],
-        uri: 'www.cpe.com',
-        nFps: '0',
-      },
-      {
-        classes: [
-          {
-            bbox: {
-              ymin: 0,
-              ymax: 2,
-              xmin: 3,
-              xmax: 4,
-            },
-            prob: 0.35,
-            cat: 'Cat',
-          },
-          {
-            bbox: {
-              ymin: 5,
-              ymax: 99,
-              xmin: 31,
-              xmax: 4,
-            },
-            prob: 0.999,
-            cat: 'Person',
-          },
-        ],
-        uri: 'www.cpe.com',
-        nFps: '1',
-      },
-    ];
-
-    const expectedResultPerson: PersonPresentType[] = [
-      {
-        uri: 'www.cpe.com',
-        nFps: '0',
-        selected: false,
-      },
-      {
-        uri: 'www.cpe.com',
-        nFps: '1',
-        selected: false,
-      },
-    ];
-
-    const expectedResultLabel: LabelPresentType[] = [
-      {
-        cat: 'Person',
-        selected: false,
-        nFps: ['0', '1'],
-      },
-      {
-        cat: 'Cat',
-        selected: false,
-        nFps: ['1'],
-      },
-    ];
-
     store.dispatch({
       type: fetchInsightData.fulfilled.type,
       payload: { data: mockData },
@@ -122,8 +51,6 @@ describe('reducer/insightReducer test', () => {
     const result = store.getState().insight.incidentData;
     const resultPerson = store.getState().insight.present.person;
     const resultLabel = store.getState().insight.present.label;
-
-    console.log(resultPerson);
 
     expect(result).toEqual(mockData);
     expect(resultLabel).toEqual(expectedResultLabel);
