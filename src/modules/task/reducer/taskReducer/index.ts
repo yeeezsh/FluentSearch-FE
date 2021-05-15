@@ -43,9 +43,10 @@ export const taskSlice = createSlice({
     builder.addCase(
       fetchTaskData.fulfilled,
       (state, action: PayloadAction<{ data: TaskData[] }>) => {
+        const { data } = action.payload;
         state.ready = true;
         state.error = undefined;
-        state.data = action.payload.data;
+        state.data = data;
       },
     );
   },

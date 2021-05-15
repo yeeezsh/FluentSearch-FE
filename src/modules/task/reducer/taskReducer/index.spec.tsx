@@ -107,10 +107,7 @@ describe('taskReducer test', () => {
   });
 
   it('should setFetchTaskData correctly', () => {
-    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
-    const data = store.getState().task.data;
-
-    store.dispatch(taskActions.setFetchTaskData({ data: data }));
+    store.dispatch(taskActions.setFetchTaskData({ data: mockData }));
     const result = store.getState().task.present;
     expect(result).toEqual(expectedResult);
 
@@ -120,20 +117,14 @@ describe('taskReducer test', () => {
   });
 
   it('should setProgress correctly', () => {
-    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
-    const data = store.getState().task.data;
-
-    store.dispatch(taskActions.setFetchTaskData({ data: data }));
+    store.dispatch(taskActions.setFetchTaskData({ data: mockData }));
     store.dispatch(taskActions.setProgress({ _id: '1', progress: 99 }));
     const progressResult = store.getState().task.present['1'].progress;
     expect(progressResult).toEqual(99);
   });
 
   it('should setStatus correctly', () => {
-    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
-    const data = store.getState().task.data;
-
-    store.dispatch(taskActions.setFetchTaskData({ data: data }));
+    store.dispatch(taskActions.setFetchTaskData({ data: mockData }));
     store.dispatch(taskActions.setStatus({ _id: '1', status: TaskStatusEnum.FINISH }));
     const progressStatus = store.getState().task.present['1'].status;
     expect(progressStatus).toEqual(TaskStatusEnum.FINISH);
