@@ -16,12 +16,12 @@ export type TaskTablePropsType = {
   data: [
     {
       key: string;
-      timestamp: Date;
+      timestamp: string;
       taskID: string;
       taskName: string;
       model: ModelEnum;
       progress: number;
-      elaspedTime: Date;
+      elaspedTime: string;
       inprogressPhoto: number;
       totalPhoto: number;
       active: boolean;

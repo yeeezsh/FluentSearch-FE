@@ -13,7 +13,7 @@ import { PausePlayButton, StopButton } from './styled';
 type TaskProgressBarType = {
   taskID: string;
   progress: number;
-  elaspedTime: Date;
+  elaspedTime: string;
   inprogressPhoto: number;
   totalPhoto: number;
   active: boolean;
