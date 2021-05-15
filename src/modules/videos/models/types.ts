@@ -24,7 +24,7 @@ type MediaFormat = '.mp4' | '.jpg' | 'undefined';
 
 type PersonPresentType = {
   _id?: string;
-  classes: IncidentType[];
+  label?: string;
   uri: string;
   nFps: string;
   selected: boolean;
@@ -43,7 +43,12 @@ type IncidentType = {
   cat: string;
 };
 
-type AnnotationResultType = Omit<PersonPresentType, 'selected'>;
+type AnnotationResultType = {
+  _id?: string;
+  classes: IncidentType[];
+  uri: string;
+  nFps: string;
+};
 
 type BoundingBoxType = {
   xmax: number;

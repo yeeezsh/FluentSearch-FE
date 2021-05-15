@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { annotation } from 'Modules/videos/mocks/annotation';
 import {
   AnnotationResultType,
   LabelPresentType,
@@ -91,35 +90,11 @@ describe('reducer/insightReducer test', () => {
 
     const expectedResultPerson: PersonPresentType[] = [
       {
-        classes: [
-          {
-            bbox: {
-              ymin: 0,
-              ymax: 2,
-              xmin: 3,
-              xmax: 4,
-            },
-            prob: 0.35,
-            cat: 'Person',
-          },
-        ],
         uri: 'www.cpe.com',
         nFps: '0',
         selected: false,
       },
       {
-        classes: [
-          {
-            bbox: {
-              ymin: 5,
-              ymax: 99,
-              xmin: 31,
-              xmax: 4,
-            },
-            prob: 0.999,
-            cat: 'Person',
-          },
-        ],
         uri: 'www.cpe.com',
         nFps: '1',
         selected: false,
@@ -151,7 +126,7 @@ describe('reducer/insightReducer test', () => {
     console.log(resultPerson);
 
     expect(result).toEqual(mockData);
-    expect(resultPerson).toEqual(expectedResultPerson);
     expect(resultLabel).toEqual(expectedResultLabel);
+    expect(resultPerson).toEqual(expectedResultPerson);
   });
 });

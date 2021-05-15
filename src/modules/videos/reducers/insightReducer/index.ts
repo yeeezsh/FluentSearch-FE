@@ -15,10 +15,6 @@ const insightSlice = createSlice({
     setSelectedPerson(state, action: PayloadAction<{ person: string }>) {
       const { person } = action.payload;
       state.present.selectedPerson = person;
-      state.present.person.forEach((el) => {
-        if (el.classes[0]?.cat === person) el.selected = true;
-        else el.selected = false;
-      });
     },
     setSelectedLabel(state, action: PayloadAction<{ category: string }>) {
       const { category } = action.payload;
@@ -70,7 +66,7 @@ const insightSlice = createSlice({
         state.present.label = mappedLabel;
 
         state.present.person = data
-          .filter((el) => el.classes[0]?.cat === 'Person')
+          .filter((f) => f.classes.map((el) => el.cat.includes('Person')))
           .map((el) => ({ ...el, selected: false }));
       },
     );
