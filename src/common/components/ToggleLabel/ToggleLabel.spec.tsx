@@ -20,7 +20,7 @@ describe('Component/ToggleLabel test', () => {
     expect(ToggleLabelSelectedFalse.prop('selected')).toBe(false);
 
     const ToggleLabelSelectedTrue = shallow(
-      <ToggleLabel onClick={mockOnClick} selected={true}>
+      <ToggleLabel onClick={mockOnClick} selected>
         Label
       </ToggleLabel>,
     );
