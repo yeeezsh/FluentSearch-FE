@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { DataSource } from 'Modules/task/mocks/data';
+import { ModelEnum } from 'Modules/task/models/model.enum';
 import { fetchTaskData } from './actions';
 import taskReducer, { taskActions } from './index';
 import { initTaskState } from './init';
+import { TaskData, TaskPresent } from './types';
 
 const rootReducer = combineReducers({
   task: taskReducer,
@@ -32,5 +34,74 @@ describe('taskReducer test', () => {
 
     store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: parsed } });
     expect(store.getState().task.ready).toBe(true);
+  });
+
+  it('should setFetchTaskData correctly', () => {
+    const mockData: TaskData[] = [
+      {
+        _id: '1',
+        timestamp: '0',
+        taskID: '123',
+        taskName: 'Create Album',
+        model: ModelEnum.RESNET,
+        progress: 0,
+        elaspedTime: '23.00',
+        inprogressPhoto: 1,
+        totalPhoto: 1,
+      },
+    ];
+
+    const expectedResult: TaskPresent[] = [
+      {
+        _id: '1',
+        timestamp: '0',
+        taskID: '123',
+        taskName: 'Create Album',
+        model: ModelEnum.RESNET,
+        progress: 0,
+        elaspedTime: '23.00',
+        inprogressPhoto: 1,
+        totalPhoto: 1,
+        status: 'waiting',
+      },
+    ];
+
+    const newExpectedResult: TaskPresent[] = [
+      {
+        _id: '1',
+        timestamp: '0',
+        taskID: '123',
+        taskName: 'Create Album',
+        model: ModelEnum.RESNET,
+        progress: 0,
+        elaspedTime: '23.00',
+        inprogressPhoto: 1,
+        totalPhoto: 1,
+        status: 'waiting',
+      },
+      {
+        _id: '1',
+        timestamp: '0',
+        taskID: '123',
+        taskName: 'Create Album',
+        model: ModelEnum.RESNET,
+        progress: 0,
+        elaspedTime: '23.00',
+        inprogressPhoto: 1,
+        totalPhoto: 1,
+        status: 'waiting',
+      },
+    ];
+
+    store.dispatch({ type: fetchTaskData.fulfilled.type, payload: { data: mockData } });
+    const data = store.getState().task.data;
+
+    store.dispatch(taskActions.setFetchTaskData({ data: data }));
+    const result = store.getState().task.present;
+    expect(result).toEqual(expectedResult);
+
+    store.dispatch(taskActions.setFetchTaskData({ data: data }));
+    const addNewDataResult = store.getState().task.present;
+    expect(addNewDataResult).toEqual(newExpectedResult);
   });
 });
