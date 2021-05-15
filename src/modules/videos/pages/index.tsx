@@ -1,19 +1,16 @@
 import { Row, Col } from 'antd';
 import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
-import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
-import Avatar from '../components/Avatar';
 import VideoPlayerContainer from '../containers/VideoPlayerContainer';
 import { fetchInsightData } from '../reducers/insightReducer/actions';
 import { fetchVideoData } from '../reducers/videoReducer/actions';
-import { convertToDayOfWeek } from '../utils/convertToDayOfWeek';
-import { DetailHeader, Header } from './styled';
-import filesize from 'filesize';
+import { Header } from './styled';
 import { insightActions } from '../reducers/insightReducer';
 import PeopleCard from '../components/VideoDetailCard/PeopleCard';
 import LabelCard from '../components/VideoDetailCard/LabelCard';
+import DetailCard from '../components/VideoDetailCard/DetailCard';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -44,35 +41,6 @@ const ViewVideoPage: React.FC = () => {
     dispatch(fetchInsightData());
   }, []);
 
-  const DetailCard = () => (
-    <VideoDetailCard title="Details">
-      <Row>
-        <Col span={6}>
-          <DetailHeader>Date</DetailHeader>
-        </Col>
-        <Col span={18}>
-          {dayjs(date).format('MMM DD, YYYY')}
-          <br />
-          {convertToDayOfWeek(dayjs(date).day()) + dayjs(date).format(',h:mA [GMT]Z')}
-        </Col>
-      </Row>
-      <Row style={{ marginTop: '5%' }}>
-        <Col span={6}>
-          <DetailHeader>Photo</DetailHeader>
-        </Col>
-        <Col span={18}>
-          {originalFileName + format}
-          <br /> {filesize(size)} {width} x {height}
-        </Col>
-      </Row>
-      <Row style={{ marginTop: '5%' }}>
-        <Col span={6}>
-          <DetailHeader>Place</DetailHeader>
-        </Col>
-        <Col span={18}>{place}</Col>
-      </Row>
-    </VideoDetailCard>
-  );
   return (
     <LayoutWithSearch border={false}>
       {'<'} Photos <br />
@@ -90,7 +58,16 @@ const ViewVideoPage: React.FC = () => {
           />
           <br />
           <LabelCard totalIncidents={totalIncidents} incidents={incidents} /> <br />
-          <DetailCard /> <br />
+          <DetailCard
+            date={date}
+            width={width}
+            height={height}
+            size={size}
+            place={place}
+            originalFileName={originalFileName}
+            format={format}
+          />{' '}
+          <br />
         </Col>
       </Row>
     </LayoutWithSearch>
