@@ -6,11 +6,11 @@ export const SliderWrapper = styled.div`
     overflow: hidden;
     width: 80px;
     -webkit-appearance: none;
-    background-color: #9a905d;
+    background-color: #c4c4c4;
     width: 100%;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
-    height: 0.5rem;
+    height: 0.35rem;
     outline: none;
     opacity: 0.7;
   }
