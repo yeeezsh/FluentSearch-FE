@@ -50,29 +50,24 @@ const insightSlice = createSlice({
         state.error = undefined;
         state.incidentData = data;
 
-        state.present.label = data.reduce((acc: LabelPresentType[], cur) => {
-          {
-            const { classes, nFps } = cur;
-            if (classes.length > 0) {
-              classes.map((el) => {
-                const category = el.cat;
-                const foundCategory = acc.find((el) => {
-                  return el.cat === category;
-                });
+        const distictLabelsSet = new Set(
+          data.flatMap((el) => el.classes.flatMap((c) => c.cat)),
+        );
+        const distinctLabels = Array.from(distictLabelsSet);
+        const mappedLabel = distinctLabels.map((el) => {
+          const filteredFps = data
+            .filter((f) => f.classes.map((el) => el.cat).includes(el))
+            .map((f) => f.nFps);
 
-                if (foundCategory) foundCategory.nFps.push(nFps);
-                else {
-                  acc.push({
-                    cat: category,
-                    selected: false,
-                    nFps: [nFps],
-                  });
-                }
-              });
-            }
-          }
-          return acc;
-        }, []);
+          const distinctFps = new Set(filteredFps);
+
+          return {
+            cat: el,
+            nFps: Array.from(distinctFps),
+            selected: false,
+          };
+        }) as LabelPresentType[];
+        state.present.label = mappedLabel;
 
         state.present.person = data
           .filter((el) => el.classes[0]?.cat === 'Person')
