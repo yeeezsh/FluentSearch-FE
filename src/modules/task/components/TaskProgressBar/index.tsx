@@ -11,6 +11,7 @@ import { CloseOutlined, PauseOutlined, CaretRightOutlined } from '@ant-design/ic
 import { PausePlayButton, StopButton } from './styled';
 
 type TaskProgressBarType = {
+  taskID: string;
   progress: number;
   elaspedTime: Date;
   inprogressPhoto: number;
@@ -19,7 +20,7 @@ type TaskProgressBarType = {
 };
 
 const TaskProgressBar: React.FC<TaskProgressBarType> = (props) => {
-  const { progress, elaspedTime, inprogressPhoto, totalPhoto, active } = props;
+  const { progress, elaspedTime, inprogressPhoto, totalPhoto, active, taskID } = props;
   return (
     <Wrapper>
       <ProgressBarWrapper>
@@ -31,7 +32,19 @@ const TaskProgressBar: React.FC<TaskProgressBarType> = (props) => {
       </ProgressBarWrapper>
       <ButtonWrapper>
         <PausePlayButton active={active}>
-          {active ? <PauseOutlined /> : <CaretRightOutlined />}
+          {active ? (
+            <PauseOutlined
+              onClick={() => {
+                console.log({ taskID });
+              }}
+            />
+          ) : (
+            <CaretRightOutlined
+              onClick={() => {
+                console.log({ taskID });
+              }}
+            />
+          )}
         </PausePlayButton>
         <StopButton>
           <CloseOutlined />
