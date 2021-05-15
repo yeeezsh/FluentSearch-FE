@@ -15,6 +15,11 @@ export const taskSlice = createSlice({
       const { data } = action.payload;
       state.present = data.map((el) => ({ ...el, status: 'waiting' }));
     },
+    setStatus(state, action: PayloadAction<{ _id: string; status: TaskStatus }>) {
+      const { _id, status } = action.payload;
+      const task = state.present.find((el) => el._id === _id);
+      state.present[task?._id || ''].status = status;
+    },
   },
 
   extraReducers: (builder) => {
