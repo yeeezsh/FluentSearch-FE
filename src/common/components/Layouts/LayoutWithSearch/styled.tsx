@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 const { Sider, Content } = Layout;
 
 type ContentWithPaddingPropsType = {
-  isPadding?: boolean;
+  padding?: boolean;
 };
 
 export const CanvasWrapper = styled.div`
@@ -118,7 +118,7 @@ export const UserWrapper = styled.div`
 export const ContentWithPadding = styled(Content)<ContentWithPaddingPropsType>`
   overflow-y: scroll;
   ${(props) =>
-    props.isPadding &&
+    props.padding &&
     `
     overflow-y: initial;
     background-color: white;

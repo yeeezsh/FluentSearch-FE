@@ -115,7 +115,7 @@ const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
           {router.pathname === '/dashboard' ? (
             <ContentWithPadding>{children}</ContentWithPadding>
           ) : (
-            <ContentWithPadding isPadding>
+            <ContentWithPadding padding>
               <h1>{title}</h1>
               <hr />
               {children}
