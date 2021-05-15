@@ -13,6 +13,7 @@ import { DetailHeader, Header } from './styled';
 import filesize from 'filesize';
 import { insightActions } from '../reducers/insightReducer';
 import PeopleCard from '../components/VideoDetailCard/PeopleCard';
+import LabelCard from '../components/VideoDetailCard/LabelCard';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -42,17 +43,6 @@ const ViewVideoPage: React.FC = () => {
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
   }, []);
-
-  const LabelCard = () => {
-    console.log(incidents);
-    return (
-      <VideoDetailCard title={`${totalIncidents} Labels`}>
-        {incidents.map((el, index) => (
-          <p key={index}>{el.cat}</p>
-        ))}
-      </VideoDetailCard>
-    );
-  };
 
   const DetailCard = () => (
     <VideoDetailCard title="Details">
@@ -99,7 +89,7 @@ const ViewVideoPage: React.FC = () => {
             handleSelectAvatar={handleSelectAvatar}
           />
           <br />
-          <LabelCard /> <br />
+          <LabelCard totalIncidents={totalIncidents} incidents={incidents} /> <br />
           <DetailCard /> <br />
         </Col>
       </Row>
