@@ -15,8 +15,15 @@ export type TaskData = {
   totalPhoto: number;
 };
 
+export type TaskPresent =
+  | TaskData
+  | {
+      status: 'pause' | 'waiting' | 'cancel' | 'finish' | 'running';
+    };
+
 export type TaskState = {
   data: TaskData[];
+  present: TaskPresent[];
   ready: boolean;
   error?: ErrorState;
 };
