@@ -28,6 +28,7 @@ export const taskSlice = createSlice({
       state.error = undefined;
     });
     builder.addCase(fetchTaskData.fulfilled, (state, action: any) => {
+      //TODO: any type has already fixed at PR#63
       state.ready = true;
       state.error = undefined;
       state.data = action.payload.data;
