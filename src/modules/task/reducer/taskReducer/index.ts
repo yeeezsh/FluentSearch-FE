@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchTaskData } from './actions';
 import { initTaskState } from './init';
-import { TASK } from './types';
+import { TASK, TaskData } from './types';
 
 export const taskSlice = createSlice({
   name: TASK,
@@ -21,11 +21,14 @@ export const taskSlice = createSlice({
       state.ready = false;
       state.error = undefined;
     });
-    builder.addCase(fetchTaskData.fulfilled, (state, action: any) => {
-      state.ready = true;
-      state.error = undefined;
-      state.data = action.payload.data;
-    });
+    builder.addCase(
+      fetchTaskData.fulfilled,
+      (state, action: PayloadAction<{ data: TaskData[] }>) => {
+        state.ready = true;
+        state.error = undefined;
+        state.data = action.payload.data;
+      },
+    );
   },
 });
 
