@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchTaskData } from './actions';
 import { initTaskState } from './init';
@@ -11,6 +11,12 @@ export const taskSlice = createSlice({
     init(state) {
       return { ...state, ...initTaskState };
     },
+    setActiveStatus(state, action: PayloadAction<{ active: boolean }>) {
+      return {
+        ...state,
+        active: !action.payload.active,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTaskData.rejected, (state) => {
@@ -22,6 +28,7 @@ export const taskSlice = createSlice({
       state.error = undefined;
     });
     builder.addCase(fetchTaskData.fulfilled, (state, action: any) => {
+      //TODO: any type has already fixed at PR#63
       state.ready = true;
       state.error = undefined;
       state.data = action.payload.data;
