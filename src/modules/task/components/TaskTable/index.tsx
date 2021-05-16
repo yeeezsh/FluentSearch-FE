@@ -8,26 +8,9 @@ import {
   ElaspedTime,
   Active,
 } from 'Modules/task/mocks/data';
-import { ModelEnum } from 'Modules/task/models/model.enum';
 import { stringCutter } from 'Modules/history/utils/stringCutter';
 import { TaskTableWrapper } from './styled';
-
-export type TaskTablePropsType = {
-  data: [
-    {
-      key: string;
-      timestamp: string;
-      taskID: string;
-      taskName: string;
-      model: ModelEnum;
-      progress: number;
-      elaspedTime: string;
-      inprogressPhoto: number;
-      totalPhoto: number;
-      active: boolean;
-    },
-  ][];
-};
+import { TaskTablePropsType } from './type';
 
 const TaskTable: React.FC<TaskTablePropsType> = (props) => {
   const { data } = props;
