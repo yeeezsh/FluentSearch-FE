@@ -11,10 +11,6 @@ import {
 import { ModelEnum } from 'Modules/task/models/model.enum';
 import { stringCutter } from 'Modules/history/utils/stringCutter';
 import { TaskTableWrapper } from './styled';
-import {
-  YEAR_MONTH_DATE_FORMAT,
-  HOUR_MINUTE_SECOND_FORMAT,
-} from 'src/common/constants/DateTimeFormat/types';
 
 export type TaskTablePropsType = {
   data: [
@@ -36,6 +32,10 @@ export type TaskTablePropsType = {
 const TaskTable: React.FC<TaskTablePropsType> = (props) => {
   const { data } = props;
   const { Column } = Table;
+
+  const YEAR_MONTH_DATE_FORMAT = 'YYYY-MM-DD';
+  const HOUR_MINUTE_SECOND_FORMAT = 'HH:mm:ss';
+
   return (
     <TaskTableWrapper dataSource={data}>
       <Column
