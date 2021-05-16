@@ -17,7 +17,7 @@ const TaskPage: React.FC = () => {
   return (
     <LayoutWithSearch title="Tasks">
       <PageWrapper>
-        <TaskTable data={taskData.data} />
+        <TaskTable data={taskData} />
       </PageWrapper>
     </LayoutWithSearch>
   );
