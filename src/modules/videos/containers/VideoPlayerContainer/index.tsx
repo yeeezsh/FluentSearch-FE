@@ -8,6 +8,7 @@ import { StoresState } from 'Stores/index';
 import { VideoPlayerWrapper } from './styled';
 import screenful from 'screenfull';
 import { PlaybackRate, ProgressState } from 'Modules/videos/models/types';
+import Canvas from 'Modules/videos/components/Canvas';
 
 const VideoPlayerContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,14 @@ const VideoPlayerContainer: React.FC = () => {
   const volume = useSelector((state: StoresState) => state.video.present.player.volume);
   const fullscreen = useSelector(
     (state: StoresState) => state.video.present.player.fullscreen,
+  );
+
+  const incidentData = useSelector((state: StoresState) => state.insight.incidentData);
+  const videoHeight = useSelector(
+    (state: StoresState) => state.video.present.metaData.height,
+  );
+  const videoWidth = useSelector(
+    (state: StoresState) => state.video.present.metaData.width,
   );
 
   const handleProgress = (changeState: ProgressState) => {
@@ -78,13 +87,21 @@ const VideoPlayerContainer: React.FC = () => {
     dispatch(videoActions.setPlaybackRate({ playbackRate: value }));
   };
 
+  let canvasWidth = 780;
+  const playerWidth = controlRef.current?.clientWidth;
+  canvasWidth = playerWidth ? playerWidth : canvasWidth;
+
+  let canvasHeight = 370;
+  const playerHeight = controlRef.current?.clientHeight;
+  canvasHeight = playerHeight ? playerHeight : canvasHeight;
+
   return (
     <VideoPlayerWrapper
       ref={playerContainerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}>
       <VideoPlayer
-        url="https://www.youtube.com/watch?v=zFT3f9biz68"
+        url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         ref={playerRef}
         isPlaying={playing}
         muted={muted}
@@ -92,6 +109,14 @@ const VideoPlayerContainer: React.FC = () => {
         handleProgress={handleProgress}
         volume={volume}
       />
+
+      <Canvas
+        width={canvasWidth}
+        height={canvasHeight}
+        data={incidentData}
+        played={played}
+      />
+
       <PlayerControl
         ref={controlRef}
         fullscreen={fullscreen}
