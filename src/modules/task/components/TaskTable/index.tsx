@@ -11,6 +11,10 @@ import {
 import { ModelEnum } from 'Modules/task/models/model.enum';
 import { stringCutter } from 'Modules/history/utils/stringCutter';
 import { TaskTableWrapper } from './styled';
+import {
+  YEAR_MONTH_DATE_FORMAT,
+  HOUR_MINUTE_SECOND_FORMAT,
+} from 'src/common/constants/DatetimeFormat/types';
 
 export type TaskTablePropsType = {
   data: [
@@ -41,9 +45,9 @@ const TaskTable: React.FC<TaskTablePropsType> = (props) => {
         render={(timestamp: Date): JSX.Element => {
           return (
             <div>
-              {dayjs(timestamp).format('YYYY-MM-DD')}
+              {dayjs(timestamp).format(YEAR_MONTH_DATE_FORMAT)}
               <br />
-              {dayjs(timestamp).format('HH:mm:ss')}
+              {dayjs(timestamp).format(HOUR_MINUTE_SECOND_FORMAT)}
             </div>
           );
         }}
