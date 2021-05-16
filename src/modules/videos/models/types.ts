@@ -26,14 +26,14 @@ type PersonPresentType = {
   _id?: string;
   label?: string;
   uri: string;
-  nFps: string;
+  nFps: number;
   selected: boolean;
 };
 
 type LabelPresentType = {
   cat: string;
   selected: boolean;
-  nFps: string[];
+  nFps: number[];
 };
 
 type IncidentType = {
@@ -47,7 +47,7 @@ type AnnotationResultType = {
   _id?: string;
   classes: IncidentType[];
   uri: string;
-  nFps: string;
+  nFps: number;
 };
 
 type BoundingBoxType = {

@@ -1,4 +1,6 @@
-export const annotation = [
+import { AnnotationResultType } from '../models/types';
+
+export const annotation: AnnotationResultType[] = [
   {
     classes: [
       {
@@ -24,12 +26,12 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-0.jpg',
-    nFps: '0',
+    nFps: 0,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-1.jpg',
-    nFps: '1',
+    nFps: 1,
   },
   {
     classes: [
@@ -46,7 +48,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-10.jpg',
-    nFps: '10',
+    nFps: 10,
   },
   {
     classes: [
@@ -73,7 +75,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-11.jpg',
-    nFps: '11',
+    nFps: 11,
   },
   {
     classes: [
@@ -90,7 +92,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-12.jpg',
-    nFps: '12',
+    nFps: 12,
   },
   {
     classes: [
@@ -117,7 +119,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-13.jpg',
-    nFps: '13',
+    nFps: 13,
   },
   {
     classes: [
@@ -134,7 +136,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-14.jpg',
-    nFps: '14',
+    nFps: 14,
   },
   {
     classes: [
@@ -151,7 +153,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-15.jpg',
-    nFps: '15',
+    nFps: 15,
   },
   {
     classes: [
@@ -188,7 +190,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-16.jpg',
-    nFps: '16',
+    nFps: 16,
   },
   {
     classes: [
@@ -205,7 +207,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-17.jpg',
-    nFps: '17',
+    nFps: 17,
   },
   {
     classes: [
@@ -242,7 +244,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-18.jpg',
-    nFps: '18',
+    nFps: 18,
   },
   {
     classes: [
@@ -279,7 +281,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-19.jpg',
-    nFps: '19',
+    nFps: 19,
   },
   {
     classes: [
@@ -296,42 +298,42 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-2.jpg',
-    nFps: '2',
+    nFps: 2,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-20.jpg',
-    nFps: '20',
+    nFps: 20,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-21.jpg',
-    nFps: '21',
+    nFps: 21,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-22.jpg',
-    nFps: '22',
+    nFps: 22,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-23.jpg',
-    nFps: '23',
+    nFps: 23,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-24.jpg',
-    nFps: '24',
+    nFps: 24,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-25.jpg',
-    nFps: '25',
+    nFps: 25,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-26.jpg',
-    nFps: '26',
+    nFps: 26,
   },
   {
     classes: [
@@ -348,7 +350,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-27.jpg',
-    nFps: '27',
+    nFps: 27,
   },
   {
     classes: [
@@ -375,7 +377,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-28.jpg',
-    nFps: '28',
+    nFps: 28,
   },
   {
     classes: [
@@ -392,7 +394,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-29.jpg',
-    nFps: '29',
+    nFps: 28,
   },
   {
     classes: [
@@ -409,7 +411,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-3.jpg',
-    nFps: '3',
+    nFps: 3,
   },
   {
     classes: [
@@ -426,7 +428,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-4.jpg',
-    nFps: '4',
+    nFps: 4,
   },
   {
     classes: [
@@ -443,7 +445,7 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-5.jpg',
-    nFps: '5',
+    nFps: 5,
   },
   {
     classes: [
@@ -460,21 +462,21 @@ export const annotation = [
       },
     ],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-6.jpg',
-    nFps: '6',
+    nFps: 6,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-7.jpg',
-    nFps: '7',
+    nFps: 7,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-8.jpg',
-    nFps: '8',
+    nFps: 8,
   },
   {
     classes: [],
     uri: 'https://FluentSearch-Insight-Video:3000/file/extract-9.jpg',
-    nFps: '9',
+    nFps: 9,
   },
 ];

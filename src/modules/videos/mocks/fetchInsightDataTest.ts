@@ -19,7 +19,7 @@ export const mockData: AnnotationResultType[] = [
       },
     ],
     uri: 'www.cpe.com',
-    nFps: '0',
+    nFps: 0,
   },
   {
     classes: [
@@ -45,19 +45,19 @@ export const mockData: AnnotationResultType[] = [
       },
     ],
     uri: 'www.cpe.com',
-    nFps: '1',
+    nFps: 1,
   },
 ];
 
 export const expectedResultPerson: PersonPresentType[] = [
   {
     uri: 'www.cpe.com',
-    nFps: '0',
+    nFps: 0,
     selected: false,
   },
   {
     uri: 'www.cpe.com',
-    nFps: '1',
+    nFps: 1,
     selected: false,
   },
 ];
@@ -66,11 +66,11 @@ export const expectedResultLabel: LabelPresentType[] = [
   {
     cat: 'Person',
     selected: false,
-    nFps: ['0', '1'],
+    nFps: [0, 1],
   },
   {
     cat: 'Cat',
     selected: false,
-    nFps: ['1'],
+    nFps: [1],
   },
 ];
