@@ -3,7 +3,7 @@ import faker from 'faker';
 import { ModelEnum } from '../models/model.enum';
 
 export interface IDataSource {
-  key: string;
+  _id: string;
   timestamp: string;
   taskID: string;
   taskName: string;
@@ -15,7 +15,7 @@ export interface IDataSource {
 }
 
 const DataSourceMock = Sync.makeFactory<IDataSource>({
-  key: each(() => faker.random.uuid()),
+  _id: each(() => faker.random.uuid()),
   timestamp: each(() => faker.date.past().toISOString()),
   taskID: each(() => faker.random.uuid()),
   taskName: each(() => faker.lorem.word()),
