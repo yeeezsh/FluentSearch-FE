@@ -1,4 +1,6 @@
+import { ReactNode } from 'react';
+
 export type LabelProps = {
   color: string;
-  children: React.ReactChildren;
+  children: ReactNode;
 };
