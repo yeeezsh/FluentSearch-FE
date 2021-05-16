@@ -14,7 +14,7 @@ import { TaskTableWrapper } from './styled';
 import {
   YEAR_MONTH_DATE_FORMAT,
   HOUR_MINUTE_SECOND_FORMAT,
-} from 'src/common/constants/DatetimeFormat/types';
+} from 'src/common/constants/DateTimeFormat/types';
 
 export type TaskTablePropsType = {
   data: [
