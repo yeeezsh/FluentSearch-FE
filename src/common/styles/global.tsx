@@ -155,7 +155,6 @@ export const PurpleTable = styled(Table)`
 `;
 
 export const PageWrapper = styled.div`
-  margin: 10% 10% 0% 10%;
   padding-bottom: 5%;
 `;
 
