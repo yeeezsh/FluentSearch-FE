@@ -14,12 +14,14 @@ const HistoryPages: React.FC = () => {
   const historyData = useSelector((state: StoresState) => state.history);
   return (
     <LayoutWithSearch title="History">
-      <PurpleTable
-        dataSource={historyData.data}
-        columns={columns}
-        style={{ marginTop: '30px' }}
-        pagination={{ position: ['bottomCenter'] }}
-      />
+      <PageWrapper>
+        <PurpleTable
+          dataSource={historyData.data}
+          columns={columns}
+          style={{ marginTop: '30px' }}
+          pagination={{ position: ['bottomCenter'] }}
+        />
+      </PageWrapper>
     </LayoutWithSearch>
   );
 };
