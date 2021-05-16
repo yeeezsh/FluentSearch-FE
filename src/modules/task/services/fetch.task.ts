@@ -1,5 +1,6 @@
-import { DataSource, IDataSource } from '../mocks/data';
+import { DataSource } from '../mocks/data';
+import { TaskData } from '../reducer/taskReducer/types';
 
-export const fetchTask = (): IDataSource[] => {
+export const fetchTask = (): TaskData[] => {
   return DataSource;
 };
