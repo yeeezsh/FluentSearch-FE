@@ -15,7 +15,6 @@ const HistoryPages: React.FC = () => {
   return (
     <LayoutWithSearch title="History">
       <PageWrapper>
-        <hr />
         <PurpleTable
           dataSource={historyData.data}
           columns={columns}
