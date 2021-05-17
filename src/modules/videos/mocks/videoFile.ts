@@ -8,8 +8,8 @@ export const videoFile: VideoFileType = {
   size: 26530018,
   type: 'undefined',
   format: '.jpg',
-  width: 1200,
-  height: 800,
+  width: 960,
+  height: 540,
   date: 'Wed May 12 2021 23:06:42 GMT+0700 (Indochina Time)',
   place: 'Jujutsu Academy',
 };
