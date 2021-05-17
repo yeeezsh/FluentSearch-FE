@@ -5,4 +5,6 @@ export type CanvasPropsType = {
   height: number;
   data: AnnotationResultType[];
   played: number;
+  videoHeight: number;
+  videoWidth: number;
 };

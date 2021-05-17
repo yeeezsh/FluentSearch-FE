@@ -8,7 +8,6 @@ import { StoresState } from 'Stores/index';
 import { VideoPlayerWrapper } from './styled';
 import screenful from 'screenfull';
 import { PlaybackRate, ProgressState } from 'Modules/videos/models/types';
-import Canvas from 'Modules/videos/components/Canvas';
 
 const VideoPlayerContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,13 +31,14 @@ const VideoPlayerContainer: React.FC = () => {
     (state: StoresState) => state.video.present.player.fullscreen,
   );
 
-  const incidentData = useSelector((state: StoresState) => state.insight.incidentData);
   const videoHeight = useSelector(
     (state: StoresState) => state.video.present.metaData.height,
   );
   const videoWidth = useSelector(
     (state: StoresState) => state.video.present.metaData.width,
   );
+
+  const incidentData = useSelector((state: StoresState) => state.insight.incidentData);
 
   const handleProgress = (changeState: ProgressState) => {
     if (!seeking) dispatch(videoActions.setProgress({ played: changeState.played }));
@@ -87,11 +87,12 @@ const VideoPlayerContainer: React.FC = () => {
     dispatch(videoActions.setPlaybackRate({ playbackRate: value }));
   };
 
-  let canvasWidth = 780;
+  let canvasWidth = 556;
+  let canvasHeight = 288;
+
   const playerWidth = controlRef.current?.clientWidth;
   canvasWidth = playerWidth ? playerWidth : canvasWidth;
 
-  let canvasHeight = 370;
   const playerHeight = controlRef.current?.clientHeight;
   canvasHeight = playerHeight ? playerHeight : canvasHeight;
 
@@ -101,20 +102,19 @@ const VideoPlayerContainer: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}>
       <VideoPlayer
-        url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        url="videos/sample.mp4"
         ref={playerRef}
         isPlaying={playing}
         muted={muted}
         playbackRate={playbackRate}
         handleProgress={handleProgress}
         volume={volume}
-      />
-
-      <Canvas
-        width={canvasWidth}
-        height={canvasHeight}
-        data={incidentData}
+        canvasWidth={canvasWidth}
+        canvasHeight={canvasHeight}
+        incidentData={incidentData}
         played={played}
+        videoHeight={videoHeight}
+        videoWidth={videoWidth}
       />
 
       <PlayerControl
