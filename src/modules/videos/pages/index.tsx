@@ -44,7 +44,7 @@ const ViewVideoPage: React.FC = () => {
   return (
     <LayoutWithSearch border={false}>
       {'<'} Photos <br />
-      <Header>video-wedding</Header>
+      <Header>{originalFileName}</Header>
       <hr />
       <Row style={{ marginTop: '5%' }}>
         <Col span={13}>
@@ -66,7 +66,7 @@ const ViewVideoPage: React.FC = () => {
             place={place}
             originalFileName={originalFileName}
             format={format}
-          />{' '}
+          />
           <br />
         </Col>
       </Row>
