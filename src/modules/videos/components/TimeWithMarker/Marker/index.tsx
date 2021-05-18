@@ -4,13 +4,12 @@ import { MarkerPropsType } from './types';
 import { v4 as uuid } from 'uuid';
 
 const Marker: React.FC<MarkerPropsType> = (props) => {
-  const { marker, duration, onMarkerClick } = props;
-  const { time, title } = marker;
+  const { nFps, duration, onMarkerClick } = props;
   const id = uuid();
 
   const getPosition = () => {
     if (duration) {
-      const percent = time <= duration ? time / duration : 1;
+      const percent = nFps <= duration ? nFps / duration : 1;
       return `calc(${percent * 100}% - 2px)`;
     }
     return '-9999px';
@@ -19,9 +18,8 @@ const Marker: React.FC<MarkerPropsType> = (props) => {
   return (
     <MarkerWrapper
       id={id}
-      title={title}
       style={{ left: getPosition() }}
-      onClick={() => onMarkerClick(marker)}
+      onClick={() => onMarkerClick(nFps)}
     />
   );
 };

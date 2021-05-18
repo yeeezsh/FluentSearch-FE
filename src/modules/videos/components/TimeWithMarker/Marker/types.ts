@@ -1,10 +1,5 @@
-export type MarkerType = {
-  time: number;
-  title: string;
-};
-
 export type MarkerPropsType = {
-  marker: MarkerType;
+  nFps: number;
   duration: number;
-  onMarkerClick: (marker: MarkerType) => void;
+  onMarkerClick: (nFps: number) => void;
 };

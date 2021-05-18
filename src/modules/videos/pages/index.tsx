@@ -11,7 +11,6 @@ import PeopleCard from '../components/VideoDetailCard/PeopleCard';
 import LabelCard from '../components/VideoDetailCard/LabelCard';
 import DetailCard from '../components/VideoDetailCard/DetailCard';
 import ReactPlayer from 'react-player';
-import { MarkerType } from '../components/TimeWithMarker/Marker/types';
 import { videoActions } from '../reducers/videoReducer';
 import { PlaybackRate, ProgressState } from '../models/types';
 import screenful from 'screenfull';
@@ -69,6 +68,9 @@ const ViewVideoPage: React.FC = () => {
   );
 
   const incidentData = useSelector((state: StoresState) => state.insight.incidentData);
+  const selectedLabel = useSelector(
+    (state: StoresState) => state.insight.present.selectedLabel,
+  );
 
   const handleProgress = (changeState: ProgressState) => {
     if (!seeking) dispatch(videoActions.setProgress({ played: changeState.played }));
@@ -126,8 +128,8 @@ const ViewVideoPage: React.FC = () => {
   const playerHeight = controlRef.current?.clientHeight;
   canvasHeight = playerHeight ? playerHeight : canvasHeight;
 
-  const handleMarkerClick = (marker: MarkerType) => {
-    playerRef.current?.seekTo(marker.time);
+  const handleMarkerClick = (nFps: number) => {
+    playerRef.current?.seekTo(nFps);
     alert('marker clicked!');
   };
 
@@ -193,11 +195,13 @@ const ViewVideoPage: React.FC = () => {
           />
           <br />
           <LabelCard
+            duration={duration}
             totalIncidents={totalIncidents}
             incidents={incidents}
             played={played}
             onMarkerClick={handleMarkerClick}
-          />{' '}
+            selectedLabel={selectedLabel}
+          />
           <br />
           <DetailCard
             date={date}
