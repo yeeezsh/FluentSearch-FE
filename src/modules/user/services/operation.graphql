@@ -7,7 +7,6 @@ query GetUser($id: String!) {
     mainEmail
     name
     package
-    password
     role
     updateDate
     zone
@@ -22,7 +21,6 @@ query GetUsers($limit: Int = 1000, $skip: Int = 0) {
     email
     mainEmail
     package
-    password
     role
     updateDate
     zone
@@ -85,7 +83,6 @@ mutation UpdateUser($UserUpdateInput: UserUpdateInput!) {
     mainEmail
     name
     package
-    password
     role
     updateDate
     zone

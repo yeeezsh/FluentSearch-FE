@@ -151,7 +151,7 @@ export type GetUserQuery = (
   { __typename?: 'Query' }
   & { User?: Maybe<(
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'password' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateDate' | 'zone'>
   )> }
 );
 
@@ -165,7 +165,7 @@ export type GetUsersQuery = (
   { __typename?: 'Query' }
   & { Users: Array<(
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'package' | 'password' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'package' | 'role' | 'updateDate' | 'zone'>
   )> }
 );
 
@@ -242,7 +242,7 @@ export type UpdateUserMutation = (
   { __typename?: 'Mutation' }
   & { UpdateUser: (
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'password' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateDate' | 'zone'>
   ) }
 );
 
@@ -257,7 +257,6 @@ export const GetUserDocument = gql`
     mainEmail
     name
     package
-    password
     role
     updateDate
     zone
@@ -299,7 +298,6 @@ export const GetUsersDocument = gql`
     email
     mainEmail
     package
-    password
     role
     updateDate
     zone
@@ -544,7 +542,6 @@ export const UpdateUserDocument = gql`
     mainEmail
     name
     package
-    password
     role
     updateDate
     zone
