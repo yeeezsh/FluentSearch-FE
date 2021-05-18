@@ -6,17 +6,12 @@ import { TimeWithMarkerPropsType } from './types';
 
 const TimeWithMarker: React.FC<TimeWithMarkerPropsType> = (props) => {
   const { played, incidents, onClick, selectedLabel, duration } = props;
-
-  const addMarker = () => {
-    const markersCopy: LabelPresentType[] = [...incidents];
-  };
   return (
     <>
-      {' '}
       {incidents &&
         incidents
           .filter((incident) => incident.cat === selectedLabel)
-          .map((incident, index) => {
+          .map((incident) => {
             incident.nFps.map((nFps, index) => {
               <Marker
                 key={index}
