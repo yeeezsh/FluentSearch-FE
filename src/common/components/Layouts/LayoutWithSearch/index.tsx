@@ -103,7 +103,7 @@ const HeaderWrapper: React.FC = () => {
 };
 
 const LayoutWithSearch: React.FC<AllPhotoLayoutProps> = (props) => {
-  const { title, children, border } = props;
+  const { title, children, border = true } = props;
   const router = useRouter();
 
   return (
