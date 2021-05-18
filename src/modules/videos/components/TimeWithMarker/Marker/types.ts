@@ -1,5 +1,7 @@
+import { LabelPresentType } from 'Modules/videos/models/types';
+
 export type MarkerPropsType = {
-  nFps: number;
+  incident: LabelPresentType;
   duration: number;
   onMarkerClick: (nFps: number) => void;
 };

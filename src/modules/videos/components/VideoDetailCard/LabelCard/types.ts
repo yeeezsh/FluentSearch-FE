@@ -5,6 +5,7 @@ export type LabelCardPropsType = {
   incidents: LabelPresentType[];
   played: number;
   onMarkerClick: (nFps: number) => void;
+  onLabelClick: (label: string) => void;
   selectedLabel: string;
   duration: number;
 };
