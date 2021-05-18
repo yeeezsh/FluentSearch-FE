@@ -140,16 +140,12 @@ const ViewVideoPage: React.FC = () => {
   const currentTime = playerRef.current ? playerRef.current.getCurrentTime() : 0;
   const durationTime = playerRef.current ? playerRef.current.getDuration() : 0;
 
-  console.log('durationTime', durationTime);
-
   const elaspedTime =
     timeDisplayFormat === 'normal'
       ? timeFormatter(currentTime)
       : `-${timeFormatter(durationTime - currentTime)}`;
 
   const totalDuration = timeFormatter(durationTime);
-
-  console.log(totalDuration);
 
   const handleMarkerClick = (nFps: number) => {
     playerRef.current?.seekTo(nFps);
