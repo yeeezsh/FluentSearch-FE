@@ -8,4 +8,10 @@ const DetailHeader = styled.span`
   font-weight: bold;
 `;
 
-export { Header, DetailHeader };
+const VideoPlayerWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 50vh;
+`;
+
+export { Header, DetailHeader, VideoPlayerWrapper };
