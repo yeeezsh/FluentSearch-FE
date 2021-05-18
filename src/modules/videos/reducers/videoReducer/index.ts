@@ -34,6 +34,10 @@ const videoSlice = createSlice({
     setFullScreen(state) {
       state.present.player.fullscreen = !state.present.player.fullscreen;
     },
+    setDuration(state, action: PayloadAction<{ duration: number }>) {
+      const { duration } = action.payload;
+      state.present.player.duration = duration;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchVideoData.rejected, (state) => {

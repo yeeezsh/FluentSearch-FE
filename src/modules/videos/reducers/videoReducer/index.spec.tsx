@@ -85,4 +85,10 @@ describe('reducers/videoReducer test', () => {
     expect(result).toEqual(videoFile);
     expect(resultMetaData).toEqual(expectedResult);
   });
+
+  it('it should set duration correctly', () => {
+    store.dispatch(videoActions.setDuration({ duration: 50 }));
+    const result = store.getState().video.present.player.duration;
+    expect(result).toEqual(50);
+  });
 });
