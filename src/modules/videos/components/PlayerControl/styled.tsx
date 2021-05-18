@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import styled from 'styled-components';
 import { ControlWrapperPropsType } from './types';
 
@@ -58,4 +59,15 @@ export const BottomIcons = styled.div`
 
 export const VolumeSliderWrapper = styled.div`
   width: 100%;
+`;
+
+export const TimeFormatButton = styled(Button)`
+  padding: 0rem;
+  margin: 0rem;
+  color: #fff;
+  background: none;
+  border: none;
+  &:hover {
+    color: lightgrey;
+  }
 `;

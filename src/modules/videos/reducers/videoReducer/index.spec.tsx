@@ -91,4 +91,10 @@ describe('reducers/videoReducer test', () => {
     const result = store.getState().video.present.player.duration;
     expect(result).toEqual(50);
   });
+
+  it('it should set timeDisplayFormat correctly', () => {
+    store.dispatch(videoActions.setTimeDisplayFormat({ format: 'remaining' }));
+    const result = store.getState().video.present.player.timeDisplayFormat;
+    expect(result).toEqual('remaining');
+  });
 });

@@ -5,7 +5,7 @@ type ControlWrapperPropsType = {
   fullscreen: boolean;
 };
 
-type PlayerControlPropsType = VideoState & {
+type PlayerControlPropsType = Omit<VideoState, 'timeDisplayFormat'> & {
   onPlaying: () => void;
   onFastForward: () => void;
   onRewind: () => void;
@@ -15,6 +15,9 @@ type PlayerControlPropsType = VideoState & {
   onPlaybackRateChange: (value: PlaybackRate) => void;
   onMouseUp: () => void;
   onMouseDown: () => void;
+  onChangeDisplayFormat: () => void;
+  totalDuration: string;
+  elaspedTime: string;
 };
 
 export type { PlayerControlPropsType, ControlWrapperPropsType };

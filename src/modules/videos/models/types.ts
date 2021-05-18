@@ -7,6 +7,7 @@ type VideoState = {
   duration: number;
   played: number;
   fullscreen: boolean;
+  timeDisplayFormat: TimeDisplayFormat;
 };
 
 type ProgressState = {
@@ -15,6 +16,8 @@ type ProgressState = {
   played: number;
   playedSeconds: number;
 };
+
+type TimeDisplayFormat = 'normal' | 'remaining';
 
 type PlaybackRate = '0.5' | '0.75' | '1.0' | '1.5' | '2.0';
 
@@ -85,4 +88,5 @@ export type {
   VideoFileType,
   MetaDataType,
   BoundingBoxType,
+  TimeDisplayFormat,
 };

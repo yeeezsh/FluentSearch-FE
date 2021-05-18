@@ -16,6 +16,7 @@ import { PlaybackRate, ProgressState } from '../models/types';
 import screenful from 'screenfull';
 import PlayerControl from '../components/PlayerControl';
 import VideoPlayer from '../components/VideoPlayer';
+import { timeFormatter } from '../utils/timeFormatter';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,9 @@ const ViewVideoPage: React.FC = () => {
   const volume = useSelector((state: StoresState) => state.video.present.player.volume);
   const fullscreen = useSelector(
     (state: StoresState) => state.video.present.player.fullscreen,
+  );
+  const timeDisplayFormat = useSelector(
+    (state: StoresState) => state.video.present.player.timeDisplayFormat,
   );
 
   const videoHeight = useSelector(
@@ -119,6 +123,11 @@ const ViewVideoPage: React.FC = () => {
     dispatch(videoActions.setPlaybackRate({ playbackRate: value }));
   };
 
+  const handleDisplayFormat = () => {
+    const format = timeDisplayFormat === 'normal' ? 'remaining' : 'normal';
+    dispatch(videoActions.setTimeDisplayFormat({ format: format }));
+  };
+
   let canvasWidth = 556;
   let canvasHeight = 288;
 
@@ -128,12 +137,31 @@ const ViewVideoPage: React.FC = () => {
   const playerHeight = controlRef.current?.clientHeight;
   canvasHeight = playerHeight ? playerHeight : canvasHeight;
 
+  const currentTime = playerRef.current ? playerRef.current.getCurrentTime() : 0;
+  const durationTime = playerRef.current ? playerRef.current.getDuration() : 0;
+
+  console.log('durationTime', durationTime);
+
+  const elaspedTime =
+    timeDisplayFormat === 'normal'
+      ? timeFormatter(currentTime)
+      : `-${timeFormatter(durationTime - currentTime)}`;
+
+  const totalDuration = timeFormatter(durationTime);
+
+  console.log(totalDuration);
+
   const handleMarkerClick = (nFps: number) => {
     playerRef.current?.seekTo(nFps);
     alert('marker clicked!');
   };
 
+  const handleLabelClick = (selectedLabel: string) => {
+    dispatch(insightActions.setSelectedLabel({ category: selectedLabel }));
+  };
+
   useEffect(() => {
+    dispatch(videoActions.setDuration({ duration: durationTime }));
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
   }, []);
@@ -184,6 +212,9 @@ const ViewVideoPage: React.FC = () => {
               onVideoSliderChange={() => console.log('temp')}
               onMouseUp={() => console.log('temp')}
               onMouseDown={() => console.log('temp')}
+              onChangeDisplayFormat={handleDisplayFormat}
+              elaspedTime={elaspedTime}
+              totalDuration={totalDuration}
             />
           </VideoPlayerWrapper>
         </Col>
@@ -200,6 +231,7 @@ const ViewVideoPage: React.FC = () => {
             incidents={incidents}
             played={played}
             onMarkerClick={handleMarkerClick}
+            onLabelClick={handleLabelClick}
             selectedLabel={selectedLabel}
           />
           <br />

@@ -1,4 +1,4 @@
-import { Row, Col, Select } from 'antd';
+import { Row, Col, Select, Button } from 'antd';
 import React, { forwardRef } from 'react';
 import {
   BottomControlWrapper,
@@ -6,6 +6,7 @@ import {
   ControlIcons,
   ControlWrapper,
   Overlay,
+  TimeFormatButton,
   VolumeSliderWrapper,
 } from './styled';
 import { PlayerControlPropsType } from './types';
@@ -36,6 +37,9 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     onPlaybackRateChange,
     onFastForward,
     onRewind,
+    elaspedTime,
+    totalDuration,
+    onChangeDisplayFormat,
     fullscreen,
   } = props;
 
@@ -111,6 +115,11 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
                   onChange={onVideoSliderChange}
                 />
               </VolumeSliderWrapper>
+            </Col>
+            <Col xl={4} push={4}>
+              <TimeFormatButton type="text" onClick={() => onChangeDisplayFormat()}>
+                {elaspedTime} / {totalDuration}
+              </TimeFormatButton>
             </Col>
           </Row>
         </Col>

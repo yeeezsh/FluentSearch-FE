@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MetaDataType, PlaybackRate, VideoFileType } from 'Modules/videos/models/types';
+import {
+  MetaDataType,
+  PlaybackRate,
+  TimeDisplayFormat,
+  VideoFileType,
+} from 'Modules/videos/models/types';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchVideoData } from './actions';
 import { initVideoState } from './init';
@@ -37,6 +42,10 @@ const videoSlice = createSlice({
     setDuration(state, action: PayloadAction<{ duration: number }>) {
       const { duration } = action.payload;
       state.present.player.duration = duration;
+    },
+    setTimeDisplayFormat(state, action: PayloadAction<{ format: TimeDisplayFormat }>) {
+      const { format } = action.payload;
+      state.present.player.timeDisplayFormat = format;
     },
   },
   extraReducers: (builder) => {
