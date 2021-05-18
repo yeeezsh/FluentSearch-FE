@@ -147,9 +147,8 @@ const ViewVideoPage: React.FC = () => {
 
   const totalDuration = timeFormatter(durationTime);
 
-  const handleMarkerClick = (nFps: number) => {
-    playerRef.current?.seekTo(nFps);
-    alert('marker clicked!');
+  const handleMarkerClick = (time: number) => {
+    playerRef.current?.seekTo(time);
   };
 
   const handleLabelClick = (selectedLabel: string) => {
@@ -157,7 +156,6 @@ const ViewVideoPage: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(videoActions.setDuration({ duration: durationTime }));
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
   }, []);
