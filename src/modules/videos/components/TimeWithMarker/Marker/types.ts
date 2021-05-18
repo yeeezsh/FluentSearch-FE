@@ -1,7 +1,5 @@
 export type MarkerType = {
-  id: number;
   time: number;
-  color: string;
   title: string;
 };
 

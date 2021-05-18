@@ -1,11 +1,12 @@
 import React from 'react';
 import { MarkerWrapper } from './styled';
 import { MarkerPropsType } from './types';
+import { v4 as uuid } from 'uuid';
 
 const Marker: React.FC<MarkerPropsType> = (props) => {
   const { marker, duration, onMarkerClick } = props;
-  const { time, color, title } = marker;
-  const id = String(marker.id);
+  const { time, title } = marker;
+  const id = uuid();
 
   const getPosition = () => {
     if (duration) {
@@ -19,7 +20,7 @@ const Marker: React.FC<MarkerPropsType> = (props) => {
     <MarkerWrapper
       id={id}
       title={title}
-      style={{ background: color, left: getPosition() }}
+      style={{ left: getPosition() }}
       onClick={() => onMarkerClick(marker)}
     />
   );

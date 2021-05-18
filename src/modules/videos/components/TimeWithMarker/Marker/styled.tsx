@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MarkerWrapper = styled.i`
-  background-color: #666666;
+  background-color: #5a36cc;
   cursor: pointer;
   display: block;
   height: 8px;
