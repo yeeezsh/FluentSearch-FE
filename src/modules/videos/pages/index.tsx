@@ -29,7 +29,7 @@ const ViewVideoPage: React.FC = () => {
   const width = useSelector((state: StoresState) => state.video.present.metaData.width);
   const height = useSelector((state: StoresState) => state.video.present.metaData.height);
   const place = useSelector((state: StoresState) => state.video.present.metaData.place);
-
+  const url = useSelector((state: StoresState) => state.video.videoFile.url);
   const incidents = useSelector((state: StoresState) => state.insight.present.label);
   const personIncidents = useSelector(
     (state: StoresState) => state.insight.present.person,
@@ -174,7 +174,7 @@ const ViewVideoPage: React.FC = () => {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}>
             <VideoPlayer
-              url="videos/sample.mp4"
+              url={url}
               ref={playerRef}
               isPlaying={playing}
               muted={muted}
