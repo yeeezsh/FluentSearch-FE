@@ -197,7 +197,7 @@ const ViewVideoPage: React.FC = () => {
               volume={volume}
               playing={playing}
               seeking={seeking}
-              duration={duration}
+              duration={durationTime}
               playbackRate={playbackRate}
               onPlaying={handlePlaying}
               onRewind={handleRewind}
@@ -222,10 +222,9 @@ const ViewVideoPage: React.FC = () => {
           />
           <br />
           <LabelCard
-            duration={duration}
+            duration={durationTime}
             totalIncidents={totalIncidents}
             incidents={incidents}
-            played={played}
             onMarkerClick={handleMarkerClick}
             onLabelClick={handleLabelClick}
             selectedLabel={selectedLabel}

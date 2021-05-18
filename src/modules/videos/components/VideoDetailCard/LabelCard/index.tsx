@@ -8,7 +8,6 @@ const LabelCard: React.FC<LabelCardPropsType> = (props) => {
   const {
     incidents,
     totalIncidents,
-    played,
     onMarkerClick,
     onLabelClick,
     selectedLabel,
@@ -17,11 +16,15 @@ const LabelCard: React.FC<LabelCardPropsType> = (props) => {
   return (
     <VideoDetailCard title={`${totalIncidents} Labels`}>
       {incidents.map((el, index) => (
-        <ToggleLabel key={index} onLabelClick={onLabelClick} label={el.cat} />
+        <ToggleLabel
+          key={index}
+          onLabelClick={onLabelClick}
+          selected={el.selected}
+          label={el.cat}
+        />
       ))}
       <TimeWithMarker
         duration={duration}
-        played={played}
         incidents={incidents}
         onClick={onMarkerClick}
         selectedLabel={selectedLabel}
