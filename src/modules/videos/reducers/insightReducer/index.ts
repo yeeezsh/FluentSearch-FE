@@ -66,7 +66,7 @@ const insightSlice = createSlice({
         state.present.label = mappedLabel;
 
         state.present.person = data
-          .filter((f) => f.classes.map((el) => el.cat.includes('Person')))
+          .filter((f) => f.classes.map((el) => el.cat).includes('Person'))
           .map((el) => ({ uri: el.uri, nFps: el.nFps, selected: false }));
       },
     );
