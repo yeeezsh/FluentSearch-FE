@@ -26,21 +26,6 @@ const userSlice = createSlice({
       state.authenticated = false;
       state.msg = MSG_INTERNAL_ERROR;
     });
-    builder.addCase(requestLogin.pending, (state) => {
-      state.authenticated = false;
-    });
-    builder.addCase(requestLogin.fulfilled, (state) => {
-      state.authenticated = true;
-    });
-    builder.addCase(getUser.rejected, (state) => {
-      state.authenticated = false;
-    });
-    builder.addCase(getUser.pending, (state) => {
-      state.authenticated = false;
-    });
-    builder.addCase(getUser.fulfilled, (state) => {
-      state.authenticated = true;
-    });
   },
 });
 

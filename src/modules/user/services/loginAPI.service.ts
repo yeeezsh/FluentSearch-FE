@@ -4,7 +4,7 @@ import { UserState } from '../reducers/userReducer/types';
 import { MSG_BAD_PASSWORD, MSG_INTERNAL_ERROR } from './default.msg';
 import adapter from 'Services/adapter.service';
 import { FormLogin } from '../pages/login/types';
-import { store } from 'Stores/index.ts';
+import { store } from 'Stores/index';
 
 export function DeleteCredential(): void {
   localStorage.removeItem('user');
