@@ -13,7 +13,6 @@ import { FormErrorValue, FormFinishValue, FormRegister } from './types';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { Loading } from 'Components/Loader/styled';
-import { userActions } from 'Modules/user/reducers/userReducer';
 import { useCreateUserMutation } from '../../../../common/generated/generated-types';
 
 const HeaderLogo: React.FC = () => (
@@ -42,7 +41,6 @@ const RegisterPage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (!error && data) {
-      dispatch(userActions.setUser(data.CreateUser));
       router.push('/login');
     }
   }, [data, loading, error, dispatch]);
