@@ -76,9 +76,6 @@ const UploadPage: React.FC = () => {
         </Content>
       </UploadWrapper>
       <UploadProgress />
-      <BottomBar>
-        <Button style={{ backgroundColor: '#5A36CC' }}>Upload Photo </Button>
-      </BottomBar>
     </Layout>
   );
 };
