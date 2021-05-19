@@ -3015,8 +3015,7 @@
   dependencies:
     "@types/react" "*"
 
-
-"@types/react-test-renderer@^17.0.1":
+"@types/react-test-renderer@>=16.9.0", "@types/react-test-renderer@^17.0.1":
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-17.0.1.tgz#3120f7d1c157fba9df0118dae20cb0297ee0e06b"
   integrity sha512-3Fi2O6Zzq/f3QR9dRnlnHso9bMl7weKCviFmfF6B4LS1Uat6Hkm15k0ZAQuDz+UBq6B3+g+NM6IT2nr5QgPzCw==
@@ -7354,6 +7353,11 @@ flatted@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.1.1.tgz#c4b489e80096d9df1dfc97c79871aea7c617c469"
   integrity sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA==
+
+fluentsearch-types@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/fluentsearch-types/-/fluentsearch-types-0.6.1.tgz#4a7ca2918b858e3eac0ae77bf59c0a41b29560cc"
+  integrity sha512-BKsFS4uMzfhy5ITB1bPc+jz6XW32Ju9O/OfYTNC71h7P+R724axaeovYuABGSHwp3/C4wQd+tfKNQjTFonVwJw==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"

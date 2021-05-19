@@ -5,12 +5,20 @@ import { OAuthEnum } from 'Models/oauth/enum';
 import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { P } from 'Styles/global';
 import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
 import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
 import { FormErrorValue, FormFinishValue, FormLogin } from './types';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import {
+  useLoginMutation,
+  UserLoginInputDto,
+} from '../../../../common/generated/generated-types';
+import { Loading } from 'Components/Loader/styled';
+import { userActions } from 'Modules/user/reducers/userReducer';
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -44,9 +52,47 @@ const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = 
 
 const LoginPage: React.FC<Props> = (props) => {
   const [form] = useForm<FormLogin>();
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [loginMutation, { data, loading, error }] = useLoginMutation({
+    errorPolicy: 'all',
+  });
 
-  const onFinish: FormFinishValue = (values) => {
+  useEffect(() => {
+    if (!error && data) {
+      const duplicated = localStorage.getItem('user');
+      if (duplicated) localStorage.removeItem('user');
+      localStorage.setItem('user', JSON.stringify(data.Login));
+      dispatch(
+        userActions.setUser({
+          name: data.Login.name,
+          id: data.Login._id,
+          mainEmail: data.Login.mainEmail,
+          package: data.Login.package,
+          zone: data.Login.zone,
+          role: data.Login.role,
+        }),
+      );
+      router.push('/dashboard');
+    }
+    // } else {
+    //   console.log(error);
+    //   if (error) {
+    //     dispatch(userActions.setMessage(error?.message));
+    //   }
+    // }
+  }, [data, error, router, dispatch]);
+
+  const onFinish: FormFinishValue = (values: UserLoginInputDto) => {
     props.onSubmit && props.onSubmit(values);
+    loginMutation({
+      variables: {
+        UserLoginInputDTO: {
+          email: values.email,
+          password: values.password,
+        },
+      },
+    });
   };
 
   const onError: FormErrorValue = (formValue) => {
@@ -57,7 +103,9 @@ const LoginPage: React.FC<Props> = (props) => {
       });
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <FormCenterLayout>
       <HeaderLogo />
       <Row justify="center">
@@ -88,6 +136,7 @@ const LoginPage: React.FC<Props> = (props) => {
                 placeholder="Password"
               />
             </Form.Item>
+
             <LoginButton />
             <BreakLineWithCaption>or</BreakLineWithCaption>
             <LoginWithFacebookButton onSubmit={props.onSubmitOAuth} />
