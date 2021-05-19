@@ -17,10 +17,12 @@ const VideoPlayer = forwardRef<ReactPlayer, VideoPlayerPropsType>((props, ref) =
     played,
     videoWidth,
     videoHeight,
+    duration,
   } = props;
   return (
     <>
       <Canvas
+        duration={duration}
         width={canvasWidth}
         height={canvasHeight}
         data={incidentData}

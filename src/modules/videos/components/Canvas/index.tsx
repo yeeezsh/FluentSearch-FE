@@ -11,6 +11,7 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
     data,
     videoHeight,
     videoWidth,
+    duration,
   } = props;
   const layerItems: JSX.Element[] = [];
 
@@ -29,7 +30,7 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
       for (const element of classes) {
         const { bbox, cat } = element;
         let { xmin, ymin, xmax, ymax } = bbox;
-        if (played * 100 >= nFps + 7 && played * 100 <= nFps + 14) {
+        if (played * duration >= nFps && played * duration <= nFps + 1) {
           xmin = xmin * aspectRatioWidth;
           ymin = ymin * aspectRatioHeight;
           xmax = xmax * aspectRatioWidth;
@@ -40,8 +41,8 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
 
           const rect = (
             <Rect
-              x={xmin}
-              y={ymin}
+              x={0}
+              y={0}
               width={width}
               height={height}
               stroke={'#0BB5C2'}
@@ -50,7 +51,7 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
           );
 
           const labelText = (
-            <Label x={xmin} y={ymin} offsetX={-2}>
+            <Label x={0} y={0} offsetX={-2}>
               <Tag fill="#0BB5C2" />
               <Text
                 fontFamily="Arial"
@@ -68,6 +69,8 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
               {rect}
             </Group>,
           );
+
+          console.log(layerItems);
         }
       }
     });

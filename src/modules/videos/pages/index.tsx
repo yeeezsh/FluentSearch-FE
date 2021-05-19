@@ -148,7 +148,7 @@ const ViewVideoPage: React.FC = () => {
   const totalDuration = timeFormatter(durationTime);
 
   const handleMarkerClick = (time: number) => {
-    playerRef.current?.seekTo(time);
+    playerRef.current?.seekTo(time - 0.05);
   };
 
   const handleLabelClick = (selectedLabel: string) => {
@@ -172,6 +172,7 @@ const ViewVideoPage: React.FC = () => {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}>
             <VideoPlayer
+              duration={durationTime}
               url={url}
               ref={playerRef}
               isPlaying={playing}

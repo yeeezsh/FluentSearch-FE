@@ -13,6 +13,7 @@ type VideoPlayerPropsType = {
   videoWidth: number;
   incidentData: AnnotationResultType[];
   played: number;
+  duration: number;
 };
 
 export type { VideoPlayerPropsType };

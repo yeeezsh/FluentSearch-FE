@@ -7,4 +7,5 @@ export type CanvasPropsType = {
   played: number;
   videoHeight: number;
   videoWidth: number;
+  duration: number;
 };
