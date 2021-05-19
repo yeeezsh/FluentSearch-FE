@@ -46,6 +46,12 @@ type IncidentType = {
 };
 
 type AnnotationResultType = {
+  precision: number;
+  model: string;
+  annotations: Annotations[];
+};
+
+type Annotations = {
   _id?: string;
   classes: IncidentType[];
   uri: string;
@@ -80,6 +86,7 @@ export type {
   PlaybackRate,
   PersonPresentType,
   LabelPresentType,
+  Annotations,
   AnnotationResultType,
   IncidentType,
   MediaType,

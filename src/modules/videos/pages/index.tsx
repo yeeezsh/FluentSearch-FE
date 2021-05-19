@@ -68,10 +68,15 @@ const ViewVideoPage: React.FC = () => {
     (state: StoresState) => state.video.present.metaData.width,
   );
 
-  const incidentData = useSelector((state: StoresState) => state.insight.incidentData);
+  const incidentData = useSelector(
+    (state: StoresState) => state.insight.data.annotations,
+  );
   const selectedLabel = useSelector(
     (state: StoresState) => state.insight.present.selectedLabel,
   );
+
+  const precision = useSelector((state: StoresState) => state.insight.present.precision);
+  const model = useSelector((state: StoresState) => state.insight.present.model);
 
   const handleProgress = (changeState: ProgressState) => {
     if (!seeking) dispatch(videoActions.setProgress({ played: changeState.played }));
@@ -176,6 +181,7 @@ const ViewVideoPage: React.FC = () => {
               played={played}
               videoHeight={videoHeight}
               videoWidth={videoWidth}
+              precision={precision}
             />
 
             <PlayerControl
@@ -201,6 +207,17 @@ const ViewVideoPage: React.FC = () => {
               totalDuration={totalDuration}
             />
           </VideoPlayerWrapper>
+          <br />
+          <DetailCard
+            model={model}
+            date={date}
+            width={width}
+            height={height}
+            size={size}
+            place={place}
+            originalFileName={originalFileName}
+            format={format}
+          />
         </Col>
         <Col span={10} offset={1}>
           <PeopleCard
@@ -217,16 +234,7 @@ const ViewVideoPage: React.FC = () => {
             onLabelClick={handleLabelClick}
             selectedLabel={selectedLabel}
           />
-          <br />
-          <DetailCard
-            date={date}
-            width={width}
-            height={height}
-            size={size}
-            place={place}
-            originalFileName={originalFileName}
-            format={format}
-          />
+
           <br />
         </Col>
       </Row>

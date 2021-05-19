@@ -48,18 +48,24 @@ const insightSlice = createSlice({
 
     builder.addCase(
       fetchInsightData.fulfilled,
-      (state, action: PayloadAction<{ data: AnnotationResultType[] }>) => {
+      (state, action: PayloadAction<{ data: AnnotationResultType }>) => {
         const { data } = action.payload;
+        const { annotations, model, precision } = data;
         state.ready = true;
         state.error = undefined;
-        state.incidentData = data;
+        state.data.annotations = annotations;
+        state.data.model = model;
+        state.data.precision = precision;
+
+        state.present.model = model;
+        state.present.precision = precision;
 
         const distictLabelsSet = new Set(
-          data.flatMap((el) => el.classes.flatMap((c) => c.cat)),
+          annotations.flatMap((el) => el.classes.flatMap((c) => c.cat)),
         );
         const distinctLabels = Array.from(distictLabelsSet);
         const mappedLabel = distinctLabels.map((el) => {
-          const filteredFps = data
+          const filteredFps = annotations
             .filter((f) => f.classes.map((el) => el.cat).includes(el))
             .map((f) => f.nFps);
 
@@ -73,7 +79,7 @@ const insightSlice = createSlice({
         }) as LabelPresentType[];
         state.present.label = mappedLabel;
 
-        state.present.person = data
+        state.present.person = annotations
           .filter((f) => f.classes.map((el) => el.cat).includes('Person'))
           .map((el) => ({ uri: el.uri, nFps: el.nFps, selected: false }));
       },

@@ -1,12 +1,13 @@
-import { AnnotationResultType } from 'Modules/videos/models/types';
+import { Annotations } from 'Modules/videos/models/types';
 
 export type CanvasPropsType = {
   width: number;
   height: number;
-  data: AnnotationResultType[];
+  data: Annotations[];
   played: number;
   videoHeight: number;
   videoWidth: number;
   duration: number;
   selectedLabel: string;
+  precision: number;
 };

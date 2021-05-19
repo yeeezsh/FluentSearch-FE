@@ -19,6 +19,7 @@ const VideoPlayer = forwardRef<ReactPlayer, VideoPlayerPropsType>((props, ref) =
     videoHeight,
     duration,
     selectedLabel,
+    precision,
   } = props;
   return (
     <>
@@ -31,6 +32,7 @@ const VideoPlayer = forwardRef<ReactPlayer, VideoPlayerPropsType>((props, ref) =
         played={played}
         videoHeight={videoHeight}
         videoWidth={videoWidth}
+        precision={precision}
       />
       <ReactPlayer
         url={url}

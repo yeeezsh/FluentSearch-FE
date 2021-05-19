@@ -8,4 +8,5 @@ export type DetailCardPropsType = {
   place: string;
   originalFileName: string;
   format: MediaFormat;
+  model: string;
 };

@@ -5,14 +5,23 @@ import { DetailHeader } from 'Modules/videos/pages/styled';
 import { convertToDayOfWeek } from 'Modules/videos/utils/convertToDayOfWeek';
 import { format } from 'path';
 import React from 'react';
+import Label from '../../../../../common/components/Label';
 import { VideoDetailCard } from '../styled';
 import { DetailCardPropsType } from './types';
 
 const DetailCard: React.FC<DetailCardPropsType> = (props) => {
-  const { date, width, height, size, place, originalFileName } = props;
+  const { date, width, height, size, place, originalFileName, model } = props;
   return (
     <VideoDetailCard title="Details">
       <Row>
+        <Col span={6}>
+          <DetailHeader>Model</DetailHeader>
+        </Col>
+        <Col span={18}>
+          <Label>{model}</Label>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: '5%' }}>
         <Col span={6}>
           <DetailHeader>Date</DetailHeader>
         </Col>

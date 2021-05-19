@@ -1,4 +1,4 @@
-import { AnnotationResultType, ProgressState } from 'Modules/videos/models/types';
+import { Annotations, ProgressState } from 'Modules/videos/models/types';
 
 type VideoPlayerPropsType = {
   url: string;
@@ -11,10 +11,11 @@ type VideoPlayerPropsType = {
   canvasHeight: number;
   videoHeight: number;
   videoWidth: number;
-  incidentData: AnnotationResultType[];
+  incidentData: Annotations[];
   played: number;
   duration: number;
   selectedLabel: string;
+  precision: number;
 };
 
 export type { VideoPlayerPropsType };

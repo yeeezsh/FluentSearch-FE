@@ -8,8 +8,10 @@ import { ErrorState } from 'Stores/common/types/error';
 const INSIGHT = 'INSIGHT';
 
 type initInsightStateType = {
-  incidentData: AnnotationResultType[];
+  data: AnnotationResultType;
   present: {
+    precision: number;
+    model: string;
     person: PersonPresentType[];
     label: LabelPresentType[];
     selectedPerson: number;
