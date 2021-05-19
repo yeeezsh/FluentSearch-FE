@@ -1,0 +1,14 @@
+query GetRecentFiles($limit: Int, $skip: Int) {
+  GetRecentFiles(limit: $limit, skip: $skip) {
+    result {
+      date
+      files {
+        createAt
+        label
+        updateAt
+        uri
+        uri_thumbnail
+      }
+    }
+  }
+}
