@@ -5,7 +5,7 @@ import { OAuthEnum } from 'Models/oauth/enum';
 import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { P } from 'Styles/global';
 import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
 import { layout } from 'Modules/user/models/constants';
@@ -54,7 +54,6 @@ const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = 
 const LoginPage: React.FC<Props> = (props) => {
   const [form] = useForm<FormLogin>();
   const dispatch = useDispatch();
-  const auth = useSelector((state: StoresState) => state.user.authenticated);
   const router = useRouter();
   const [loginMutation, { data, loading, error }] = useLoginMutation();
 
@@ -75,6 +74,7 @@ const LoginPage: React.FC<Props> = (props) => {
       );
       router.push('/dashboard');
     } else {
+      console.log(error);
       if (error) {
         dispatch(userActions.setMessage(error?.message));
       }
