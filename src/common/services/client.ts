@@ -11,14 +11,18 @@ const httpLink = new HttpLink({
 
 const logoutLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    for (const err of graphQLErrors) {
-      switch (err.extensions && err.extensions.exception.response.statusCode) {
+    console.log(graphQLErrors[0]);
+    if (graphQLErrors[0].extensions) {
+      switch (graphQLErrors[0].extensions?.exception?.status) {
+        case 401:
+          alert('Invalid Email or Password');
+          break;
         case 400:
-          alert('This email already exist, Please change the email');
+          alert(graphQLErrors[0].message);
           break;
         default:
           console.log(
-            `[GraphQL error]: Status: ${err.extensions?.exception.response.statusCode} Message: ${err.message}, Location: ${err.locations}, Path: ${err.path}`,
+            `[GraphQL error]: Status: ${graphQLErrors[0].extensions?.exception?.status} Message: ${graphQLErrors[0].message}, Location: ${graphQLErrors[0].locations}, Path: ${graphQLErrors[0].path}`,
           );
           break;
       }

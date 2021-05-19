@@ -74,6 +74,10 @@ const LoginPage: React.FC<Props> = (props) => {
         }),
       );
       router.push('/dashboard');
+    } else {
+      if (error) {
+        dispatch(userActions.setMessage(error?.message));
+      }
     }
   }, [data, error, router, dispatch]);
 

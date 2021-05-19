@@ -16,6 +16,9 @@ const userSlice = createSlice({
     deleteUser(state) {
       return { ...state, ...initUserState };
     },
+    setMessage(state, action: PayloadAction<string>) {
+      state.msg = action.payload;
+    },
   },
 });
 
