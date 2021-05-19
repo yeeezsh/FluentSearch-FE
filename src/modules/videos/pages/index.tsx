@@ -60,9 +60,6 @@ const ViewVideoPage: React.FC = () => {
   const fullscreen = useSelector(
     (state: StoresState) => state.video.present.player.fullscreen,
   );
-  const timeDisplayFormat = useSelector(
-    (state: StoresState) => state.video.present.player.timeDisplayFormat,
-  );
 
   const videoHeight = useSelector(
     (state: StoresState) => state.video.present.metaData.height,
@@ -123,11 +120,6 @@ const ViewVideoPage: React.FC = () => {
     dispatch(videoActions.setPlaybackRate({ playbackRate: value }));
   };
 
-  const handleDisplayFormat = () => {
-    const format = timeDisplayFormat === 'normal' ? 'remaining' : 'normal';
-    dispatch(videoActions.setTimeDisplayFormat({ format: format }));
-  };
-
   let canvasWidth = 556;
   let canvasHeight = 288;
 
@@ -140,10 +132,7 @@ const ViewVideoPage: React.FC = () => {
   const currentTime = playerRef.current ? playerRef.current.getCurrentTime() : 0;
   const durationTime = playerRef.current ? playerRef.current.getDuration() : 0;
 
-  const elaspedTime =
-    timeDisplayFormat === 'normal'
-      ? timeFormatter(currentTime)
-      : `-${timeFormatter(durationTime - currentTime)}`;
+  const elaspedTime = timeFormatter(currentTime);
 
   const totalDuration = timeFormatter(durationTime);
 
@@ -207,7 +196,6 @@ const ViewVideoPage: React.FC = () => {
               onVideoSliderChange={() => console.log('temp')}
               onMouseUp={() => console.log('temp')}
               onMouseDown={() => console.log('temp')}
-              onChangeDisplayFormat={handleDisplayFormat}
               elaspedTime={elaspedTime}
               totalDuration={totalDuration}
             />

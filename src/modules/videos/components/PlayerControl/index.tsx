@@ -39,7 +39,6 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     onRewind,
     elaspedTime,
     totalDuration,
-    onChangeDisplayFormat,
     fullscreen,
   } = props;
 
@@ -117,7 +116,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
               </VolumeSliderWrapper>
             </Col>
             <Col xl={4} push={4}>
-              <TimeFormatButton type="text" onClick={() => onChangeDisplayFormat()}>
+              <TimeFormatButton type="text">
                 {elaspedTime} / {totalDuration}
               </TimeFormatButton>
             </Col>

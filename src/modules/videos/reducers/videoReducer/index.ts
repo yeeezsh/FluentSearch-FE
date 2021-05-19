@@ -43,10 +43,6 @@ const videoSlice = createSlice({
       const { duration } = action.payload;
       state.present.player.duration = duration;
     },
-    setTimeDisplayFormat(state, action: PayloadAction<{ format: TimeDisplayFormat }>) {
-      const { format } = action.payload;
-      state.present.player.timeDisplayFormat = format;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchVideoData.rejected, (state) => {

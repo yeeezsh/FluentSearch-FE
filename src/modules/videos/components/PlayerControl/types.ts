@@ -15,7 +15,6 @@ type PlayerControlPropsType = Omit<VideoState, 'timeDisplayFormat'> & {
   onPlaybackRateChange: (value: PlaybackRate) => void;
   onMouseUp: () => void;
   onMouseDown: () => void;
-  onChangeDisplayFormat: () => void;
   totalDuration: string;
   elaspedTime: string;
 };

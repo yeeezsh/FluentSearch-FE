@@ -7,7 +7,6 @@ type VideoState = {
   duration: number;
   played: number;
   fullscreen: boolean;
-  timeDisplayFormat: TimeDisplayFormat;
 };
 
 type ProgressState = {
