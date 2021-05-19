@@ -55,7 +55,9 @@ const LoginPage: React.FC<Props> = (props) => {
   const [form] = useForm<FormLogin>();
   const dispatch = useDispatch();
   const router = useRouter();
-  const [loginMutation, { data, loading, error }] = useLoginMutation();
+  const [loginMutation, { data, loading, error }] = useLoginMutation({
+    errorPolicy: 'all',
+  });
 
   useEffect(() => {
     if (!error && data) {
@@ -73,12 +75,13 @@ const LoginPage: React.FC<Props> = (props) => {
         }),
       );
       router.push('/dashboard');
-    } else {
-      console.log(error);
-      if (error) {
-        dispatch(userActions.setMessage(error?.message));
-      }
     }
+    // } else {
+    //   console.log(error);
+    //   if (error) {
+    //     dispatch(userActions.setMessage(error?.message));
+    //   }
+    // }
   }, [data, error, router, dispatch]);
 
   const onFinish: FormFinishValue = (values: UserLoginInputDto) => {

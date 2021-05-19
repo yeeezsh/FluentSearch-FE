@@ -1,5 +1,5 @@
-import { ApolloClient, HttpLink, InMemoryCache, ServerError } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';
+import { ApolloClient, from, HttpLink, InMemoryCache, ServerError } from '@apollo/client';
+import { ErrorResponse, onError } from '@apollo/client/link/error';
 import HttpStatusCode from '../constants/httpStatusCode';
 
 export const END_POINT =
@@ -9,7 +9,7 @@ const httpLink = new HttpLink({
   credentials: 'include',
 });
 
-const logoutLink = onError(({ graphQLErrors, networkError }) => {
+const logoutLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
   if (graphQLErrors) {
     console.log(graphQLErrors[0]);
     if (graphQLErrors[0].extensions) {
