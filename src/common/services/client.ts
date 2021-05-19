@@ -13,16 +13,21 @@ const logoutLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
   if (graphQLErrors) {
     console.log(graphQLErrors[0]);
     if (graphQLErrors[0].extensions) {
-      switch (graphQLErrors[0].extensions?.exception?.status) {
-        case 401:
-          alert('Invalid Email or Password');
+      switch (graphQLErrors[0].extensions?.code) {
+        case 'GRAPHQL_VALIDATION_FAILED':
+          alert('GRAPHQL_VALIDATION_FAILED');
           break;
-        case 400:
-          alert(graphQLErrors[0].message);
+        case 'INTERNAL_SERVER_ERROR':
+          alert('Invalid email or password');
+          break;
+        case 'UNAUTHENICATED':
+          //TODO: need to implement refresh token
+          alert('UNAUTHENICATED');
+          window.location.replace('/login');
           break;
         default:
           console.log(
-            `[GraphQL error]: Status: ${graphQLErrors[0].extensions?.exception?.status} Message: ${graphQLErrors[0].message}, Location: ${graphQLErrors[0].locations}, Path: ${graphQLErrors[0].path}`,
+            `[GraphQL error]: Message: ${graphQLErrors[0].message}, Location: ${graphQLErrors[0].locations}, Path: ${graphQLErrors[0].path}`,
           );
           break;
       }
@@ -42,6 +47,6 @@ const logoutLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
 });
 
 export const client = new ApolloClient({
-  link: logoutLink.concat(httpLink),
+  link: from([logoutLink, httpLink]),
   cache: new InMemoryCache(),
 });
