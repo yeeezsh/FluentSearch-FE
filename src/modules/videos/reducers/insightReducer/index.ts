@@ -54,8 +54,6 @@ const insightSlice = createSlice({
         state.error = undefined;
         state.incidentData = data;
 
-        state.present.incident = data;
-
         const distictLabelsSet = new Set(
           data.flatMap((el) => el.classes.flatMap((c) => c.cat)),
         );
