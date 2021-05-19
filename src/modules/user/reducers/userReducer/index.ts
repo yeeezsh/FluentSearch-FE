@@ -1,16 +1,26 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { initUserState } from './actions';
-import { UserState } from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { initUserState } from './init';
+import { User, USER } from './types';
 
-const initState: UserState = {
-  id: '',
-  username: '',
-  displayName: '',
-  authenticated: false,
-};
-
-const userReducer = createReducer(initState, {
-  [initUserState.type]: () => initState,
+const userSlice = createSlice({
+  name: USER,
+  initialState: initUserState,
+  reducers: {
+    init(state) {
+      return { ...state, ...initUserState };
+    },
+    setUser(state, action: PayloadAction<User>) {
+      state.user = action.payload;
+      state.authenticated = true;
+    },
+    deleteUser(state) {
+      return { ...state, ...initUserState };
+    },
+    setMessage(state, action: PayloadAction<string>) {
+      state.msg = action.payload;
+    },
+  },
 });
 
-export default userReducer;
+export const userActions = userSlice.actions;
+export default userSlice.reducer;
