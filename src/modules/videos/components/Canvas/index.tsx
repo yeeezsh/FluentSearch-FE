@@ -30,7 +30,7 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
       for (const element of classes) {
         const { bbox, cat } = element;
         let { xmin, ymin, xmax, ymax } = bbox;
-        if (played * duration >= nFps && played * duration <= nFps + 1) {
+        if (played * duration >= nFps - 1 && played * duration <= nFps) {
           xmin = xmin * aspectRatioWidth;
           ymin = ymin * aspectRatioHeight;
           xmax = xmax * aspectRatioWidth;
