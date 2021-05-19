@@ -1,7 +1,0 @@
-query getUser($id: String) {
-  User(id: $id) {
-    _id
-    mainEmail
-    name
-  }
-}
