@@ -16,6 +16,7 @@ const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
   const { Content } = Layout;
   const [files, setFiles] = useState<File[]>([]);
+  const [albumName, setAlbumName] = useState<string>('');
 
   const pendingQueue = useSelector((state: StoresState) => state.upload.pendingQueue);
   const fulfillQueue = useSelector((state: StoresState) => state.upload.fulfillQueue);
@@ -56,14 +57,23 @@ const UploadPage: React.FC = () => {
     uploadFileData(group, files);
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAlbumName(e.target.value);
+  };
+
   return (
     <Layout>
       <UploadWrapper>
+        <Button>{'<'}</Button>
         <Content>
           <h2 style={{ marginBottom: '2%' }}>Upload Photos</h2>
           <Row>
             <Col span={10} style={{ marginBottom: '1em' }}>
-              <InputLine placeholder="Album Name" />
+              <InputLine
+                placeholder="Album Name"
+                value={albumName}
+                onChange={handleInputChange}
+              />
             </Col>
           </Row>
           <hr />
