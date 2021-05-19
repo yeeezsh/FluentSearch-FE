@@ -12,6 +12,7 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
     videoHeight,
     videoWidth,
     duration,
+    selectedLabel,
   } = props;
   const layerItems: JSX.Element[] = [];
 
@@ -27,6 +28,9 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
       let width = 0;
       let height = 0;
 
+      let strokeWidth = 0;
+      let fontSize = 0;
+
       for (const element of classes) {
         const { bbox, cat } = element;
         let { xmin, ymin, xmax, ymax } = bbox;
@@ -39,6 +43,19 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
           width = xmax - xmin;
           height = ymax - ymin;
 
+          if (selectedLabel === '') {
+            strokeWidth = 5;
+            fontSize = 16;
+          } else {
+            if (cat === selectedLabel) {
+              strokeWidth = 5;
+              fontSize = 16;
+            } else {
+              strokeWidth = 0;
+              fontSize = 0;
+            }
+          }
+
           const rect = (
             <Rect
               x={0}
@@ -46,7 +63,7 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
               width={width}
               height={height}
               stroke={'#0BB5C2'}
-              strokeWidth={5}
+              strokeWidth={strokeWidth}
             />
           );
 
@@ -56,7 +73,7 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
               <Text
                 fontFamily="Arial"
                 text={cat}
-                fontSize={16}
+                fontSize={fontSize}
                 lineHeight={2}
                 fill="#000"
               />
@@ -69,8 +86,6 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
               {rect}
             </Group>,
           );
-
-          console.log(layerItems);
         }
       }
     });

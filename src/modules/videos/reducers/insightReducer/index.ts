@@ -18,11 +18,19 @@ const insightSlice = createSlice({
     },
     setSelectedLabel(state, action: PayloadAction<{ category: string }>) {
       const { category } = action.payload;
-      state.present.selectedLabel = category;
-      state.present.label.forEach((el) => {
-        if (el.cat === category) el.selected = true;
-        else el.selected = false;
-      });
+      const oldSelectedLabel = state.present.selectedLabel;
+      if (category === oldSelectedLabel) {
+        state.present.selectedLabel = '';
+        state.present.label.forEach((el) => {
+          el.selected = false;
+        });
+      } else {
+        state.present.selectedLabel = category;
+        state.present.label.forEach((el) => {
+          if (el.cat === category) el.selected = true;
+          else el.selected = false;
+        });
+      }
     },
   },
   extraReducers: (builder) => {
@@ -45,6 +53,8 @@ const insightSlice = createSlice({
         state.ready = true;
         state.error = undefined;
         state.incidentData = data;
+
+        state.present.incident = data;
 
         const distictLabelsSet = new Set(
           data.flatMap((el) => el.classes.flatMap((c) => c.cat)),

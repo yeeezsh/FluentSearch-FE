@@ -14,6 +14,7 @@ type VideoPlayerPropsType = {
   incidentData: AnnotationResultType[];
   played: number;
   duration: number;
+  selectedLabel: string;
 };
 
 export type { VideoPlayerPropsType };

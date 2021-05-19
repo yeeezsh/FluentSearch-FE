@@ -161,6 +161,7 @@ const ViewVideoPage: React.FC = () => {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}>
             <VideoPlayer
+              selectedLabel={selectedLabel}
               duration={durationTime}
               url={url}
               ref={playerRef}

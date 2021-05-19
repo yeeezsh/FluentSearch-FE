@@ -18,10 +18,12 @@ const VideoPlayer = forwardRef<ReactPlayer, VideoPlayerPropsType>((props, ref) =
     videoWidth,
     videoHeight,
     duration,
+    selectedLabel,
   } = props;
   return (
     <>
       <Canvas
+        selectedLabel={selectedLabel}
         duration={duration}
         width={canvasWidth}
         height={canvasHeight}

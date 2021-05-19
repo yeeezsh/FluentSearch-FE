@@ -8,4 +8,5 @@ export type CanvasPropsType = {
   videoHeight: number;
   videoWidth: number;
   duration: number;
+  selectedLabel: string;
 };
