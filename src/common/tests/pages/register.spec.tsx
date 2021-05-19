@@ -1,26 +1,48 @@
 import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 import RegisterPage from 'Modules/user/pages/register';
+import { Provider } from 'react-redux';
+import renderer from 'react-test-renderer';
+import { store } from 'Stores/index';
+import { MockedProvider } from '@apollo/client/testing';
+
+const mocks = [];
+let wrap;
 
 describe('Pages/Register test', () => {
   it('Render correctly', () => {
-    const wrap = shallow(<RegisterPage />);
-    expect(wrap.html()).toMatchSnapshot();
+    const wrap = renderer
+      .create(
+        <Provider store={store}>
+          <MockedProvider mocks={mocks}>
+            <RegisterPage />
+          </MockedProvider>
+        </Provider>,
+      )
+      .toJSON();
+    expect(wrap).toMatchSnapshot();
+  });
+
+  beforeEach(() => {
+    wrap = mount(
+      <Provider store={store}>
+        <MockedProvider mocks={mocks}>
+          <RegisterPage />
+        </MockedProvider>
+      </Provider>,
+    );
   });
 
   it('RegisterPage should be exisiting', () => {
-    const wrap = shallow(<RegisterPage />);
-    expect(wrap.exists()).toBe(true);
+    expect(wrap.exists(RegisterPage)).toBe(true);
   });
 
   it('Should contain FormCenter Layout', () => {
-    const wrap = shallow(<RegisterPage />);
     expect(wrap.exists(FormCenterLayout)).toBe(true);
   });
 
   it('Should have name, email & password field / register btn', () => {
-    const wrap = mount(<RegisterPage />);
     const nameField = wrap.find('#name');
     const emailField = wrap.find('#email');
     const passwordField = wrap.find('#password');
@@ -36,7 +58,6 @@ describe('Pages/Register test', () => {
     const onError = jest.fn(() => expect(onError).toBeCalledTimes(1));
     const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
 
-    const wrap = mount(<RegisterPage onSubmit={onSubmit} onError={onError} />);
     const emailField = wrap.find('input[id="email"]');
     emailField.simulate('change', { target: { value: 'Hello@email.com' } });
 
@@ -47,7 +68,6 @@ describe('Pages/Register test', () => {
     const onError = jest.fn(() => expect(onError).toBeCalledTimes(1));
     const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
 
-    const wrap = mount(<RegisterPage onSubmit={onSubmit} onError={onError} />);
     const nameField = wrap.find('input[id="name"]');
     const emailField = wrap.find('input[id="email"]');
 
@@ -61,7 +81,6 @@ describe('Pages/Register test', () => {
     const onError = jest.fn(() => expect(onError).toBeCalledTimes(1));
     const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(0));
 
-    const wrap = mount(<RegisterPage onSubmit={onSubmit} onError={onError} />);
     const emailField = wrap.find('input[id="email"]');
     emailField.simulate('change', { target: { value: 'Hello' } });
 
@@ -72,7 +91,6 @@ describe('Pages/Register test', () => {
     const onSubmit = jest.fn(() => expect(onSubmit).toBeCalledTimes(1));
     const onError = jest.fn(() => expect(onError).toBeCalledTimes(0));
 
-    const wrap = mount(<RegisterPage onSubmit={onSubmit} onError={onError} />);
     const emailField = wrap.find('input[id="email"]');
     const passwordField = wrap.find('input[id="password"]');
     const nameField = wrap.find('input[id="name"]');

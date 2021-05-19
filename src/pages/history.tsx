@@ -1,8 +1,13 @@
 import HistoryPages from 'Modules/history/pages';
 import React from 'react';
+import RouterGuard from '../common/components/RouterGuard';
 
 const History: React.FC = () => {
-  return <HistoryPages />;
+  return (
+    <RouterGuard>
+      <HistoryPages />
+    </RouterGuard>
+  );
 };
 
 export default History;

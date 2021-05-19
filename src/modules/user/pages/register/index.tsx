@@ -4,12 +4,16 @@ import { useForm } from 'antd/lib/form/Form';
 import FormCenterLayout from 'Modules/user/components/Layouts/FormCenter';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
 import { P } from 'Styles/global';
 import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
 import { FormErrorValue, FormFinishValue, FormRegister } from './types';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { Loading } from 'Components/Loader/styled';
+import { useCreateUserMutation } from '../../../../common/generated/generated-types';
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -28,10 +32,30 @@ const RegisterButton: React.FC = () => (
 );
 
 const RegisterPage: React.FC<Props> = (props) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [form] = useForm<FormRegister>();
+  const [createAccountMutation, { data, loading, error }] = useCreateUserMutation({
+    errorPolicy: 'all',
+  });
 
-  const onFinish: FormFinishValue = (values) => {
+  useEffect(() => {
+    if (!error && data) {
+      router.push('/login');
+    }
+  }, [data, loading, error, dispatch]);
+
+  const onFinish: FormFinishValue = (values: FormRegister) => {
     props.onSubmit && props.onSubmit(values);
+    createAccountMutation({
+      variables: {
+        UserRegisterInput: {
+          mainEmail: values.email,
+          name: values.name,
+          password: values.password,
+        },
+      },
+    });
   };
 
   const onError: FormErrorValue = (formValue) => {
@@ -42,7 +66,9 @@ const RegisterPage: React.FC<Props> = (props) => {
       });
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <FormCenterLayout>
       <HeaderLogo />
       <Row justify="center">

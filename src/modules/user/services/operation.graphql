@@ -1,7 +1,86 @@
-query getUser($id: String) {
+query GetUser($id: String!) {
   User(id: $id) {
+    _id
+    createDate
+    deactivate
+    email
+    mainEmail
+    name
+    package
+    role
+    updateDate
+    zone
+  }
+}
+
+query GetUsers($limit: Int = 1000, $skip: Int = 0) {
+  Users(limit: $limit, skip: $skip) {
+    _id
+    createDate
+    deactivate
+    email
+    mainEmail
+    package
+    role
+    updateDate
+    zone
+  }
+}
+
+query GetUserBySession {
+  GetUserBySession {
+    _id
+  }
+}
+
+query GetServerStatus {
+  ServerStatus {
+    status
+  }
+}
+
+mutation CreateUser($UserRegisterInput: UserRegisterInput!) {
+  CreateUser(UserRegisterInput: $UserRegisterInput) {
     _id
     mainEmail
     name
+    package
+    password
+    role
+    zone
+  }
+}
+
+mutation Login($UserLoginInputDTO: UserLoginInputDTO!) {
+  Login(UserLoginInputDTO: $UserLoginInputDTO) {
+    _id
+    mainEmail
+    name
+    package
+    role
+    zone
+  }
+}
+
+mutation Logout {
+  Logout
+}
+
+mutation RefreshToken {
+  RefreshToken
+}
+
+mutation UpdateUser($UserUpdateInput: UserUpdateInput!) {
+  UpdateUser(UserUpdateInput: $UserUpdateInput) {
+    _id
+    createDate
+    deactivate
+    email
+    mainEmail
+    name
+    package
+    role
+    updateDate
+    zone
   }
 }
