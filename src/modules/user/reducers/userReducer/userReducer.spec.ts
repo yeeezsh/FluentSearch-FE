@@ -1,35 +1,49 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import configureStore from 'redux-mock-store';
-import { initUserState } from './actions';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import {
+  UserPackageEnum,
+  UserRoleEnum,
+  UserZoneEnum,
+} from '../../../../common/generated/generated-types';
+import userReducer, { userActions } from '.';
+import { initUserState } from './init';
+import { User } from './types';
 
-const mockStore = configureStore();
+const rootReducer = combineReducers({
+  user: userReducer,
+});
+
+const store = configureStore({
+  reducer: rootReducer,
+});
 
 describe('user reducer test', () => {
-  const initialState = {
-    id: '',
-    username: '',
-    displayName: '',
-    authenticated: false,
-  };
-
-  const store = mockStore(initialState);
-
-  it('it should define initial state correctly', () => {
-    const expectedInitialState = {
-      id: '',
-      username: '',
-      displayName: '',
-      authenticated: false,
-    };
-
-    expect(store.getState()).toEqual(expectedInitialState);
+  it('should init user state correctly', () => {
+    store.dispatch(userActions.init());
+    const result = store.getState().user;
+    expect(result).toEqual(initUserState);
   });
 
-  it('initial action should dispatch correctly', () => {
-    const expectedPayload: PayloadAction = { type: 'USER/INIT', payload: undefined };
+  it('should set user correctly', () => {
+    const UserData: User = {
+      _id: '1',
+      createDate: 'Today',
+      deactivate: false,
+      email: ['john.doe@email.com'],
+      mainEmail: 'john.doe@email.com',
+      name: 'John Doe',
+      package: UserPackageEnum.FreeUser,
+      role: UserRoleEnum.User,
+      updateDate: 'Today',
+      zone: UserZoneEnum.Th1,
+    };
+    store.dispatch(userActions.setUser(UserData));
+    const result = store.getState().user.user;
+    expect(result).toEqual(UserData);
+  });
 
-    store.dispatch(initUserState());
-    const action = store.getActions();
-    expect(action).toEqual([expectedPayload]);
+  it('should delete user correctly', () => {
+    store.dispatch(userActions.deleteUser());
+    const result = store.getState().user;
+    expect(result).toEqual(initUserState);
   });
 });
