@@ -1,8 +1,8 @@
 type SliderPropsType = {
   min: number;
   max: number;
-  onMouseUp: () => void;
-  onMouseDown: () => void;
+  onMouseUp?: React.MouseEventHandler<HTMLInputElement>;
+  onMouseDown?: React.MouseEventHandler<HTMLInputElement>;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   played: number;
 };

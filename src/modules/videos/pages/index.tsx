@@ -151,9 +151,29 @@ const ViewVideoPage: React.FC = () => {
     dispatch(insightActions.setSelectedLabel({ category: selectedLabel }));
   };
 
+  const handleVideoSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const played = parseFloat(e.target.value) / 100;
+    playerRef.current?.seekTo(played);
+    //  dispatch(videoActions.setVideoSliderChange({ played: played }));
+  };
+
+  const handleSliderMouseDown = () => {
+    dispatch(videoActions.setSliderMouseDown({ playing: false, seeking: true }));
+  };
+
+  const handleSliderMouseUp = () => {
+    dispatch(videoActions.setSliderMouseUp({ seeking: false }));
+  };
+
+  const handleVolumeSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const volume = parseFloat(e.target.value) / 100;
+    dispatch(videoActions.setVolumeSliderChange({ volume: volume }));
+  };
+
   useEffect(() => {
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
+    dispatch(videoActions.setDuration({ duration: durationTime }));
   }, []);
 
   return (
@@ -194,7 +214,7 @@ const ViewVideoPage: React.FC = () => {
               volume={volume}
               playing={playing}
               seeking={seeking}
-              duration={durationTime}
+              duration={duration}
               playbackRate={playbackRate}
               onPlaying={handlePlaying}
               onRewind={handleRewind}
@@ -202,9 +222,10 @@ const ViewVideoPage: React.FC = () => {
               onMute={handleMuted}
               onPlaybackRateChange={handlePlaybackRateChange}
               onToggleFullScreen={handleToggleFullScreen}
-              onVideoSliderChange={() => console.log('temp')}
-              onMouseUp={() => console.log('temp')}
-              onMouseDown={() => console.log('temp')}
+              onVideoSliderChange={handleVideoSliderChange}
+              onVolumeSliderChange={handleVolumeSliderChange}
+              onMouseUp={handleSliderMouseUp}
+              onMouseDown={handleSliderMouseDown}
               elaspedTime={elaspedTime}
               totalDuration={totalDuration}
             />
@@ -230,7 +251,7 @@ const ViewVideoPage: React.FC = () => {
           <br />
           <LabelCard
             selectedTime={selectedTime}
-            duration={durationTime}
+            duration={duration}
             totalIncidents={totalIncidents}
             incidents={incidents}
             onMarkerClick={handleMarkerClick}

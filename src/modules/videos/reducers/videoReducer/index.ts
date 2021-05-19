@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  MetaDataType,
-  PlaybackRate,
-  TimeDisplayFormat,
-  VideoFileType,
-} from 'Modules/videos/models/types';
+import { MetaDataType, PlaybackRate, VideoFileType } from 'Modules/videos/models/types';
 import { ErrorStateCodeEnum } from 'Stores/common/types/error';
 import { fetchVideoData } from './actions';
 import { initVideoState } from './init';
@@ -42,6 +37,26 @@ const videoSlice = createSlice({
     setDuration(state, action: PayloadAction<{ duration: number }>) {
       const { duration } = action.payload;
       state.present.player.duration = duration;
+    },
+    setVolumeSliderChange(state, action: PayloadAction<{ volume: number }>) {
+      const { volume } = action.payload;
+      state.present.player.volume = volume;
+    },
+    setVideoSliderChange(state, action: PayloadAction<{ played: number }>) {
+      const { played } = action.payload;
+      state.present.player.played = played;
+    },
+    setSliderMouseUp(state, action: PayloadAction<{ seeking: boolean }>) {
+      const { seeking } = action.payload;
+      state.present.player.seeking = seeking;
+    },
+    setSliderMouseDown(
+      state,
+      action: PayloadAction<{ playing: boolean; seeking: boolean }>,
+    ) {
+      const { seeking, playing } = action.payload;
+      state.present.player.seeking = seeking;
+      state.present.player.playing = playing;
     },
   },
   extraReducers: (builder) => {

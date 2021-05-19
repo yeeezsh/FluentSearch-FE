@@ -40,6 +40,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     elaspedTime,
     totalDuration,
     fullscreen,
+    onVolumeSliderChange,
   } = props;
 
   const { Option } = Select;
@@ -109,9 +110,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
                   min={0}
                   max={100}
                   played={volume * 100}
-                  onMouseDown={onMouseDown}
-                  onMouseUp={onMouseUp}
-                  onChange={onVideoSliderChange}
+                  onChange={onVolumeSliderChange}
                 />
               </VolumeSliderWrapper>
             </Col>
