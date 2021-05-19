@@ -12,6 +12,7 @@ const LabelCard: React.FC<LabelCardPropsType> = (props) => {
     onLabelClick,
     selectedLabel,
     duration,
+    selectedTime,
   } = props;
   return (
     <VideoDetailCard title={`${totalIncidents} Labels`}>
@@ -29,6 +30,8 @@ const LabelCard: React.FC<LabelCardPropsType> = (props) => {
         onClick={onMarkerClick}
         selectedLabel={selectedLabel}
       />
+      <br />
+      SELECTED TIME: {selectedTime}
     </VideoDetailCard>
   );
 };

@@ -7,4 +7,5 @@ export type LabelCardPropsType = {
   onLabelClick: (label: string) => void;
   selectedLabel: string;
   duration: number;
+  selectedTime: number;
 };

@@ -1,6 +1,6 @@
 import { Row, Col } from 'antd';
 import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { fetchInsightData } from '../reducers/insightReducer/actions';
@@ -20,6 +20,7 @@ import { timeFormatter } from '../utils/timeFormatter';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
+  const [selectedTime, setSelectedTime] = useState(0);
   const date = useSelector((state: StoresState) => state.video.present.metaData.date);
   const originalFileName = useSelector(
     (state: StoresState) => state.video.present.metaData.originalFileName,
@@ -143,6 +144,7 @@ const ViewVideoPage: React.FC = () => {
 
   const handleMarkerClick = (time: number) => {
     playerRef.current?.seekTo(time - 0.05);
+    setSelectedTime(time);
   };
 
   const handleLabelClick = (selectedLabel: string) => {
@@ -227,6 +229,7 @@ const ViewVideoPage: React.FC = () => {
           />
           <br />
           <LabelCard
+            selectedTime={selectedTime}
             duration={durationTime}
             totalIncidents={totalIncidents}
             incidents={incidents}
