@@ -1,7 +1,7 @@
 import { FormProps } from 'antd/lib/form/Form';
 import { InternalNamePath } from 'antd/lib/form/interface';
 
-export type FormRegister = { email: string; password: string };
+export type FormRegister = { name: string; email: string; password: string };
 export type FormRegisterError = {
   values: FormRegister;
   errorFields: {
