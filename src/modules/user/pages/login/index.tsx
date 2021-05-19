@@ -11,8 +11,7 @@ import { BreakLineWithCaption } from 'Components/BreakLineWithCaption/index';
 import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
 import { FormErrorValue, FormFinishValue, FormLogin } from './types';
-import { useDispatch, useSelector } from 'react-redux';
-import { StoresState } from 'Stores/index';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {
   useLoginMutation,
