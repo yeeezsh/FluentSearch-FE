@@ -2,11 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
   UserPackageEnumSession,
   UserRoleEnumSession,
-  UserSessionDto,
   UserZoneEnumSession,
 } from '../../../../common/generated/generated-types';
 import userReducer, { userActions } from '.';
 import { initUserState } from './init';
+import { User } from './types';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -24,8 +24,8 @@ describe('user reducer test', () => {
   });
 
   it('should set user correctly', () => {
-    const UserData: UserSessionDto = {
-      _id: '1',
+    const UserData: User = {
+      id: '1',
       mainEmail: 'john.doe@email.com',
       name: 'John Doe',
       package: UserPackageEnumSession.FreeUser,

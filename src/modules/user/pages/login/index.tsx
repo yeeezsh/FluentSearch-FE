@@ -12,9 +12,14 @@ import { layout } from 'Modules/user/models/constants';
 import { Props } from './interfaces';
 import { FormErrorValue, FormFinishValue, FormLogin } from './types';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, requestLogin } from 'Modules/user/reducers/userReducer/actions';
 import { StoresState } from 'Stores/index';
 import { useRouter } from 'next/router';
+import {
+  useLoginMutation,
+  UserLoginInputDto,
+} from '../../../../common/generated/generated-types';
+import { Loading } from 'Components/Loader/styled';
+import { userActions } from 'Modules/user/reducers/userReducer';
 
 const HeaderLogo: React.FC = () => (
   <Row justify="center" align="middle">
@@ -48,20 +53,40 @@ const LoginWithFacebookButton: React.FC<{ onSubmit: Props['onSubmitOAuth'] }> = 
 
 const LoginPage: React.FC<Props> = (props) => {
   const [form] = useForm<FormLogin>();
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const auth = useSelector((state: StoresState) => state.user.authenticated);
   const router = useRouter();
+  const [loginMutation, { data, loading, error }] = useLoginMutation();
 
   useEffect(() => {
-    dispatch(getUser());
-  }, []);
+    if (!error && data) {
+      const duplicated = localStorage.getItem('user');
+      if (duplicated) localStorage.removeItem('user');
+      localStorage.setItem('user', JSON.stringify(data.Login));
+      dispatch(
+        userActions.setUser({
+          name: data.Login.name,
+          id: data.Login._id,
+          mainEmail: data.Login.mainEmail,
+          package: data.Login.package,
+          zone: data.Login.zone,
+          role: data.Login.role,
+        }),
+      );
+      router.push('/dashboard');
+    }
+  }, [data, error, router, dispatch]);
 
-  const onFinish: FormFinishValue = (values) => {
+  const onFinish: FormFinishValue = (values: UserLoginInputDto) => {
     props.onSubmit && props.onSubmit(values);
-    dispatch(requestLogin(values));
-    if (auth) return router.push('/dashboard');
-    return setLoading(false);
+    loginMutation({
+      variables: {
+        UserLoginInputDTO: {
+          email: values.email,
+          password: values.password,
+        },
+      },
+    });
   };
 
   const onError: FormErrorValue = (formValue) => {
@@ -72,7 +97,9 @@ const LoginPage: React.FC<Props> = (props) => {
       });
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <FormCenterLayout>
       <HeaderLogo />
       <Row justify="center">
