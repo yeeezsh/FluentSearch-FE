@@ -1,30 +1,26 @@
 import {
-  UserRoleEnum,
-  UserPackageEnum,
-  UserZoneEnum,
+  UserPackageEnumSession,
+  UserRoleEnumSession,
+  UserZoneEnumSession,
 } from '../../../../common/generated/generated-types';
 import { UserState } from './types';
 
 export const initUserState: UserState = {
   user: {
     _id: '',
-    createDate: '',
-    deactivate: false,
-    email: [],
     mainEmail: '',
     name: '',
-    package: UserPackageEnum.FreeUser,
-    role: UserRoleEnum.User,
-    updateDate: '',
-    zone: UserZoneEnum.Th1,
+    package: UserPackageEnumSession.FreeUser,
+    role: UserRoleEnumSession.User,
+    zone: UserZoneEnumSession.Th1,
   },
   present: {
     id: '',
     username: '',
     displayName: '',
-    role: UserRoleEnum.User,
-    zone: UserZoneEnum.Th1,
-    package: UserPackageEnum.FreeUser,
+    role: UserRoleEnumSession.User,
+    zone: UserZoneEnumSession.Th1,
+    package: UserPackageEnumSession.FreeUser,
   },
   authenticated: false,
 };

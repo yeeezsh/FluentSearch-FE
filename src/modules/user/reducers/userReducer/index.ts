@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserSessionDto } from 'src/common/generated/generated-types';
 import { initUserState } from './init';
-import { User, USER } from './types';
+import { USER } from './types';
 
 const userSlice = createSlice({
   name: USER,
@@ -9,7 +10,7 @@ const userSlice = createSlice({
     init(state) {
       return { ...state, ...initUserState };
     },
-    setUser(state, action: PayloadAction<User>) {
+    setUser(state, action: PayloadAction<UserSessionDto>) {
       state.user = action.payload;
     },
     deleteUser(state) {

@@ -44,10 +44,17 @@ export type MutationUpdateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  GetRecentFiles: RecentFiles;
+  GetUserBySession?: Maybe<UserWithId>;
+  ServerStatus: AppModel;
   User?: Maybe<UserWithId>;
   Users: Array<UserWithId>;
-  getUserBySession?: Maybe<UserWithId>;
-  serverStatus: AppModel;
+};
+
+
+export type QueryGetRecentFilesArgs = {
+  limit?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
 };
 
 
@@ -59,6 +66,26 @@ export type QueryUserArgs = {
 export type QueryUsersArgs = {
   limit?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
+};
+
+export type RecentFile = {
+  __typename?: 'RecentFile';
+  createAt: Scalars['String'];
+  label: Scalars['String'];
+  updateAt: Scalars['String'];
+  uri: Scalars['String'];
+  uri_thumbnail: Scalars['String'];
+};
+
+export type RecentFiles = {
+  __typename?: 'RecentFiles';
+  result: Array<RecentPreviews>;
+};
+
+export type RecentPreviews = {
+  __typename?: 'RecentPreviews';
+  date: Scalars['String'];
+  files?: Maybe<Array<RecentFile>>;
 };
 
 export type UserLoginInputDto = {
@@ -174,7 +201,7 @@ export type GetUserBySessionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetUserBySessionQuery = (
   { __typename?: 'Query' }
-  & { getUserBySession?: Maybe<(
+  & { GetUserBySession?: Maybe<(
     { __typename?: 'UserWithId' }
     & Pick<UserWithId, '_id'>
   )> }
@@ -185,7 +212,7 @@ export type GetServerStatusQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetServerStatusQuery = (
   { __typename?: 'Query' }
-  & { serverStatus: (
+  & { ServerStatus: (
     { __typename?: 'AppModel' }
     & Pick<AppModel, 'status'>
   ) }
@@ -200,7 +227,7 @@ export type CreateUserMutation = (
   { __typename?: 'Mutation' }
   & { CreateUser: (
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'password' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'mainEmail' | 'name' | 'package' | 'password' | 'role' | 'zone'>
   ) }
 );
 
@@ -333,7 +360,7 @@ export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery
 export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
 export const GetUserBySessionDocument = gql`
     query GetUserBySession {
-  getUserBySession {
+  GetUserBySession {
     _id
   }
 }
@@ -365,7 +392,7 @@ export type GetUserBySessionLazyQueryHookResult = ReturnType<typeof useGetUserBy
 export type GetUserBySessionQueryResult = Apollo.QueryResult<GetUserBySessionQuery, GetUserBySessionQueryVariables>;
 export const GetServerStatusDocument = gql`
     query GetServerStatus {
-  serverStatus {
+  ServerStatus {
     status
   }
 }
@@ -399,15 +426,11 @@ export const CreateUserDocument = gql`
     mutation CreateUser($UserRegisterInput: UserRegisterInput!) {
   CreateUser(UserRegisterInput: $UserRegisterInput) {
     _id
-    createDate
-    deactivate
-    email
     mainEmail
     name
     package
     password
     role
-    updateDate
     zone
   }
 }

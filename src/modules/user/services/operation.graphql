@@ -28,13 +28,13 @@ query GetUsers($limit: Int = 1000, $skip: Int = 0) {
 }
 
 query GetUserBySession {
-  getUserBySession {
+  GetUserBySession {
     _id
   }
 }
 
 query GetServerStatus {
-  serverStatus {
+  ServerStatus {
     status
   }
 }
@@ -42,15 +42,11 @@ query GetServerStatus {
 mutation CreateUser($UserRegisterInput: UserRegisterInput!) {
   CreateUser(UserRegisterInput: $UserRegisterInput) {
     _id
-    createDate
-    deactivate
-    email
     mainEmail
     name
     package
     password
     role
-    updateDate
     zone
   }
 }

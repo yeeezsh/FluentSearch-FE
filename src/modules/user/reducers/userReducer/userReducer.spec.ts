@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
-  UserPackageEnum,
-  UserRoleEnum,
-  UserZoneEnum,
+  UserPackageEnumSession,
+  UserRoleEnumSession,
+  UserSessionDto,
+  UserZoneEnumSession,
 } from '../../../../common/generated/generated-types';
 import userReducer, { userActions } from '.';
 import { initUserState } from './init';
-import { User } from './types';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -24,17 +24,13 @@ describe('user reducer test', () => {
   });
 
   it('should set user correctly', () => {
-    const UserData: User = {
+    const UserData: UserSessionDto = {
       _id: '1',
-      createDate: 'Today',
-      deactivate: false,
-      email: ['john.doe@email.com'],
       mainEmail: 'john.doe@email.com',
       name: 'John Doe',
-      package: UserPackageEnum.FreeUser,
-      role: UserRoleEnum.User,
-      updateDate: 'Today',
-      zone: UserZoneEnum.Th1,
+      package: UserPackageEnumSession.FreeUser,
+      role: UserRoleEnumSession.User,
+      zone: UserZoneEnumSession.Th1,
     };
     store.dispatch(userActions.setUser(UserData));
     const result = store.getState().user.user;
