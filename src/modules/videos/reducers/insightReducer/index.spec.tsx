@@ -48,7 +48,7 @@ describe('reducer/insightReducer test', () => {
       payload: { data: mockData },
     });
 
-    const result = store.getState().insight.incidentData;
+    const result = store.getState().insight.data.annotations;
     const resultPerson = store.getState().insight.present.person;
     const resultLabel = store.getState().insight.present.label;
 
