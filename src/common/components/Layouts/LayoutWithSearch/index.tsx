@@ -78,10 +78,12 @@ const DropdownMenu = (
 );
 
 const UserContainer: React.FC = () => {
+  const rawData = localStorage.getItem('user');
+  const userData = rawData && JSON.parse(rawData);
   return (
     <UserWrapper>
       <Dropdown overlay={DropdownMenu} placement="bottomRight" trigger={['click']}>
-        <Avatar>J</Avatar>
+        <Avatar>{userData.name.slice(0, 1)}</Avatar>
       </Dropdown>
     </UserWrapper>
   );
