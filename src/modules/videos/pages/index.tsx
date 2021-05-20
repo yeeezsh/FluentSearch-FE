@@ -48,9 +48,6 @@ const ViewVideoPage: React.FC = () => {
   const controlRef = useRef<HTMLDivElement>(null);
 
   const muted = useSelector((state: StoresState) => state.video.present.player.muted);
-  const duration = useSelector(
-    (state: StoresState) => state.video.present.player.duration,
-  );
   const playing = useSelector((state: StoresState) => state.video.present.player.playing);
   const playbackRate = useSelector(
     (state: StoresState) => state.video.present.player.playbackRate,
@@ -173,7 +170,6 @@ const ViewVideoPage: React.FC = () => {
   useEffect(() => {
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
-    dispatch(videoActions.setDuration({ duration: durationTime }));
   }, []);
 
   return (
