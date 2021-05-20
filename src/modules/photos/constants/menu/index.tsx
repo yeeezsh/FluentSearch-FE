@@ -22,28 +22,30 @@ export const PHOTOS_SIDEBAR_CONSTANT: MenuType[] = [
     active: false,
     icon: 'InboxOutlined',
   },
-  {
-    key: '5',
-    label: 'History',
-    link: ['history'],
-    active: false,
-    icon: 'HistoryOutlined',
-  },
+  //TODO: Temp hide for final
+  // {
+  //   key: '5',
+  //   label: 'History',
+  //   link: ['history'],
+  //   active: false,
+  //   icon: 'HistoryOutlined',
+  // },
 ];
 
 export const DROPDOWN_SIDEBAR_CONSTANT: MenuType[] = [
-  {
-    key: '1',
-    label: 'My Profile',
-    link: ['myprofile'],
-    active: false,
-  },
-  {
-    key: '2',
-    label: 'Reset Password',
-    link: ['resetpassword'],
-    active: false,
-  },
+  //TODO: Temp hide for final
+  // {
+  //   key: '1',
+  //   label: 'My Profile',
+  //   link: ['myprofile'],
+  //   active: false,
+  // },
+  // {
+  //   key: '2',
+  //   label: 'Reset Password',
+  //   link: ['resetpassword'],
+  //   active: false,
+  // },
   {
     key: '3',
     label: 'Logout',
