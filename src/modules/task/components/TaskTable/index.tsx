@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Tag } from 'antd';
 import dayjs from 'dayjs';
 import TaskProgressBar from '../TaskProgressBar';
 import {
@@ -45,6 +45,26 @@ const TaskTable: React.FC<TaskTablePropsType> = (props) => {
       />
       <Column title="Task Name" dataIndex="taskName" key="taskName" />
       <Column title="Model" dataIndex="model" key="model" />
+      <Column
+        title="Status"
+        dataIndex="status"
+        key="status"
+        render={function showStatus(status: string): JSX.Element {
+          const color =
+            status == 'error'
+              ? 'red'
+              : status == 'finish'
+              ? 'green'
+              : status == 'resume'
+              ? 'orange'
+              : 'purple';
+          return (
+            <Tag color={color} key={status}>
+              {status.toUpperCase()}
+            </Tag>
+          );
+        }}
+      />
       <Column
         title="Progress"
         dataIndex="progress"
