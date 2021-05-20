@@ -15,7 +15,9 @@ const logoutLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
     if (graphQLErrors[0].extensions) {
       switch (graphQLErrors[0].extensions?.code) {
         case 'GRAPHQL_VALIDATION_FAILED':
-          alert('GRAPHQL_VALIDATION_FAILED');
+          console.log(
+            `[GraphQL error]: Message: ${graphQLErrors[0].message}, Location: ${graphQLErrors[0].locations}, Path: ${graphQLErrors[0].path}`,
+          );
           break;
         case 'INTERNAL_SERVER_ERROR':
           alert('Invalid email or password');

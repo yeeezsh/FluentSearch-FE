@@ -34,14 +34,14 @@ const DashboardCard: React.FC<dashboardCardType> = (props) => {
         <Col md={5}>
           <NumberCard
             cardName={'Photos'}
-            largeNumber={data.todayVideos}
+            largeNumber={data.totalPhotos}
             todayNumber={data.todayPhotos}
           />
         </Col>
         <Col md={5}>
           <NumberCard
             cardName={'Videos'}
-            largeNumber={data.totalPhotos}
+            largeNumber={data.totalVideos}
             todayNumber={data.todayVideos}
           />
         </Col>
@@ -68,7 +68,7 @@ const DashboardCard: React.FC<dashboardCardType> = (props) => {
 const OverviewAlbum: React.FC<OverviewAlbumType> = (props) => {
   const { data } = props;
   return (
-    <Row justify="space-around" align="top">
+    <Row justify="start" align="top">
       {data.map((album, index) => (
         <Col md={5} key={index}>
           <AlbumPreview
@@ -104,8 +104,7 @@ const DashboardPage: React.FC = () => {
           <DashboardCard data={DashboardDataStore} />
 
           <AlbumWrapper>
-            {/*TODO: Lastest Album*/}
-            <h3>Lastest Photo</h3>
+            <h3>Lastest Album</h3>
             <OverviewAlbum data={AlbumPreviewData} />
           </AlbumWrapper>
         </ContentWrapper>
