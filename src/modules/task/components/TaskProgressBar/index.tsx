@@ -8,6 +8,7 @@ import {
 } from './styled';
 import { CloseOutlined } from '@ant-design/icons';
 import { StopButton } from './styled';
+import { TaskStatusEnum } from '../../reducer/taskReducer/types';
 
 {
   /*TODO: optional for mvp final and dont forget to re import missing import */
@@ -18,7 +19,6 @@ type TaskProgressBarType = {
   elaspedTime?: string;
   inprogressPhoto: number;
   totalPhoto: number;
-  active?: boolean;
 };
 
 const TaskProgressBar: React.FC<TaskProgressBarType> = (props) => {

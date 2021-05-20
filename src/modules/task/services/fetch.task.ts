@@ -1,6 +1,6 @@
-import { DataSource } from '../mocks/data';
+import { DataMock } from '../mocks/mockData';
 import { TaskData } from '../reducer/taskReducer/types';
 
 export const fetchTask = (): TaskData[] => {
-  return DataSource;
+  return DataMock;
 };

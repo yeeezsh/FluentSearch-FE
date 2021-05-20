@@ -2,15 +2,10 @@ import React from 'react';
 import { Table, Tag } from 'antd';
 import dayjs from 'dayjs';
 import TaskProgressBar from '../TaskProgressBar';
-import {
-  InprogressPhoto,
-  TotalPhoto,
-  ElaspedTime,
-  Active,
-} from 'Modules/task/mocks/data';
 import { stringCutter } from 'Modules/history/utils/stringCutter';
 import { TaskTableWrapper } from './styled';
 import { TaskTablePropsType } from './type';
+import { Progress, TaskStatusEnum } from '../../reducer/taskReducer/types';
 
 const TaskTable: React.FC<TaskTablePropsType> = (props) => {
   const { data } = props;
@@ -18,6 +13,8 @@ const TaskTable: React.FC<TaskTablePropsType> = (props) => {
 
   const YEAR_MONTH_DATE_FORMAT = 'YYYY-MM-DD';
   const HOUR_MINUTE_SECOND_FORMAT = 'HH:mm:ss';
+
+  console.log(data);
 
   return (
     <TaskTableWrapper dataSource={data}>
@@ -49,18 +46,18 @@ const TaskTable: React.FC<TaskTablePropsType> = (props) => {
         title="Status"
         dataIndex="status"
         key="status"
-        render={function showStatus(status: string): JSX.Element {
+        render={(status: TaskStatusEnum) => {
           const color =
-            status == 'error'
+            status == 'CANCEL'
               ? 'red'
-              : status == 'finish'
+              : status == 'FINISH'
               ? 'green'
-              : status == 'resume'
+              : status == 'WAITING'
               ? 'orange'
               : 'purple';
           return (
             <Tag color={color} key={status}>
-              {status.toUpperCase()}
+              {status}
             </Tag>
           );
         }}
@@ -69,15 +66,13 @@ const TaskTable: React.FC<TaskTablePropsType> = (props) => {
         title="Progress"
         dataIndex="progress"
         key="progress"
-        render={(progress: number, taskID: string) => {
+        render={(progress: Progress, taskID: string) => {
           return (
             <TaskProgressBar
               taskID={taskID}
-              inprogressPhoto={InprogressPhoto.inprogressPhoto}
-              totalPhoto={TotalPhoto.totalPhoto}
-              elaspedTime={ElaspedTime.elaspedTime}
-              progress={progress}
-              active={Active.active}
+              inprogressPhoto={progress.inprogressPhoto}
+              totalPhoto={progress.totalPhoto}
+              progress={progress.progress}
             />
           );
         }}

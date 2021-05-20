@@ -1,7 +1,14 @@
-import { ModelEnum } from 'Modules/task/models/model.enum';
 import { ErrorState } from 'Stores/common/types/error';
+import { ModelEnum } from '../../../../common/services/model/generated-types';
 
 export const TASK = 'TASK';
+
+export type Progress = {
+  progress: number;
+  elaspedTime?: string;
+  inprogressPhoto: number;
+  totalPhoto: number;
+};
 
 export type TaskData = {
   _id: string;
@@ -9,10 +16,8 @@ export type TaskData = {
   taskID: string;
   taskName: string;
   model: ModelEnum;
-  progress: number;
-  elaspedTime: string;
-  inprogressPhoto: number;
-  totalPhoto: number;
+  progress: Progress;
+  status: string;
 };
 
 export enum TaskStatusEnum {
@@ -23,11 +28,7 @@ export enum TaskStatusEnum {
   RUNNING = 'RUNNING',
 }
 
-export type TaskStatus = {
-  status: TaskStatusEnum;
-};
-
-export type TaskPresent = TaskData & TaskStatus;
+export type TaskPresent = TaskData;
 
 export type TaskState = {
   data: TaskData[];
