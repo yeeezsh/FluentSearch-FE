@@ -1,5 +1,4 @@
 import React from 'react';
-import dayjs from 'dayjs';
 import {
   Caption,
   ProgressBar,
@@ -7,20 +6,23 @@ import {
   ButtonWrapper,
   ProgressBarWrapper,
 } from './styled';
-import { CloseOutlined, PauseOutlined, CaretRightOutlined } from '@ant-design/icons';
-import { PausePlayButton, StopButton } from './styled';
+import { CloseOutlined } from '@ant-design/icons';
+import { StopButton } from './styled';
 
+{
+  /*TODO: optional for mvp final and dont forget to re import missing import */
+}
 type TaskProgressBarType = {
-  taskID: string;
+  taskID?: string;
   progress: number;
-  elaspedTime: string;
+  elaspedTime?: string;
   inprogressPhoto: number;
   totalPhoto: number;
-  active: boolean;
+  active?: boolean;
 };
 
 const TaskProgressBar: React.FC<TaskProgressBarType> = (props) => {
-  const { progress, elaspedTime, inprogressPhoto, totalPhoto, active, taskID } = props;
+  const { progress, inprogressPhoto, totalPhoto } = props;
   return (
     <Wrapper>
       <ProgressBarWrapper>
