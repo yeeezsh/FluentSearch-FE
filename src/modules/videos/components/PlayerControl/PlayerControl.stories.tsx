@@ -37,6 +37,9 @@ export const PlayerControlStories: React.FC = () => {
         onToggleFullScreen={handleMock}
         onPlaybackRateChange={handleMock}
         onRewind={handleMock}
+        totalDuration={'33.00'}
+        elaspedTime={'00.00'}
+        onVolumeSliderChange={handleMock}
       />
     </>
   );
