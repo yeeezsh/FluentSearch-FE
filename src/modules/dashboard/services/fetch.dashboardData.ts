@@ -1,5 +1,5 @@
 import { AlbumPreviewProps } from '../components/AlbumPreview/types';
-import { AlbumPreviewMockData, DashboardMockData } from '../mocks/data';
+import { AlbumMock, DashboardMock } from '../mocks/mockData';
 import { DashboardData } from '../models/types';
 
 type DashboardDataType = {
@@ -7,12 +7,18 @@ type DashboardDataType = {
   AlbumPreviewMockData: AlbumPreviewProps[];
 };
 
-const data = {
-  DashboardMockData,
-  AlbumPreviewMockData,
+//TODO: temp hide for mvp final
+// const data = {
+//   DashboardMockData,
+//   AlbumPreviewMockData,
+// };
+
+const mockData = {
+  DashboardMockData: DashboardMock,
+  AlbumPreviewMockData: AlbumMock,
 };
 
 //TODO: Connect with Adapter and real api
 export const fetchDashboard = (): DashboardDataType => {
-  return data;
+  return mockData;
 };
