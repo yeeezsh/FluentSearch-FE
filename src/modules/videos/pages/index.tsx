@@ -151,7 +151,7 @@ const ViewVideoPage: React.FC = () => {
   const handleVideoSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const played = parseFloat(e.target.value) / 100;
     playerRef.current?.seekTo(played);
-    //  dispatch(videoActions.setVideoSliderChange({ played: played }));
+    dispatch(videoActions.setVideoSliderChange({ played: played }));
   };
 
   const handleSliderMouseDown = () => {

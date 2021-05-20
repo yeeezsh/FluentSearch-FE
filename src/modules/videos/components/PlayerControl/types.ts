@@ -14,7 +14,7 @@ type PlayerControlPropsType = Omit<VideoState, 'timeDisplayFormat'> & {
   onToggleFullScreen: () => void;
   onPlaybackRateChange: (value: PlaybackRate) => void;
   onMouseUp: React.MouseEventHandler<HTMLInputElement>;
-  onMouseDown: React.MouseEventHandler<HTMLInputElement>;
+  onMouseDown?: React.MouseEventHandler<HTMLInputElement>;
   totalDuration: string;
   elaspedTime: string;
   onVolumeSliderChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

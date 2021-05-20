@@ -29,7 +29,6 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
     volume,
     playbackRate,
     played,
-    onMouseDown,
     onMute,
     onMouseUp,
     onVideoSliderChange,
@@ -77,7 +76,6 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
             min={0}
             max={100}
             played={played * 100}
-            onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
             onChange={onVideoSliderChange}
           />
@@ -110,6 +108,7 @@ const PlayerControl = forwardRef<HTMLDivElement, PlayerControlPropsType>((props,
                   min={0}
                   max={100}
                   played={volume * 100}
+                  onMouseUp={onMouseUp}
                   onChange={onVolumeSliderChange}
                 />
               </VolumeSliderWrapper>
