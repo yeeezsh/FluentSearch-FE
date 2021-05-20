@@ -24,13 +24,18 @@ const TaskProgressBar: React.FC<TaskProgressBarType> = (props) => {
   return (
     <Wrapper>
       <ProgressBarWrapper>
-        <Caption>elasped time {dayjs(elaspedTime).format('HH:mm:ss')} </Caption>
+        {/* TODO: Temp hide for mvp final 
+        <Caption>elasped time {dayjs(elaspedTime).format('HH:mm:ss')} </Caption> */}
         <ProgressBar percent={progress} />
         <Caption>
           {inprogressPhoto} of {totalPhoto} photos
         </Caption>
       </ProgressBarWrapper>
-      <ButtonWrapper>
+      {/* TODO: temp add for mvp final */}
+      <ButtonWrapper style={{ marginLeft: '1rem' }}>
+        {
+          //TODO: temp hide for mvp final
+          /*
         <PausePlayButton active={active}>
           {active ? (
             <PauseOutlined
@@ -45,7 +50,8 @@ const TaskProgressBar: React.FC<TaskProgressBarType> = (props) => {
               }}
             />
           )}
-        </PausePlayButton>
+        </PausePlayButton>*/
+        }
         <StopButton>
           <CloseOutlined />
         </StopButton>
