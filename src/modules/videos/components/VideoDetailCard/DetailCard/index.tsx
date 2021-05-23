@@ -2,10 +2,10 @@ import { Row, Col } from 'antd';
 import dayjs from 'dayjs';
 import filesize from 'filesize';
 import { DetailHeader } from 'Modules/videos/pages/styled';
-import { convertToDayOfWeek } from 'Modules/videos/utils/convertToDayOfWeek';
 import { format } from 'path';
 import React from 'react';
 import Label from '../../../../../common/components/Label';
+import { convertToDayOfWeek } from '../../../../../common/utils/convertToDayOfWeek';
 import { VideoDetailCard } from '../styled';
 import { DetailCardPropsType } from './types';
 
