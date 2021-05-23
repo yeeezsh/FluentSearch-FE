@@ -11,7 +11,6 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
     data,
     videoHeight,
     videoWidth,
-    duration,
     selectedLabel,
     precision,
   } = props;
@@ -34,7 +33,7 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
       for (const element of classes) {
         const { bbox, cat } = element;
         let { xmin, ymin, xmax, ymax } = bbox;
-        if (played * duration >= nFps - precision && played * duration <= nFps) {
+        if (played >= nFps - precision && played <= nFps) {
           xmin = xmin * aspectRatioWidth;
           ymin = ymin * aspectRatioHeight;
           xmax = xmax * aspectRatioWidth;
@@ -92,7 +91,14 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
 
   return (
     <Stage
-      style={{ position: 'absolute', top: 0, left: 0 }}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+
+        zIndex: 2147483647,
+      }}
       width={canvasWidth}
       height={canvasHeight}>
       <Layer>{layerItems}</Layer>
