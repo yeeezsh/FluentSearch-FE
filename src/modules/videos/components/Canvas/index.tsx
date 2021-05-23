@@ -32,59 +32,61 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
 
       for (const element of classes) {
         const { bbox, cat } = element;
-        let { xmin, ymin, xmax, ymax } = bbox;
-        if (played >= nFps - precision && played <= nFps) {
-          xmin = xmin * aspectRatioWidth;
-          ymin = ymin * aspectRatioHeight;
-          xmax = xmax * aspectRatioWidth;
-          ymax = ymax * aspectRatioHeight;
+        if (bbox !== undefined) {
+          let { xmin, ymin, xmax, ymax } = bbox;
+          if (played >= nFps - precision && played <= nFps) {
+            xmin = xmin * aspectRatioWidth || 0;
+            ymin = ymin * aspectRatioHeight || 0;
+            xmax = xmax * aspectRatioWidth || 0;
+            ymax = ymax * aspectRatioHeight || 0;
 
-          width = xmax - xmin;
-          height = ymax - ymin;
+            width = xmax - xmin || 0;
+            height = ymax - ymin || 0;
 
-          if (selectedLabel === '') {
-            strokeWidth = 5;
-            fontSize = 16;
-          } else {
-            if (cat === selectedLabel) {
+            if (selectedLabel === '') {
               strokeWidth = 5;
               fontSize = 16;
             } else {
-              strokeWidth = 0;
-              fontSize = 0;
+              if (cat === selectedLabel) {
+                strokeWidth = 5;
+                fontSize = 16;
+              } else {
+                strokeWidth = 0;
+                fontSize = 0;
+              }
             }
-          }
 
-          const rect = (
-            <Rect
-              x={0}
-              y={0}
-              width={width}
-              height={height}
-              stroke={'#0BB5C2'}
-              strokeWidth={strokeWidth}
-            />
-          );
-
-          const labelText = (
-            <Label x={0} y={0} offsetX={-2}>
-              <Tag fill="#0BB5C2" />
-              <Text
-                fontFamily="Arial"
-                text={cat}
-                fontSize={fontSize}
-                lineHeight={2}
-                fill="#000"
+            const rect = (
+              <Rect
+                x={0}
+                y={0}
+                width={width}
+                height={height}
+                stroke={'#0BB5C2'}
+                strokeWidth={strokeWidth}
               />
-            </Label>
-          );
+            );
 
-          layerItems.push(
-            <Group x={xmin} y={ymin} key={uuid()} name={cat}>
-              {labelText}
-              {rect}
-            </Group>,
-          );
+            const labelText = (
+              <Label x={0} y={0} offsetX={-2}>
+                <Tag fill="#0BB5C2" />
+                <Text
+                  fontFamily="Arial"
+                  text={cat}
+                  fontSize={fontSize}
+                  lineHeight={2}
+                  fill="#000"
+                />
+              </Label>
+            );
+
+            layerItems.push(
+              <Group x={xmin} y={ymin} key={uuid()} name={cat}>
+                {labelText}
+                {rect}
+              </Group>,
+            );
+          }
         }
       }
     });
