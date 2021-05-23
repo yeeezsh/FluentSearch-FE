@@ -24,10 +24,6 @@ export const initVideoState: initVideoStateType = {
       date: '',
       place: '',
     },
-    player: {
-      duration: 0,
-      played: 0,
-    },
   },
   ready: false,
 };
