@@ -12,6 +12,10 @@ const videoSlice = createSlice({
     init(state) {
       return { ...state, ...initVideoState };
     },
+    setPlayed(state, action: PayloadAction<{ played: number }>) {
+      const { played } = action.payload;
+      state.present.player.played = played;
+    },
     setDuration(state, action: PayloadAction<{ duration: number }>) {
       const { duration } = action.payload;
       state.present.player.duration = duration;

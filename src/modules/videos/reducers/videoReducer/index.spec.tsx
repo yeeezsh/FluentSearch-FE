@@ -53,4 +53,10 @@ describe('reducers/videoReducer test', () => {
     const result = store.getState().video.present.player.duration;
     expect(result).toEqual(50);
   });
+
+  it('it should set played correctly', () => {
+    store.dispatch(videoActions.setPlayed({ played: 99 }));
+    const result = store.getState().video.present.player.played;
+    expect(result).toEqual(99);
+  });
 });
