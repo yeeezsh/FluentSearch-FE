@@ -96,8 +96,6 @@ const Canvas: React.FC<CanvasPropsType> = (props) => {
         top: 0,
         left: 0,
         pointerEvents: 'none',
-
-        zIndex: 2147483647,
       }}
       width={canvasWidth}
       height={canvasHeight}>
