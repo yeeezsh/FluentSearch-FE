@@ -2,7 +2,7 @@ import { AnnotationResultType } from '../models/types';
 
 export const annotation: AnnotationResultType = {
   precision: 1,
-  model: 'VGG16',
+  model: 'ilsvrc_googlenet',
   annotations: [
     {
       classes: [],
