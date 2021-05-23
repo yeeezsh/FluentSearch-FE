@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
-  mockData,
   expectedResultLabel,
   expectedResultPerson,
+  expectResult,
+  mockData,
 } from 'Modules/videos/mocks/fetchInsightDataTest';
 import { combineReducers } from 'redux';
 import insightReducer, { insightActions } from '.';
@@ -49,10 +50,14 @@ describe('reducer/insightReducer test', () => {
     });
 
     const result = store.getState().insight.data.annotations;
+    const resultModel = store.getState().insight.present.model;
+    const resultPrecision = store.getState().insight.present.precision;
     const resultPerson = store.getState().insight.present.person;
     const resultLabel = store.getState().insight.present.label;
 
-    expect(result).toEqual(mockData);
+    expect(result).toEqual(expectResult);
+    expect(resultModel).toEqual('ilsvrc_googlenet');
+    expect(resultPrecision).toEqual(1);
     expect(resultLabel).toEqual(expectedResultLabel);
     expect(resultPerson).toEqual(expectedResultPerson);
   });
