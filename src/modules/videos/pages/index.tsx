@@ -5,18 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import { fetchInsightData } from '../reducers/insightReducer/actions';
 import { fetchVideoData } from '../reducers/videoReducer/actions';
-import { Header, VideoPlayerWrapper } from './styled';
+import { Header, VideoPlayer, VideoPlayerWrapper } from './styled';
 import { insightActions } from '../reducers/insightReducer';
 import PeopleCard from '../components/VideoDetailCard/PeopleCard';
 import LabelCard from '../components/VideoDetailCard/LabelCard';
 import DetailCard from '../components/VideoDetailCard/DetailCard';
-import ReactPlayer from 'react-player';
 import { videoActions } from '../reducers/videoReducer';
-import { PlaybackRate, ProgressState } from '../models/types';
-import screenful from 'screenfull';
-import PlayerControl from '../components/PlayerControl';
-import VideoPlayer from '../components/VideoPlayer';
 import { timeFormatter } from '../utils/timeFormatter';
+import { useEventListener } from '../../../common/hooks/useEventListener';
+import Canvas from '../components/Canvas';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -43,7 +40,6 @@ const ViewVideoPage: React.FC = () => {
     dispatch(insightActions.setSelectedPerson({ index: index }));
   };
 
-  const playerRef = useRef<ReactPlayer>(null);
   const playerContainerRef = useRef<HTMLDivElement>(null);
   const controlRef = useRef<HTMLDivElement>(null);
 
@@ -76,62 +72,6 @@ const ViewVideoPage: React.FC = () => {
   const precision = useSelector((state: StoresState) => state.insight.present.precision);
   const model = useSelector((state: StoresState) => state.insight.present.model);
 
-  const handleProgress = (changeState: ProgressState) => {
-    if (!seeking) dispatch(videoActions.setProgress({ played: changeState.played }));
-  };
-
-  const handlePlaying = () => {
-    dispatch(videoActions.setPlaying());
-  };
-
-  const handleRewind = () => {
-    if (playerRef.current)
-      playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10);
-  };
-
-  const handleFastForward = () => {
-    if (playerRef.current)
-      playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10);
-  };
-
-  const handleMuted = () => {
-    dispatch(videoActions.setMuted());
-    const defaultVolume = 50 / 100;
-    if (muted !== false) {
-      dispatch(videoActions.setVolume({ volume: defaultVolume, muted: false }));
-    }
-  };
-
-  const handleToggleFullScreen = () => {
-    if (screenful.isEnabled && playerContainerRef.current) {
-      screenful.toggle(playerContainerRef.current);
-      dispatch(videoActions.setFullScreen());
-    }
-  };
-
-  const handleMouseMove = () => {
-    if (!controlRef.current) return;
-    controlRef.current.style.visibility = 'visible';
-  };
-
-  const handleMouseLeave = () => {
-    if (!controlRef.current) return;
-    controlRef.current.style.visibility = 'hidden';
-  };
-
-  const handlePlaybackRateChange = (value: PlaybackRate) => {
-    dispatch(videoActions.setPlaybackRate({ playbackRate: value }));
-  };
-
-  let canvasWidth = 556;
-  let canvasHeight = 288;
-
-  const playerWidth = controlRef.current?.clientWidth;
-  canvasWidth = playerWidth ? playerWidth : canvasWidth;
-
-  const playerHeight = controlRef.current?.clientHeight;
-  canvasHeight = playerHeight ? playerHeight : canvasHeight;
-
   const currentTime = playerRef.current ? playerRef.current.getCurrentTime() : 0;
   const durationTime = playerRef.current ? playerRef.current.getDuration() : 0;
 
@@ -140,7 +80,8 @@ const ViewVideoPage: React.FC = () => {
   const totalDuration = timeFormatter(durationTime);
 
   const handleMarkerClick = (time: number) => {
-    playerRef.current?.seekTo(time - 0.05);
+    if (!videoRef.current) return;
+    videoRef.current.currentTime = time - 0.05;
     setSelectedTime(time);
   };
 
@@ -148,28 +89,57 @@ const ViewVideoPage: React.FC = () => {
     dispatch(insightActions.setSelectedLabel({ category: selectedLabel }));
   };
 
-  const handleVideoSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const played = parseFloat(e.target.value) / 100;
-    playerRef.current?.seekTo(played);
-    dispatch(videoActions.setVideoSliderChange({ played: played }));
-  };
+  const [{ vidWidth, vidHeight }, setVideoSize] = useState<{
+    vidWidth: number;
+    vidHeight: number;
+  }>({
+    vidWidth: 0,
+    vidHeight: 0,
+  });
+  const videoRef = useRef<HTMLVideoElement>(null);
+  //useEventListener('msFullscreenElement', handleFullScreen, videoRef);
+  let duration = 0;
+  if (videoRef.current) duration = videoRef.current?.duration;
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.addEventListener('webkitfullscreenchange', () => {
+        if (videoRef.current?.clientHeight && videoRef.current?.clientWidth) {
+          setVideoSize({
+            vidWidth: videoRef.current?.clientWidth,
+            vidHeight: videoRef.current?.clientHeight,
+          });
 
-  const handleSliderMouseDown = () => {
-    dispatch(videoActions.setSliderMouseDown({ playing: false, seeking: true }));
-  };
+          console.log(videoRef.current?.clientHeight, videoRef.current?.clientWidth);
+        }
+      });
+      videoRef.current.addEventListener('timeupdate', () => {
+        const played = videoRef.current && videoRef.current?.currentTime;
+        if (played) dispatch(videoActions.setProgress({ played: played }));
+      });
+    }
 
-  const handleSliderMouseUp = () => {
-    dispatch(videoActions.setSliderMouseUp({ seeking: false }));
-  };
+    return () => {
+      if (!videoRef.current) return;
+      videoRef.current?.removeEventListener('webkitfullscreenchange', () => {
+        console.log('remove');
+      });
+    };
+  }, [videoRef]);
 
-  const handleVolumeSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const volume = parseFloat(e.target.value) / 100;
-    dispatch(videoActions.setVolumeSliderChange({ volume: volume }));
+  const changeUrl = (url: string): string => {
+    const replaceUrl = url.replace('.mp4', '_c.mp4');
+    console.log(replaceUrl);
+    return replaceUrl;
   };
 
   useEffect(() => {
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
+    if (videoRef.current?.clientHeight && videoRef.current?.clientWidth)
+      setVideoSize({
+        vidWidth: videoRef.current?.clientWidth,
+        vidHeight: videoRef.current?.clientHeight,
+      });
   }, []);
 
   return (
@@ -179,52 +149,24 @@ const ViewVideoPage: React.FC = () => {
       <hr />
       <Row style={{ marginTop: '5%' }}>
         <Col span={13}>
-          <VideoPlayerWrapper
-            ref={playerContainerRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}>
-            <VideoPlayer
+          <VideoPlayerWrapper ref={playerContainerRef}>
+            <Canvas
               selectedLabel={selectedLabel}
-              duration={durationTime}
-              url={url}
-              ref={playerRef}
-              isPlaying={playing}
-              muted={muted}
-              playbackRate={playbackRate}
-              handleProgress={handleProgress}
-              volume={volume}
-              canvasWidth={canvasWidth}
-              canvasHeight={canvasHeight}
-              incidentData={incidentData}
+              duration={duration}
+              width={vidWidth}
+              height={vidHeight}
+              data={incidentData}
               played={played}
               videoHeight={videoHeight}
               videoWidth={videoWidth}
               precision={precision}
             />
-
-            <PlayerControl
-              ref={controlRef}
-              fullscreen={fullscreen}
-              played={played}
-              muted={muted}
-              volume={volume}
-              playing={playing}
-              seeking={seeking}
-              duration={durationTime}
-              playbackRate={playbackRate}
-              onPlaying={handlePlaying}
-              onRewind={handleRewind}
-              onFastForward={handleFastForward}
-              onMute={handleMuted}
-              onPlaybackRateChange={handlePlaybackRateChange}
-              onToggleFullScreen={handleToggleFullScreen}
-              onVideoSliderChange={handleVideoSliderChange}
-              onVolumeSliderChange={handleVolumeSliderChange}
-              onMouseUp={handleSliderMouseUp}
-              onMouseDown={handleSliderMouseDown}
-              elaspedTime={elaspedTime}
-              totalDuration={totalDuration}
-            />
+            <VideoPlayer ref={videoRef} controls muted autoPlay plays-inline>
+              <source type="video/mp4" src="videos/sample.mp4" />
+              <source type="video/webm" src="videos/sample.webm" />
+              <source type="video/mp4" src="videos/sample.m4v" />
+              <source type="video/ogg" src="videos/sample.ogv" />
+            </VideoPlayer>
           </VideoPlayerWrapper>
           <br />
           <DetailCard
@@ -247,7 +189,7 @@ const ViewVideoPage: React.FC = () => {
           <br />
           <LabelCard
             selectedTime={selectedTime}
-            duration={durationTime}
+            duration={duration}
             totalIncidents={totalIncidents}
             incidents={incidents}
             onMarkerClick={handleMarkerClick}
