@@ -32,7 +32,6 @@
     "react": "16.14",
     "react-dom": "16.14",
     "react-konva": "16.13.0-6",
-    "react-player": "^2.9.0",
     "react-redux": "7.2.2",
     "redux": "^4.0.5",
     "screenfull": "^5.1.0",
