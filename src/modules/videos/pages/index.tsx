@@ -11,8 +11,6 @@ import PeopleCard from '../components/VideoDetailCard/PeopleCard';
 import LabelCard from '../components/VideoDetailCard/LabelCard';
 import DetailCard from '../components/VideoDetailCard/DetailCard';
 import { videoActions } from '../reducers/videoReducer';
-import { timeFormatter } from '../utils/timeFormatter';
-import { useEventListener } from '../../../common/hooks/useEventListener';
 import Canvas from '../components/Canvas';
 
 const ViewVideoPage: React.FC = () => {
@@ -41,19 +39,7 @@ const ViewVideoPage: React.FC = () => {
   };
 
   const playerContainerRef = useRef<HTMLDivElement>(null);
-  const controlRef = useRef<HTMLDivElement>(null);
-
-  const muted = useSelector((state: StoresState) => state.video.present.player.muted);
-  const playing = useSelector((state: StoresState) => state.video.present.player.playing);
-  const playbackRate = useSelector(
-    (state: StoresState) => state.video.present.player.playbackRate,
-  );
   const played = useSelector((state: StoresState) => state.video.present.player.played);
-  const seeking = useSelector((state: StoresState) => state.video.present.player.seeking);
-  const volume = useSelector((state: StoresState) => state.video.present.player.volume);
-  const fullscreen = useSelector(
-    (state: StoresState) => state.video.present.player.fullscreen,
-  );
 
   const videoHeight = useSelector(
     (state: StoresState) => state.video.present.metaData.height,
@@ -71,13 +57,6 @@ const ViewVideoPage: React.FC = () => {
 
   const precision = useSelector((state: StoresState) => state.insight.present.precision);
   const model = useSelector((state: StoresState) => state.insight.present.model);
-
-  const currentTime = playerRef.current ? playerRef.current.getCurrentTime() : 0;
-  const durationTime = playerRef.current ? playerRef.current.getDuration() : 0;
-
-  const elaspedTime = timeFormatter(currentTime);
-
-  const totalDuration = timeFormatter(durationTime);
 
   const handleMarkerClick = (time: number) => {
     if (!videoRef.current) return;
@@ -114,7 +93,7 @@ const ViewVideoPage: React.FC = () => {
       });
       videoRef.current.addEventListener('timeupdate', () => {
         const played = videoRef.current && videoRef.current?.currentTime;
-        if (played) dispatch(videoActions.setProgress({ played: played }));
+        if (played) dispatch(videoActions.setPlayed({ played: played }));
       });
     }
 

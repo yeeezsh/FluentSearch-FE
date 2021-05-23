@@ -14,4 +14,14 @@ const VideoPlayerWrapper = styled.div`
   height: 50vh;
 `;
 
-export { Header, DetailHeader, VideoPlayerWrapper };
+const VideoPlayer = styled.video`
+  ::-webkit-media-controls-fullscreen-button {
+    display: none;
+  }
+
+  background: black;
+  width: 100%;
+  height: 100%;
+`;
+
+export { Header, DetailHeader, VideoPlayerWrapper, VideoPlayer };
