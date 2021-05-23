@@ -12,7 +12,6 @@ import LabelCard from '../components/VideoDetailCard/LabelCard';
 import DetailCard from '../components/VideoDetailCard/DetailCard';
 import Canvas from '../components/Canvas';
 import { PlayerState } from '../models/types';
-import fileFormatCutter from '../utils/fileFormatCutter';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -143,11 +142,12 @@ const ViewVideoPage: React.FC = () => {
               videoWidth={videoWidth}
               precision={precision}
             />
-            <VideoPlayer ref={videoRef} controls muted autoPlay>
-              <source type="video/mp4" src={`${fileFormatCutter(url) + '.mp4'}`} />
-              <source type="video/webm" src={`${fileFormatCutter(url) + '.webm'}`} />
-              <source type="video/mp4" src={`${fileFormatCutter(url) + '.m4v'}`} />
-              <source type="video/ogg" src={`${fileFormatCutter(url) + '.ogv'}`} />
+            <VideoPlayer ref={videoRef} controls muted autoPlay preload="auto">
+              {/* TODO: Dynamic route */}
+              <source type="video/mp4" src={`videos/sample.mp4`} />
+              <source type="video/webm" src={`videos/sample.webm`} />
+              <source type="video/mp4" src={`videos/sample.m4v`} />
+              <source type="video/ogg" src={`videos/sample.ogv`} />
             </VideoPlayer>
           </VideoPlayerWrapper>
           <br />
