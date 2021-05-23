@@ -81,7 +81,7 @@ const ViewVideoPage: React.FC = () => {
 
   const handleMarkerClick = (time: number) => {
     if (!videoRef.current) return;
-    videoRef.current.currentTime = time - 0.05;
+    videoRef.current.currentTime = time - 0.5;
     setSelectedTime(time);
   };
 
