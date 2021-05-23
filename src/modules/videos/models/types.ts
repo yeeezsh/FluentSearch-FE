@@ -1,13 +1,8 @@
-type VideoState = {
+type PlayerState = {
   duration: number;
   played: number;
-};
-
-type ProgressState = {
-  loaded: number;
-  loadedSeconds: number;
-  played: number;
-  playedSeconds: number;
+  playerHeight: number;
+  playerWidth: number;
 };
 
 type TimeDisplayFormat = 'normal' | 'remaining';
@@ -75,8 +70,7 @@ type VideoFileType = {
 type MetaDataType = Omit<VideoFileType, 'deleteFlag' | 'incidents' | 'url'>;
 
 export type {
-  VideoState,
-  ProgressState,
+  PlayerState,
   PlaybackRate,
   PersonPresentType,
   LabelPresentType,
