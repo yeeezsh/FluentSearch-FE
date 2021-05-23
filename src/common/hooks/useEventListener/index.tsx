@@ -1,7 +1,7 @@
-import { RefObject, useEffect, useRef } from 'react';
+import React, { RefObject, useEffect, useRef } from 'react';
 
 export const useEventListener = <T extends HTMLElement = HTMLDivElement>(
-  eventName: keyof WindowEventMap,
+  eventName: keyof WindowEventMap | keyof DocumentEventMap,
   handler: (event: Event) => void,
   element?: RefObject<T>,
 ): void => {
