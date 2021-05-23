@@ -10,12 +10,30 @@ import { insightActions } from '../reducers/insightReducer';
 import PeopleCard from '../components/VideoDetailCard/PeopleCard';
 import LabelCard from '../components/VideoDetailCard/LabelCard';
 import DetailCard from '../components/VideoDetailCard/DetailCard';
-import { videoActions } from '../reducers/videoReducer';
 import Canvas from '../components/Canvas';
+import { PlayerState } from '../models/types';
+import fileFormatCutter from '../utils/fileFormatCutter';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
+
+  const playerContainerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   const [selectedTime, setSelectedTime] = useState(0);
+  const [playerState, setPlayerState] = useState<PlayerState>({
+    duration: 0,
+    played: 0,
+    playerHeight: 0,
+    playerWidth: 0,
+  });
+
+  const videoHeight = useSelector(
+    (state: StoresState) => state.video.present.metaData.height,
+  );
+  const videoWidth = useSelector(
+    (state: StoresState) => state.video.present.metaData.width,
+  );
   const date = useSelector((state: StoresState) => state.video.present.metaData.date);
   const originalFileName = useSelector(
     (state: StoresState) => state.video.present.metaData.originalFileName,
@@ -26,10 +44,19 @@ const ViewVideoPage: React.FC = () => {
   const height = useSelector((state: StoresState) => state.video.present.metaData.height);
   const place = useSelector((state: StoresState) => state.video.present.metaData.place);
   const url = useSelector((state: StoresState) => state.video.videoFile.url);
+
   const incidents = useSelector((state: StoresState) => state.insight.present.label);
   const personIncidents = useSelector(
     (state: StoresState) => state.insight.present.person,
   );
+  const incidentData = useSelector(
+    (state: StoresState) => state.insight.data.annotations,
+  );
+  const selectedLabel = useSelector(
+    (state: StoresState) => state.insight.present.selectedLabel,
+  );
+  const precision = useSelector((state: StoresState) => state.insight.present.precision);
+  const model = useSelector((state: StoresState) => state.insight.present.model);
 
   const totalPeople = personIncidents.length;
   const totalIncidents = incidents.length;
@@ -37,26 +64,6 @@ const ViewVideoPage: React.FC = () => {
   const handleSelectAvatar = (index: number) => {
     dispatch(insightActions.setSelectedPerson({ index: index }));
   };
-
-  const playerContainerRef = useRef<HTMLDivElement>(null);
-  const played = useSelector((state: StoresState) => state.video.present.player.played);
-
-  const videoHeight = useSelector(
-    (state: StoresState) => state.video.present.metaData.height,
-  );
-  const videoWidth = useSelector(
-    (state: StoresState) => state.video.present.metaData.width,
-  );
-
-  const incidentData = useSelector(
-    (state: StoresState) => state.insight.data.annotations,
-  );
-  const selectedLabel = useSelector(
-    (state: StoresState) => state.insight.present.selectedLabel,
-  );
-
-  const precision = useSelector((state: StoresState) => state.insight.present.precision);
-  const model = useSelector((state: StoresState) => state.insight.present.model);
 
   const handleMarkerClick = (time: number) => {
     if (!videoRef.current) return;
@@ -68,33 +75,38 @@ const ViewVideoPage: React.FC = () => {
     dispatch(insightActions.setSelectedLabel({ category: selectedLabel }));
   };
 
-  const [{ vidWidth, vidHeight }, setVideoSize] = useState<{
-    vidWidth: number;
-    vidHeight: number;
-  }>({
-    vidWidth: 0,
-    vidHeight: 0,
-  });
-  const videoRef = useRef<HTMLVideoElement>(null);
-  //useEventListener('msFullscreenElement', handleFullScreen, videoRef);
-  let duration = 0;
-  if (videoRef.current) duration = videoRef.current?.duration;
+  const handlePlayerResize = () => {
+    if (videoRef.current?.clientHeight && videoRef.current?.clientWidth) {
+      setPlayerState((prevState) => ({
+        ...prevState,
+        playerHeight: videoRef.current?.clientHeight || 0,
+        playerWidth: videoRef.current?.clientWidth || 0,
+      }));
+    }
+  };
+
+  const handleDuration = () => {
+    if (videoRef.current)
+      setPlayerState((prevState) => ({
+        ...prevState,
+        duration: videoRef.current?.duration || 0,
+      }));
+  };
+
+  const handlePlayed = () => {
+    if (videoRef.current) {
+      const played = videoRef.current && videoRef.current?.currentTime;
+      setPlayerState((prevState) => ({
+        ...prevState,
+        played: played || 0,
+      }));
+    }
+  };
+
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.addEventListener('webkitfullscreenchange', () => {
-        if (videoRef.current?.clientHeight && videoRef.current?.clientWidth) {
-          setVideoSize({
-            vidWidth: videoRef.current?.clientWidth,
-            vidHeight: videoRef.current?.clientHeight,
-          });
-
-          console.log(videoRef.current?.clientHeight, videoRef.current?.clientWidth);
-        }
-      });
-      videoRef.current.addEventListener('timeupdate', () => {
-        const played = videoRef.current && videoRef.current?.currentTime;
-        if (played) dispatch(videoActions.setPlayed({ played: played }));
-      });
+      videoRef.current.addEventListener('webkitfullscreenchange', handlePlayerResize);
+      videoRef.current.addEventListener('timeupdate', handlePlayed);
     }
 
     return () => {
@@ -105,20 +117,11 @@ const ViewVideoPage: React.FC = () => {
     };
   }, [videoRef]);
 
-  const changeUrl = (url: string): string => {
-    const replaceUrl = url.replace('.mp4', '_c.mp4');
-    console.log(replaceUrl);
-    return replaceUrl;
-  };
-
   useEffect(() => {
     dispatch(fetchVideoData());
     dispatch(fetchInsightData());
-    if (videoRef.current?.clientHeight && videoRef.current?.clientWidth)
-      setVideoSize({
-        vidWidth: videoRef.current?.clientWidth,
-        vidHeight: videoRef.current?.clientHeight,
-      });
+    handleDuration();
+    handlePlayerResize();
   }, []);
 
   return (
@@ -131,20 +134,20 @@ const ViewVideoPage: React.FC = () => {
           <VideoPlayerWrapper ref={playerContainerRef}>
             <Canvas
               selectedLabel={selectedLabel}
-              duration={duration}
-              width={vidWidth}
-              height={vidHeight}
+              duration={playerState.duration}
+              width={playerState.playerWidth}
+              height={playerState.playerHeight}
               data={incidentData}
-              played={played}
+              played={playerState.played}
               videoHeight={videoHeight}
               videoWidth={videoWidth}
               precision={precision}
             />
-            <VideoPlayer ref={videoRef} controls muted autoPlay plays-inline>
-              <source type="video/mp4" src="videos/sample.mp4" />
-              <source type="video/webm" src="videos/sample.webm" />
-              <source type="video/mp4" src="videos/sample.m4v" />
-              <source type="video/ogg" src="videos/sample.ogv" />
+            <VideoPlayer ref={videoRef} controls muted autoPlay>
+              <source type="video/mp4" src={`${fileFormatCutter(url) + '.mp4'}`} />
+              <source type="video/webm" src={`${fileFormatCutter(url) + '.webm'}`} />
+              <source type="video/mp4" src={`${fileFormatCutter(url) + '.m4v'}`} />
+              <source type="video/ogg" src={`${fileFormatCutter(url) + '.ogv'}`} />
             </VideoPlayer>
           </VideoPlayerWrapper>
           <br />
@@ -168,7 +171,7 @@ const ViewVideoPage: React.FC = () => {
           <br />
           <LabelCard
             selectedTime={selectedTime}
-            duration={duration}
+            duration={playerState.duration}
             totalIncidents={totalIncidents}
             incidents={incidents}
             onMarkerClick={handleMarkerClick}
