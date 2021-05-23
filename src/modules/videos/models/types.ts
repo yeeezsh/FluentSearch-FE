@@ -1,12 +1,6 @@
 type VideoState = {
-  muted: boolean;
-  playing: boolean;
-  volume: number;
-  playbackRate: PlaybackRate;
-  seeking: boolean;
   duration: number;
   played: number;
-  fullscreen: boolean;
 };
 
 type ProgressState = {

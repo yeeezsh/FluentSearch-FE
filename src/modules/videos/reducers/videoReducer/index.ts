@@ -12,51 +12,9 @@ const videoSlice = createSlice({
     init(state) {
       return { ...state, ...initVideoState };
     },
-    setPlaying(state) {
-      state.present.player.playing = !state.present.player.playing;
-    },
-    setMuted(state) {
-      state.present.player.muted = !state.present.player.muted;
-    },
-    setVolume(state, action: PayloadAction<{ volume: number; muted: boolean }>) {
-      const { volume, muted } = action.payload;
-      state.present.player.volume = volume;
-      state.present.player.muted = muted;
-    },
-    setProgress(state, action: PayloadAction<{ played: number }>) {
-      const { played } = action.payload;
-      state.present.player.played = played;
-    },
-    setPlaybackRate(state, action: PayloadAction<{ playbackRate: PlaybackRate }>) {
-      const { playbackRate } = action.payload;
-      state.present.player.playbackRate = playbackRate;
-    },
-    setFullScreen(state) {
-      state.present.player.fullscreen = !state.present.player.fullscreen;
-    },
     setDuration(state, action: PayloadAction<{ duration: number }>) {
       const { duration } = action.payload;
       state.present.player.duration = duration;
-    },
-    setVolumeSliderChange(state, action: PayloadAction<{ volume: number }>) {
-      const { volume } = action.payload;
-      state.present.player.volume = volume;
-    },
-    setVideoSliderChange(state, action: PayloadAction<{ played: number }>) {
-      const { played } = action.payload;
-      state.present.player.played = played;
-    },
-    setSliderMouseUp(state, action: PayloadAction<{ seeking: boolean }>) {
-      const { seeking } = action.payload;
-      state.present.player.seeking = seeking;
-    },
-    setSliderMouseDown(
-      state,
-      action: PayloadAction<{ playing: boolean; seeking: boolean }>,
-    ) {
-      const { seeking, playing } = action.payload;
-      state.present.player.seeking = seeking;
-      state.present.player.playing = playing;
     },
   },
   extraReducers: (builder) => {
