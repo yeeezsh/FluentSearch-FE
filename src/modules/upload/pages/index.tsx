@@ -15,9 +15,9 @@ import { InputLine } from 'Styles/global';
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
   const { Content } = Layout;
-  const [files, setFiles] = useState<File[]>([]);
   const [albumName, setAlbumName] = useState<string>('');
 
+  const fileList: File[] = [];
   const pendingQueue = useSelector((state: StoresState) => state.upload.pendingQueue);
   const fulfillQueue = useSelector((state: StoresState) => state.upload.fulfillQueue);
 
@@ -26,6 +26,7 @@ const UploadPage: React.FC = () => {
   }, [pendingQueue, fulfillQueue]);
 
   const handleFileOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const rawFiles = e.target.files;
 
     const filesToUpload: FileUpload[] = [];
@@ -36,7 +37,7 @@ const UploadPage: React.FC = () => {
       if (rawFiles.length > 0) type = 'multiple';
 
       for (const file of rawFiles) {
-        setFiles((prevFiles) => [...prevFiles, file]);
+        fileList.push(file);
         const newFile = {
           _id: uuidv4() as string,
           progress: 0,
@@ -48,11 +49,11 @@ const UploadPage: React.FC = () => {
         } as FileUpload;
         filesToUpload.push(newFile);
       }
-      initUpload(groupGenerated, filesToUpload);
+      initUpload(groupGenerated, filesToUpload, fileList);
     }
   };
 
-  const initUpload = (group: string, metaDataFiles: FileUpload[]) => {
+  const initUpload = (group: string, metaDataFiles: FileUpload[], files: File[]) => {
     metaDataFiles.forEach((el) => dispatch(uploadActions.setPendingQueue(el)));
     uploadFileData(group, files);
   };
