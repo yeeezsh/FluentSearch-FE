@@ -1,11 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FileUpload, GroupTask, UPLOAD } from 'Modules/upload/model/types';
-import { requestURL } from 'Modules/upload/services/request.url';
 import { initUploadState } from './init';
-
-export const requestURLToUpload = createAsyncThunk(UPLOAD, async () => {
-  return { data: await requestURL() };
-});
 
 export const uploadReducer = createSlice({
   name: UPLOAD,
