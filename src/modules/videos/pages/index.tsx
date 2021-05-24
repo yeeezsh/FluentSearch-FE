@@ -104,7 +104,7 @@ const ViewVideoPage: React.FC = () => {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.addEventListener('webkitfullscreenchange', handlePlayerResize);
+      window.addEventListener('resize', handlePlayerResize);
       videoRef.current.addEventListener('timeupdate', handlePlayed);
     }
 
