@@ -18,6 +18,48 @@ export type AppModel = {
   status: Scalars['Int'];
 };
 
+export type FileDurationMetaDto = {
+  __typename?: 'FileDurationMetaDTO';
+  hour: Scalars['Float'];
+  minute: Scalars['Float'];
+  original: Scalars['String'];
+  second: Scalars['Float'];
+};
+
+export type FileMetaDto = {
+  __typename?: 'FileMetaDTO';
+  bitrate?: Maybe<Scalars['Float']>;
+  codec?: Maybe<Scalars['String']>;
+  contentType: Scalars['String'];
+  duration?: Maybe<FileDurationMetaDto>;
+  extension: Scalars['String'];
+  fps?: Maybe<Scalars['Float']>;
+  height: Scalars['Float'];
+  sha1?: Maybe<Scalars['String']>;
+  size: Scalars['Float'];
+  width: Scalars['Float'];
+};
+
+export type FileModelDto = {
+  __typename?: 'FileModelDTO';
+  _id: Scalars['String'];
+  createAt: Scalars['String'];
+  meta: FileMetaDto;
+  original_filename: Scalars['String'];
+  owner: Scalars['String'];
+  type: FileTypeEnum;
+  updateAt: Scalars['String'];
+  uri: Scalars['String'];
+  zone: ZoneEnum;
+};
+
+export enum FileTypeEnum {
+  Image = 'Image',
+  ImageThumbnail = 'ImageThumbnail',
+  Video = 'Video',
+  VideoThumbnail = 'VideoThumbnail'
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
   CreateUser: UserWithId;
@@ -44,11 +86,17 @@ export type MutationUpdateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  GetFileById: FileModelDto;
   GetRecentFiles: RecentFiles;
   GetUserBySession?: Maybe<UserWithId>;
   ServerStatus: AppModel;
   User?: Maybe<UserWithId>;
   Users: Array<UserWithId>;
+};
+
+
+export type QueryGetFileByIdArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -71,7 +119,7 @@ export type QueryUsersArgs = {
 export type RecentFile = {
   __typename?: 'RecentFile';
   createAt: Scalars['String'];
-  label: Scalars['String'];
+  original_filename: Scalars['String'];
   updateAt: Scalars['String'];
   uri: Scalars['String'];
   uri_thumbnail: Scalars['String'];
@@ -93,11 +141,6 @@ export type UserLoginInputDto = {
   password: Scalars['String'];
 };
 
-export enum UserPackageEnum {
-  FreeUser = 'freeUser',
-  PaidUser = 'paidUser'
-}
-
 export enum UserPackageEnumSession {
   FreeUser = 'freeUser',
   PaidUser = 'paidUser'
@@ -108,12 +151,6 @@ export type UserRegisterInput = {
   name: Scalars['String'];
   password: Scalars['String'];
 };
-
-export enum UserRoleEnum {
-  Admin = 'admin',
-  Staff = 'staff',
-  User = 'user'
-}
 
 export enum UserRoleEnumSession {
   Admin = 'admin',
@@ -146,28 +183,48 @@ export type UserUpdateInput = {
 export type UserWithId = {
   __typename?: 'UserWithId';
   _id: Scalars['String'];
-  createDate: Scalars['String'];
+  createAt: Scalars['String'];
   deactivate?: Maybe<Scalars['Boolean']>;
   email: Array<Scalars['String']>;
   mainEmail: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   oauth: UserToken;
-  package: UserPackageEnum;
+  package: UserPackageEnumSession;
   password: Scalars['String'];
-  role: UserRoleEnum;
-  updateDate: Scalars['String'];
-  zone: UserZoneEnum;
+  role: UserRoleEnumSession;
+  updateAt: Scalars['String'];
+  zone: UserZoneEnumSession;
 };
-
-export enum UserZoneEnum {
-  Th1 = 'TH1',
-  Th2 = 'TH2'
-}
 
 export enum UserZoneEnumSession {
   Th1 = 'TH1',
   Th2 = 'TH2'
 }
+
+export enum ZoneEnum {
+  Th = 'TH'
+}
+
+export type GetRecentFilesQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type GetRecentFilesQuery = (
+  { __typename?: 'Query' }
+  & { GetRecentFiles: (
+    { __typename?: 'RecentFiles' }
+    & { result: Array<(
+      { __typename?: 'RecentPreviews' }
+      & Pick<RecentPreviews, 'date'>
+      & { files?: Maybe<Array<(
+        { __typename?: 'RecentFile' }
+        & Pick<RecentFile, 'createAt' | 'original_filename' | 'updateAt' | 'uri' | 'uri_thumbnail'>
+      )>> }
+    )> }
+  ) }
+);
 
 export type GetUserQueryVariables = Exact<{
   id: Scalars['String'];
@@ -178,7 +235,11 @@ export type GetUserQuery = (
   { __typename?: 'Query' }
   & { User?: Maybe<(
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createAt' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateAt' | 'zone'>
+    & { oauth: (
+      { __typename?: 'UserToken' }
+      & Pick<UserToken, 'provider' | 'token'>
+    ) }
   )> }
 );
 
@@ -192,7 +253,11 @@ export type GetUsersQuery = (
   { __typename?: 'Query' }
   & { Users: Array<(
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'package' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createAt' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateAt' | 'zone'>
+    & { oauth: (
+      { __typename?: 'UserToken' }
+      & Pick<UserToken, 'provider' | 'token'>
+    ) }
   )> }
 );
 
@@ -203,7 +268,11 @@ export type GetUserBySessionQuery = (
   { __typename?: 'Query' }
   & { GetUserBySession?: Maybe<(
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id'>
+    & Pick<UserWithId, '_id' | 'createAt' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateAt' | 'zone'>
+    & { oauth: (
+      { __typename?: 'UserToken' }
+      & Pick<UserToken, 'provider' | 'token'>
+    ) }
   )> }
 );
 
@@ -269,23 +338,74 @@ export type UpdateUserMutation = (
   { __typename?: 'Mutation' }
   & { UpdateUser: (
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createAt' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateAt' | 'zone'>
+    & { oauth: (
+      { __typename?: 'UserToken' }
+      & Pick<UserToken, 'provider' | 'token'>
+    ) }
   ) }
 );
 
 
+export const GetRecentFilesDocument = gql`
+    query GetRecentFiles($limit: Int, $skip: Int) {
+  GetRecentFiles(limit: $limit, skip: $skip) {
+    result {
+      date
+      files {
+        createAt
+        original_filename
+        updateAt
+        uri
+        uri_thumbnail
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetRecentFilesQuery__
+ *
+ * To run a query within a React component, call `useGetRecentFilesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRecentFilesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRecentFilesQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetRecentFilesQuery(baseOptions?: Apollo.QueryHookOptions<GetRecentFilesQuery, GetRecentFilesQueryVariables>) {
+        return Apollo.useQuery<GetRecentFilesQuery, GetRecentFilesQueryVariables>(GetRecentFilesDocument, baseOptions);
+      }
+export function useGetRecentFilesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRecentFilesQuery, GetRecentFilesQueryVariables>) {
+          return Apollo.useLazyQuery<GetRecentFilesQuery, GetRecentFilesQueryVariables>(GetRecentFilesDocument, baseOptions);
+        }
+export type GetRecentFilesQueryHookResult = ReturnType<typeof useGetRecentFilesQuery>;
+export type GetRecentFilesLazyQueryHookResult = ReturnType<typeof useGetRecentFilesLazyQuery>;
+export type GetRecentFilesQueryResult = Apollo.QueryResult<GetRecentFilesQuery, GetRecentFilesQueryVariables>;
 export const GetUserDocument = gql`
     query GetUser($id: String!) {
   User(id: $id) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
     name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }
@@ -320,13 +440,18 @@ export const GetUsersDocument = gql`
     query GetUsers($limit: Int = 1000, $skip: Int = 0) {
   Users(limit: $limit, skip: $skip) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
+    name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }
@@ -362,6 +487,19 @@ export const GetUserBySessionDocument = gql`
     query GetUserBySession {
   GetUserBySession {
     _id
+    createAt
+    deactivate
+    email
+    mainEmail
+    name
+    oauth {
+      provider
+      token
+    }
+    package
+    role
+    updateAt
+    zone
   }
 }
     `;
@@ -559,14 +697,18 @@ export const UpdateUserDocument = gql`
     mutation UpdateUser($UserUpdateInput: UserUpdateInput!) {
   UpdateUser(UserUpdateInput: $UserUpdateInput) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
     name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }
