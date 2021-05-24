@@ -77,14 +77,4 @@ describe('uploadReducer test', () => {
     const result = store.getState().upload.fulfillQueue;
     expect(result).toEqual([{ ...mockFile, state: 'failed' }]);
   });
-
-  it('it should get url correctly', () => {
-    const url = 'www.test.com';
-    store.dispatch({
-      type: requestURLToUpload.fulfilled.type,
-      payload: { data: url },
-    });
-    const result = store.getState().upload.url;
-    expect(result).toEqual(url);
-  });
 });

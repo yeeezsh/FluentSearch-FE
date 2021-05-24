@@ -40,14 +40,6 @@ export const uploadReducer = createSlice({
       });
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(
-      requestURLToUpload.fulfilled,
-      (state, action: PayloadAction<{ data: string }>) => {
-        state.url = action.payload.data;
-      },
-    );
-  },
 });
 export default uploadReducer.reducer;
 export const uploadActions = uploadReducer.actions;
