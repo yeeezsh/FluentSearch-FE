@@ -226,6 +226,27 @@ export type GetRecentFilesQuery = (
   ) }
 );
 
+export type GetFileByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type GetFileByIdQuery = (
+  { __typename?: 'Query' }
+  & { GetFileById: (
+    { __typename?: 'FileModelDTO' }
+    & Pick<FileModelDto, '_id' | 'createAt' | 'original_filename' | 'owner' | 'type' | 'updateAt' | 'uri' | 'zone'>
+    & { meta: (
+      { __typename?: 'FileMetaDTO' }
+      & Pick<FileMetaDto, 'bitrate' | 'codec' | 'contentType' | 'extension' | 'fps' | 'height' | 'sha1' | 'size' | 'width'>
+      & { duration?: Maybe<(
+        { __typename?: 'FileDurationMetaDTO' }
+        & Pick<FileDurationMetaDto, 'hour' | 'minute' | 'original' | 'second'>
+      )> }
+    ) }
+  ) }
+);
+
 export type GetUserQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -390,6 +411,63 @@ export function useGetRecentFilesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type GetRecentFilesQueryHookResult = ReturnType<typeof useGetRecentFilesQuery>;
 export type GetRecentFilesLazyQueryHookResult = ReturnType<typeof useGetRecentFilesLazyQuery>;
 export type GetRecentFilesQueryResult = Apollo.QueryResult<GetRecentFilesQuery, GetRecentFilesQueryVariables>;
+export const GetFileByIdDocument = gql`
+    query GetFileById($id: String!) {
+  GetFileById(id: $id) {
+    _id
+    createAt
+    meta {
+      bitrate
+      codec
+      contentType
+      duration {
+        hour
+        minute
+        original
+        second
+      }
+      extension
+      fps
+      height
+      sha1
+      size
+      width
+    }
+    original_filename
+    owner
+    type
+    updateAt
+    uri
+    zone
+  }
+}
+    `;
+
+/**
+ * __useGetFileByIdQuery__
+ *
+ * To run a query within a React component, call `useGetFileByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFileByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFileByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetFileByIdQuery(baseOptions: Apollo.QueryHookOptions<GetFileByIdQuery, GetFileByIdQueryVariables>) {
+        return Apollo.useQuery<GetFileByIdQuery, GetFileByIdQueryVariables>(GetFileByIdDocument, baseOptions);
+      }
+export function useGetFileByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFileByIdQuery, GetFileByIdQueryVariables>) {
+          return Apollo.useLazyQuery<GetFileByIdQuery, GetFileByIdQueryVariables>(GetFileByIdDocument, baseOptions);
+        }
+export type GetFileByIdQueryHookResult = ReturnType<typeof useGetFileByIdQuery>;
+export type GetFileByIdLazyQueryHookResult = ReturnType<typeof useGetFileByIdLazyQuery>;
+export type GetFileByIdQueryResult = Apollo.QueryResult<GetFileByIdQuery, GetFileByIdQueryVariables>;
 export const GetUserDocument = gql`
     query GetUser($id: String!) {
   User(id: $id) {

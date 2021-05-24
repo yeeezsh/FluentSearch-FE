@@ -12,3 +12,33 @@ query GetRecentFiles($limit: Int, $skip: Int) {
     }
   }
 }
+
+query GetFileById($id: String!) {
+  GetFileById(id: $id) {
+    _id
+    createAt
+    meta {
+      bitrate
+      codec
+      contentType
+      duration {
+        hour
+        minute
+        original
+        second
+      }
+      extension
+      fps
+      height
+      sha1
+      size
+      width
+    }
+    original_filename
+    owner
+    type
+    updateAt
+    uri
+    zone
+  }
+}
