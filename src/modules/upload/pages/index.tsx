@@ -36,7 +36,7 @@ const UploadPage: React.FC = () => {
       if (rawFiles.length > 0) type = 'multiple';
 
       for (const file of rawFiles) {
-        setFiles((prevFiles) => ({ ...prevFiles, file }));
+        setFiles((prevFiles) => [...prevFiles, file]);
         const newFile = {
           _id: uuidv4() as string,
           progress: 0,
