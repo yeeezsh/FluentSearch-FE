@@ -9,7 +9,6 @@ const httpLink = new HttpLink({
   credentials: 'include',
 });
 
-
 const logoutLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
   if (graphQLErrors) {
     console.log(graphQLErrors[0]);
