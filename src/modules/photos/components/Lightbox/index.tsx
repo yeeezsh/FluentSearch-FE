@@ -23,6 +23,7 @@ import { Tag as TagType } from 'Modules/photos/models/tags/';
 import { LightboxPropsType, currentImageSizeType } from './types';
 import { Row, Col } from 'antd';
 import dayjs from 'dayjs';
+import { v4 as uuid } from 'uuid';
 
 const TagRender: React.FC<{ tags?: string[] }> = (props) => {
   const { tags } = props;
@@ -93,7 +94,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                 if (currentImageSize) {
                   return (
                     <BoundingBox
-                      key={Math.random()}
+                      key={uuid().toString()}
                       xMin={originSize.xMin * scaleX}
                       xMax={originSize.xMax * scaleX}
                       yMin={originSize.yMin * scaleY}
