@@ -1,14 +1,18 @@
 query GetUser($id: String!) {
   User(id: $id) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
     name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }
@@ -16,13 +20,18 @@ query GetUser($id: String!) {
 query GetUsers($limit: Int = 1000, $skip: Int = 0) {
   Users(limit: $limit, skip: $skip) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
+    name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }
@@ -30,6 +39,19 @@ query GetUsers($limit: Int = 1000, $skip: Int = 0) {
 query GetUserBySession {
   GetUserBySession {
     _id
+    createAt
+    deactivate
+    email
+    mainEmail
+    name
+    oauth {
+      provider
+      token
+    }
+    package
+    role
+    updateAt
+    zone
   }
 }
 
@@ -73,14 +95,18 @@ mutation RefreshToken {
 mutation UpdateUser($UserUpdateInput: UserUpdateInput!) {
   UpdateUser(UserUpdateInput: $UserUpdateInput) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
     name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }

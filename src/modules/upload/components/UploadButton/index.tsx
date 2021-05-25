@@ -1,22 +1,21 @@
 import React from 'react';
-import { UploadBtnWrapper } from './styled';
-import { PictureOutlined } from '@ant-design/icons';
-
-type UploadButtonPropsType = {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+import { LabelUpload } from './styled';
+import { UploadButtonPropsType } from './types';
 
 const UploadButton: React.FC<UploadButtonPropsType> = (props) => {
-  const { onChange } = props;
+  const { onFileOnChange } = props;
   return (
-    <UploadBtnWrapper>
-      <input type="file" name="file" id="file" multiple onChange={onChange} />
-      <label htmlFor="file">
-        {/* //TODO: wtf &nbsp */}
-        + &nbsp; &nbsp; &nbsp;
-        <PictureOutlined /> &nbsp; &nbsp; Select Photos
-      </label>
-    </UploadBtnWrapper>
+    <>
+      <input
+        type="file"
+        name="file"
+        id="upload"
+        multiple
+        hidden
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onFileOnChange(e)}
+      />
+      <LabelUpload htmlFor="upload">+ Select Photos</LabelUpload>
+    </>
   );
 };
 

@@ -18,13 +18,55 @@ export type AppModel = {
   status: Scalars['Int'];
 };
 
+export type FileDurationMetaDto = {
+  __typename?: 'FileDurationMetaDTO';
+  original: Scalars['String'];
+  hour: Scalars['Float'];
+  minute: Scalars['Float'];
+  second: Scalars['Float'];
+};
+
+export type FileMetaDto = {
+  __typename?: 'FileMetaDTO';
+  size: Scalars['Float'];
+  width: Scalars['Float'];
+  height: Scalars['Float'];
+  extension: Scalars['String'];
+  contentType: Scalars['String'];
+  sha1?: Maybe<Scalars['String']>;
+  fps?: Maybe<Scalars['Float']>;
+  codec?: Maybe<Scalars['String']>;
+  bitrate?: Maybe<Scalars['Float']>;
+  duration?: Maybe<FileDurationMetaDto>;
+};
+
+export type FileModelDto = {
+  __typename?: 'FileModelDTO';
+  _id: Scalars['String'];
+  uri: Scalars['String'];
+  meta: FileMetaDto;
+  owner: Scalars['String'];
+  zone: ZoneEnum;
+  original_filename: Scalars['String'];
+  type: FileTypeEnum;
+  createAt: Scalars['String'];
+  updateAt: Scalars['String'];
+};
+
+export enum FileTypeEnum {
+  Image = 'Image',
+  Video = 'Video',
+  ImageThumbnail = 'ImageThumbnail',
+  VideoThumbnail = 'VideoThumbnail'
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
   CreateUser: UserWithId;
+  UpdateUser: UserWithId;
   Login: UserSessionDto;
   Logout?: Maybe<Scalars['String']>;
   RefreshToken?: Maybe<Scalars['String']>;
-  UpdateUser: UserWithId;
 };
 
 
@@ -33,28 +75,23 @@ export type MutationCreateUserArgs = {
 };
 
 
-export type MutationLoginArgs = {
-  UserLoginInputDTO: UserLoginInputDto;
-};
-
-
 export type MutationUpdateUserArgs = {
   UserUpdateInput: UserUpdateInput;
 };
 
-export type Query = {
-  __typename?: 'Query';
-  GetRecentFiles: RecentFiles;
-  GetUserBySession?: Maybe<UserWithId>;
-  ServerStatus: AppModel;
-  User?: Maybe<UserWithId>;
-  Users: Array<UserWithId>;
+
+export type MutationLoginArgs = {
+  UserLoginInputDTO: UserLoginInputDto;
 };
 
-
-export type QueryGetRecentFilesArgs = {
-  limit?: Maybe<Scalars['Int']>;
-  skip?: Maybe<Scalars['Int']>;
+export type Query = {
+  __typename?: 'Query';
+  ServerStatus: AppModel;
+  User?: Maybe<UserWithId>;
+  GetUserBySession?: Maybe<UserWithId>;
+  Users: Array<UserWithId>;
+  GetFileById: FileModelDto;
+  GetRecentFiles: RecentFiles;
 };
 
 
@@ -64,17 +101,28 @@ export type QueryUserArgs = {
 
 
 export type QueryUsersArgs = {
-  limit?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryGetFileByIdArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryGetRecentFilesArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
 };
 
 export type RecentFile = {
   __typename?: 'RecentFile';
-  createAt: Scalars['String'];
-  label: Scalars['String'];
-  updateAt: Scalars['String'];
+  original_filename: Scalars['String'];
   uri: Scalars['String'];
   uri_thumbnail: Scalars['String'];
+  createAt: Scalars['String'];
+  updateAt: Scalars['String'];
 };
 
 export type RecentFiles = {
@@ -89,14 +137,9 @@ export type RecentPreviews = {
 };
 
 export type UserLoginInputDto = {
-  email: Scalars['String'];
   password: Scalars['String'];
+  email: Scalars['String'];
 };
-
-export enum UserPackageEnum {
-  FreeUser = 'freeUser',
-  PaidUser = 'paidUser'
-}
 
 export enum UserPackageEnumSession {
   FreeUser = 'freeUser',
@@ -105,15 +148,9 @@ export enum UserPackageEnumSession {
 
 export type UserRegisterInput = {
   mainEmail: Scalars['String'];
-  name: Scalars['String'];
   password: Scalars['String'];
+  name: Scalars['String'];
 };
-
-export enum UserRoleEnum {
-  Admin = 'admin',
-  Staff = 'staff',
-  User = 'user'
-}
 
 export enum UserRoleEnumSession {
   Admin = 'admin',
@@ -126,8 +163,8 @@ export type UserSessionDto = {
   _id: Scalars['String'];
   mainEmail: Scalars['String'];
   name: Scalars['String'];
-  package: UserPackageEnumSession;
   role: UserRoleEnumSession;
+  package: UserPackageEnumSession;
   zone: UserZoneEnumSession;
 };
 
@@ -145,29 +182,70 @@ export type UserUpdateInput = {
 
 export type UserWithId = {
   __typename?: 'UserWithId';
-  _id: Scalars['String'];
-  createDate: Scalars['String'];
-  deactivate?: Maybe<Scalars['Boolean']>;
-  email: Array<Scalars['String']>;
   mainEmail: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  oauth: UserToken;
-  package: UserPackageEnum;
+  email: Array<Scalars['String']>;
   password: Scalars['String'];
-  role: UserRoleEnum;
-  updateDate: Scalars['String'];
-  zone: UserZoneEnum;
+  oauth: UserToken;
+  name?: Maybe<Scalars['String']>;
+  role: UserRoleEnumSession;
+  package: UserPackageEnumSession;
+  zone: UserZoneEnumSession;
+  deactivate?: Maybe<Scalars['Boolean']>;
+  createAt: Scalars['String'];
+  updateAt: Scalars['String'];
+  _id: Scalars['String'];
 };
-
-export enum UserZoneEnum {
-  Th1 = 'TH1',
-  Th2 = 'TH2'
-}
 
 export enum UserZoneEnumSession {
   Th1 = 'TH1',
   Th2 = 'TH2'
 }
+
+export enum ZoneEnum {
+  Th = 'TH'
+}
+
+export type GetRecentFilesQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type GetRecentFilesQuery = (
+  { __typename?: 'Query' }
+  & { GetRecentFiles: (
+    { __typename?: 'RecentFiles' }
+    & { result: Array<(
+      { __typename?: 'RecentPreviews' }
+      & Pick<RecentPreviews, 'date'>
+      & { files?: Maybe<Array<(
+        { __typename?: 'RecentFile' }
+        & Pick<RecentFile, 'createAt' | 'original_filename' | 'updateAt' | 'uri' | 'uri_thumbnail'>
+      )>> }
+    )> }
+  ) }
+);
+
+export type GetFileByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type GetFileByIdQuery = (
+  { __typename?: 'Query' }
+  & { GetFileById: (
+    { __typename?: 'FileModelDTO' }
+    & Pick<FileModelDto, '_id' | 'createAt' | 'original_filename' | 'owner' | 'type' | 'updateAt' | 'uri' | 'zone'>
+    & { meta: (
+      { __typename?: 'FileMetaDTO' }
+      & Pick<FileMetaDto, 'bitrate' | 'codec' | 'contentType' | 'extension' | 'fps' | 'height' | 'sha1' | 'size' | 'width'>
+      & { duration?: Maybe<(
+        { __typename?: 'FileDurationMetaDTO' }
+        & Pick<FileDurationMetaDto, 'hour' | 'minute' | 'original' | 'second'>
+      )> }
+    ) }
+  ) }
+);
 
 export type GetUserQueryVariables = Exact<{
   id: Scalars['String'];
@@ -178,7 +256,11 @@ export type GetUserQuery = (
   { __typename?: 'Query' }
   & { User?: Maybe<(
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createAt' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateAt' | 'zone'>
+    & { oauth: (
+      { __typename?: 'UserToken' }
+      & Pick<UserToken, 'provider' | 'token'>
+    ) }
   )> }
 );
 
@@ -192,7 +274,11 @@ export type GetUsersQuery = (
   { __typename?: 'Query' }
   & { Users: Array<(
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'package' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createAt' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateAt' | 'zone'>
+    & { oauth: (
+      { __typename?: 'UserToken' }
+      & Pick<UserToken, 'provider' | 'token'>
+    ) }
   )> }
 );
 
@@ -203,7 +289,11 @@ export type GetUserBySessionQuery = (
   { __typename?: 'Query' }
   & { GetUserBySession?: Maybe<(
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id'>
+    & Pick<UserWithId, '_id' | 'createAt' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateAt' | 'zone'>
+    & { oauth: (
+      { __typename?: 'UserToken' }
+      & Pick<UserToken, 'provider' | 'token'>
+    ) }
   )> }
 );
 
@@ -269,23 +359,131 @@ export type UpdateUserMutation = (
   { __typename?: 'Mutation' }
   & { UpdateUser: (
     { __typename?: 'UserWithId' }
-    & Pick<UserWithId, '_id' | 'createDate' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateDate' | 'zone'>
+    & Pick<UserWithId, '_id' | 'createAt' | 'deactivate' | 'email' | 'mainEmail' | 'name' | 'package' | 'role' | 'updateAt' | 'zone'>
+    & { oauth: (
+      { __typename?: 'UserToken' }
+      & Pick<UserToken, 'provider' | 'token'>
+    ) }
   ) }
 );
 
 
+export const GetRecentFilesDocument = gql`
+    query GetRecentFiles($limit: Int, $skip: Int) {
+  GetRecentFiles(limit: $limit, skip: $skip) {
+    result {
+      date
+      files {
+        createAt
+        original_filename
+        updateAt
+        uri
+        uri_thumbnail
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetRecentFilesQuery__
+ *
+ * To run a query within a React component, call `useGetRecentFilesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRecentFilesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRecentFilesQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetRecentFilesQuery(baseOptions?: Apollo.QueryHookOptions<GetRecentFilesQuery, GetRecentFilesQueryVariables>) {
+        return Apollo.useQuery<GetRecentFilesQuery, GetRecentFilesQueryVariables>(GetRecentFilesDocument, baseOptions);
+      }
+export function useGetRecentFilesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRecentFilesQuery, GetRecentFilesQueryVariables>) {
+          return Apollo.useLazyQuery<GetRecentFilesQuery, GetRecentFilesQueryVariables>(GetRecentFilesDocument, baseOptions);
+        }
+export type GetRecentFilesQueryHookResult = ReturnType<typeof useGetRecentFilesQuery>;
+export type GetRecentFilesLazyQueryHookResult = ReturnType<typeof useGetRecentFilesLazyQuery>;
+export type GetRecentFilesQueryResult = Apollo.QueryResult<GetRecentFilesQuery, GetRecentFilesQueryVariables>;
+export const GetFileByIdDocument = gql`
+    query GetFileById($id: String!) {
+  GetFileById(id: $id) {
+    _id
+    createAt
+    meta {
+      bitrate
+      codec
+      contentType
+      duration {
+        hour
+        minute
+        original
+        second
+      }
+      extension
+      fps
+      height
+      sha1
+      size
+      width
+    }
+    original_filename
+    owner
+    type
+    updateAt
+    uri
+    zone
+  }
+}
+    `;
+
+/**
+ * __useGetFileByIdQuery__
+ *
+ * To run a query within a React component, call `useGetFileByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFileByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFileByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetFileByIdQuery(baseOptions: Apollo.QueryHookOptions<GetFileByIdQuery, GetFileByIdQueryVariables>) {
+        return Apollo.useQuery<GetFileByIdQuery, GetFileByIdQueryVariables>(GetFileByIdDocument, baseOptions);
+      }
+export function useGetFileByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFileByIdQuery, GetFileByIdQueryVariables>) {
+          return Apollo.useLazyQuery<GetFileByIdQuery, GetFileByIdQueryVariables>(GetFileByIdDocument, baseOptions);
+        }
+export type GetFileByIdQueryHookResult = ReturnType<typeof useGetFileByIdQuery>;
+export type GetFileByIdLazyQueryHookResult = ReturnType<typeof useGetFileByIdLazyQuery>;
+export type GetFileByIdQueryResult = Apollo.QueryResult<GetFileByIdQuery, GetFileByIdQueryVariables>;
 export const GetUserDocument = gql`
     query GetUser($id: String!) {
   User(id: $id) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
     name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }
@@ -320,13 +518,18 @@ export const GetUsersDocument = gql`
     query GetUsers($limit: Int = 1000, $skip: Int = 0) {
   Users(limit: $limit, skip: $skip) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
+    name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }
@@ -362,6 +565,19 @@ export const GetUserBySessionDocument = gql`
     query GetUserBySession {
   GetUserBySession {
     _id
+    createAt
+    deactivate
+    email
+    mainEmail
+    name
+    oauth {
+      provider
+      token
+    }
+    package
+    role
+    updateAt
+    zone
   }
 }
     `;
@@ -559,14 +775,18 @@ export const UpdateUserDocument = gql`
     mutation UpdateUser($UserUpdateInput: UserUpdateInput!) {
   UpdateUser(UserUpdateInput: $UserUpdateInput) {
     _id
-    createDate
+    createAt
     deactivate
     email
     mainEmail
     name
+    oauth {
+      provider
+      token
+    }
     package
     role
-    updateDate
+    updateAt
     zone
   }
 }
