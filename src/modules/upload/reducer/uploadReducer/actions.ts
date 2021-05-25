@@ -1,14 +1,20 @@
+import { FileListResponseDTO } from 'fluentsearch-types';
 import { uploadFile } from 'Modules/upload/services/upload.file';
 import { store } from 'Stores/index';
 import { uploadActions } from '.';
 
-export const uploadFileData = async (group: string, files: File[]): Promise<void> => {
+export const uploadFileData = async (
+  group: string,
+  files: File[],
+): Promise<FileListResponseDTO[]> => {
   const pendingQueue = store
     .getState()
     .upload.pendingQueue.filter((f) => f.group === group);
 
+  const formData = new FormData();
+  let responseData: FileListResponseDTO[] = [];
+
   for (const task of pendingQueue) {
-    const formData = new FormData();
     const id = task._id;
     const pendingQueueFilterID = store
       .getState()
@@ -21,13 +27,15 @@ export const uploadFileData = async (group: string, files: File[]): Promise<void
     if (file) formData.append('files', file);
 
     try {
-      await uploadFile(formData);
+      const fileResponse = await uploadFile(formData);
+      responseData = fileResponse;
       store.dispatch(uploadActions.successUploadFile(task));
     } catch (error) {
       console.log('error');
       store.dispatch(uploadActions.failureUploadFile(task));
     }
   }
+  return responseData;
 };
 
 export const getUploadProgress = (): void => {
