@@ -1,0 +1,36 @@
+export const initialState = {
+  id: '',
+  created_at: '',
+  updated_at: '',
+  width: 0,
+  height: 0,
+  color: '',
+  blur_hash: '',
+  downloads: 0,
+  likes: 0,
+  liked_by_user: false,
+  description: '',
+  location: {
+    name: '',
+    titile: '',
+    city: '',
+    country: '',
+  },
+  urls: {
+    raw: '',
+    full: '',
+    regular: '',
+    small: '',
+    thumb: '',
+  },
+  links: {
+    self: '',
+    html: '',
+    download: '',
+    download_location: '',
+  },
+  user: {
+    name: '',
+    total_likes: 0,
+  },
+};
