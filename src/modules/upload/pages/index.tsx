@@ -20,7 +20,9 @@ const UploadPage: React.FC = () => {
   const [groupGenerated, setGroupGenerated] = useState<string>('');
   const [albumName, setAlbumName] = useState<string>('');
   const [images, setImages] = useState<string[]>([]);
+  const [filesToUpload, setFilesToUpload] = useState<FileUpload[]>([]);
 
+  const group = useSelector((state: StoresState) => state.upload.present.group);
   const pendingQueue = useSelector((state: StoresState) => state.upload.pendingQueue);
   const fulfillQueue = useSelector((state: StoresState) => state.upload.fulfillQueue);
 
@@ -49,7 +51,7 @@ const UploadPage: React.FC = () => {
           group: groupName,
           state: 'waiting',
         } as FileUpload;
-        dispatch(uploadActions.setPendingQueue(newFile));
+        setFilesToUpload((prevState) => [...prevState, newFile]);
         setFiles((prevState) => [...prevState, file]);
         setImages((prevState) => [...prevState, image]);
       }
@@ -60,10 +62,10 @@ const UploadPage: React.FC = () => {
     setAlbumName(e.target.value);
   };
 
-  const group = useSelector((state: StoresState) => state.upload.present.group);
-
   useEffect(() => {
+    dispatch(uploadActions.setPendingQueue(filesToUpload));
     uploadFileData(groupGenerated, files);
+    setFilesToUpload([]);
   }, [groupGenerated]);
 
   return (

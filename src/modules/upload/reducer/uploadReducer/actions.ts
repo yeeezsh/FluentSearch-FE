@@ -3,7 +3,6 @@ import { store } from 'Stores/index';
 import { uploadActions } from '.';
 
 export const uploadFileData = async (group: string, files: File[]): Promise<void> => {
-  console.log(files);
   const pendingQueue = store
     .getState()
     .upload.pendingQueue.filter((f) => f.group === group);
@@ -13,7 +12,7 @@ export const uploadFileData = async (group: string, files: File[]): Promise<void
     const id = task._id;
     const pendingQueueFilterID = store
       .getState()
-      .upload.pendingQueue.find((f) => f._id === id);
+      .upload.pendingQueue.filter((f) => f._id !== id);
 
     if (pendingQueueFilterID)
       store.dispatch(uploadActions.setPendingQueue(pendingQueueFilterID));
@@ -22,8 +21,7 @@ export const uploadFileData = async (group: string, files: File[]): Promise<void
     if (file) formData.append('files', file);
 
     try {
-      const data = await uploadFile(formData);
-      //console.log(data);
+      await uploadFile(formData);
       store.dispatch(uploadActions.successUploadFile(task));
     } catch (error) {
       console.log('error');
@@ -49,17 +47,19 @@ export const getUploadProgress = (): void => {
   const groupDistinct = new Set(allTasks.map((el) => el.group));
 
   const groups = Array.from(groupDistinct).map((groupId) => {
-    const allTasksFormGroup = allTasks.filter((f) => f.group);
+    const allTasksFormGroup = allTasks.filter((f) => f.group === groupId);
 
     const fulfillTaskGroupProgress = allTasksFormGroup
       .filter((f) => f.state === 'failed' || f.state === 'finish' || f.state === 'cancel')
       .map((el) => el.progress)
       .reduce((acc, cur) => (acc += cur), 0);
+
     return {
       label: groupId,
       progress: fulfillTaskGroupProgress,
       total: allTasksFormGroup.length,
     };
   });
+
   store.dispatch(uploadActions.setGroup(groups));
 };
