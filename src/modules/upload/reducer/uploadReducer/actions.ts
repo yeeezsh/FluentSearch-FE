@@ -3,6 +3,7 @@ import { store } from 'Stores/index';
 import { uploadActions } from '.';
 
 export const uploadFileData = async (group: string, files: File[]): Promise<void> => {
+  console.log(files);
   const pendingQueue = store
     .getState()
     .upload.pendingQueue.filter((f) => f.group === group);
@@ -12,16 +13,20 @@ export const uploadFileData = async (group: string, files: File[]): Promise<void
     const id = task._id;
     const pendingQueueFilterID = store
       .getState()
-      .upload.pendingQueue.find((f) => f._id !== id);
+      .upload.pendingQueue.find((f) => f._id === id);
+
     if (pendingQueueFilterID)
       store.dispatch(uploadActions.setPendingQueue(pendingQueueFilterID));
 
     const file = files.find((file) => file.name === task.originFilename);
-    if (file) formData.append('file', file);
+    if (file) formData.append('files', file);
+
     try {
-      await uploadFile(formData);
+      const data = await uploadFile(formData);
+      //console.log(data);
       store.dispatch(uploadActions.successUploadFile(task));
     } catch (error) {
+      console.log('error');
       store.dispatch(uploadActions.failureUploadFile(task));
     }
   }
