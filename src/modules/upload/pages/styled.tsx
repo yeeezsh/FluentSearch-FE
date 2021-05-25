@@ -28,13 +28,3 @@ export const Image = styled.img`
   height: 100%;
   object-fit: cover;
 `;
-
-export const LabelUpload = styled.label`
-  background-color: indigo;
-  color: white;
-  padding: 0.5rem;
-  font-family: sans-serif;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  margin-top: 1rem;
-`;

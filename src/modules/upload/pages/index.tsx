@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Layout, Row } from 'antd';
 import Button from 'Components/Button';
-import { BottomBar, UploadWrapper, Image, LabelUpload } from './styled';
+import { BottomBar, UploadWrapper, Image } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadProgress from '../components/UploadProgress';
 import { StoresState } from 'Stores/index';
@@ -12,6 +12,7 @@ import { uploadActions } from '../reducer/uploadReducer';
 import SelectFileButton from '../components/SelectFileButton';
 import { InputLine } from 'Styles/global';
 import { WrapperImage } from '../../photos/pages/styled';
+import UploadButton from '../components/UploadButton';
 
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const UploadPage: React.FC = () => {
         <Button>{'<'}</Button>
         <Content>
           <h2 style={{ marginBottom: '2%' }}>Upload Photos</h2>
-          <Row>
+          <Row justify="space-between">
             <Col span={10} style={{ marginBottom: '1em' }}>
               <InputLine
                 placeholder="Album Name"
@@ -83,15 +84,7 @@ const UploadPage: React.FC = () => {
               />
             </Col>
             <Col>
-              <input
-                type="file"
-                name="file"
-                id="upload"
-                multiple
-                hidden
-                onChange={handleFileOnChange}
-              />
-              <LabelUpload htmlFor="upload">+ Select Photos</LabelUpload>
+              <UploadButton onFileOnChange={handleFileOnChange} />
             </Col>
           </Row>
           <hr />
