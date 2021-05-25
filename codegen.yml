@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'http://api.fluentsearch.ml/graphql'
+schema: 'http://federation.fluentsearch.ml/graphql'
 documents: '**/*.graphql'
 generates:
   src/common/generated/generated-types.ts:
