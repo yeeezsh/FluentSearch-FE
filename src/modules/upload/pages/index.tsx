@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Layout, Row } from 'antd';
 import Button from 'Components/Button';
-import { BottomBar, UploadWrapper, Image } from './styled';
+import { BottomBar, UploadWrapper, Image, LabelUpload } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadProgress from '../components/UploadProgress';
 import { StoresState } from 'Stores/index';
@@ -90,10 +90,12 @@ const UploadPage: React.FC = () => {
               <input
                 type="file"
                 name="file"
-                id="file"
+                id="upload"
                 multiple
+                hidden
                 onChange={handleFileOnChange}
               />
+              <LabelUpload htmlFor="upload">+ Select Photos</LabelUpload>
             </Col>
           </Row>
           <hr />
