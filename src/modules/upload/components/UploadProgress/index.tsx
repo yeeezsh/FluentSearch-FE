@@ -5,7 +5,6 @@ import { v4 as uuid } from 'uuid';
 import { UploadProgressPropsType } from './types';
 const UploadProgress: React.FC<UploadProgressPropsType> = (props) => {
   const { total, group } = props;
-  console.log(total, group);
   return total > 0 ? (
     <Wrapper>
       <h5>Uploading File</h5>
