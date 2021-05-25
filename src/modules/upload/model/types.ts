@@ -28,4 +28,10 @@ type UploadTask = {
   };
 };
 
-export type { FileUpload, GroupTask, UploadTask };
+type Album = {
+  id: string;
+  name: string;
+  albumFiles: string[];
+};
+
+export type { FileUpload, GroupTask, UploadTask, Album };
