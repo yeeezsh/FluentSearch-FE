@@ -34,19 +34,28 @@ describe('Components/UploadProgress test ', () => {
     const wrap = renderer
       .create(
         <Provider store={store}>
-          <UploadProgress />
+          <UploadProgress group={mockGroupState} total={mockGroupState.length} />
         </Provider>,
       )
       .toJSON();
     expect(wrap).toMatchSnapshot();
   });
 
-  it('total > 0 should render upload item', () => {
+  it('should render upload item when the group is not empty', () => {
     const wrap = mount(
       <Provider store={store}>
-        <UploadProgress />
+        <UploadProgress group={mockGroupState} total={mockGroupState.length} />
       </Provider>,
     );
     expect(wrap.find(UploadItem)).toHaveLength(2);
+  });
+
+  it('should not render any upload item when empty group or total', () => {
+    const wrap = mount(
+      <Provider store={store}>
+        <UploadProgress group={[]} total={0} />
+      </Provider>,
+    );
+    expect(wrap.find(UploadItem)).toHaveLength(0);
   });
 });
