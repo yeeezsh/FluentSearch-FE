@@ -20,53 +20,53 @@ export type AppModel = {
 
 export type FileDurationMetaDto = {
   __typename?: 'FileDurationMetaDTO';
+  original: Scalars['String'];
   hour: Scalars['Float'];
   minute: Scalars['Float'];
-  original: Scalars['String'];
   second: Scalars['Float'];
 };
 
 export type FileMetaDto = {
   __typename?: 'FileMetaDTO';
-  bitrate?: Maybe<Scalars['Float']>;
-  codec?: Maybe<Scalars['String']>;
-  contentType: Scalars['String'];
-  duration?: Maybe<FileDurationMetaDto>;
-  extension: Scalars['String'];
-  fps?: Maybe<Scalars['Float']>;
-  height: Scalars['Float'];
-  sha1?: Maybe<Scalars['String']>;
   size: Scalars['Float'];
   width: Scalars['Float'];
+  height: Scalars['Float'];
+  extension: Scalars['String'];
+  contentType: Scalars['String'];
+  sha1?: Maybe<Scalars['String']>;
+  fps?: Maybe<Scalars['Float']>;
+  codec?: Maybe<Scalars['String']>;
+  bitrate?: Maybe<Scalars['Float']>;
+  duration?: Maybe<FileDurationMetaDto>;
 };
 
 export type FileModelDto = {
   __typename?: 'FileModelDTO';
   _id: Scalars['String'];
-  createAt: Scalars['String'];
-  meta: FileMetaDto;
-  original_filename: Scalars['String'];
-  owner: Scalars['String'];
-  type: FileTypeEnum;
-  updateAt: Scalars['String'];
   uri: Scalars['String'];
+  meta: FileMetaDto;
+  owner: Scalars['String'];
   zone: ZoneEnum;
+  original_filename: Scalars['String'];
+  type: FileTypeEnum;
+  createAt: Scalars['String'];
+  updateAt: Scalars['String'];
 };
 
 export enum FileTypeEnum {
   Image = 'Image',
-  ImageThumbnail = 'ImageThumbnail',
   Video = 'Video',
+  ImageThumbnail = 'ImageThumbnail',
   VideoThumbnail = 'VideoThumbnail'
 }
 
 export type Mutation = {
   __typename?: 'Mutation';
   CreateUser: UserWithId;
+  UpdateUser: UserWithId;
   Login: UserSessionDto;
   Logout?: Maybe<Scalars['String']>;
   RefreshToken?: Maybe<Scalars['String']>;
-  UpdateUser: UserWithId;
 };
 
 
@@ -75,34 +75,23 @@ export type MutationCreateUserArgs = {
 };
 
 
-export type MutationLoginArgs = {
-  UserLoginInputDTO: UserLoginInputDto;
-};
-
-
 export type MutationUpdateUserArgs = {
   UserUpdateInput: UserUpdateInput;
 };
 
+
+export type MutationLoginArgs = {
+  UserLoginInputDTO: UserLoginInputDto;
+};
+
 export type Query = {
   __typename?: 'Query';
-  GetFileById: FileModelDto;
-  GetRecentFiles: RecentFiles;
-  GetUserBySession?: Maybe<UserWithId>;
   ServerStatus: AppModel;
   User?: Maybe<UserWithId>;
+  GetUserBySession?: Maybe<UserWithId>;
   Users: Array<UserWithId>;
-};
-
-
-export type QueryGetFileByIdArgs = {
-  id: Scalars['String'];
-};
-
-
-export type QueryGetRecentFilesArgs = {
-  limit?: Maybe<Scalars['Int']>;
-  skip?: Maybe<Scalars['Int']>;
+  GetFileById: FileModelDto;
+  GetRecentFiles: RecentFiles;
 };
 
 
@@ -112,17 +101,28 @@ export type QueryUserArgs = {
 
 
 export type QueryUsersArgs = {
-  limit?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryGetFileByIdArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryGetRecentFilesArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
 };
 
 export type RecentFile = {
   __typename?: 'RecentFile';
-  createAt: Scalars['String'];
   original_filename: Scalars['String'];
-  updateAt: Scalars['String'];
   uri: Scalars['String'];
   uri_thumbnail: Scalars['String'];
+  createAt: Scalars['String'];
+  updateAt: Scalars['String'];
 };
 
 export type RecentFiles = {
@@ -137,8 +137,8 @@ export type RecentPreviews = {
 };
 
 export type UserLoginInputDto = {
-  email: Scalars['String'];
   password: Scalars['String'];
+  email: Scalars['String'];
 };
 
 export enum UserPackageEnumSession {
@@ -148,8 +148,8 @@ export enum UserPackageEnumSession {
 
 export type UserRegisterInput = {
   mainEmail: Scalars['String'];
-  name: Scalars['String'];
   password: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export enum UserRoleEnumSession {
@@ -163,8 +163,8 @@ export type UserSessionDto = {
   _id: Scalars['String'];
   mainEmail: Scalars['String'];
   name: Scalars['String'];
-  package: UserPackageEnumSession;
   role: UserRoleEnumSession;
+  package: UserPackageEnumSession;
   zone: UserZoneEnumSession;
 };
 
@@ -182,18 +182,18 @@ export type UserUpdateInput = {
 
 export type UserWithId = {
   __typename?: 'UserWithId';
-  _id: Scalars['String'];
-  createAt: Scalars['String'];
-  deactivate?: Maybe<Scalars['Boolean']>;
-  email: Array<Scalars['String']>;
   mainEmail: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  oauth: UserToken;
-  package: UserPackageEnumSession;
+  email: Array<Scalars['String']>;
   password: Scalars['String'];
+  oauth: UserToken;
+  name?: Maybe<Scalars['String']>;
   role: UserRoleEnumSession;
-  updateAt: Scalars['String'];
+  package: UserPackageEnumSession;
   zone: UserZoneEnumSession;
+  deactivate?: Maybe<Scalars['Boolean']>;
+  createAt: Scalars['String'];
+  updateAt: Scalars['String'];
+  _id: Scalars['String'];
 };
 
 export enum UserZoneEnumSession {
