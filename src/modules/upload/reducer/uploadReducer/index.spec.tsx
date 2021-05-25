@@ -42,7 +42,7 @@ describe('uploadReducer test', () => {
   });
 
   it('it should set pending queue correctly', () => {
-    store.dispatch(uploadActions.setPendingQueue(mockFile));
+    store.dispatch(uploadActions.setPendingQueue([mockFile]));
     const result = store.getState().upload.pendingQueue;
     expect(result).toEqual([mockFile]);
   });
