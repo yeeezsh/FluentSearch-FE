@@ -15,9 +15,11 @@ import { InputLine } from 'Styles/global';
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
   const { Content } = Layout;
+  const [files, setFiles] = useState<File[]>([]);
+  const [filesToUpload, setFilesToUpload] = useState<FileUpload[]>([]);
+  const [groupGenerated, setGroupGenerated] = useState<string>('');
   const [albumName, setAlbumName] = useState<string>('');
 
-  const fileList: File[] = [];
   const pendingQueue = useSelector((state: StoresState) => state.upload.pendingQueue);
   const fulfillQueue = useSelector((state: StoresState) => state.upload.fulfillQueue);
 
@@ -29,15 +31,14 @@ const UploadPage: React.FC = () => {
     e.preventDefault();
     const rawFiles = e.target.files;
 
-    const filesToUpload: FileUpload[] = [];
-    const groupGenerated: string = uuidv4();
+    setGroupGenerated(uuidv4());
 
     if (rawFiles) {
       let type: FileUpload['type'] = 'single';
       if (rawFiles.length > 0) type = 'multiple';
 
       for (const file of rawFiles) {
-        fileList.push(file);
+        setFiles((prevState) => [...prevState, file]);
         const newFile = {
           _id: uuidv4() as string,
           progress: 0,
@@ -47,9 +48,8 @@ const UploadPage: React.FC = () => {
           group: groupGenerated,
           state: 'waiting',
         } as FileUpload;
-        filesToUpload.push(newFile);
+        setFilesToUpload((prevState) => [...prevState, newFile]);
       }
-      initUpload(groupGenerated, filesToUpload, fileList);
     }
   };
 
@@ -61,6 +61,10 @@ const UploadPage: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAlbumName(e.target.value);
   };
+
+  useEffect(() => {
+    initUpload(groupGenerated, filesToUpload, files);
+  }, [files, filesToUpload, groupGenerated]);
 
   return (
     <Layout>
@@ -76,13 +80,26 @@ const UploadPage: React.FC = () => {
                 onChange={handleInputChange}
               />
             </Col>
+            <Col>
+              <input
+                type="file"
+                name="file"
+                id="file"
+                multiple
+                onChange={handleFileOnChange}
+              />
+            </Col>
           </Row>
           <hr />
 
           <Row justify="center" align="middle">
-            <Col style={{ marginTop: '15%' }}>
-              <SelectFileButton onChange={handleFileOnChange} />
-            </Col>
+            {files.length > 0 ? (
+              <p>yes</p>
+            ) : (
+              <Col style={{ marginTop: '15%' }}>
+                <SelectFileButton onChange={handleFileOnChange} />
+              </Col>
+            )}
           </Row>
         </Content>
       </UploadWrapper>
