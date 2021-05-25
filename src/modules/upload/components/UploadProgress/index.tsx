@@ -1,38 +1,16 @@
-import React, { useEffect } from 'react';
-import { size } from 'lodash';
+import React from 'react';
 import UploadItem from './UploadItem';
-import { useDispatch, useSelector } from 'react-redux';
-import { uploadPhotoData } from 'Modules/upload/reducer/uploadReducer/actions';
-import { StoresState } from 'Stores/index';
 import { Wrapper } from './styled';
-
-const UploadProgress: React.FC = () => {
-  const dispatch = useDispatch();
-  const fileProgress = useSelector(
-    (state: StoresState) => state.upload.data.fileProgress,
-  );
-  const uploadedFileAmount = size(fileProgress);
-
-  useEffect(() => {
-    // TODO: if empty not try to upload
-    const fileToUpload = Object.values(fileProgress).filter(
-      (file) => file.progress === 0,
-    );
-    dispatch(uploadPhotoData(fileToUpload));
-  }, [uploadedFileAmount]);
-
-  return uploadedFileAmount > 0 ? (
+import { v4 as uuid } from 'uuid';
+import { UploadProgressPropsType } from './types';
+const UploadProgress: React.FC<UploadProgressPropsType> = (props) => {
+  const { total, group } = props;
+  return total > 0 ? (
     <Wrapper>
-      <h4>Uploading File</h4>
-      {/* //TODO: wtf */}
-      {size(fileProgress) > 0
-        ? Object.values(fileProgress).map((file) => {
-            return (
-              <UploadItem
-                key={file._id}
-                file={{ file: file.file, progress: file.progress }}
-              />
-            );
+      <h5>Uploading File</h5>
+      {total > 0
+        ? Object.values(group).map((file) => {
+            return <UploadItem key={uuid()} file={{ file: file }} />;
           })
         : null}
     </Wrapper>

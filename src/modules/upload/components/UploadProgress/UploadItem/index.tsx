@@ -1,24 +1,27 @@
 import React from 'react';
-import { WrapperItem, LeftSide, ProgressBar, Percentage } from './styled';
-
-type UploadItemProps = {
-  file: {
-    file: File;
-    progress: number;
-  };
-};
+import { WrapperItem, LeftSide, Percentage, FileLabel } from './styled';
+import { UploadItemProps } from './types';
+import { LoadingOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 const UploadItem: React.FC<UploadItemProps> = (props) => {
-  const { file, progress } = props.file;
+  const { file } = props.file;
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
   return file ? (
     <WrapperItem>
       <LeftSide>
-        <ProgressBar>
-          <div style={{ width: `${progress}%` }} />
-          <label>{file.name}</label>
-        </ProgressBar>
+        <FileLabel>{file.label}</FileLabel>
       </LeftSide>
-      <Percentage>{progress}</Percentage>
+      <Percentage>
+        {file.progress} / {file.total}
+        {file.progress === file.total ? (
+          <CheckCircleOutlined
+            style={{ marginLeft: '1rem', color: 'var(--light-success-color)' }}
+          />
+        ) : (
+          <Spin indicator={antIcon} />
+        )}
+      </Percentage>
     </WrapperItem>
   ) : null;
 };

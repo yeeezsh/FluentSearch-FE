@@ -1,20 +1,37 @@
-import { ErrorState } from 'Stores/common/types/error';
-
 export const UPLOAD = 'UPLOAD';
 
-export type fileProgressType = {
+type FileUpload = {
   _id: string;
-  file: File;
   progress: number;
-  status: 0;
+  originFilename: string;
+  createAt: string;
+  type: 'single' | 'multiple';
+  group: string;
+  state: 'waiting' | 'queue' | 'failed' | 'finish' | 'cancel';
 };
 
-export type UploadDataState = {
-  owner: string;
-  uploadUrl: string;
-  data: {
-    fileProgress: fileProgressType[];
-  };
-  ready: boolean;
-  error?: ErrorState;
+type GroupTask = {
+  label: string;
+  progress: number;
+  total: number;
 };
+
+type UploadTask = {
+  url: string;
+  pendingQueue: FileUpload[];
+  fulfillQueue: FileUpload[];
+  present: {
+    current: FileUpload[];
+    group: GroupTask[];
+    progress: number;
+    total: number;
+  };
+};
+
+type Album = {
+  id: string;
+  name: string;
+  albumFiles: string[];
+};
+
+export type { FileUpload, GroupTask, UploadTask, Album };

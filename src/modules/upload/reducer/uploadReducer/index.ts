@@ -1,69 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UPLOAD } from 'Modules/upload/model/types';
-import { modifyFiles } from 'Modules/upload/utils/uploadFile.utils';
-import { ErrorStateCodeEnum } from 'Stores/common/types/error';
-import { uploadPhotoData } from './actions';
-import { initUploadDataState } from './init';
-
-interface UploadProgress {
-  id: string;
-  progress: number;
-}
+import { FileUpload, GroupTask, UPLOAD } from 'Modules/upload/model/types';
+import { initUploadState } from './init';
 
 export const uploadReducer = createSlice({
   name: UPLOAD,
-  initialState: initUploadDataState,
+  initialState: initUploadState,
   reducers: {
     init(state) {
-      return { ...state, ...initUploadDataState };
+      return { ...state, ...initUploadState };
     },
-    setUploadFile(state, action) {
-      // TODO: wtf this modifyFiles
-      const newData = modifyFiles(state.data.fileProgress, action.payload);
-      const existData = state.data.fileProgress;
-      const mergeData = [...existData, ...newData];
-      state.data.fileProgress = mergeData;
+    setPendingQueue(state, action: PayloadAction<FileUpload[]>) {
+      state.pendingQueue = action.payload;
     },
-    setUploadProgress(state, action: PayloadAction<UploadProgress>) {
-      const { id, progress } = action.payload;
-      const file = state.data.fileProgress.find((el, i) => el[i].id === id);
-      state.data.fileProgress[file?._id || ''].progress = progress;
+    setProgress(state, action: PayloadAction<number>) {
+      state.present.progress = action.payload;
     },
-    successUploadFile(state, action: PayloadAction<UploadProgress>) {
-      const { id } = action.payload;
-      const file = state.data.fileProgress.find((el, i) => el[i].id === id);
-      state.data.fileProgress[file?._id || ''].status = 1;
+    setTotal(state, action: PayloadAction<number>) {
+      state.present.total = action.payload;
     },
-    failureUploadFile(state, action) {
-      const { id } = action.payload;
-      const file = state.data.fileProgress.find((el, i) => el[i].id === id);
-      state.data.fileProgress[file?._id || ''].status = 0;
-      state.data.fileProgress[file?._id || ''].progress = 0;
+    setGroup(state, action: PayloadAction<GroupTask[]>) {
+      state.present.group = action.payload;
     },
-    requestToUpload(state, action) {
-      const { url } = action.payload;
-      state.uploadUrl = url;
+    successUploadFile(state, action: PayloadAction<FileUpload>) {
+      state.fulfillQueue.push({
+        ...action.payload,
+        state: 'finish',
+        progress: 1,
+      });
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(uploadPhotoData.rejected, (state) => {
-      state.ready = false;
-      state.error = {
-        code: ErrorStateCodeEnum.ServerInternalError,
-        msg: 'api error',
-      };
-    });
-    builder.addCase(uploadPhotoData.pending, (state) => {
-      state.ready = false;
-      state.error = undefined;
-    });
-    builder.addCase(uploadPhotoData.fulfilled, (state, action) => {
-      state.ready = true;
-      state.error = undefined;
-      // TODO: remove hardcoded
-      state.owner = '1234';
-      state.data.fileProgress = action.payload.data;
-    });
+    failureUploadFile(state, action: PayloadAction<FileUpload>) {
+      state.fulfillQueue.push({
+        ...action.payload,
+        state: 'failed',
+      });
+    },
   },
 });
 export default uploadReducer.reducer;

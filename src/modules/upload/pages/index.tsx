@@ -1,38 +1,151 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Layout, Row } from 'antd';
-import Button from 'Components/Button';
-import { BottomBar, UploadWrapper } from './styled';
-import UploadButton from '../components/UploadButton';
-import { useDispatch } from 'react-redux';
-import { uploadActions } from '../reducer/uploadReducer';
+import { UploadWrapper, Image, BackButton } from './styled';
+import { useDispatch, useSelector } from 'react-redux';
 import UploadProgress from '../components/UploadProgress';
+import { StoresState } from 'Stores/index';
+import { getUploadProgress, uploadFileData } from '../reducer/uploadReducer/actions';
+import { Album, FileUpload } from '../model/types';
+import { v4 as uuidv4 } from 'uuid';
+import { uploadActions } from '../reducer/uploadReducer';
+import SelectFileButton from '../components/SelectFileButton';
+import { InputLine } from 'Styles/global';
+import { WrapperImage } from '../../photos/pages/styled';
+import UploadButton from '../components/UploadButton';
+import { ArrowLeftOutlined } from '@ant-design/icons';
+import { FileListResponseDTO } from 'fluentsearch-types';
 
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
   const { Content } = Layout;
-  //TODO: add setAlbumName, InputLine Component
+  const [files, setFiles] = useState<File[]>([]);
+  const [groupGenerated, setGroupGenerated] = useState<string>('');
+  const [album, setAlbum] = useState<Album>({
+    name: '',
+    id: '',
+    albumFiles: [],
+  });
+  const [images, setImages] = useState<string[]>([]);
+  const [filesToUpload, setFilesToUpload] = useState<FileUpload[]>([]);
+  const [filesResponse, setFilesResponse] = useState<FileListResponseDTO[]>([]);
 
-  const handleAttachFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(uploadActions.setUploadFile(e.target.files));
+  const group = useSelector((state: StoresState) => state.upload.present.group);
+  const pendingQueue = useSelector((state: StoresState) => state.upload.pendingQueue);
+  const fulfillQueue = useSelector((state: StoresState) => state.upload.fulfillQueue);
+
+  useEffect(() => {
+    getUploadProgress();
+  }, [pendingQueue, fulfillQueue]);
+
+  const handleFileOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const rawFiles = e.target.files;
+    const groupName = uuidv4();
+    setGroupGenerated(groupName);
+
+    if (rawFiles) {
+      let type: FileUpload['type'] = 'single';
+      if (rawFiles.length > 0) type = 'multiple';
+
+      for (const file of rawFiles) {
+        const newFile = {
+          _id: uuidv4() as string,
+          progress: 0,
+          originFilename: file.name,
+          createAt: new Date().toString(),
+          type: type,
+          group: groupName,
+          state: 'waiting',
+        } as FileUpload;
+        setFilesToUpload((prevState) => [...prevState, newFile]);
+        setFiles((prevState) => [...prevState, file]);
+      }
+    }
   };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAlbum({ ...album, name: e.target.value });
+  };
+
+  useEffect(() => {
+    setAlbum({ ...album, id: uuidv4() });
+  }, []);
+
+  useEffect(() => {
+    dispatch(uploadActions.setPendingQueue(filesToUpload));
+    uploadFileData(groupGenerated, files).then((response) => {
+      setFilesResponse([...response]);
+    });
+    setFilesResponse([]);
+    setFilesToUpload([]);
+  }, [groupGenerated]);
+
+  useEffect(() => {
+    if (filesResponse.length > 0) {
+      console.log(filesResponse);
+      const filteredThumbnail = filesResponse
+        .flatMap((file) => {
+          return file;
+        })
+        .map((el) => {
+          return el.thumbnail_uri;
+        });
+      setImages([...filteredThumbnail]);
+
+      const filteredIDFilesResponse = filesResponse
+        .flatMap((file) => {
+          return file;
+        })
+        .map((el) => {
+          return el._id;
+        });
+      setAlbum((prevState) => ({
+        ...prevState,
+        albumFiles: [...filteredIDFilesResponse],
+      }));
+    }
+  }, [filesResponse]);
 
   return (
     <Layout>
       <UploadWrapper>
-        <Content>
+        <BackButton>
+          <ArrowLeftOutlined style={{ fontSize: '1.5rem' }} />
+        </BackButton>
+        <Content style={{ marginTop: '5%' }}>
           <h2 style={{ marginBottom: '2%' }}>Upload Photos</h2>
-          <hr />
-          <Row justify="center" align="middle">
-            <Col style={{ marginTop: '15%' }}>
-              <UploadButton onChange={handleAttachFile} />
+          <Row justify="space-between">
+            <Col span={10} style={{ marginBottom: '1em' }}>
+              <InputLine
+                placeholder="Album Name"
+                value={album.name}
+                onChange={handleInputChange}
+              />
             </Col>
+            <Col>
+              <UploadButton onFileOnChange={handleFileOnChange} />
+            </Col>
+          </Row>
+          <hr />
+
+          <Row justify="center" align="middle">
+            {files.length > 0 ? (
+              <Col>
+                <WrapperImage>
+                  {images.map((el, index) => (
+                    <Image src={el} key={index} />
+                  ))}
+                </WrapperImage>
+              </Col>
+            ) : (
+              <Col style={{ marginTop: '15%' }}>
+                <SelectFileButton onChange={handleFileOnChange} />
+              </Col>
+            )}
           </Row>
         </Content>
       </UploadWrapper>
-      <UploadProgress />
-      <BottomBar>
-        <Button style={{ backgroundColor: '#5A36CC' }}>Upload Photo </Button>
-      </BottomBar>
+      {files.length > 0 ? <UploadProgress group={group} total={files.length} /> : null}
     </Layout>
   );
 };
