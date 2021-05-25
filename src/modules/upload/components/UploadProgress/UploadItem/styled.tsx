@@ -23,21 +23,21 @@ export const LeftSide = styled.div`
 `;
 
 export const ProgressBarWrapper = styled.div`
-  width: 100%;
-  height: 15px;
-  background-color: lightgray;
+  width: 80%;
+  height: 0.75rem;
+  background-color: var(--gray-color);
   margin-bottom: 8px;
   border-radius: 20px;
 
   div {
-    height: 15px;
-    background-color: lightgreen;
+    height: 0.75rem;
+    background-color: var(--tertiary-color);
     border-radius: 20px;
   }
 `;
 
-export const Percentage = styled.span`
-  margin-left: 12px;
+export const Percentage = styled.p`
+  margin-left: -1rem;
 `;
 
 export const ProgressBar = styled.div<ProgressBarPropsType>`
@@ -45,4 +45,9 @@ export const ProgressBar = styled.div<ProgressBarPropsType>`
     props.width &&
     `
    width: ${props.width}%`}
+`;
+
+export const FileLabel = styled.label`
+  font-size: 1rem;
+  color: var(--text-color-secondary);
 `;
