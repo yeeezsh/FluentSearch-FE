@@ -1,10 +1,9 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import Lightbox from '.';
-
-import { mock } from './constants';
 import { LightboxPropsType } from './types';
 import { GlobalStyle } from 'Styles/global';
+import { mock } from './constants';
 
 export default {
   title: 'FluentSearch/Lightbox',
