@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Button from 'Components/Button';
 import { Loader } from 'Components/Loader';
 import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
@@ -10,10 +9,10 @@ import Link from 'next/link';
 import { WrapperImage } from './styled';
 import { useGetInsightQuery } from 'Services/model/generated-types';
 import { initialState } from '../models/init';
-import { mockData } from '../mocks/data';
 import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import Lightbox from '../components/Lightbox';
+import { fetchImages } from '../services/fetch.images';
 
 const AllPhotosPages: React.FC = () => {
   const [images = [], setImages] = useState<PhotosAPI[]>();
@@ -52,20 +51,13 @@ const AllPhotosPages: React.FC = () => {
   const ids = searchResult.map((el) => el._id);
 
   useEffect(() => {
-    //TODO: Change back to query data
-    //setImages(queryData);
-    setImages(mockData);
+    setImages(queryData);
   }, [loading]);
 
-  //TODO: Check duplicate fetchImages
-  const fetchImages = async (): Promise<void> => {
-    const apiRoot = 'https://api.unsplash.com';
-    const accessKey = 'fLLHNmXzlY1Mkc9woN0pQFNNc53hoBfGAgmQTF2OH4w';
-    await axios
-      .get(`${apiRoot}/photos/random?client_id=${accessKey}&count=5`)
-      .then((res) => {
-        setImages([...images, ...res.data]);
-      });
+  const nextImages = () => {
+    fetchImages().then((response) => {
+      setImages([...images, ...response]);
+    });
   };
 
   const openLightbox = (image: PhotosAPI) => {
@@ -117,7 +109,7 @@ const AllPhotosPages: React.FC = () => {
 
       <InfiniteScroll
         dataLength={images.length}
-        next={fetchImages}
+        next={nextImages}
         hasMore={true}
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>

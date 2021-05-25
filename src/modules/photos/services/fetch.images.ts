@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { PhotosAPI } from '../constants/photo/interface';
 
-//TODO: Still need the code inside this function?
 export const fetchImages = async (): Promise<PhotosAPI[]> => {
   const apiRoot = 'https://api.unsplash.com';
   const accessKey = 'fLLHNmXzlY1Mkc9woN0pQFNNc53hoBfGAgmQTF2OH4w';
