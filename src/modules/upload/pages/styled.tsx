@@ -22,3 +22,26 @@ export const UploadWrapper = styled.div`
     background-color: white;
   }
 `;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const BackButton = styled.button`
+  background: none;
+  color: var(--text-color-secondary);
+  border: none;
+  padding: 1rem;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: #ededed;
+    padding: 1rem;
+    border-radius: 50%;
+  }
+`;

@@ -1,7 +1,9 @@
+import { ApolloProvider } from '@apollo/client';
 import { Meta } from '@storybook/react';
 import HistoryPage from 'Modules/history/pages';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { client } from 'Services/client';
 import { store } from 'Stores/index';
 import { GlobalStyle } from 'Styles/global';
 
@@ -14,7 +16,9 @@ export const Default = (): JSX.Element => (
   <>
     <GlobalStyle />
     <Provider store={store}>
-      <HistoryPage />
+      <ApolloProvider client={client}>
+        <HistoryPage />
+      </ApolloProvider>
     </Provider>
   </>
 );

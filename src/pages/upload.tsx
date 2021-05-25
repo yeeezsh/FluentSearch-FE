@@ -2,7 +2,7 @@ import UploadPage from 'Modules/upload/pages';
 import React from 'react';
 
 const Upload: React.FC = () => {
-  // TODO: not implment layout
+  // TODO: add router guard
   return <UploadPage />;
 };
 

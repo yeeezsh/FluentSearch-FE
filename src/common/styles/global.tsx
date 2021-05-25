@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import styled, { createGlobalStyle, css } from 'styled-components';
-import { Table, Input } from 'antd';
+import { Table } from 'antd';
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -155,11 +155,13 @@ export const PurpleTable = styled(Table)`
 `;
 
 export const PageWrapper = styled.div`
-  margin: 10% 10% 0% 10%;
   padding-bottom: 5%;
 `;
 
-export const InputLine = styled(Input)`
+export const InputLine = styled.input`
+  display: flex;
+  width: 80%;
   border: 0px;
   border-bottom: 1px solid lightgrey;
+  outline: none;
 `;

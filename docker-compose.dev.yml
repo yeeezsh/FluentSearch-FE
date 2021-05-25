@@ -6,12 +6,12 @@ services:
     environment:
       NODE_ENV: 'development'
       TZ: Asia/Bangkok
-      APP_BACKEND_ENDPOINT:  'http://localhost:5000/'
+      APP_BACKEND_STORAGE_ENDPOINT: 'http://localhost:5000/'
       APP_GRAPHQL_ENDPOINT: 'http://localhost:5000/graphql'
     build:
       context: ./
       dockerfile: Dockerfile
-      target: dev
+      target: service
     ports:
       - '3000:3000'
     volumes:
@@ -19,4 +19,3 @@ services:
     logging:
       options:
         max-size: 50m
-        

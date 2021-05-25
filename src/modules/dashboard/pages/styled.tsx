@@ -2,37 +2,6 @@ import styled from 'styled-components';
 
 export const DashboardWrapper = styled.div`
   height: 100vh;
-
-  h1 {
-    font-size: 3.05rem;
-    font-weight: bold;
-  }
-
-  h2 {
-    font-size: 2.44rem;
-    font-weight: bold;
-  }
-
-  h3 {
-    font-size: 1.95rem;
-    font-weight: bold;
-  }
-
-  h4 {
-    font-size: 1.56rem;
-    font-weight: bold;
-  }
-
-  h5 {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  body,
-  p,
-  span {
-    font-size: 1rem;
-  }
 `;
 
 export const CaptionText = styled.p`
@@ -46,11 +15,23 @@ export const ContentWrapper = styled.div`
   height: 35%;
   background-color: #5a36cc;
   z-index: -1;
-  padding: 8% 10% 10% 10%;
 
+  @media (min-width: 1600px) {
+    padding: 10% 5% 5% 10%;
+  }
+  @media (min-width: 1200px) and (max-width: 1599px) {
+    padding: 10% 5% 5% 15%;
+  }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    padding: 10% 5% 5% 20%;
+  }
+  @media (max-width: 991px) {
+    padding: 20% 10% 5% 10%;
+  }
   @media (max-width: 768px) {
     height: 50%;
     padding-top: 20%;
+    padding: 8% 10% 10% 10%;
   }
 `;
 
