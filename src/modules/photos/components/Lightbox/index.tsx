@@ -18,10 +18,9 @@ import {
   CaretRightOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons';
-import { Tag } from 'antd';
 import { Tag as TagType } from 'Modules/photos/models/tags/';
 import { LightboxPropsType, currentImageSizeType } from './types';
-import { Row, Col } from 'antd';
+import { Row, Col, Tag } from 'antd';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 
