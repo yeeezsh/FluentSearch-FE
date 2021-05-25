@@ -14,20 +14,21 @@ const BoundingBox: React.FC<BoundingBoxType> = (props) => {
     scaleBorder,
   } = props;
   const borderConfig = `0px 0px 0px ${Math.round(scaleBorder)}px #5a36cc inset`;
+  const width = xMax - xMin;
+  const height = yMax - yMin;
   return (
     <SquareStyle
       style={{
         top: yMin,
         left: xMin,
         width:
-          xMin + xMax > currentImgWidth
-            ? Math.abs(xMax - xMin - (xMax - currentImgWidth))
-            : Math.abs(xMax - xMin),
+          xMin + width > currentImgWidth
+            ? Math.abs(currentImgWidth - xMin)
+            : Math.abs(width),
         height:
-          yMin + yMax > currentImgHeight
-            ? Math.abs(yMax - yMin - (yMax - currentImgHeight))
-            : Math.abs(yMax - yMin),
-        // since label and border not align, so i decided to use inner-border(box-shadow) instead of border
+          yMin + height > currentImgHeight
+            ? Math.abs(currentImgHeight - yMin)
+            : Math.abs(height),
         boxShadow: borderConfig,
       }}>
       <Label>{label}</Label>
