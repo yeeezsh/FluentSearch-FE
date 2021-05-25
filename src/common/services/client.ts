@@ -3,7 +3,7 @@ import { ErrorResponse, onError } from '@apollo/client/link/error';
 import HttpStatusCode from '../constants/httpStatusCode';
 
 export const END_POINT =
-  process.env.APP_GRAPHQL_ENDPOINT || 'http://federation.fluentsearch.ml/graphql';
+  process.env.APP_GRAPHQL_ENDPOINT || 'https://federation.fluentsearch.ml/graphql';
 const httpLink = new HttpLink({
   uri: END_POINT,
   credentials: 'include',
