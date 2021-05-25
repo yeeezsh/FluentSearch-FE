@@ -11,15 +11,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { uploadActions } from '../reducer/uploadReducer';
 import SelectFileButton from '../components/SelectFileButton';
 import { InputLine } from 'Styles/global';
-import { Loader } from '../../../common/components/Loader';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { WrapperImage } from '../../photos/pages/styled';
 
 const UploadPage: React.FC = () => {
   const dispatch = useDispatch();
   const { Content } = Layout;
   const [files, setFiles] = useState<File[]>([]);
-  const [filesToUpload, setFilesToUpload] = useState<FileUpload[]>([]);
   const [groupGenerated, setGroupGenerated] = useState<string>('');
   const [albumName, setAlbumName] = useState<string>('');
   const [images, setImages] = useState<string[]>([]);
@@ -34,8 +31,8 @@ const UploadPage: React.FC = () => {
   const handleFileOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const rawFiles = e.target.files;
-
-    setGroupGenerated(uuidv4());
+    const groupName = uuidv4();
+    setGroupGenerated(groupName);
 
     if (rawFiles) {
       let type: FileUpload['type'] = 'single';
@@ -49,28 +46,25 @@ const UploadPage: React.FC = () => {
           originFilename: file.name,
           createAt: new Date().toString(),
           type: type,
-          group: groupGenerated,
+          group: groupName,
           state: 'waiting',
         } as FileUpload;
+        dispatch(uploadActions.setPendingQueue(newFile));
         setFiles((prevState) => [...prevState, file]);
-        setFilesToUpload((prevState) => [...prevState, newFile]);
         setImages((prevState) => [...prevState, image]);
       }
     }
-  };
-
-  const initUpload = (group: string, metaDataFiles: FileUpload[], files: File[]) => {
-    metaDataFiles.forEach((el) => dispatch(uploadActions.setPendingQueue(el)));
-    uploadFileData(group, files);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAlbumName(e.target.value);
   };
 
+  const group = useSelector((state: StoresState) => state.upload.present.group);
+
   useEffect(() => {
-    initUpload(groupGenerated, filesToUpload, files);
-  }, [files, filesToUpload, groupGenerated]);
+    uploadFileData(groupGenerated, files);
+  }, [groupGenerated]);
 
   return (
     <Layout>
@@ -117,7 +111,8 @@ const UploadPage: React.FC = () => {
           </Row>
         </Content>
       </UploadWrapper>
-      <UploadProgress />
+      {files.length > 0 ? <UploadProgress group={group} total={files.length} /> : null}
+      {/* <UploadProgress /> */}
     </Layout>
   );
 };
