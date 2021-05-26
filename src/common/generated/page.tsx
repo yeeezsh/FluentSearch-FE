@@ -7,6 +7,55 @@ import { QueryHookOptions, useQuery } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 import type React from 'react';
 import { getApolloClient } from 'src/common/services/client';
+export async function getServerPageGetUserTasks(
+  options: Omit<Apollo.QueryOptions<Types.GetUserTasksQueryVariables>, 'query'>,
+  ctx?: any,
+) {
+  const apolloClient = getApolloClient(ctx);
+
+  const data = await apolloClient.query<Types.GetUserTasksQuery>({
+    ...options,
+    query: Operations.GetUserTasksDocument,
+  });
+
+  const apolloState = apolloClient.cache.extract();
+
+  return {
+    props: {
+      apolloState: apolloState,
+      data: data?.data,
+      error: data?.error ?? data?.errors ?? null,
+    },
+  };
+}
+export const useGetUserTasks = (
+  optionsFunc?: (
+    router: NextRouter,
+  ) => QueryHookOptions<Types.GetUserTasksQuery, Types.GetUserTasksQueryVariables>,
+) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  return useQuery(Operations.GetUserTasksDocument, options);
+};
+export type PageGetUserTasksComp = React.FC<{
+  data?: Types.GetUserTasksQuery;
+  error?: Apollo.ApolloError;
+}>;
+export const withPageGetUserTasks = (
+  optionsFunc?: (
+    router: NextRouter,
+  ) => QueryHookOptions<Types.GetUserTasksQuery, Types.GetUserTasksQueryVariables>,
+) => (WrappedComponent: PageGetUserTasksComp): NextPage => (props) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  const { data, error } = useQuery(Operations.GetUserTasksDocument, options);
+  return <WrappedComponent {...props} data={data} error={error} />;
+};
+export const ssrGetUserTasks = {
+  getServerPage: getServerPageGetUserTasks,
+  withPage: withPageGetUserTasks,
+  usePage: useGetUserTasks,
+};
 export async function getServerPageGetRecentFiles(
   options: Omit<Apollo.QueryOptions<Types.GetRecentFilesQueryVariables>, 'query'>,
   ctx?: any,
