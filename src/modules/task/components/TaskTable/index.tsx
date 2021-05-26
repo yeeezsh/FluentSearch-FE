@@ -1,16 +1,13 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Tag } from 'antd';
 import dayjs from 'dayjs';
 import TaskProgressBar from '../TaskProgressBar';
-import {
-  InprogressPhoto,
-  TotalPhoto,
-  ElaspedTime,
-  Active,
-} from 'Modules/task/mocks/data';
-import { stringCutter } from 'Modules/history/utils/stringCutter';
 import { TaskTableWrapper } from './styled';
 import { TaskTablePropsType } from './type';
+import { ModelEnum } from '../../../../common/services/model/generated-types';
+import { modelColor } from '../../utils/modelColor';
+import { TaskStatus } from '../../../../common/generated/generated-types';
+import { checkStatus } from '../../utils/checkStatus';
 
 const TaskTable: React.FC<TaskTablePropsType> = (props) => {
   const { data } = props;
@@ -22,44 +19,63 @@ const TaskTable: React.FC<TaskTablePropsType> = (props) => {
   return (
     <TaskTableWrapper dataSource={data}>
       <Column
-        title="Timestamp"
-        dataIndex="timestamp"
-        key="timestamp"
-        render={(timestamp: Date): JSX.Element => {
+        title="Create At"
+        dataIndex="createAt"
+        key="createAt"
+        render={(createAt: string): JSX.Element => {
           return (
             <div>
-              {dayjs(timestamp).format(YEAR_MONTH_DATE_FORMAT)}
+              {dayjs(parseInt(createAt)).format(YEAR_MONTH_DATE_FORMAT)}
               <br />
-              {dayjs(timestamp).format(HOUR_MINUTE_SECOND_FORMAT)}
+              {dayjs(parseInt(createAt)).format(HOUR_MINUTE_SECOND_FORMAT)}
             </div>
           );
         }}
       />
+      <Column title="Task Name" dataIndex="name" key="name" />
       <Column
-        title="TaskID"
-        dataIndex="taskID"
-        key="taskID"
-        render={(taskID: string): string => {
-          return stringCutter(taskID);
+        title="Model"
+        dataIndex="models"
+        key="models"
+        render={(models: ModelEnum[]) => {
+          return models.map((el, index) => {
+            if (index % 2 === 0) {
+              return (
+                <>
+                  <br />
+                  <Tag color={modelColor(el)} key={index}>
+                    {el}
+                  </Tag>
+                </>
+              );
+            }
+            return (
+              <Tag color={modelColor(el)} key={index}>
+                {el}
+              </Tag>
+            );
+          });
         }}
       />
-      <Column title="Task Name" dataIndex="taskName" key="taskName" />
-      <Column title="Model" dataIndex="model" key="model" />
+      <Column
+        title="status"
+        key="status"
+        dataIndex="finish"
+        render={(_finish: number, record: TaskStatus) => {
+          const { color, status } = checkStatus(
+            record.wait,
+            record.excute,
+            record.finish,
+          );
+          return <Tag color={color}>{status}</Tag>;
+        }}
+      />
       <Column
         title="Progress"
-        dataIndex="progress"
         key="progress"
-        render={(progress: number, taskID: string) => {
-          return (
-            <TaskProgressBar
-              taskID={taskID}
-              inprogressPhoto={InprogressPhoto.inprogressPhoto}
-              totalPhoto={TotalPhoto.totalPhoto}
-              elaspedTime={ElaspedTime.elaspedTime}
-              progress={progress}
-              active={Active.active}
-            />
-          );
+        dataIndex="wait"
+        render={(_wait: number, record: TaskStatus) => {
+          return <TaskProgressBar record={record} />;
         }}
       />
     </TaskTableWrapper>
