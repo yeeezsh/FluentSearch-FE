@@ -27,3 +27,6 @@ generates:
       typesPath: 'src/common/generated/generated-types'
     plugins:
       - graphql-codegen-apollo-next-ssr
+hooks:
+  afterAllFileWrite:
+    - prettier --write
