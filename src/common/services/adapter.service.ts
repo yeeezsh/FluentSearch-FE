@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 export const END_POINT =
-  process.env.APP_BACKEND_STORAGE_ENDPOINT || 'http://localhost:3000/';
+  process.env.APP_BACKEND_STORAGE_ENDPOINT || 'http://storage.fluentsearch.ml';
 
 class Adapter {
   instance: AxiosInstance;
