@@ -3,6 +3,7 @@ import {
   createHttpLink,
   from,
   InMemoryCache,
+  NormalizedCacheObject,
   ServerError,
 } from '@apollo/client';
 import { ErrorResponse, onError } from '@apollo/client/link/error';
@@ -57,3 +58,7 @@ export const client = new ApolloClient({
   link: from([logoutLink, httpLink]),
   cache: new InMemoryCache(),
 });
+
+export const getApolloClient = (ctx?: any, initialState?: NormalizedCacheObject) => {
+  return client;
+};
