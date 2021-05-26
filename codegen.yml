@@ -8,4 +8,22 @@ generates:
       - 'typescript-operations'
       - 'typescript-react-apollo'
     config:
+      reactApolloVersion: 3
+      withHooks: false
+      withHOC: false
+      withComponent: false
+      exportFragmentSpreadSubTypes: true
+      documentMode: graphQLTag
       withResultType: true
+  src/generated/page.tsx:
+    config:
+      documentMode: external
+      importDocumentNodeExternallyFrom: ./graphql
+      reactApolloVersion: 3
+      withHooks: true
+      apolloClientInstanceImport: '../withApollo'
+    preset: import-types
+    presetConfig:
+      typesPath: ./graphql
+    plugins:
+      - graphql-codegen-apollo-next-ssr
