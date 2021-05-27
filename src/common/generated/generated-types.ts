@@ -133,6 +133,7 @@ export type RecentFile = {
   uri_thumbnail: Scalars['String'];
   createAt: Scalars['String'];
   updateAt: Scalars['String'];
+  type: Scalars['String'];
 };
 
 export type RecentFiles = {
@@ -244,7 +245,12 @@ export type GetRecentFilesQuery = { __typename?: 'Query' } & {
             Array<
               { __typename?: 'RecentFile' } & Pick<
                 RecentFile,
-                'original_filename' | 'uri' | 'uri_thumbnail' | 'createAt' | 'updateAt'
+                | 'original_filename'
+                | 'uri'
+                | 'uri_thumbnail'
+                | 'createAt'
+                | 'updateAt'
+                | 'type'
               >
             >
           >;
@@ -426,6 +432,7 @@ export const GetRecentFilesDocument = gql`
           uri_thumbnail
           createAt
           updateAt
+          type
         }
       }
     }

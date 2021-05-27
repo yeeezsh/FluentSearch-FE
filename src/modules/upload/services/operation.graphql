@@ -8,6 +8,7 @@ query GetRecentFiles($limit: Int, $skip: Int) {
         uri_thumbnail
         createAt
         updateAt
+        type
       }
     }
   }
