@@ -5,17 +5,21 @@ import RouterGuard from '../common/components/RouterGuard';
 import { PageGetRecentFilesComp, ssrGetRecentFiles } from '../common/generated/page';
 
 const AllPhotos: PageGetRecentFilesComp = (props) => {
-  console.log(props.data);
+  const data = props.data;
   return (
     <RouterGuard>
-      <AllPhotosPage />
+      <AllPhotosPage data={data} />
     </RouterGuard>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const data = await ssrGetRecentFiles.getServerPage(
+  return await ssrGetRecentFiles.getServerPage(
     {
+      variables: {
+        limit: 20,
+        skip: 20,
+      },
       context: {
         headers: {
           cookie: ctx.req.headers.cookie,
@@ -24,11 +28,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
     ctx,
   );
-  return {
-    props: {
-      data,
-    },
-  };
 };
 
 export default AllPhotos;
