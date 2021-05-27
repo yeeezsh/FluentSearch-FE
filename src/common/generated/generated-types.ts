@@ -244,7 +244,7 @@ export type GetRecentFilesQuery = { __typename?: 'Query' } & {
             Array<
               { __typename?: 'RecentFile' } & Pick<
                 RecentFile,
-                'createAt' | 'original_filename' | 'updateAt' | 'uri' | 'uri_thumbnail'
+                'original_filename' | 'uri' | 'uri_thumbnail' | 'createAt' | 'updateAt'
               >
             >
           >;
@@ -421,11 +421,11 @@ export const GetRecentFilesDocument = gql`
       result {
         date
         files {
-          createAt
           original_filename
-          updateAt
           uri
           uri_thumbnail
+          createAt
+          updateAt
         }
       }
     }

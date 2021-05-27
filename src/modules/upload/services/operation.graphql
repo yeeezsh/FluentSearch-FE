@@ -3,11 +3,11 @@ query GetRecentFiles($limit: Int, $skip: Int) {
     result {
       date
       files {
-        createAt
         original_filename
-        updateAt
         uri
         uri_thumbnail
+        createAt
+        updateAt
       }
     }
   }
