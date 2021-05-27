@@ -15,8 +15,10 @@ import UploadButton from '../components/UploadButton';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { FileListResponseDTO } from 'fluentsearch-types';
 import { Album } from '../../album/reducer/albumReducer/types';
+import { useRouter } from 'next/router';
 
 const UploadPage: React.FC = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const { Content } = Layout;
   const [files, setFiles] = useState<File[]>([]);
@@ -95,7 +97,7 @@ const UploadPage: React.FC = () => {
         .map((el) => {
           return el.thumbnail_uri;
         });
-      setImages([...filteredThumbnail]);
+      setImages([...images, ...filteredThumbnail]);
 
       const filteredIDFilesResponse = filesResponse
         .flatMap((file) => {
@@ -115,7 +117,10 @@ const UploadPage: React.FC = () => {
     <Layout>
       <UploadWrapper>
         <BackButton>
-          <ArrowLeftOutlined style={{ fontSize: '1.5rem' }} />
+          <ArrowLeftOutlined
+            style={{ fontSize: '1.5rem' }}
+            onClick={() => router.push('/allphotos')}
+          />
         </BackButton>
         <Content style={{ marginTop: '5%' }}>
           <h2 style={{ marginBottom: '2%' }}>Upload Photos</h2>
