@@ -34,7 +34,16 @@ const AllPhotosPages: React.FC<AllPhotoPagesProps> = (props) => {
   })) as RecentPreviews[];
 
   props.data?.GetRecentFiles?.result.forEach((f) =>
-    f.files?.forEach((file) => allImages.push(file)),
+    f.files?.forEach((file) =>
+      allImages.push({
+        original_filename: file.original_filename,
+        uri: file.uri,
+        uri_thumbnail: file.uri_thumbnail,
+        createAt: file.createAt,
+        updateAt: file.updateAt,
+        type: file.type,
+      }),
+    ),
   );
 
   const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
@@ -60,10 +69,11 @@ const AllPhotosPages: React.FC<AllPhotoPagesProps> = (props) => {
     setLightboxVisible(false);
   };
 
+  //TODO: fix bad lightbox
   const showNext = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const currentIndex = allImages.indexOf(currentImage);
-    if (currentIndex >= images.length - 1) {
+    if (currentIndex >= allImages.length - 1) {
       setLightboxVisible(false);
     } else {
       const nextImage = allImages[currentIndex + 1];
@@ -74,7 +84,6 @@ const AllPhotosPages: React.FC<AllPhotoPagesProps> = (props) => {
   const showPrev = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const currentIndex = allImages.indexOf(currentImage);
-    console.log(currentIndex);
     if (currentIndex <= 0) setLightboxVisible(false);
     else {
       const nextImage = allImages[currentIndex - 1];
