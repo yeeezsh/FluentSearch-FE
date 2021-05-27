@@ -38,6 +38,14 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
   const [detailCardVisible, setDetailCardVisible] = useState(true);
   const [scaleBorder, setScaleBorder] = useState(0);
 
+  const mockInsight = {
+    width: 600,
+    height: 600,
+    label: [{ result: 'dog', xMin: 0, xMax: 100, yMin: 0, yMax: 100 }],
+    location: 'Paris',
+    id: '44545',
+  };
+
   function handleCurrentImageSize() {
     if (ref.current)
       setCurrentImageSize({
@@ -63,13 +71,13 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
 
   useEffect(() => {
     if (currentImageSize) {
-      setScaleX(currentImageSize?.width / image.width);
-      setScaleY(currentImageSize?.height / image.height);
+      setScaleX(currentImageSize?.width / mockInsight.width);
+      setScaleY(currentImageSize?.height / mockInsight.height);
       setScaleBorder(3 * scaleX);
     }
   }, [currentImageSize, detailCardVisible]);
 
-  const allTags = image.tags?.reduce((acc: string[], tag: TagType) => {
+  const allTags = mockInsight.label.reduce((acc: string[], tag: TagType) => {
     if (acc.indexOf(tag.result) == -1) acc.push(tag.result);
     return acc;
   }, []);
@@ -88,8 +96,8 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
             <CaretLeftOutlined />
           </ButtonLeft>
           <ImageWrapper>
-            {image.tags &&
-              image.tags?.map((originSize) => {
+            {mockInsight.label &&
+              mockInsight.label?.map((originSize) => {
                 if (currentImageSize) {
                   return (
                     <BoundingBox
@@ -106,7 +114,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                   );
                 }
               })}
-            <Image ref={ref} src={image.urls.thumb} onLoad={handleCurrentImageSize} />
+            <Image ref={ref} src={image.uri} onLoad={handleCurrentImageSize} />
           </ImageWrapper>
           <ButtonRight onClick={onNext}>
             <CaretRightOutlined />
@@ -129,9 +137,9 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                 <b> Date</b>
               </Col>
               <Col>
-                {dayjs(image.created_at).format('MMM DD, YYYY')}
+                {dayjs(image.createAt).format('MMM DD, YYYY')}
                 <br />
-                {dayjs(image.created_at).format('ddd,hh:mmA Z')}
+                {dayjs(image.createAt).format('ddd,hh:mmA Z')}
               </Col>
             </Row>
             <Row>
@@ -139,16 +147,16 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                 <b> Photo</b>
               </Col>
               <Col>
-                {image.id} .jpg
+                {image.original_filename}
                 <br />
-                Width {image.width}px
+                Width {mockInsight.width}px
               </Col>
             </Row>
             <Row>
               <Col md={8}>
                 <b> Place</b>
               </Col>
-              <Col>{image.location.title ? image.location.title : '-'}</Col>
+              <Col>{mockInsight.location ? mockInsight.location : '-'}</Col>
             </Row>
           </LightboxCardRight>
         ) : null}

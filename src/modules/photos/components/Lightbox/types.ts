@@ -1,8 +1,8 @@
-import { PhotosAPI } from 'Modules/photos/constants/photo/interface';
+import { RecentFile } from '../../../../common/generated/generated-types';
 
 export type LightboxPropsType = {
   closeLightbox: () => void;
-  image: PhotosAPI;
+  image: RecentFile;
   onPrev: (e: React.MouseEvent<HTMLElement>) => void;
   onNext: (e: React.MouseEvent<HTMLElement>) => void;
 };

@@ -4,63 +4,53 @@ import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ThumbnailPhoto from '../components/ThumbnailPhoto';
-import { PhotosAPI } from '../constants/photo/interface';
 import Link from 'next/link';
 import { WrapperImage } from './styled';
-import { useGetInsightQuery } from 'Services/model/generated-types';
 import { initialState } from '../models/init';
 import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import Lightbox from '../components/Lightbox';
-import { fetchImages } from '../services/fetch.images';
+import { AllPhotoPagesProps } from './types';
+import { RecentFile, RecentPreviews } from '../../../common/generated/generated-types';
+import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
 
-const AllPhotosPages: React.FC = () => {
-  const [images = [], setImages] = useState<PhotosAPI[]>();
-  const [currentImage, setCurrentImages] = useState<PhotosAPI>(initialState);
+const AllPhotosPages: React.FC<AllPhotoPagesProps> = (props) => {
+  const [images, setImages] = useState<RecentPreviews[]>([]);
+  const [currentImage, setCurrentImages] = useState<RecentFile>(initialState);
   const [lightboxVisible, setLightboxVisible] = useState(false);
-  const { data, loading } = useGetInsightQuery();
+  const allImages: RecentFile[] = [];
 
-  const queryData = data?.getFilesWithInsight.map(
-    (e) =>
-      ({
-        ...initialState,
-        id: e._id,
-        user: { name: '1234', total_likes: 5 },
-        width: e.meta.width,
-        height: e.meta.height,
-        urls: {
-          raw: e.uri,
-          full: e.uri,
-          regular: e.uri,
-          small: e.uri,
-          thumb: e.uri,
-        },
-        created_at: e.createAt,
-        updated_at: e.updateAt,
-        tags: e.insight?.map((el) => ({
-          result: el.result,
-          xMin: el.bbox.xmin,
-          xMax: el.bbox.xmax,
-          yMin: el.bbox.ymin,
-          yMax: el.bbox.ymax,
-        })),
-      } as PhotosAPI),
-  ) as PhotosAPI[];
+  const queryData = props.data?.GetRecentFiles?.result?.map((el) => ({
+    date: el.date,
+    files: el.files?.map((file) => ({
+      original_filename: file.original_filename,
+      uri: file.uri,
+      uri_thumbnail: file.uri_thumbnail,
+      createAt: file.createAt,
+      updateAt: file.updateAt,
+      type: file.type,
+    })),
+  })) as RecentPreviews[];
+
+  props.data?.GetRecentFiles?.result.forEach((f) =>
+    f.files?.forEach((file) => allImages.push(file)),
+  );
 
   const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
   const ids = searchResult.map((el) => el._id);
 
   useEffect(() => {
     setImages(queryData);
-  }, [loading]);
+  }, []);
 
   const nextImages = () => {
-    fetchImages().then((response) => {
-      setImages([...images, ...response]);
-    });
+    //  fetchImages().then((response) => {
+    //     setImages([...images, ...response]);
+    //   });
   };
 
-  const openLightbox = (image: PhotosAPI) => {
+  const openLightbox = (image: RecentFile) => {
     setCurrentImages(image);
     setLightboxVisible(true);
   };
@@ -72,21 +62,22 @@ const AllPhotosPages: React.FC = () => {
 
   const showNext = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    const currentIndex = images.indexOf(currentImage);
+    const currentIndex = allImages.indexOf(currentImage);
     if (currentIndex >= images.length - 1) {
       setLightboxVisible(false);
     } else {
-      const nextImage = images[currentIndex + 1];
+      const nextImage = allImages[currentIndex + 1];
       setCurrentImages(nextImage);
     }
   };
 
   const showPrev = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    const currentIndex = images.indexOf(currentImage);
+    const currentIndex = allImages.indexOf(currentImage);
+    console.log(currentIndex);
     if (currentIndex <= 0) setLightboxVisible(false);
     else {
-      const nextImage = images[currentIndex - 1];
+      const nextImage = allImages[currentIndex - 1];
       setCurrentImages(nextImage);
     }
   };
@@ -114,29 +105,27 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {ids.length != 0 &&
-            images
-              .filter((f) => (ids.length != 0 ? ids.includes(f.id) : true))
-              .map((image: PhotosAPI, index: number) => (
+          {images.map((el) =>
+            el.files?.map((file) =>
+              file.type === 'image' ? (
                 <ThumbnailPhoto
-                  src={image.urls.thumb}
-                  key={index}
-                  createAt={new Date()}
+                  src={file.uri}
+                  key={uuid().toString()}
+                  createAt={dayjs(file.createAt).toDate()}
                   selected={false}
-                  onClick={() => openLightbox(image)}
+                  onClick={() => openLightbox(file)}
                 />
-              ))}
-
-          {ids.length == 0 &&
-            images.map((image: PhotosAPI, index: number) => (
-              <ThumbnailPhoto
-                src={image.urls.thumb}
-                key={index}
-                createAt={new Date()}
-                selected={false}
-                onClick={() => openLightbox(image)}
-              />
-            ))}
+              ) : (
+                <ThumbnailPhoto
+                  src={file.uri_thumbnail}
+                  key={uuid().toString()}
+                  createAt={dayjs(file.createAt).toDate()}
+                  selected={false}
+                  onClick={() => openLightbox(file)}
+                />
+              ),
+            ),
+          )}
         </WrapperImage>
       </InfiniteScroll>
     </LayoutWithSearch>
