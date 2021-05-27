@@ -1,5 +1,6 @@
 import { ModelEnum } from 'Modules/task/models/model.enum';
 import { ErrorState } from 'Stores/common/types/error';
+import { TaskStatus } from '../../../../common/generated/generated-types';
 
 export const TASK = 'TASK';
 
@@ -23,16 +24,13 @@ export enum TaskStatusEnum {
   RUNNING = 'RUNNING',
 }
 
-export type TaskStatus = {
-  status: TaskStatusEnum;
-};
-
-export type TaskPresent = TaskData & TaskStatus;
-
 export type TaskState = {
-  data: TaskData[];
+  data: {
+    tasks: TaskStatus[];
+    quota: number;
+  };
   present: {
-    queue: TaskPresent[];
+    tasks: TaskStatus[];
   };
   ready: boolean;
   error?: ErrorState;
