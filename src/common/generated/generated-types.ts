@@ -231,6 +231,21 @@ export enum ZoneEnum {
   Th = 'TH',
 }
 
+export type GetUserTasksQueryVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+export type GetUserTasksQuery = { __typename?: 'Query' } & {
+  GetUserTasks: { __typename?: 'UserTasksDTO' } & Pick<UserTasksDto, 'quota'> & {
+      tasks: Array<
+        { __typename?: 'TaskStatus' } & Pick<
+          TaskStatus,
+          'name' | 'wait' | 'excute' | 'finish' | 'models' | 'createAt'
+        >
+      >;
+    };
+};
+
 export type GetRecentFilesQueryVariables = Exact<{
   limit?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
@@ -415,6 +430,63 @@ export type UpdateUserMutation = { __typename?: 'Mutation' } & {
   > & { oauth: { __typename?: 'UserToken' } & Pick<UserToken, 'provider' | 'token'> };
 };
 
+export const GetUserTasksDocument = gql`
+  query GetUserTasks($userId: String!) {
+    GetUserTasks(userId: $userId) {
+      tasks {
+        name
+        wait
+        excute
+        finish
+        models
+        createAt
+      }
+      quota
+    }
+  }
+`;
+
+/**
+ * __useGetUserTasksQuery__
+ *
+ * To run a query within a React component, call `useGetUserTasksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserTasksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserTasksQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetUserTasksQuery(
+  baseOptions: Apollo.QueryHookOptions<GetUserTasksQuery, GetUserTasksQueryVariables>,
+) {
+  return Apollo.useQuery<GetUserTasksQuery, GetUserTasksQueryVariables>(
+    GetUserTasksDocument,
+    baseOptions,
+  );
+}
+export function useGetUserTasksLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetUserTasksQuery,
+    GetUserTasksQueryVariables
+  >,
+) {
+  return Apollo.useLazyQuery<GetUserTasksQuery, GetUserTasksQueryVariables>(
+    GetUserTasksDocument,
+    baseOptions,
+  );
+}
+export type GetUserTasksQueryHookResult = ReturnType<typeof useGetUserTasksQuery>;
+export type GetUserTasksLazyQueryHookResult = ReturnType<typeof useGetUserTasksLazyQuery>;
+export type GetUserTasksQueryResult = Apollo.QueryResult<
+  GetUserTasksQuery,
+  GetUserTasksQueryVariables
+>;
 export const GetRecentFilesDocument = gql`
   query GetRecentFiles($limit: Int, $skip: Int) {
     GetRecentFiles(limit: $limit, skip: $skip) {
