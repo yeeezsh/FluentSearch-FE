@@ -6,4 +6,6 @@ export const initialState: RecentFile = {
   updateAt: '',
   uri: '',
   uri_thumbnail: '',
+  _id: '',
+  type: '',
 };
