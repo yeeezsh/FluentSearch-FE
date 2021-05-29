@@ -12,8 +12,8 @@ const RouterGuard: React.FC = (props) => {
   const auth = useSelector((state: StoresState) => state.user.authenticated);
 
   useEffect(() => {
-    if (auth) setValid(true);
-    else setValid(false);
+    const user = localStorage.getItem('user');
+    auth || user ? setValid(true) : setValid(false);
   }, []);
 
   if (!valid) {
