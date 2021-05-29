@@ -28,6 +28,44 @@ export type FileDurationMetaDto = {
   second: Scalars['Float'];
 };
 
+export type FileInsightDto = {
+  __typename?: 'FileInsightDto';
+  fileMeta: FileInsightMeta;
+  insights: Array<InsightDto>;
+};
+
+export type FileInsightMeta = {
+  __typename?: 'FileInsightMeta';
+  _id: Scalars['String'];
+  uri: Scalars['String'];
+  uri_thumbnail: Scalars['String'];
+  meta: FileInsightMetadata;
+  owner: Scalars['String'];
+  original_filename: Scalars['String'];
+  type: Scalars['String'];
+  createAt: Scalars['String'];
+  updateAt: Scalars['String'];
+};
+
+export type FileInsightMetadata = {
+  __typename?: 'FileInsightMetadata';
+  size: Scalars['Float'];
+  extension: Scalars['String'];
+  contentType: Scalars['String'];
+  width: Scalars['Float'];
+  height: Scalars['Float'];
+  fps?: Maybe<Scalars['Float']>;
+  duration?: Maybe<FileInsightVideoDuration>;
+};
+
+export type FileInsightVideoDuration = {
+  __typename?: 'FileInsightVideoDuration';
+  original: Scalars['String'];
+  hour: Scalars['Float'];
+  minute: Scalars['Float'];
+  second: Scalars['Float'];
+};
+
 export type FileMetaDto = {
   __typename?: 'FileMetaDTO';
   size: Scalars['Float'];
@@ -60,6 +98,52 @@ export enum FileTypeEnum {
   Video = 'Video',
   ImageThumbnail = 'ImageThumbnail',
   VideoThumbnail = 'VideoThumbnail',
+}
+
+export type InsightBBox = {
+  __typename?: 'InsightBBox';
+  xmax: Scalars['Float'];
+  ymax: Scalars['Float'];
+  ymin: Scalars['Float'];
+  xmin: Scalars['Float'];
+};
+
+export type InsightDto = {
+  __typename?: 'InsightDTO';
+  _id: Scalars['String'];
+  owner: Scalars['String'];
+  keyword: Scalars['String'];
+  model: InsightModelEnum;
+  bbox?: Maybe<InsightBBox>;
+  prob: Scalars['Float'];
+  lang: InsightLanguageEnum;
+  fileId: Scalars['String'];
+  fileType: InsightFileTypeEnum;
+  fps?: Maybe<Scalars['Float']>;
+  createAt: Scalars['String'];
+  updateAt: Scalars['String'];
+};
+
+export enum InsightFileTypeEnum {
+  Image = 'Image',
+  Video = 'Video',
+  ImageThumbnail = 'ImageThumbnail',
+  VideoThumbnail = 'VideoThumbnail',
+}
+
+export enum InsightLanguageEnum {
+  Th = 'th',
+  Enus = 'enus',
+}
+
+export enum InsightModelEnum {
+  FacesEmo = 'faces_emo',
+  Detection_600 = 'detection_600',
+  IlsvrcGooglenet = 'ilsvrc_googlenet',
+  BasicFashion = 'basic_fashion',
+  Classification_21k = 'classification_21k',
+  Places = 'places',
+  Vgg16 = 'vgg16',
 }
 
 export enum ModelEnum {
@@ -99,9 +183,11 @@ export type Query = {
   User?: Maybe<UserWithId>;
   GetUserBySession?: Maybe<UserWithId>;
   Users: Array<UserWithId>;
+  GetUserTasks: UserTasksDto;
+  GetFileInsight: FileInsightDto;
+  GetSearch: SearchDto;
   GetFileById: FileModelDto;
   GetRecentFiles: RecentFiles;
-  GetUserTasks: UserTasksDto;
 };
 
 export type QueryUserArgs = {
@@ -113,26 +199,39 @@ export type QueryUsersArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
+export type QueryGetUserTasksArgs = {
+  userId: Scalars['String'];
+};
+
+export type QueryGetFileInsightArgs = {
+  fileId: Scalars['String'];
+};
+
+export type QueryGetSearchArgs = {
+  word: Scalars['String'];
+  owner: Scalars['String'];
+};
+
 export type QueryGetFileByIdArgs = {
+  owner: Scalars['String'];
   id: Scalars['String'];
 };
 
 export type QueryGetRecentFilesArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
-};
-
-export type QueryGetUserTasksArgs = {
-  userId: Scalars['String'];
+  owner: Scalars['String'];
 };
 
 export type RecentFile = {
   __typename?: 'RecentFile';
+  _id: Scalars['String'];
   original_filename: Scalars['String'];
   uri: Scalars['String'];
   uri_thumbnail: Scalars['String'];
   createAt: Scalars['String'];
   updateAt: Scalars['String'];
+  type: Scalars['String'];
 };
 
 export type RecentFiles = {
@@ -144,6 +243,11 @@ export type RecentPreviews = {
   __typename?: 'RecentPreviews';
   date: Scalars['String'];
   files?: Maybe<Array<RecentFile>>;
+};
+
+export type SearchDto = {
+  __typename?: 'SearchDTO';
+  results: Array<FileInsightMeta>;
 };
 
 export type TaskStatus = {
@@ -247,6 +351,7 @@ export type GetUserTasksQuery = { __typename?: 'Query' } & {
 };
 
 export type GetRecentFilesQueryVariables = Exact<{
+  owner: Scalars['String'];
   limit?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
 }>;
@@ -269,6 +374,7 @@ export type GetRecentFilesQuery = { __typename?: 'Query' } & {
 };
 
 export type GetFileByIdQueryVariables = Exact<{
+  owner: Scalars['String'];
   id: Scalars['String'];
 }>;
 
@@ -488,8 +594,8 @@ export type GetUserTasksQueryResult = Apollo.QueryResult<
   GetUserTasksQueryVariables
 >;
 export const GetRecentFilesDocument = gql`
-  query GetRecentFiles($limit: Int, $skip: Int) {
-    GetRecentFiles(limit: $limit, skip: $skip) {
+  query GetRecentFiles($owner: String!, $limit: Int, $skip: Int) {
+    GetRecentFiles(owner: $owner, limit: $limit, skip: $skip) {
       result {
         date
         files {
@@ -516,16 +622,14 @@ export const GetRecentFilesDocument = gql`
  * @example
  * const { data, loading, error } = useGetRecentFilesQuery({
  *   variables: {
+ *      owner: // value for 'owner'
  *      limit: // value for 'limit'
  *      skip: // value for 'skip'
  *   },
  * });
  */
 export function useGetRecentFilesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetRecentFilesQuery,
-    GetRecentFilesQueryVariables
-  >,
+  baseOptions: Apollo.QueryHookOptions<GetRecentFilesQuery, GetRecentFilesQueryVariables>,
 ) {
   return Apollo.useQuery<GetRecentFilesQuery, GetRecentFilesQueryVariables>(
     GetRecentFilesDocument,
@@ -552,8 +656,8 @@ export type GetRecentFilesQueryResult = Apollo.QueryResult<
   GetRecentFilesQueryVariables
 >;
 export const GetFileByIdDocument = gql`
-  query GetFileById($id: String!) {
-    GetFileById(id: $id) {
+  query GetFileById($owner: String!, $id: String!) {
+    GetFileById(owner: $owner, id: $id) {
       _id
       createAt
       meta {
@@ -595,6 +699,7 @@ export const GetFileByIdDocument = gql`
  * @example
  * const { data, loading, error } = useGetFileByIdQuery({
  *   variables: {
+ *      owner: // value for 'owner'
  *      id: // value for 'id'
  *   },
  * });
