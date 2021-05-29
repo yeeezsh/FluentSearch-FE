@@ -7,60 +7,68 @@ import ThumbnailPhoto from '../components/ThumbnailPhoto';
 import { PhotosAPI } from '../constants/photo/interface';
 import Link from 'next/link';
 import { WrapperImage } from './styled';
-import { useGetInsightQuery } from 'Services/model/generated-types';
 import { initialState } from '../models/init';
 import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import Lightbox from '../components/Lightbox';
-import { fetchImages } from '../services/fetch.images';
+import { AllPhotosPagePropsType } from './types';
+import {
+  RecentFile,
+  RecentFiles,
+  RecentPreviews,
+} from '../../../common/generated/generated-types';
 
-const AllPhotosPages: React.FC = () => {
-  const [images = [], setImages] = useState<PhotosAPI[]>();
-  const [currentImage, setCurrentImages] = useState<PhotosAPI>(initialState);
+const AllPhotosPages: React.FC<AllPhotosPagePropsType> = (props) => {
+  const [images, setImages] = useState<RecentPreviews[]>([]);
+  const [currentImage, setCurrentImages] = useState<RecentFile>(initialState);
   const [lightboxVisible, setLightboxVisible] = useState(false);
-  const { data, loading } = useGetInsightQuery();
+  const [allImages, setAllImages] = useState<RecentFile[]>([]);
+  const { data, error } = props;
 
-  const queryData = data?.getFilesWithInsight.map(
-    (e) =>
-      ({
-        ...initialState,
-        id: e._id,
-        user: { name: '1234', total_likes: 5 },
-        width: e.meta.width,
-        height: e.meta.height,
-        urls: {
-          raw: e.uri,
-          full: e.uri,
-          regular: e.uri,
-          small: e.uri,
-          thumb: e.uri,
-        },
-        created_at: e.createAt,
-        updated_at: e.updateAt,
-        tags: e.insight?.map((el) => ({
-          result: el.result,
-          xMin: el.bbox.xmin,
-          xMax: el.bbox.xmax,
-          yMin: el.bbox.ymin,
-          yMax: el.bbox.ymax,
-        })),
-      } as PhotosAPI),
-  ) as PhotosAPI[];
+  let queryData: RecentPreviews[] = [];
+
+  if (!error) {
+    queryData = data?.GetRecentFiles.result.map((el) => ({
+      date: el.date,
+      files: el.files?.map((f) => ({
+        createAt: f.createAt,
+        original_filename: f.original_filename,
+        updateAt: f.updateAt,
+        uri: f.uri,
+        uri_thumbnail: f.uri_thumbnail,
+      })),
+    })) as RecentPreviews[];
+
+    queryData.map((el) =>
+      el.files?.map((f) =>
+        setAllImages([
+          ...allImages,
+          {
+            createAt: f.createAt,
+            original_filename: f.original_filename,
+            updateAt: f.updateAt,
+            uri: f.uri,
+            uri_thumbnail: f.uri_thumbnail,
+          },
+        ]),
+      ),
+    );
+  }
 
   const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
   const ids = searchResult.map((el) => el._id);
 
   useEffect(() => {
     setImages(queryData);
-  }, [loading]);
+  }, []);
 
   const nextImages = () => {
-    fetchImages().then((response) => {
-      setImages([...images, ...response]);
-    });
+    // fetchImages().then((response) => {
+    //   setImages([...images, ...response]);
+    // });
   };
 
-  const openLightbox = (image: PhotosAPI) => {
+  const openLightbox = (image: RecentFile) => {
     setCurrentImages(image);
     setLightboxVisible(true);
   };
@@ -72,21 +80,21 @@ const AllPhotosPages: React.FC = () => {
 
   const showNext = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    const currentIndex = images.indexOf(currentImage);
+    const currentIndex = allImages.indexOf(currentImage);
     if (currentIndex >= images.length - 1) {
       setLightboxVisible(false);
     } else {
-      const nextImage = images[currentIndex + 1];
+      const nextImage = allImages[currentIndex + 1];
       setCurrentImages(nextImage);
     }
   };
 
   const showPrev = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    const currentIndex = images.indexOf(currentImage);
+    const currentIndex = allImages.indexOf(currentImage);
     if (currentIndex <= 0) setLightboxVisible(false);
     else {
-      const nextImage = images[currentIndex - 1];
+      const nextImage = allImages[currentIndex - 1];
       setCurrentImages(nextImage);
     }
   };
