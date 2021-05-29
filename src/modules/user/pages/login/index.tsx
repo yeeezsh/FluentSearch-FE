@@ -138,8 +138,8 @@ const LoginPage: React.FC<Props> = (props) => {
             </Form.Item>
 
             <LoginButton />
-            <BreakLineWithCaption>or</BreakLineWithCaption>
-            <LoginWithFacebookButton onSubmit={props.onSubmitOAuth} />
+            {/* <BreakLineWithCaption>or</BreakLineWithCaption>
+            <LoginWithFacebookButton onSubmit={props.onSubmitOAuth} /> */}
             <Form.Item>
               <P>
                 Haven&apos;t an account?
