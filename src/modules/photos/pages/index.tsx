@@ -72,9 +72,7 @@ const AllPhotosPages: React.FC = () => {
   }, []);
 
   const nextImages = () => {
-    // fetchImages().then((response) => {
-    //   setImages([...images, ...response]);
-    // });
+    // setPreviews([...previews, ...queryData]);
   };
 
   const openLightbox = (image: RecentFile) => {
@@ -127,7 +125,7 @@ const AllPhotosPages: React.FC = () => {
       <InfiniteScroll
         dataLength={images.length}
         next={nextImages}
-        hasMore={true}
+        hasMore={false}
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
