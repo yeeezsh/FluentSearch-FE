@@ -61,18 +61,18 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (currentImageSize) {
-      setScaleX(currentImageSize?.width / image.width);
-      setScaleY(currentImageSize?.height / image.height);
-      setScaleBorder(3 * scaleX);
-    }
-  }, [currentImageSize, detailCardVisible]);
+  // useEffect(() => {
+  //   if (currentImageSize) {
+  //     setScaleX(currentImageSize?.width / image.width);
+  //     setScaleY(currentImageSize?.height / image.height);
+  //     setScaleBorder(3 * scaleX);
+  //   }
+  // }, [currentImageSize, detailCardVisible]);
 
-  const allTags = image.tags?.reduce((acc: string[], tag: TagType) => {
-    if (acc.indexOf(tag.result) == -1) acc.push(tag.result);
-    return acc;
-  }, []);
+  // const allTags = image.tags?.reduce((acc: string[], tag: TagType) => {
+  //   if (acc.indexOf(tag.result) == -1) acc.push(tag.result);
+  //   return acc;
+  // }, []);
 
   return (
     <LightboxWrapper>
@@ -88,7 +88,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
             <CaretLeftOutlined />
           </ButtonLeft>
           <ImageWrapper>
-            {image.tags &&
+            {/* {image.tags &&
               image.tags?.map((originSize) => {
                 if (currentImageSize) {
                   return (
@@ -105,8 +105,8 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                     />
                   );
                 }
-              })}
-            <Image ref={ref} src={image.urls.thumb} onLoad={handleCurrentImageSize} />
+              })} */}
+            <Image ref={ref} src={image.uri} onLoad={handleCurrentImageSize} />
           </ImageWrapper>
           <ButtonRight onClick={onNext}>
             <CaretRightOutlined />
@@ -119,7 +119,7 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
             <br />
             <b> Tag</b>
             <br />
-            <TagRender tags={allTags} />
+            {/* <TagRender tags={allTags} /> */}
             <br />
             <br />
             <b> Details</b>
@@ -129,9 +129,9 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                 <b> Date</b>
               </Col>
               <Col>
-                {dayjs(image.created_at).format('MMM DD, YYYY')}
+                {dayjs(image.createAt).format('MMM DD, YYYY')}
                 <br />
-                {dayjs(image.created_at).format('ddd,hh:mmA Z')}
+                {dayjs(image.createAt).format('ddd,hh:mmA Z')}
               </Col>
             </Row>
             <Row>
@@ -139,16 +139,16 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
                 <b> Photo</b>
               </Col>
               <Col>
-                {image.id} .jpg
+                {image._id} .jpg
                 <br />
-                Width {image.width}px
+                {/* Width {image.width}px */}
               </Col>
             </Row>
             <Row>
               <Col md={8}>
                 <b> Place</b>
               </Col>
-              <Col>{image.location.title ? image.location.title : '-'}</Col>
+              {/* <Col>{image.location.title ? image.location.title : '-'}</Col> */}
             </Row>
           </LightboxCardRight>
         ) : null}
