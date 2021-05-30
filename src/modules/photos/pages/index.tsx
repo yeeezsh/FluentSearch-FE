@@ -11,35 +11,41 @@ import { initialState } from '../models/init';
 import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import Lightbox from '../components/Lightbox';
-import { AllPhotosPagePropsType } from './types';
 import {
   RecentFile,
-  RecentFiles,
   RecentPreviews,
+  useGetRecentFilesQuery,
 } from '../../../common/generated/generated-types';
 
-const AllPhotosPages: React.FC<AllPhotosPagePropsType> = (props) => {
+const AllPhotosPages: React.FC = () => {
   const [images, setImages] = useState<RecentPreviews[]>([]);
   const [currentImage, setCurrentImages] = useState<RecentFile>(initialState);
   const [lightboxVisible, setLightboxVisible] = useState(false);
   const [allImages, setAllImages] = useState<RecentFile[]>([]);
-  const { data, error } = props;
+  const owner = useSelector((state: StoresState) => state.user.user.id);
+  const { data, loading, error } = useGetRecentFilesQuery({
+    variables: {
+      owner: owner,
+    },
+  });
 
   let queryData: RecentPreviews[] = [];
 
-  if (!error) {
-    queryData = data?.GetRecentFiles.result.map((el) => ({
-      date: el.date,
-      files: el.files?.map((f) => ({
-        createAt: f.createAt,
-        original_filename: f.original_filename,
-        updateAt: f.updateAt,
-        uri: f.uri,
-        uri_thumbnail: f.uri_thumbnail,
-      })),
-    })) as RecentPreviews[];
+  const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
+  const ids = searchResult.map((el) => el._id);
 
-    queryData.map((el) =>
+  queryData = data?.GetRecentFiles?.result.map((el) => ({
+    date: el.date,
+    files: el.files?.map((f) => ({
+      createAt: f.createAt,
+      original_filename: f.original_filename,
+      updateAt: f.updateAt,
+      uri: f.uri,
+      uri_thumbnail: f.uri_thumbnail,
+    })),
+  })) as RecentPreviews[];
+  useEffect(() => {
+    queryData?.map((el) =>
       el.files?.map((f) =>
         setAllImages([
           ...allImages,
@@ -49,18 +55,14 @@ const AllPhotosPages: React.FC<AllPhotosPagePropsType> = (props) => {
             updateAt: f.updateAt,
             uri: f.uri,
             uri_thumbnail: f.uri_thumbnail,
+            type: f.type,
+            _id: f._id,
           },
         ]),
       ),
     );
-  }
-
-  const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
-  const ids = searchResult.map((el) => el._id);
-
-  useEffect(() => {
-    setImages(queryData);
   }, []);
+  console.log(data);
 
   const nextImages = () => {
     // fetchImages().then((response) => {
@@ -102,19 +104,20 @@ const AllPhotosPages: React.FC<AllPhotosPagePropsType> = (props) => {
   return (
     <LayoutWithSearch title="Photos">
       {lightboxVisible ? (
-        <Lightbox
-          closeLightbox={closeLightbox}
-          image={currentImage}
-          onPrev={showPrev}
-          onNext={showNext}
-        />
+        // <Lightbox
+        //   closeLightbox={closeLightbox}
+        //   image={currentImage}
+        //   onPrev={showPrev}
+        //   onNext={showNext}
+        // />
+        <p>yeah</p>
       ) : null}
       <Link href="/upload">
         <a>
           <Button style={{ marginTop: '3%', marginBottom: '-3%' }}>+ Photo</Button>
         </a>
       </Link>
-
+      {/* 
       <InfiniteScroll
         dataLength={images.length}
         next={nextImages}
@@ -144,9 +147,9 @@ const AllPhotosPages: React.FC<AllPhotosPagePropsType> = (props) => {
                 selected={false}
                 onClick={() => openLightbox(image)}
               />
-            ))}
+            ))} 
         </WrapperImage>
-      </InfiniteScroll>
+      </InfiniteScroll> */}
     </LayoutWithSearch>
   );
 };
