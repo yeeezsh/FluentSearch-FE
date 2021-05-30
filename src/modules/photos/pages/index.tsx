@@ -16,8 +16,10 @@ import {
   RecentPreviews,
   useGetRecentFilesQuery,
 } from '../../../common/generated/generated-types';
+import dayjs from 'dayjs';
 
 const AllPhotosPages: React.FC = () => {
+  const [previews, setPreviews] = useState<RecentPreviews[]>([]);
   const [images, setImages] = useState<RecentPreviews[]>([]);
   const [currentImage, setCurrentImages] = useState<RecentFile>(initialState);
   const [lightboxVisible, setLightboxVisible] = useState(false);
@@ -44,6 +46,7 @@ const AllPhotosPages: React.FC = () => {
       uri_thumbnail: f.uri_thumbnail,
     })),
   })) as RecentPreviews[];
+
   useEffect(() => {
     queryData?.map((el) =>
       el.files?.map((f) =>
@@ -63,6 +66,10 @@ const AllPhotosPages: React.FC = () => {
     );
   }, []);
   console.log(data);
+
+  useEffect(() => {
+    setPreviews(queryData);
+  }, []);
 
   const nextImages = () => {
     // fetchImages().then((response) => {
@@ -117,7 +124,6 @@ const AllPhotosPages: React.FC = () => {
           <Button style={{ marginTop: '3%', marginBottom: '-3%' }}>+ Photo</Button>
         </a>
       </Link>
-      {/* 
       <InfiniteScroll
         dataLength={images.length}
         next={nextImages}
@@ -125,7 +131,19 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {ids.length != 0 &&
+          {previews.map((preview: RecentPreviews) =>
+            preview.files?.map((image: RecentFile) => (
+              <ThumbnailPhoto
+                src={image.uri_thumbnail}
+                key={image._id}
+                createAt={dayjs(image.createAt).toDate()}
+                selected={false}
+                onClick={() => openLightbox(image)}
+              />
+            )),
+          )}
+
+          {/* {ids.length != 0 &&
             images
               .filter((f) => (ids.length != 0 ? ids.includes(f.id) : true))
               .map((image: PhotosAPI, index: number) => (
@@ -147,9 +165,9 @@ const AllPhotosPages: React.FC = () => {
                 selected={false}
                 onClick={() => openLightbox(image)}
               />
-            ))} 
+            ))} */}
         </WrapperImage>
-      </InfiniteScroll> */}
+      </InfiniteScroll>
     </LayoutWithSearch>
   );
 };
