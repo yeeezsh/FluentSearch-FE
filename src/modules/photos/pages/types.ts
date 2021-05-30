@@ -1,9 +1,9 @@
 import { ApolloError } from '@apollo/client';
-import { GetRecentFilesQuery } from '../../../common/generated/generated-types';
+import { GetUserBySessionQuery } from '../../../common/generated/generated-types';
 
 export type AllPhotosPagePropsType = {
   props: React.PropsWithChildren<{
-    data?: GetRecentFilesQuery | undefined;
+    data?: GetUserBySessionQuery | undefined;
     error?: ApolloError | undefined;
   }>;
 };
