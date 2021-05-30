@@ -3,6 +3,8 @@ query GetRecentFiles($owner: String!, $limit: Int, $skip: Int) {
     result {
       date
       files {
+        _id
+        type
         createAt
         original_filename
         updateAt
