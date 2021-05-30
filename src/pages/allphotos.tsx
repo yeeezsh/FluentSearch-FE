@@ -1,9 +1,8 @@
 import AllPhotosPage from 'Modules/photos/pages';
-import { GetServerSideProps } from 'next';
 import React from 'react';
 import RouterGuard from '../common/components/RouterGuard';
 
-const AllPhotos = () => {
+const AllPhotos: React.FC = () => {
   return (
     <RouterGuard>
       <AllPhotosPage />
