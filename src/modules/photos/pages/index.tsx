@@ -60,7 +60,7 @@ const AllPhotosPages: React.FC = () => {
   }, [loading]);
 
   const nextImages = () => {
-    // setPreviews([...previews, ...queryData]);
+    //setPreviews([...previews, ...queryData]);
   };
 
   const openLightbox = (image: RecentFile) => {
@@ -116,41 +116,33 @@ const AllPhotosPages: React.FC = () => {
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {previews?.map((preview: RecentPreviews) =>
-            preview.files?.map((image: RecentFile) => (
-              <ThumbnailPhoto
-                src={image.uri_thumbnail}
-                key={image._id}
-                createAt={dayjs(image.createAt).toDate()}
-                selected={false}
-                onClick={() => openLightbox(image)}
-              />
-            )),
-          )}
+          {ids.length != 0 &&
+            previews?.map((preview: RecentPreviews) =>
+              preview.files
+                ?.filter((f) => (ids.length != 0 ? ids.includes(f._id) : true))
+                .map((image: RecentFile) => (
+                  <ThumbnailPhoto
+                    src={image.uri_thumbnail}
+                    key={image._id}
+                    createAt={dayjs(image.createAt).toDate()}
+                    selected={false}
+                    onClick={() => openLightbox(image)}
+                  />
+                )),
+            )}
 
-          {/* {ids.length != 0 &&
-            images
-              .filter((f) => (ids.length != 0 ? ids.includes(f.id) : true))
-              .map((image: PhotosAPI, index: number) => (
+          {ids.length == 0 &&
+            previews?.map((preview: RecentPreviews) =>
+              preview.files?.map((image: RecentFile) => (
                 <ThumbnailPhoto
-                  src={image.urls.thumb}
-                  key={index}
-                  createAt={new Date()}
+                  src={image.uri_thumbnail}
+                  key={image._id}
+                  createAt={dayjs(image.createAt).toDate()}
                   selected={false}
                   onClick={() => openLightbox(image)}
                 />
-              ))}
-
-          {ids.length == 0 &&
-            images.map((image: PhotosAPI, index: number) => (
-              <ThumbnailPhoto
-                src={image.urls.thumb}
-                key={index}
-                createAt={new Date()}
-                selected={false}
-                onClick={() => openLightbox(image)}
-              />
-            ))} */}
+              )),
+            )}
         </WrapperImage>
       </InfiniteScroll>
     </LayoutWithSearch>
