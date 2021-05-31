@@ -1,0 +1,28 @@
+query GetFileImageInsight($fileId: String!) {
+  GetFileImageInsight(fileId: $fileId) {
+    fileMeta {
+      _id
+      type
+      uri
+      uri_thumbnail
+      meta {
+        size
+        contentType
+        width
+        height
+        extension
+      }
+    }
+    insights {
+      _id
+      model
+      keyword
+      bbox {
+        xmax
+        xmin
+        ymin
+        ymax
+      }
+    }
+  }
+}

@@ -184,7 +184,7 @@ export type Query = {
   GetUserBySession?: Maybe<UserWithId>;
   Users: Array<UserWithId>;
   GetUserTasks: UserTasksDto;
-  GetFileInsight: FileInsightDto;
+  GetFileImageInsight: FileInsightDto;
   GetSearch: SearchDto;
   GetFileById: FileModelDto;
   GetRecentFiles: RecentFiles;
@@ -203,7 +203,7 @@ export type QueryGetUserTasksArgs = {
   userId: Scalars['String'];
 };
 
-export type QueryGetFileInsightArgs = {
+export type QueryGetFileImageInsightArgs = {
   fileId: Scalars['String'];
 };
 
@@ -334,6 +334,34 @@ export enum UserZoneEnumSession {
 export enum ZoneEnum {
   Th = 'TH',
 }
+
+export type GetFileImageInsightQueryVariables = Exact<{
+  fileId: Scalars['String'];
+}>;
+
+export type GetFileImageInsightQuery = { __typename?: 'Query' } & {
+  GetFileImageInsight: { __typename?: 'FileInsightDto' } & {
+    fileMeta: { __typename?: 'FileInsightMeta' } & Pick<
+      FileInsightMeta,
+      '_id' | 'type' | 'uri' | 'uri_thumbnail'
+    > & {
+        meta: { __typename?: 'FileInsightMetadata' } & Pick<
+          FileInsightMetadata,
+          'size' | 'contentType' | 'width' | 'height' | 'extension'
+        >;
+      };
+    insights: Array<
+      { __typename?: 'InsightDTO' } & Pick<InsightDto, '_id' | 'model' | 'keyword'> & {
+          bbox?: Maybe<
+            { __typename?: 'InsightBBox' } & Pick<
+              InsightBBox,
+              'xmax' | 'xmin' | 'ymin' | 'ymax'
+            >
+          >;
+        }
+    >;
+  };
+};
 
 export type GetUserTasksQueryVariables = Exact<{
   userId: Scalars['String'];
@@ -542,6 +570,85 @@ export type UpdateUserMutation = { __typename?: 'Mutation' } & {
   > & { oauth: { __typename?: 'UserToken' } & Pick<UserToken, 'provider' | 'token'> };
 };
 
+export const GetFileImageInsightDocument = gql`
+  query GetFileImageInsight($fileId: String!) {
+    GetFileImageInsight(fileId: $fileId) {
+      fileMeta {
+        _id
+        type
+        uri
+        uri_thumbnail
+        meta {
+          size
+          contentType
+          width
+          height
+          extension
+        }
+      }
+      insights {
+        _id
+        model
+        keyword
+        bbox {
+          xmax
+          xmin
+          ymin
+          ymax
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetFileImageInsightQuery__
+ *
+ * To run a query within a React component, call `useGetFileImageInsightQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFileImageInsightQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFileImageInsightQuery({
+ *   variables: {
+ *      fileId: // value for 'fileId'
+ *   },
+ * });
+ */
+export function useGetFileImageInsightQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetFileImageInsightQuery,
+    GetFileImageInsightQueryVariables
+  >,
+) {
+  return Apollo.useQuery<GetFileImageInsightQuery, GetFileImageInsightQueryVariables>(
+    GetFileImageInsightDocument,
+    baseOptions,
+  );
+}
+export function useGetFileImageInsightLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetFileImageInsightQuery,
+    GetFileImageInsightQueryVariables
+  >,
+) {
+  return Apollo.useLazyQuery<GetFileImageInsightQuery, GetFileImageInsightQueryVariables>(
+    GetFileImageInsightDocument,
+    baseOptions,
+  );
+}
+export type GetFileImageInsightQueryHookResult = ReturnType<
+  typeof useGetFileImageInsightQuery
+>;
+export type GetFileImageInsightLazyQueryHookResult = ReturnType<
+  typeof useGetFileImageInsightLazyQuery
+>;
+export type GetFileImageInsightQueryResult = Apollo.QueryResult<
+  GetFileImageInsightQuery,
+  GetFileImageInsightQueryVariables
+>;
 export const GetUserTasksDocument = gql`
   query GetUserTasks($userId: String!) {
     GetUserTasks(userId: $userId) {
