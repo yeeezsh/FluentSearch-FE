@@ -7,6 +7,110 @@ import { QueryHookOptions, useQuery } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 import type React from 'react';
 import { getApolloClient } from 'src/common/services/client';
+export async function getServerPageGetFileImageInsight(
+  options: Omit<Apollo.QueryOptions<Types.GetFileImageInsightQueryVariables>, 'query'>,
+  ctx?: any,
+) {
+  const apolloClient = getApolloClient(ctx);
+
+  const data = await apolloClient.query<Types.GetFileImageInsightQuery>({
+    ...options,
+    query: Operations.GetFileImageInsightDocument,
+  });
+
+  const apolloState = apolloClient.cache.extract();
+
+  return {
+    props: {
+      apolloState: apolloState,
+      data: data?.data,
+      error: data?.error ?? data?.errors ?? null,
+    },
+  };
+}
+export const useGetFileImageInsight = (
+  optionsFunc?: (
+    router: NextRouter,
+  ) => QueryHookOptions<
+    Types.GetFileImageInsightQuery,
+    Types.GetFileImageInsightQueryVariables
+  >,
+) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  return useQuery(Operations.GetFileImageInsightDocument, options);
+};
+export type PageGetFileImageInsightComp = React.FC<{
+  data?: Types.GetFileImageInsightQuery;
+  error?: Apollo.ApolloError;
+}>;
+export const withPageGetFileImageInsight = (
+  optionsFunc?: (
+    router: NextRouter,
+  ) => QueryHookOptions<
+    Types.GetFileImageInsightQuery,
+    Types.GetFileImageInsightQueryVariables
+  >,
+) => (WrappedComponent: PageGetFileImageInsightComp): NextPage => (props) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  const { data, error } = useQuery(Operations.GetFileImageInsightDocument, options);
+  return <WrappedComponent {...props} data={data} error={error} />;
+};
+export const ssrGetFileImageInsight = {
+  getServerPage: getServerPageGetFileImageInsight,
+  withPage: withPageGetFileImageInsight,
+  usePage: useGetFileImageInsight,
+};
+export async function getServerPageGetSearch(
+  options: Omit<Apollo.QueryOptions<Types.GetSearchQueryVariables>, 'query'>,
+  ctx?: any,
+) {
+  const apolloClient = getApolloClient(ctx);
+
+  const data = await apolloClient.query<Types.GetSearchQuery>({
+    ...options,
+    query: Operations.GetSearchDocument,
+  });
+
+  const apolloState = apolloClient.cache.extract();
+
+  return {
+    props: {
+      apolloState: apolloState,
+      data: data?.data,
+      error: data?.error ?? data?.errors ?? null,
+    },
+  };
+}
+export const useGetSearch = (
+  optionsFunc?: (
+    router: NextRouter,
+  ) => QueryHookOptions<Types.GetSearchQuery, Types.GetSearchQueryVariables>,
+) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  return useQuery(Operations.GetSearchDocument, options);
+};
+export type PageGetSearchComp = React.FC<{
+  data?: Types.GetSearchQuery;
+  error?: Apollo.ApolloError;
+}>;
+export const withPageGetSearch = (
+  optionsFunc?: (
+    router: NextRouter,
+  ) => QueryHookOptions<Types.GetSearchQuery, Types.GetSearchQueryVariables>,
+) => (WrappedComponent: PageGetSearchComp): NextPage => (props) => {
+  const router = useRouter();
+  const options = optionsFunc ? optionsFunc(router) : {};
+  const { data, error } = useQuery(Operations.GetSearchDocument, options);
+  return <WrappedComponent {...props} data={data} error={error} />;
+};
+export const ssrGetSearch = {
+  getServerPage: getServerPageGetSearch,
+  withPage: withPageGetSearch,
+  usePage: useGetSearch,
+};
 export async function getServerPageGetUserTasks(
   options: Omit<Apollo.QueryOptions<Types.GetUserTasksQueryVariables>, 'query'>,
   ctx?: any,

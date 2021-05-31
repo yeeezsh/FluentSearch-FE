@@ -1,8 +1,10 @@
-query GetRecentFiles($limit: Int, $skip: Int) {
-  GetRecentFiles(limit: $limit, skip: $skip) {
+query GetRecentFiles($owner: String!, $limit: Int, $skip: Int) {
+  GetRecentFiles(owner: $owner, limit: $limit, skip: $skip) {
     result {
       date
       files {
+        _id
+        type
         createAt
         original_filename
         updateAt
@@ -13,8 +15,8 @@ query GetRecentFiles($limit: Int, $skip: Int) {
   }
 }
 
-query GetFileById($id: String!) {
-  GetFileById(id: $id) {
+query GetFileById($owner: String!, $id: String!) {
+  GetFileById(owner: $owner, id: $id) {
     _id
     createAt
     meta {
