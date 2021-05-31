@@ -2,6 +2,7 @@ query GetDashboardData($owner: String!) {
   GetRecentFileInsightDashboard(owner: $owner) {
     fileMeta {
       _id
+      original_filename
       type
       uri
       uri_thumbnail

@@ -402,7 +402,7 @@ export type GetDashboardDataQuery = { __typename?: 'Query' } & {
     { __typename?: 'FileInsightDto' } & {
       fileMeta: { __typename?: 'FileInsightMeta' } & Pick<
         FileInsightMeta,
-        '_id' | 'type' | 'uri' | 'uri_thumbnail'
+        '_id' | 'original_filename' | 'type' | 'uri' | 'uri_thumbnail'
       >;
       insights: Array<
         { __typename?: 'InsightDTO' } & Pick<InsightDto, 'model' | 'keyword'>
@@ -671,6 +671,7 @@ export const GetDashboardDataDocument = gql`
     GetRecentFileInsightDashboard(owner: $owner) {
       fileMeta {
         _id
+        original_filename
         type
         uri
         uri_thumbnail
