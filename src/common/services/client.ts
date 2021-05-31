@@ -1,10 +1,18 @@
-import { ApolloClient, from, HttpLink, InMemoryCache, ServerError } from '@apollo/client';
+import {
+  ApolloClient,
+  createHttpLink,
+  from,
+  InMemoryCache,
+  NormalizedCacheObject,
+  ServerError,
+} from '@apollo/client';
 import { ErrorResponse, onError } from '@apollo/client/link/error';
 import HttpStatusCode from '../constants/httpStatusCode';
 
 export const END_POINT =
   process.env.APP_GRAPHQL_ENDPOINT || 'https://federation.fluentsearch.ml/graphql';
-const httpLink = new HttpLink({
+
+const httpLink = createHttpLink({
   uri: END_POINT,
   credentials: 'include',
 });
@@ -50,3 +58,7 @@ export const client = new ApolloClient({
   link: from([logoutLink, httpLink]),
   cache: new InMemoryCache(),
 });
+
+export const getApolloClient = (ctx?: any, initialState?: NormalizedCacheObject) => {
+  return client;
+};
