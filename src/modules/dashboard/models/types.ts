@@ -44,11 +44,20 @@ export type Insight = {
   model: InsightModelEnum;
 };
 
+export type DashboardCardType = {
+  data: Dashboard;
+};
+
+export type OverviewAlbumType = {
+  data: FileInsight[];
+};
+
 export type FileInsightMeta = {
   _id: string;
   type: string;
   uri: string;
   uri_thumbnail: string;
+  original_filename: string;
 };
 
 export type FileInsight = {

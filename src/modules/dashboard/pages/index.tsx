@@ -9,28 +9,19 @@ import {
 } from './styled';
 import AlbumPreview from 'Modules/dashboard/components/AlbumPreview/index';
 import NumberCard from 'Modules/dashboard/components/DashboardCard/NumberCard/index';
-import ProgressCard from 'Modules/dashboard/components/DashboardCard/ProgressCard/index';
-import ModelCard from 'Modules/dashboard/components/DashboardCard/ModelCard/index';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
-import { Dashboard, FileInsight } from '../models/types';
-import { AlbumPreviewProps } from '../components/AlbumPreview/types';
-import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
 import {
-  InsightModelEnum,
-  useGetDashboardDataQuery,
-} from '../../../common/generated/generated-types';
+  Dashboard,
+  DashboardCardType,
+  FileInsight,
+  OverviewAlbumType,
+} from '../models/types';
+import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
+import { useGetDashboardDataQuery } from '../../../common/generated/generated-types';
 import { initState } from '../constants/init';
 
-type dashboardCardType = {
-  data: Dashboard;
-};
-
-type OverviewAlbumType = {
-  data: AlbumPreviewProps[];
-};
-
-const DashboardCard: React.FC<dashboardCardType> = (props) => {
+const DashboardCard: React.FC<DashboardCardType> = (props) => {
   const { data } = props;
 
   return (
@@ -65,16 +56,23 @@ const DashboardCard: React.FC<dashboardCardType> = (props) => {
 
 const OverviewAlbum: React.FC<OverviewAlbumType> = (props) => {
   const { data } = props;
+
+  const label: string[] = data
+    .flatMap((el) => el.insights)
+    .map((d) => d.keyword)
+    .reduce((acc: string[], keyword: string) => {
+      if (acc.indexOf(keyword) == -1) acc.push(keyword);
+      return acc;
+    }, []);
+
   return (
     <Row justify="space-around" align="top">
-      {data.map((album, index) => (
+      {data.slice(0, 4).map((file, index) => (
         <Col md={5} key={index}>
           <AlbumPreview
-            src={album.src}
-            albumName={album.albumName}
-            albumLength={album.albumLength}
-            label={album.label}
-            link={album.link}
+            src={file.fileMeta.uri_thumbnail}
+            albumName={file.fileMeta.original_filename}
+            label={label}
           />
         </Col>
       ))}
@@ -83,15 +81,12 @@ const OverviewAlbum: React.FC<OverviewAlbumType> = (props) => {
 };
 
 const DashboardPage: React.FC = () => {
-  const dispatch = useDispatch();
   const owner = useSelector((store: StoresState) => store.user.user.id);
-  const { data, loading, error } = useGetDashboardDataQuery({
+  const { data, loading } = useGetDashboardDataQuery({
     variables: {
       owner: owner,
     },
   });
-
-  console.log(data);
 
   const [dashboardData, setDashboardData] = useState<Dashboard>(initState);
 
@@ -113,6 +108,7 @@ const DashboardPage: React.FC = () => {
         type: el.fileMeta.type,
         uri: el.fileMeta.uri,
         uri_thumbnail: el.fileMeta.uri_thumbnail,
+        original_filename: el.fileMeta.original_filename,
       },
       insights:
         el.insights?.map((insight) => ({
@@ -126,14 +122,7 @@ const DashboardPage: React.FC = () => {
       FileDashboardData: queryDataFileDashboard,
       FileInsightDashboardData: queryDataFileInsightDashboard,
     });
-    //dispatch(fetchDashboardData());
   }, [loading]);
-  const DashboardDataStore = useSelector(
-    (state: StoresState) => state.dashboard.data.dashboardData,
-  );
-  const AlbumPreviewData = useSelector(
-    (state: StoresState) => state.dashboard.data.albumPreviewData,
-  );
 
   return (
     <LayoutWithSearch>
@@ -145,7 +134,7 @@ const DashboardPage: React.FC = () => {
           <AlbumWrapper>
             {/*TODO: Lastest Album*/}
             <h3>Lastest Photo</h3>
-            <OverviewAlbum data={AlbumPreviewData} />
+            <OverviewAlbum data={dashboardData.FileInsightDashboardData} />
           </AlbumWrapper>
         </ContentWrapper>
       </DashboardWrapper>
