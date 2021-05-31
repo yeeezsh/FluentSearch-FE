@@ -123,7 +123,7 @@ const AllPhotosPages: React.FC = () => {
                 .map((image: RecentFile) => (
                   <ThumbnailPhoto
                     src={image.uri_thumbnail}
-                    key={image._id}
+                    key={image._id + '-filter'}
                     createAt={dayjs(image.createAt).toDate()}
                     selected={false}
                     onClick={() => openLightbox(image)}
@@ -136,7 +136,7 @@ const AllPhotosPages: React.FC = () => {
               preview.files?.map((image: RecentFile) => (
                 <ThumbnailPhoto
                   src={image.uri_thumbnail}
-                  key={image._id}
+                  key={image._id + '-unfilter'}
                   createAt={dayjs(image.createAt).toDate()}
                   selected={false}
                   onClick={() => openLightbox(image)}
