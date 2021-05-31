@@ -10,53 +10,57 @@ import { initialState } from '../models/init';
 import { useSelector } from 'react-redux';
 import { StoresState } from 'Stores/index';
 import Lightbox from '../components/Lightbox';
-import { AllPhotoPagesProps } from './types';
-import { RecentFile, RecentPreviews } from '../../../common/generated/generated-types';
-import { v4 as uuid } from 'uuid';
+import {
+  RecentFile,
+  RecentPreviews,
+  useGetRecentFilesQuery,
+} from '../../../common/generated/generated-types';
 import dayjs from 'dayjs';
 
-const AllPhotosPages: React.FC<AllPhotoPagesProps> = (props) => {
-  const [images, setImages] = useState<RecentPreviews[]>([]);
+const AllPhotosPages: React.FC = () => {
+  const [previews, setPreviews] = useState<RecentPreviews[]>([]);
   const [currentImage, setCurrentImages] = useState<RecentFile>(initialState);
   const [lightboxVisible, setLightboxVisible] = useState(false);
+  const owner = useSelector((state: StoresState) => state.user.user.id);
+  const { data, loading, error } = useGetRecentFilesQuery({
+    variables: {
+      owner: owner,
+    },
+  });
+
+  let queryData: RecentPreviews[] = [];
   const allImages: RecentFile[] = [];
-
-  const queryData = props.data?.GetRecentFiles?.result?.map((el) => ({
-    date: el.date,
-    files: el.files?.map((file) => ({
-      original_filename: file.original_filename,
-      uri: file.uri,
-      uri_thumbnail: file.uri_thumbnail,
-      createAt: file.createAt,
-      updateAt: file.updateAt,
-      type: file.type,
-    })),
-  })) as RecentPreviews[];
-
-  props.data?.GetRecentFiles?.result.forEach((f) =>
-    f.files?.forEach((file) =>
-      allImages.push({
-        original_filename: file.original_filename,
-        uri: file.uri,
-        uri_thumbnail: file.uri_thumbnail,
-        createAt: file.createAt,
-        updateAt: file.updateAt,
-        type: file.type,
-      }),
-    ),
-  );
 
   const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
   const ids = searchResult.map((el) => el._id);
 
+  if (!error) {
+    queryData = data?.GetRecentFiles?.result.map((el: RecentPreviews) => ({
+      date: el.date,
+      files: el.files?.map((f: RecentFile) => ({
+        createAt: f.createAt,
+        original_filename: f.original_filename,
+        updateAt: f.updateAt,
+        uri: f.uri,
+        uri_thumbnail: f.uri_thumbnail,
+        _id: f._id,
+        type: f.type,
+      })),
+    })) as RecentPreviews[];
+
+    queryData?.forEach((el: RecentPreviews) => {
+      if (el.files) allImages.push(...el.files);
+    });
+  } else {
+    alert(error.message);
+  }
+
   useEffect(() => {
-    setImages(queryData);
-  }, []);
+    setPreviews(queryData);
+  }, [loading]);
 
   const nextImages = () => {
-    //  fetchImages().then((response) => {
-    //     setImages([...images, ...response]);
-    //   });
+    //setPreviews([...previews, ...queryData]);
   };
 
   const openLightbox = (image: RecentFile) => {
@@ -69,10 +73,9 @@ const AllPhotosPages: React.FC<AllPhotoPagesProps> = (props) => {
     setLightboxVisible(false);
   };
 
-  //TODO: fix bad lightbox
   const showNext = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    const currentIndex = allImages.indexOf(currentImage);
+    const currentIndex = allImages.findIndex((el) => el._id === currentImage._id);
     if (currentIndex >= allImages.length - 1) {
       setLightboxVisible(false);
     } else {
@@ -83,7 +86,7 @@ const AllPhotosPages: React.FC<AllPhotoPagesProps> = (props) => {
 
   const showPrev = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    const currentIndex = allImages.indexOf(currentImage);
+    const currentIndex = allImages.findIndex((el) => el._id === currentImage._id);
     if (currentIndex <= 0) setLightboxVisible(false);
     else {
       const nextImage = allImages[currentIndex - 1];
@@ -106,35 +109,40 @@ const AllPhotosPages: React.FC<AllPhotoPagesProps> = (props) => {
           <Button style={{ marginTop: '3%', marginBottom: '-3%' }}>+ Photo</Button>
         </a>
       </Link>
-
       <InfiniteScroll
-        dataLength={images.length}
+        dataLength={allImages.length}
         next={nextImages}
-        hasMore={true}
+        hasMore={false}
         loader={<Loader />}
         style={{ overflow: 'hidden' }}>
         <WrapperImage>
-          {images.map((el) =>
-            el.files?.map((file) =>
-              file.type === 'image' ? (
+          {ids.length != 0 &&
+            previews?.map((preview: RecentPreviews) =>
+              preview.files
+                ?.filter((f) => (ids.length != 0 ? ids.includes(f._id) : true))
+                .map((image: RecentFile) => (
+                  <ThumbnailPhoto
+                    src={image.uri_thumbnail}
+                    key={image._id + '-filter'}
+                    createAt={dayjs(image.createAt).toDate()}
+                    selected={false}
+                    onClick={() => openLightbox(image)}
+                  />
+                )),
+            )}
+
+          {ids.length == 0 &&
+            previews?.map((preview: RecentPreviews) =>
+              preview.files?.map((image: RecentFile) => (
                 <ThumbnailPhoto
-                  src={file.uri}
-                  key={uuid().toString()}
-                  createAt={dayjs(file.createAt).toDate()}
+                  src={image.uri_thumbnail}
+                  key={image._id + '-unfilter'}
+                  createAt={dayjs(image.createAt).toDate()}
                   selected={false}
                   onClick={() => openLightbox(file)}
                 />
-              ) : (
-                <ThumbnailPhoto
-                  src={file.uri_thumbnail}
-                  key={uuid().toString()}
-                  createAt={dayjs(file.createAt).toDate()}
-                  selected={false}
-                  onClick={() => openLightbox(file)}
-                />
-              ),
-            ),
-          )}
+              )),
+            )}
         </WrapperImage>
       </InfiniteScroll>
     </LayoutWithSearch>

@@ -116,11 +116,11 @@ const UploadPage: React.FC = () => {
   return (
     <Layout>
       <UploadWrapper>
-        <BackButton>
-          <ArrowLeftOutlined
-            style={{ fontSize: '1.5rem' }}
-            onClick={() => router.push('/allphotos')}
-          />
+        <BackButton
+          onClick={() => {
+            router.push('/allphotos');
+          }}>
+          <ArrowLeftOutlined style={{ fontSize: '1.5rem' }} />
         </BackButton>
         <Content style={{ marginTop: '5%' }}>
           <h2 style={{ marginBottom: '2%' }}>Upload Photos</h2>

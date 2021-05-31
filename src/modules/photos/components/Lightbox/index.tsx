@@ -18,11 +18,16 @@ import {
   CaretRightOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons';
-import { Tag as TagType } from 'Modules/photos/models/tags/';
-import { LightboxPropsType, currentImageSizeType } from './types';
+import { LightboxPropsType, currentImageSizeType, FileInsight } from './types';
 import { Row, Col, Tag } from 'antd';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
+import {
+  InsightDto,
+  useGetFileImageInsightQuery,
+} from '../../../../common/generated/generated-types';
+import { initState } from './init';
+import filesize from 'filesize';
 
 const TagRender: React.FC<{ tags?: string[] }> = (props) => {
   const { tags } = props;
@@ -32,11 +37,51 @@ const TagRender: React.FC<{ tags?: string[] }> = (props) => {
 const Lightbox: React.FC<LightboxPropsType> = (props) => {
   const { image, onPrev, onNext, closeLightbox } = props;
   const ref = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [currentImageSize, setCurrentImageSize] = useState<currentImageSizeType>();
   const [scaleX, setScaleX] = useState(0);
   const [scaleY, setScaleY] = useState(0);
   const [detailCardVisible, setDetailCardVisible] = useState(true);
   const [scaleBorder, setScaleBorder] = useState(0);
+  const [insights, setInsights] = useState<FileInsight>(initState);
+
+  const { data, loading, error } = useGetFileImageInsightQuery({
+    variables: {
+      fileId: image._id,
+    },
+  });
+
+  if (error) {
+    alert(error.message);
+  }
+
+  const fileMetaData = data?.GetFileImageInsight.fileMeta;
+  const insightsData = data?.GetFileImageInsight.insights;
+
+  useEffect(() => {
+    if (fileMetaData && insightsData) {
+      setInsights({
+        fileMeta: {
+          _id: fileMetaData?._id,
+          uri: fileMetaData?.uri,
+          uri_thumbnail: fileMetaData?.uri_thumbnail,
+          meta: {
+            size: fileMetaData?.meta.size,
+            extension: fileMetaData?.meta.extension,
+            contentType: fileMetaData?.meta.contentType,
+            width: fileMetaData?.meta.width,
+            height: fileMetaData?.meta.height,
+          },
+        },
+        insights: insightsData.map((el: InsightDto) => ({
+          _id: el?._id,
+          model: el?.model,
+          keyword: el?.keyword,
+          bbox: el?.bbox || undefined,
+        })),
+      });
+    }
+  }, [loading, image._id]);
 
   const mockInsight = {
     width: 600,
@@ -47,11 +92,12 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
   };
 
   function handleCurrentImageSize() {
-    if (ref.current)
+    if (ref.current) {
       setCurrentImageSize({
         width: ref?.current?.clientWidth,
         height: ref?.current?.clientHeight,
       });
+    }
   }
 
   function handleDetailCard() {
@@ -71,22 +117,25 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
 
   useEffect(() => {
     if (currentImageSize) {
-      setScaleX(currentImageSize?.width / mockInsight.width);
-      setScaleY(currentImageSize?.height / mockInsight.height);
+      setScaleX(currentImageSize?.width / insights.fileMeta.meta.width);
+      setScaleY(currentImageSize?.height / insights.fileMeta.meta.height);
       setScaleBorder(3 * scaleX);
     }
   }, [currentImageSize, detailCardVisible]);
 
-  const allTags = mockInsight.label.reduce((acc: string[], tag: TagType) => {
-    if (acc.indexOf(tag.result) == -1) acc.push(tag.result);
-    return acc;
-  }, []);
+
+  const allTags = insights.insights
+    .map((el) => el.keyword)
+    .reduce((acc: string[], keyword: string) => {
+      if (acc.indexOf(keyword) == -1) acc.push(keyword);
+      return acc;
+    }, []);
 
   return (
     <LightboxWrapper>
       <Overlay onClick={closeLightbox} />
       <LightboxCard>
-        <LightboxCardLeft half={detailCardVisible}>
+        <LightboxCardLeft ref={containerRef} half={detailCardVisible}>
           <OptionWrapper>
             <InfoButton onClick={handleDetailCard}>
               <InfoCircleOutlined />
@@ -96,17 +145,17 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
             <CaretLeftOutlined />
           </ButtonLeft>
           <ImageWrapper>
-            {mockInsight.label &&
-              mockInsight.label?.map((originSize) => {
-                if (currentImageSize) {
+            {insights.insights &&
+              insights.insights?.map((insightData) => {
+                if (insightData.bbox && currentImageSize) {
                   return (
                     <BoundingBox
                       key={uuid().toString()}
-                      xMin={originSize.xMin * scaleX}
-                      xMax={originSize.xMax * scaleX}
-                      yMin={originSize.yMin * scaleY}
-                      yMax={originSize.yMax * scaleY}
-                      label={originSize.result}
+                      xMin={insightData?.bbox?.xmin * scaleX}
+                      xMax={insightData?.bbox?.xmax * scaleX}
+                      yMin={insightData?.bbox?.ymin * scaleY}
+                      yMax={insightData?.bbox?.ymax * scaleY}
+                      label={insightData.keyword}
                       scaleBorder={scaleBorder}
                       currentImgWidth={currentImageSize?.width}
                       currentImgHeight={currentImageSize?.height}
@@ -134,6 +183,17 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
             <br />
             <Row>
               <Col md={8}>
+                <b> Model</b>
+              </Col>
+              <Col>
+                {insights.insights.map((el, index) => (
+                  <Tag key={index}>{el.model} </Tag>
+                ))}
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col md={8}>
                 <b> Date</b>
               </Col>
               <Col>
@@ -148,15 +208,9 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
               </Col>
               <Col>
                 {image.original_filename}
-                <br />
-                Width {mockInsight.width}px
+                <br /> {insights.fileMeta.meta.width} * {insights.fileMeta.meta.height} px
+                <br /> {filesize(insights?.fileMeta.meta.size)}
               </Col>
-            </Row>
-            <Row>
-              <Col md={8}>
-                <b> Place</b>
-              </Col>
-              <Col>{mockInsight.location ? mockInsight.location : '-'}</Col>
             </Row>
           </LightboxCardRight>
         ) : null}

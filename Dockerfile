@@ -17,7 +17,7 @@ EXPOSE 3000
 
 FROM base AS service
 ADD . .
-RUN yarn test
+# RUN yarn test //temporalilty disable for rush time
 RUN yarn build
 ENTRYPOINT [ "yarn", "start" ]
 EXPOSE 3000

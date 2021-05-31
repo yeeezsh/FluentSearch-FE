@@ -85,7 +85,8 @@ export const StopButton = styled.button`
 
 export const ProgressBarWrapper = styled.div`
   display: inline-block;
-  width: 50%;
+  width: 100%;
+  margin-right: 1.5em;
 `;
 
 export const ButtonWrapper = styled.div`
