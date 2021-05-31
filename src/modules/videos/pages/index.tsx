@@ -1,189 +1,119 @@
-import { Row, Col } from 'antd';
-import LayoutWithSearch from 'Components/Layouts/LayoutWithSearch';
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { StoresState } from 'Stores/index';
-import { fetchInsightData } from '../reducers/insightReducer/actions';
-import { fetchVideoData } from '../reducers/videoReducer/actions';
-import { Header, VideoPlayer, VideoPlayerWrapper } from './styled';
-import { insightActions } from '../reducers/insightReducer';
-import PeopleCard from '../components/VideoDetailCard/PeopleCard';
-import LabelCard from '../components/VideoDetailCard/LabelCard';
-import DetailCard from '../components/VideoDetailCard/DetailCard';
-import Canvas from '../components/Canvas';
-import { PlayerState } from '../models/types';
+import dayjs from 'dayjs';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSelector } from 'react-redux';
+import LayoutWithSearch from '../../../common/components/Layouts/LayoutWithSearch';
+import { Loader } from '../../../common/components/Loader';
+import {
+  RecentFile,
+  RecentPreviews,
+  useGetRecentFilesQuery,
+} from '../../../common/generated/generated-types';
+import { StoresState } from '../../../common/stores';
+import ThumbnailPhoto from '../../photos/components/ThumbnailPhoto';
+import { WrapperImage } from '../../photos/pages/styled';
+import { useRouter } from 'next/router';
+import Button from '../../../common/components/Button';
 
-const ViewVideoPage: React.FC = () => {
-  const dispatch = useDispatch();
+const VideosPage: React.FC = () => {
+  const router = useRouter();
 
-  const playerContainerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [previews, setPreviews] = useState<RecentPreviews[]>([]);
+  const owner = useSelector((state: StoresState) => state.user.user.id);
 
-  const [selectedTime, setSelectedTime] = useState(0);
-  const [playerState, setPlayerState] = useState<PlayerState>({
-    duration: 0,
-    played: 0,
-    playerHeight: 0,
-    playerWidth: 0,
+  const { data, loading, error } = useGetRecentFilesQuery({
+    variables: {
+      owner: owner,
+    },
   });
 
-  const videoHeight = useSelector(
-    (state: StoresState) => state.video.present.metaData.height,
-  );
-  const videoWidth = useSelector(
-    (state: StoresState) => state.video.present.metaData.width,
-  );
-  const date = useSelector((state: StoresState) => state.video.present.metaData.date);
-  const originalFileName = useSelector(
-    (state: StoresState) => state.video.present.metaData.originalFileName,
-  );
-  const format = useSelector((state: StoresState) => state.video.present.metaData.format);
-  const size = useSelector((state: StoresState) => state.video.present.metaData.size);
-  const width = useSelector((state: StoresState) => state.video.present.metaData.width);
-  const height = useSelector((state: StoresState) => state.video.present.metaData.height);
-  const place = useSelector((state: StoresState) => state.video.present.metaData.place);
-  const url = useSelector((state: StoresState) => state.video.videoFile.url);
+  let queryData: RecentPreviews[] = [];
+  const allVideos: RecentFile[] = [];
 
-  const incidents = useSelector((state: StoresState) => state.insight.present.label);
-  const personIncidents = useSelector(
-    (state: StoresState) => state.insight.present.person,
-  );
-  const incidentData = useSelector(
-    (state: StoresState) => state.insight.data.annotations,
-  );
-  const selectedLabel = useSelector(
-    (state: StoresState) => state.insight.present.selectedLabel,
-  );
-  const precision = useSelector((state: StoresState) => state.insight.present.precision);
-  const model = useSelector((state: StoresState) => state.insight.present.model);
+  const searchResult = useSelector((s: StoresState) => s.instantSearch.result);
+  const ids = searchResult.map((el) => el._id);
 
-  const totalPeople = personIncidents.length;
-  const totalIncidents = incidents.length;
+  if (!error) {
+    queryData = data?.GetRecentFiles?.result.map((el: RecentPreviews) => ({
+      date: el.date,
+      files: el.files?.map((f: RecentFile) => ({
+        createAt: f.createAt,
+        original_filename: f.original_filename,
+        updateAt: f.updateAt,
+        uri: f.uri,
+        uri_thumbnail: f.uri_thumbnail,
+        _id: f._id,
+        type: f.type,
+      })),
+    })) as RecentPreviews[];
 
-  const handleSelectAvatar = (index: number) => {
-    dispatch(insightActions.setSelectedPerson({ index: index }));
-  };
-
-  const handleMarkerClick = (time: number) => {
-    if (!videoRef.current) return;
-    videoRef.current.currentTime = time - 0.5;
-    setSelectedTime(time);
-  };
-
-  const handleLabelClick = (selectedLabel: string) => {
-    dispatch(insightActions.setSelectedLabel({ category: selectedLabel }));
-  };
-
-  const handlePlayerResize = () => {
-    if (videoRef.current?.clientHeight && videoRef.current?.clientWidth) {
-      setPlayerState((prevState) => ({
-        ...prevState,
-        playerHeight: videoRef.current?.clientHeight || 0,
-        playerWidth: videoRef.current?.clientWidth || 0,
-      }));
-    }
-  };
-
-  const handleDuration = () => {
-    if (videoRef.current)
-      setPlayerState((prevState) => ({
-        ...prevState,
-        duration: videoRef.current?.duration || 0,
-      }));
-  };
-
-  const handlePlayed = () => {
-    if (videoRef.current) {
-      const played = videoRef.current && videoRef.current?.currentTime;
-      setPlayerState((prevState) => ({
-        ...prevState,
-        played: played || 0,
-      }));
-    }
-  };
-
-  useEffect(() => {
-    if (videoRef.current) {
-      window.addEventListener('resize', handlePlayerResize);
-      videoRef.current.addEventListener('timeupdate', handlePlayed);
-    }
-
-    return () => {
-      if (!videoRef.current) return;
-      videoRef.current?.removeEventListener('webkitfullscreenchange', () => {
-        console.log('remove');
+    queryData?.map((el: RecentPreviews) => {
+      el.files?.filter((d) => {
+        if (d.type === 'video') return d;
       });
-    };
-  }, [videoRef]);
+      if (el.files) allVideos.push(...el.files);
+    });
+  } else {
+    alert(error.message);
+  }
 
   useEffect(() => {
-    dispatch(fetchVideoData());
-    dispatch(fetchInsightData());
-    handleDuration();
-    handlePlayerResize();
-  }, []);
+    setPreviews(queryData);
+  }, [loading]);
+
+  const nextImages = () => {
+    //setPreviews([...previews, ...queryData]);
+  };
 
   return (
-    <LayoutWithSearch border={false}>
-      {'<'} Photos <br />
-      <Header>{originalFileName}</Header>
-      <hr />
-      <Row style={{ marginTop: '5%' }}>
-        <Col span={13}>
-          <VideoPlayerWrapper ref={playerContainerRef}>
-            <Canvas
-              selectedLabel={selectedLabel}
-              duration={playerState.duration}
-              width={playerState.playerWidth}
-              height={playerState.playerHeight}
-              data={incidentData}
-              played={playerState.played}
-              videoHeight={videoHeight}
-              videoWidth={videoWidth}
-              precision={precision}
-            />
-            <VideoPlayer ref={videoRef} controls muted autoPlay preload="auto">
-              {/* TODO: Dynamic route */}
-              <source type="video/mp4" src={`videos/sample.mp4`} />
-              <source type="video/webm" src={`videos/sample.webm`} />
-              <source type="video/mp4" src={`videos/sample.m4v`} />
-              <source type="video/ogg" src={`videos/sample.ogv`} />
-            </VideoPlayer>
-          </VideoPlayerWrapper>
-          <br />
-          <DetailCard
-            model={model}
-            date={date}
-            width={width}
-            height={height}
-            size={size}
-            place={place}
-            originalFileName={originalFileName}
-            format={format}
-          />
-        </Col>
-        <Col span={10} offset={1}>
-          <PeopleCard
-            totalPeople={totalPeople}
-            incidents={personIncidents}
-            handleSelectAvatar={handleSelectAvatar}
-          />
-          <br />
-          <LabelCard
-            selectedTime={selectedTime}
-            duration={playerState.duration}
-            totalIncidents={totalIncidents}
-            incidents={incidents}
-            onMarkerClick={handleMarkerClick}
-            onLabelClick={handleLabelClick}
-            selectedLabel={selectedLabel}
-          />
+    <LayoutWithSearch title="Videos">
+      <Link href="/upload">
+        <a>
+          <Button style={{ marginTop: '3%', marginBottom: '-3%' }}>+ Video</Button>
+        </a>
+      </Link>
+      <InfiniteScroll
+        dataLength={allVideos.length}
+        next={nextImages}
+        hasMore={false}
+        loader={<Loader />}
+        style={{ overflow: 'hidden' }}>
+        <WrapperImage>
+          {ids.length != 0 &&
+            previews?.map((preview: RecentPreviews) =>
+              preview.files
+                ?.filter((f) => (ids.length != 0 ? ids.includes(f._id) : true))
+                .filter((el) => el.type === 'video')
+                .map((image: RecentFile) => (
+                  <ThumbnailPhoto
+                    src={image.uri_thumbnail}
+                    key={image._id + '-filter'}
+                    createAt={dayjs(image.createAt).toDate()}
+                    selected={false}
+                    onClick={() => router.push(`/video=${image._id}`)}
+                  />
+                )),
+            )}
 
-          <br />
-        </Col>
-      </Row>
+          {ids.length == 0 &&
+            previews?.map((preview: RecentPreviews) =>
+              preview.files
+                ?.filter((el) => el.type === 'video')
+                .map((image: RecentFile) => (
+                  <ThumbnailPhoto
+                    src={image.uri_thumbnail}
+                    key={image._id + '-unfilter'}
+                    createAt={dayjs(image.createAt).toDate()}
+                    selected={false}
+                    onClick={() => router.push(`/video=${image._id}`)}
+                  />
+                )),
+            )}
+        </WrapperImage>
+      </InfiniteScroll>
     </LayoutWithSearch>
   );
 };
 
-export default ViewVideoPage;
+export default VideosPage;
