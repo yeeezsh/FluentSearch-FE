@@ -11,13 +11,5 @@ export const initState: Dashboard = {
       today: 0,
     },
   },
-  FileInsightDashboardData: {
-    fileMeta: {
-      _id: '',
-      type: '',
-      uri: '',
-      uri_thumbnail: '',
-    },
-    insights: [],
-  },
+  FileInsightDashboardData: [],
 };
