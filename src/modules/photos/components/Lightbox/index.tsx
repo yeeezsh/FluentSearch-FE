@@ -174,6 +174,17 @@ const Lightbox: React.FC<LightboxPropsType> = (props) => {
             <br />
             <Row>
               <Col md={8}>
+                <b> Model</b>
+              </Col>
+              <Col>
+                {insights.insights.map((el, index) => (
+                  <Tag key={index}>{el.model} </Tag>
+                ))}
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col md={8}>
                 <b> Date</b>
               </Col>
               <Col>
