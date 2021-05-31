@@ -1,0 +1,13 @@
+query GetUserTasks($userId: String!) {
+  GetUserTasks(userId: $userId) {
+    tasks {
+      name
+      wait
+      excute
+      finish
+      models
+      createAt
+    }
+    quota
+  }
+}

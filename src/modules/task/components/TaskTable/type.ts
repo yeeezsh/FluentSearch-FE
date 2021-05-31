@@ -1,5 +1,5 @@
-import { TaskPresent } from 'Modules/task/reducer/taskReducer/types';
+import { TaskStatus } from '../../../../common/generated/generated-types';
 
 export type TaskTablePropsType = {
-  data: TaskPresent[];
+  data: TaskStatus[];
 };

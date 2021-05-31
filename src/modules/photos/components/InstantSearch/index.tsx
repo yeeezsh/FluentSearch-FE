@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
-import { useGetInsightBySearchQuery } from 'Services/model/generated-types';
 import { AutoComplete, Input } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { instantSearchActions } from 'Modules/photos/reducers/instantSearchReducer';
 import { StoresState } from 'Stores/index';
+import { useGetSearchQuery } from '../../../../common/generated/generated-types';
 
 const InstantSearch: React.FC = () => {
   const dispatch = useDispatch();
@@ -12,23 +12,28 @@ const InstantSearch: React.FC = () => {
   const autocomplete = useSelector(
     (s: StoresState) => s.instantSearch.autocomplete,
   ).map((el) => ({ value: el }));
-  const { data, loading } = useGetInsightBySearchQuery({
+  const owner = useSelector((state: StoresState) => state.user.user.id);
+
+  const { data, loading } = useGetSearchQuery({
     variables: {
+      owner: owner,
       word: onSearch,
     },
   });
 
   useEffect(() => {
-    //   preventing from load all list
-    // if (onSearch !== '') {
-    dispatch(
-      instantSearchActions.onData({
-        data: data?.searchByWord.result || [],
-        loading,
-        autocomplete: data?.searchByWord.autocomplete || [],
-      }),
-    );
-    // }
+    if (onSearch !== '') {
+      const onSearchData = data?.GetSearch.autocomplete.filter((el) =>
+        el.toLowerCase().includes(onSearch.toLowerCase()),
+      );
+      dispatch(
+        instantSearchActions.onData({
+          data: data?.GetSearch.results || [],
+          loading,
+          autocomplete: onSearchData || [],
+        }),
+      );
+    }
   }, [onSearch, loading]);
 
   return (
