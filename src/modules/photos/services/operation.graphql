@@ -26,3 +26,14 @@ query GetFileImageInsight($fileId: String!) {
     }
   }
 }
+
+query GetSearch($owner: String!, $word: String!) {
+  GetSearch(owner: $owner, word: $word) {
+    results {
+      _id
+      uri_thumbnail
+      uri
+    }
+    autocomplete
+  }
+}

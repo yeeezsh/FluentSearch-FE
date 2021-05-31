@@ -20,6 +20,14 @@ export type AppModel = {
   status: Scalars['Int'];
 };
 
+export type Dimension = {
+  __typename?: 'Dimension';
+  original_width: Scalars['Float'];
+  original_height: Scalars['Float'];
+  extract_width: Scalars['Float'];
+  extract_height: Scalars['Float'];
+};
+
 export type FileDurationMetaDto = {
   __typename?: 'FileDurationMetaDTO';
   original: Scalars['String'];
@@ -100,12 +108,28 @@ export enum FileTypeEnum {
   VideoThumbnail = 'VideoThumbnail',
 }
 
+export type FileVideoInsightDto = {
+  __typename?: 'FileVideoInsightDto';
+  fileMeta: FileInsightMeta;
+  insights: Array<InsightVideoDto>;
+  dimension: Dimension;
+  model: InsightModelEnum;
+};
+
 export type InsightBBox = {
   __typename?: 'InsightBBox';
   xmax: Scalars['Float'];
   ymax: Scalars['Float'];
   ymin: Scalars['Float'];
   xmin: Scalars['Float'];
+};
+
+export type InsightClass = {
+  __typename?: 'InsightClass';
+  bbox: InsightBBox;
+  prob: Scalars['Float'];
+  fps: Scalars['Float'];
+  cat: Scalars['String'];
 };
 
 export type InsightDto = {
@@ -146,6 +170,12 @@ export enum InsightModelEnum {
   Vgg16 = 'vgg16',
 }
 
+export type InsightVideoDto = {
+  __typename?: 'InsightVideoDTO';
+  classes: Array<InsightClass>;
+  nFps: Scalars['Float'];
+};
+
 export enum ModelEnum {
   FacesEmo = 'faces_emo',
   Detection_600 = 'detection_600',
@@ -185,6 +215,7 @@ export type Query = {
   Users: Array<UserWithId>;
   GetUserTasks: UserTasksDto;
   GetFileImageInsight: FileInsightDto;
+  GetFileVideoInsight: FileVideoInsightDto;
   GetSearch: SearchDto;
   GetFileById: FileModelDto;
   GetRecentFiles: RecentFiles;
@@ -204,6 +235,10 @@ export type QueryGetUserTasksArgs = {
 };
 
 export type QueryGetFileImageInsightArgs = {
+  fileId: Scalars['String'];
+};
+
+export type QueryGetFileVideoInsightArgs = {
   fileId: Scalars['String'];
 };
 
@@ -248,6 +283,7 @@ export type RecentPreviews = {
 export type SearchDto = {
   __typename?: 'SearchDTO';
   results: Array<FileInsightMeta>;
+  autocomplete: Array<Scalars['String']>;
 };
 
 export type TaskStatus = {
@@ -361,6 +397,22 @@ export type GetFileImageInsightQuery = { __typename?: 'Query' } & {
         }
     >;
   };
+};
+
+export type GetSearchQueryVariables = Exact<{
+  owner: Scalars['String'];
+  word: Scalars['String'];
+}>;
+
+export type GetSearchQuery = { __typename?: 'Query' } & {
+  GetSearch: { __typename?: 'SearchDTO' } & Pick<SearchDto, 'autocomplete'> & {
+      results: Array<
+        { __typename?: 'FileInsightMeta' } & Pick<
+          FileInsightMeta,
+          '_id' | 'uri_thumbnail' | 'uri'
+        >
+      >;
+    };
 };
 
 export type GetUserTasksQueryVariables = Exact<{
@@ -648,6 +700,58 @@ export type GetFileImageInsightLazyQueryHookResult = ReturnType<
 export type GetFileImageInsightQueryResult = Apollo.QueryResult<
   GetFileImageInsightQuery,
   GetFileImageInsightQueryVariables
+>;
+export const GetSearchDocument = gql`
+  query GetSearch($owner: String!, $word: String!) {
+    GetSearch(owner: $owner, word: $word) {
+      results {
+        _id
+        uri_thumbnail
+        uri
+      }
+      autocomplete
+    }
+  }
+`;
+
+/**
+ * __useGetSearchQuery__
+ *
+ * To run a query within a React component, call `useGetSearchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSearchQuery({
+ *   variables: {
+ *      owner: // value for 'owner'
+ *      word: // value for 'word'
+ *   },
+ * });
+ */
+export function useGetSearchQuery(
+  baseOptions: Apollo.QueryHookOptions<GetSearchQuery, GetSearchQueryVariables>,
+) {
+  return Apollo.useQuery<GetSearchQuery, GetSearchQueryVariables>(
+    GetSearchDocument,
+    baseOptions,
+  );
+}
+export function useGetSearchLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetSearchQuery, GetSearchQueryVariables>,
+) {
+  return Apollo.useLazyQuery<GetSearchQuery, GetSearchQueryVariables>(
+    GetSearchDocument,
+    baseOptions,
+  );
+}
+export type GetSearchQueryHookResult = ReturnType<typeof useGetSearchQuery>;
+export type GetSearchLazyQueryHookResult = ReturnType<typeof useGetSearchLazyQuery>;
+export type GetSearchQueryResult = Apollo.QueryResult<
+  GetSearchQuery,
+  GetSearchQueryVariables
 >;
 export const GetUserTasksDocument = gql`
   query GetUserTasks($userId: String!) {
