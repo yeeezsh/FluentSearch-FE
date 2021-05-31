@@ -76,7 +76,6 @@ const AllPhotosPages: React.FC = () => {
   const showNext = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const currentIndex = allImages.findIndex((el) => el._id === currentImage._id);
-    console.log(allImages, currentImage, currentIndex);
     if (currentIndex >= allImages.length - 1) {
       setLightboxVisible(false);
     } else {
@@ -88,7 +87,6 @@ const AllPhotosPages: React.FC = () => {
   const showPrev = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const currentIndex = allImages.findIndex((el) => el._id === currentImage._id);
-    console.log(allImages, currentImage, currentIndex);
     if (currentIndex <= 0) setLightboxVisible(false);
     else {
       const nextImage = allImages[currentIndex - 1];
