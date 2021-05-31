@@ -68,5 +68,5 @@ export type FileDashboard = {
 
 export type Dashboard = {
   FileDashboardData: FileDashboard;
-  FileInsightDashboardData: FileInsight;
+  FileInsightDashboardData: FileInsight[];
 };
