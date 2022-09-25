@@ -145,10 +145,10 @@ const ViewVideoPage: React.FC = () => {
             />
             <VideoPlayer ref={videoRef} controls muted autoPlay preload="auto">
               {/* TODO: Dynamic route */}
-              <source type="video/mp4" src={`videos/sample.mp4`} />
-              <source type="video/webm" src={`videos/sample.webm`} />
-              <source type="video/mp4" src={`videos/sample.m4v`} />
-              <source type="video/ogg" src={`videos/sample.ogv`} />
+              <source type="video/mp4" src={`/videos/sample.mp4`} />
+              <source type="video/webm" src={`/videos/sample.webm`} />
+              <source type="video/mp4" src={`/videos/sample.m4v`} />
+              <source type="video/ogg" src={`/videos/sample.ogv`} />
             </VideoPlayer>
           </VideoPlayerWrapper>
           <br />
