@@ -15,7 +15,7 @@ import { PlayerState } from '../models/types';
 
 const ViewVideoPage: React.FC = () => {
   const dispatch = useDispatch();
-  const pathData = router.query;
+  // const pathData = router.query;
 
   const playerContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
